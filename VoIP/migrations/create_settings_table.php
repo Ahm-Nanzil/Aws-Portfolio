@@ -1,0 +1,12 @@
+<?php
+require __DIR__ . '/../config.php';
+
+$pdo->exec("
+CREATE TABLE IF NOT EXISTS settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  `key` VARCHAR(100) UNIQUE NOT NULL,
+  `value` TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+");

@@ -1,0 +1,53 @@
+<div
+            class="elementor-element elementor-element-837365d e-flex e-con-boxed e-con e-parent"
+            data-id="837365d"
+            data-element_type="container"
+            data-settings='{"background_background":"classic"}'
+          >
+            <div class="e-con-inner">
+              <div
+                class="elementor-element elementor-element-aa5295c elementor-widget elementor-widget-heading"
+                data-id="aa5295c"
+                data-element_type="widget"
+                data-widget_type="heading.default"
+              >
+                <div class="elementor-widget-container">
+                  <h2 class="elementor-heading-title elementor-size-default">
+                    
+                    <?php
+                      echo htmlspecialchars($page['about']['title'] ?? 'Welcome to Asian Telecom – Your Trusted VOIP Service
+                    Provider in the UAE');
+                    ?>
+
+                  </h2>
+                </div>
+              </div>
+              <div
+                class="elementor-element elementor-element-e2e55de elementor-widget elementor-widget-text-editor"
+                data-id="e2e55de"
+                data-element_type="widget"
+                data-widget_type="text-editor.default"
+              >
+                <div class="elementor-widget-container">
+                  <p>
+                    
+                    <?php
+                      echo ($page['about']['description'] ?? '<span style="font-weight: 400">At </span><b>Asian Telecom</b
+                    ><span style="font-weight: 400"
+                      >, we are proud to be one of the leading </span
+                    ><b>Voice over Internet Protocol (VOIP)</b
+                    ><span style="font-weight: 400">
+                      service providers in the UAE, KSA, Oman &amp; Others
+                      Countries, offering reliable and cost-effective
+                      communication solutions to customers across the Middle
+                      East. With years of experience in the telecommunications
+                      industry, we specialize in providing high-quality,
+                      affordable VOIP calling services to individuals,
+                      businesses, and resellers alike.</span
+                    >');
+                    ?>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>

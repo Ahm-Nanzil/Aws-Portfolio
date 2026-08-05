@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extra Curriculam</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body, html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transition: opacity 0.3s ease-in-out;
+    }
+    /* Position buttons on the left and right center */
+    .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.15);
+        color: #fff;
+        border: none;
+        font-size: 30px;
+        padding: 15px 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+        user-select: none;
+    }
+    .nav-button:hover {
+        background: rgba(255,255,255,0.35);
+    }
+    .prev { left: 30px; }
+    .next { right: 30px; }
+</style>
+</head>
+<body>
+
+    <img id="image" src="1.jpg" alt="Image Viewer">
+
+    <button class="nav-button prev" onclick="prevImage()">&#10094;</button>
+    <button class="nav-button next" onclick="nextImage()">&#10095;</button>
+
+    <script>
+        const images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg'];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById('image');
+
+        function showImage(index) {
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                imgElement.src = images[index];
+                imgElement.style.opacity = 1;
+            }, 200);
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        // Optional keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+    </script>
+
+</body>
+</html>

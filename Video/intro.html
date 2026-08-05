@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction Video - Abu Hasib Muhammad Nanzil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+        }
+
+        .video-info {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-info h3 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .video-info p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .controls-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .control-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .control-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .control-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .control-card p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px;
+                border-radius: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .video-info {
+                padding: 12px 15px;
+            }
+
+            .controls-info {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        /* Tablet optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .controls-info {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* High DPI displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .container {
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .video-container {
+                padding-bottom: 45%;
+            }
+        }
+
+        /* iOS Safari specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            .video-player {
+                -webkit-playsinline: true;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            }
+            
+            .container {
+                background: rgba(45, 55, 72, 0.95);
+                color: white;
+            }
+            
+            .header h1 {
+                color: white;
+            }
+            
+            .header p {
+                color: #cbd5e0;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎬 About Me</h1>
+            <p>Watch this video to learn about my skills, experience and why I am a strong candidate.</p>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-container">
+                <video class="video-player" controls preload="metadata" playsinline>
+                    <source src="ahmnanzil.mp4" type="video/mp4">
+                    Your browser does not support the video tag. Please update your browser.
+                </video>
+            </div>
+
+            <div class="video-info">
+                <h3>Introduction Video</h3>
+                <p>
+                    In this video, I introduce myself, explain my experience as a Full Stack Developer, 
+                    and highlight my skills across backend, frontend, DevOps and AI-related projects. 
+                    I share how my problem-solving abilities, adaptability and project experience make me a strong fit for multiple development roles.
+                </p>
+            </div>
+        </div>
+
+        <div class="controls-info">
+            <div class="control-card">
+                <h4>💼 Professional Skills</h4>
+                <p>Backend, Frontend, DevOps, AI/LLM, ERP and SaaS projects</p>
+            </div>
+            <div class="control-card">
+                <h4>🌐 Global Experience</h4>
+                <p>Delivered projects for international clients, managing timelines and ensuring quality</p>
+            </div>
+            <div class="control-card">
+                <h4>🎯 Problem Solving</h4>
+                <p>Adaptable and solution-oriented, capable of handling multiple roles in a project</p>
+            </div>
+            <div class="control-card">
+                <h4>🚀 Continuous Learning</h4>
+                <p>Always improving skills to stay current with modern technologies and frameworks</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-player');
+            const videoContainer = document.querySelector('.video-container');
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'loading';
+            loadingDiv.innerHTML = '<div class="spinner"></div>Loading video...';
+            videoContainer.appendChild(loadingDiv);
+
+            video.addEventListener('loadstart', function() {
+                loadingDiv.style.display = 'flex';
+            });
+
+            video.addEventListener('canplay', function() {
+                loadingDiv.style.display = 'none';
+            });
+
+            video.addEventListener('error', function(e) {
+                loadingDiv.innerHTML = '❌ Error loading video. Please check the file path.';
+                console.error('Video error:', e);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (document.activeElement === video || e.target === document.body) {
+                    switch(e.key) {
+                        case ' ':
+                        case 'k':
+                            e.preventDefault();
+                            video.paused ? video.play() : video.pause();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            video.currentTime = Math.max(0, video.currentTime - 10);
+                            break;
+                        case 'ArrowRight':
+                            e.preventDefault();
+                            video.currentTime = Math.min(video.duration, video.currentTime + 10);
+                            break;
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            video.volume = Math.min(1, video.volume + 0.1);
+                            break;
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            video.volume = Math.max(0, video.volume - 0.1);
+                            break;
+                        case 'm':
+                            e.preventDefault();
+                            video.muted = !video.muted;
+                            break;
+                        case 'f':
+                            e.preventDefault();
+                            if (video.requestFullscreen) video.requestFullscreen();
+                            else if (video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+                            break;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
