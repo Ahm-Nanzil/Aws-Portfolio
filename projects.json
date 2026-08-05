@@ -1,0 +1,311 @@
+[
+  {
+    "name": "zenix",
+    "category": "Erp Development",
+    "client": "Zenix Ltd",
+    "url": "https://zenixerp.com/",
+    "description": "🌐 Zenix ERP is a feature-rich, cloud-based SaaS platform developed for Zenix Ltd to unify and automate core business functions. From CRM, HR, and Accounting to Project Management, Manufacturing, and Fleet Tracking — it offers modular solutions for enterprises seeking real-time insights, workflow automation, and operational scalability. Designed for high efficiency, Zenix ensures data security, mobile accessibility, and smooth cross-department integration.",
+    "images": [
+      "assets/img/portfolio/zenixFiverr3.png",
+      "assets/img/portfolio/zenixFiverr1.png",
+      "assets/img/portfolio/zenixFiverr4.png",
+      "assets/img/portfolio/zenixFiverr7.png",
+      "assets/img/portfolio/zenixFiverr6.png"
+
+
+    ]
+  },
+  {
+    "name": "nbs",
+    "category": "Saas Development",
+    "client": "NBS Ltd",
+    "url": "https://www.nbs.sa/",
+    "description": "🌐 Empowering Digital Transformation for Businesses in Saudi Arabia! NBS Ltd is a comprehensive SaaS and IT service provider delivering scalable digital solutions across cloud infrastructure, app development, cybersecurity, and enterprise platforms. With a strong focus on innovation, NBS integrates multilingual SaaS tools like AppZone and secure storage solutions like BeDrive, enabling organizations to manage operations, data, and digital assets efficiently and securely.",
+    "images": [
+      "assets/img/portfolio/nbs3.png",
+      "assets/img/portfolio/nbs4.png",
+      "assets/img/portfolio/nbs1.png",
+      "assets/img/portfolio/nbs2.png"
+    ]
+  },
+  {
+    "name": "ritco",
+    "category": "Ecommerce Development",
+    "client": "Ritco Ltd",
+    "url": "https://ritco.com.sa/",
+    "description": "🌐 Driving Digital Transformation in Riyadh with Custom E-commerce & IT Solutions! Ritco Ltd offers full‑spectrum e-commerce development and IT services, blending secure online storefronts, cloud infrastructure, networking, cybersecurity, and managed IT. Designed for reliability and growth, Ritco empowers businesses with robust platforms, scalable hosting, and ongoing support—perfect for creating seamless shopping experiences and resilient digital operations.",
+    "images": [
+      "assets/img/portfolio/ritco1.png",
+      "assets/img/portfolio/ritco5.png",
+      "assets/img/portfolio/ritco4.png",
+      "assets/img/portfolio/ritco2.png"
+    ]
+  },
+  {
+    "name": "canteen",
+    "category": "Food Delivery App",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🍱 A university project designed for UIU to streamline canteen food ordering with a responsive, easy-to-navigate interface that supports menu browsing, ordering, and payment tracking.",
+    "images": [
+      "assets/img/portfolio/canteen4.jpg",
+      "assets/img/portfolio/canteen1.jpg",
+      "assets/img/portfolio/canteen2.jpg",
+      "assets/img/portfolio/canteen3.jpg"
+    ]
+  },
+  {
+    "name": "guess",
+    "category": "Game Development",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🎮 A simple desktop guessing game built for academic purposes at UIU. Users guess numbers through an interactive UI that offers feedback and tracks attempts.",
+    "images": [
+      "assets/img/portfolio/guess1.jpg",
+      "assets/img/portfolio/guess2.jpg",
+      "assets/img/portfolio/guess3.jpg"
+    ]
+  },
+  {
+    "name": "chat",
+    "category": "Chat Application",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "💬 A basic chat application project built under UIU, featuring real-time communication with a clean user interface and message exchange logic.",
+    "images": [
+      "assets/img/portfolio/chat1.jpg",
+      "assets/img/portfolio/chat2.jpg",
+      "assets/img/portfolio/chat3.jpg"
+    ]
+  },
+  {
+    "name": "ping",
+    "category": "Ping Pong Game",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🏓 A simple 2D desktop Ping Pong game developed as part of a game development course in UIU, simulating classic paddle-ball interaction with scoring.",
+    "images": [
+      "assets/img/portfolio/ping3.jpg",
+      "assets/img/portfolio/ping1.jpg",
+      "assets/img/portfolio/ping2.jpg"
+    ]
+  },
+  {
+    "name": "diabetics",
+    "category": "Machine Learning",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🤖 Harnessing the power of machine learning to fight diabetes! This academic project leverages Python and Scikit-learn to build predictive models that assess diabetic risk based on real-world patient data. With smart data preprocessing, model evaluation, and accuracy tuning, it offers a practical glimpse into how AI can support early medical diagnostics and preventative healthcare.",
+    "images": [
+      "assets/img/portfolio/diabetics1.jpg",
+      "assets/img/portfolio/diabetics2.jpg"
+    ]
+  },
+  {
+    "name": "edoctor",
+    "category": "Healthcare Application",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🩺 Smart Healthcare at Your Fingertips! eDoctor is an academic project developed under UIU that simulates a modern telemedicine platform. It enables virtual doctor appointments, digital prescriptions, and patient record management—designed to streamline remote healthcare delivery. With a user-friendly interface and responsive design, this solution reflects real-world medical workflow, offering insights into scalable, tech-driven health services.",
+    "images": [
+      "assets/img/portfolio/edoctor1.jpg",
+      "assets/img/portfolio/edoctor2.jpg",
+      "assets/img/portfolio/edoctor3.jpg",
+      "assets/img/portfolio/edoctor5.jpg"
+    ]
+  },
+  {
+    "name": "taxibooking",
+    "category": "Transport & Mobility App",
+    "client": "Upwork",
+    "url": "",
+    "description": "🚖 On-Demand Taxi Booking Made Simple! TaxiBooking is a dynamic ride-hailing web application developed for Moe Ed via Upwork. The platform enables users to book rides in real-time with location tracking, fare estimation, and ride history features. Designed with a clean and intuitive UI, this solution streamlines driver-passenger interactions while ensuring efficiency and convenience in urban transport systems.",
+    "images": [
+      "assets/img/portfolio/taxibooking1.png",
+      "assets/img/portfolio/taxibooking3.png",
+      "assets/img/portfolio/taxibooking2.png"
+    ]
+  },
+  {
+    "name": "jobseek",
+    "category": "Job Portal Application",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "💼 Empowering Job Seekers and Recruiters! JobSeek is a university project developed under UIU that simulates a modern job portal platform. It allows job seekers to search and apply for jobs, while recruiters can post openings and manage applicants. With features like category-wise job filtering, user registration/login, and admin control panels, the platform provides a full-stack solution to understand employment marketplace dynamics.",
+    "images": [
+      "assets/img/portfolio/jobseek5.jpg",
+      "assets/img/portfolio/jobseek2.jpg",
+      "assets/img/portfolio/jobseek1.jpg",
+      "assets/img/portfolio/jobseek4.jpg"
+    ]
+  },
+  {
+    "name": "double",
+    "category": "JavaFX Game Development",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "🎮 Duyo the Fun, Duyo the Innovation! 'Duyo' is an award-winning JavaFX-based desktop application that combines two classic games—Chess and Tic Tac Toe—within a single project. Featuring a real-time chat system and immersive sound effects, this project offers both strategic gameplay and interactive communication. Developed under UIU, it earned top recognition at the UIU Project Show for its creative design, smooth performance, and engaging user experience.",
+    "images": [
+      "assets/img/portfolio/double1.png",
+      "assets/img/portfolio/double2.png",
+      "assets/img/portfolio/double3.png",
+      "assets/img/portfolio/double4.png"
+    ]
+  },
+  {
+    "name": "techmed",
+    "category": "Smart Healthcare System (FYDP)",
+    "client": "UIU EDU",
+    "url": "https://ieeexplore.ieee.org/document/10441556",
+    "description": "🩺 TechMed is a Final Year Design Project (FYDP) developed at UIU that introduces an Enhanced Smart Healthcare Management System designed specifically for the healthcare needs of Bangladesh. Built around National ID integration, the system enables healthcare providers to instantly access critical patient data through a chip-enabled card—particularly vital in emergencies where patients cannot communicate effectively. The solution ensures centralized data access, administrative efficiency, and seamless interoperability across medical facilities. Additionally, it features an AI-powered disease prediction module using Decision Trees and Naïve Bayes classifiers for early diagnosis based on patient symptoms. The project was recognized for its innovation and impact and was officially published in IEEE Xplore.",
+    "images": [
+      "assets/img/portfolio/fydp1.png",
+      "assets/img/portfolio/fydp2.png",
+      "assets/img/portfolio/fydp3.png",
+      "assets/img/portfolio/fydp4.png"
+    ]
+  },
+  {
+    "name": "sentiment",
+    "category": "NLP & Sentiment Analysis",
+    "client": "Freelancer",
+    "url": "",
+    "description": "💬 Unlocking Emotions with AI! This freelance project focuses on sentiment analysis using Natural Language Processing (NLP) techniques to detect and classify emotions from user-generated text. Built with Python and machine learning libraries like NLTK and Scikit-learn, it analyzes feedback, reviews, or social media content to determine whether sentiment is positive, negative, or neutral. Ideal for businesses aiming to understand customer emotions, the system features real-time analysis, visualization, and predictive insights—turning raw text into actionable data.",
+    "images": [
+      "assets/img/portfolio/sentiment1.png",
+      "assets/img/portfolio/sentiment2.png",
+      "assets/img/portfolio/sentiment3.png",
+      "assets/img/portfolio/sentiment4.png"
+    ]
+  },
+  {
+    "name": "flowers",
+    "category": "Machine Learning & Data Classification",
+    "client": "Freelancer",
+    "url": "",
+    "description": "🌸 Predicting Nature with Machine Learning! This project uses the famous Iris flower dataset to classify species based on petal and sepal dimensions. Built with Python, Scikit-learn, and visualization tools like Matplotlib and Seaborn, it demonstrates fundamental ML techniques such as data preprocessing, training/testing models, and evaluating performance using classification metrics. The system accurately predicts whether a flower is Iris Setosa, Versicolor, or Virginica—making it a perfect demonstration of supervised learning and pattern recognition.",
+    "images": [
+      "assets/img/portfolio/flowers1.png",
+      "assets/img/portfolio/flowers2.png",
+      "assets/img/portfolio/flowers3.png",
+      "assets/img/portfolio/flowers4.png"
+    ]
+  },
+  {
+    "name": "tuhin",
+    "category": "Portfolio Website Design",
+    "client": "Friend",
+    "url": "",
+    "description": "🎨 Clean & Responsive Portfolio Showcase! This is a personal portfolio website designed and developed using HTML, CSS, and a touch of interactivity. Built for a friend as a portfolio project, the site highlights professional experience, skills, and projects in a visually appealing layout. The design focuses on responsiveness, smooth user experience, and clean code structure—ideal for making a strong first impression online.",
+    "images": [
+      "assets/img/portfolio/tuhin1.png",
+      "assets/img/portfolio/tuhin2.png",
+      "assets/img/portfolio/tuhin3.png"
+    ]
+  },
+
+  {
+    "name": "talentburst",
+    "category": "Job Management Platform",
+    "client": "UIU EDU",
+    "url": "",
+    "description": "💼 TalentBurst is a dynamic job management platform developed as part of a university project at UIU. It streamlines the recruitment workflow by connecting job seekers and employers through a centralized, user-friendly system. The platform includes features such as job postings, application tracking, user authentication, and admin controls. Designed with scalability and real-world functionality in mind, TalentBurst offers a seamless experience for managing employment processes efficiently across various roles and departments.",
+    "images": [
+      "assets/img/portfolio/talentburst1.png",
+      "assets/img/portfolio/talentburst2.png",
+      "assets/img/portfolio/talentburst3.png",
+      "assets/img/portfolio/talentburst4.png"
+    ]
+  },
+  {
+    "name": "chatbot",
+    "category": "AI Chatbot & Automation",
+    "client": "Freelancer",
+    "url": "",
+    "description": "🤖 Smart Conversations Made Simple! This AI-powered chatbot project was developed for a freelance client to automate customer interaction and support using Natural Language Processing (NLP). Built with Python and machine learning libraries, the bot can understand user queries, provide instant responses, and escalate complex issues. Whether integrated into a website or messaging platform, the chatbot improves response time, reduces manual workload, and enhances user experience with intelligent, real-time communication.",
+    "images": [
+      "assets/img/portfolio/chatbot1.png",
+      "assets/img/portfolio/chatbot2.png",
+      "assets/img/portfolio/chatbot3.png",
+      "assets/img/portfolio/chatbot4.png"
+    ]
+  },
+  {
+    "name": "pdf",
+    "category": "Automation & Email Integration",
+    "client": "Upwork",
+    "url": "",
+    "description": "📄 Automated PDF Generation & Email Delivery! This project streamlines document processing by dynamically generating PDF reports based on unique IDs and automatically emailing them as attachments to recipients. Built for an Upwork client, it leverages Python for backend logic and integrates a scheduled cron job to handle email dispatches without manual intervention. This automation ensures efficiency, accuracy, and timely communication—perfect for invoicing, reporting, or record distribution workflows.",
+    "images": [
+      "assets/img/portfolio/pdf5.png",
+      "assets/img/portfolio/pdf1.png",
+      "assets/img/portfolio/pdf2.png",
+      "assets/img/portfolio/pdf3.png"
+    ]
+  },
+  {
+    "name": "scholarship",
+    "category": "Automation & Data Scraping",
+    "client": "Fiverr",
+    "url": "",
+    "description": "🎓 Smart Scholarship Finder Automation! This project helps students discover scholarship opportunities efficiently by scraping and analyzing data from multiple trusted sources. Built for a Fiverr client, the system automates the search process based on criteria such as country, education level, field of study, and eligibility. It reduces manual effort and ensures timely notifications of new opportunities through email alerts or dashboard integration. Ideal for students and educational consultancies aiming to simplify the scholarship discovery process.",
+    "images": [
+      "assets/img/portfolio/schoolarship1.png",
+      "assets/img/portfolio/schoolarship2.png",
+      "assets/img/portfolio/schoolarship3.png"
+    ]
+  },
+  {
+    "name": "aws",
+    "category": "DevOps, CI/CD & Cloud Computing",
+    "client": "self",
+    "url": "https://aws.ahmnanzil.me",
+    "description": "🚀 CI/CD Deployment on AWS EC2! This project demonstrates a simple application deployed on an AWS EC2 instance using a GitHub-based CI/CD pipeline. It highlights key DevOps practices such as automated deployment, version control integration, and cloud infrastructure management. Ideal for showcasing hands-on experience with AWS cloud computing, Linux server setup, and continuous delivery workflows in a real-world environment.",
+    "images": [
+      "assets/img/portfolio/aws1.png",
+      "assets/img/portfolio/aws2.png",
+      "assets/img/portfolio/aws3.png"
+    ]
+  },
+  {
+    "name": "emailCampaign",
+    "category": "DevOps, Automation & Lead Generation",
+    "client": "Upwork Client",
+    "url": "https://clienthunt.azurewebsites.net/",
+    "description": "🚀 Lead Scraping & Email Campaign Platform with Azure Deployment! This project automates the process of scraping potential leads from Google, filtering and deduplicating them against existing CSV records, and launching automated email campaigns in batches. Beyond automation, the entire system is deployed on Azure Web App and integrated with GitHub CI/CD for seamless version control and continuous deployment. Built for an Upwork client, it merges lead generation, smart emailing, and modern DevOps practices into one streamlined solution.",
+    "images": [
+      "assets/img/portfolio/emailCampaign1.png",
+      "assets/img/portfolio/emailCampaign3.png",
+      "assets/img/portfolio/emailCampaign4.png",
+      "assets/img/portfolio/emailCampaign2.png",
+      "assets/img/portfolio/emailCampaign5.png"
+    ]
+  },
+  {
+  "name": "azurevm",
+  "category": "DevOps & Portfolio Deployment",
+  "client": "Personal Project",
+  "url": "https://www.ahmnanzil.com",
+  "description": "🛠️ DevOps-Powered Portfolio on Azure VM! This project showcases my end-to-end DevOps skills by deploying my personal portfolio on a self-managed Azure Virtual Machine. From provisioning the VM to setting up the web server and integrating GitHub CI/CD pipelines, everything was configured manually to demonstrate expertise in cloud infrastructure, automation, and continuous deployment. It reflects a full-stack deployment workflow and serves as a live example of my development and DevOps capabilities.",
+  "images": [
+    "assets/img/portfolio/mysite1.png",
+    "assets/img/portfolio/mysite2.png",
+    "assets/img/portfolio/mysite3.png"
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+]

@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Detect the subfolder path dynamically and store into ENV variable BASE
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
+
+# Use the detected BASE in your rules
+RewriteCond %{THE_REQUEST} /service-details\.php\?id=([^&\s]+) [NC]
+RewriteRule ^services/%1? %{ENV:BASE}services/%1 [R=301,L,QSA]
+
+RewriteRule ^services/([a-z0-9-]+)/?$ %{ENV:BASE}service-details.php?id=$1 [NC,L]

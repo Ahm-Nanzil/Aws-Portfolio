@@ -1,0 +1,202 @@
+{
+  "services": [
+    {
+      "id": "custom-web-development",
+      "title": "Custom Web Development",
+      "metaDescription": "Professional custom web development services using Laravel, React, and Django to build SaaS, ERP, CRM, and POS systems.",
+      "metaKeywords": "web development, Laravel, React, Django, SaaS, ERP, CRM, POS",
+      "subtitle": "Crafting responsive, high-performing websites",
+      "summary": "I craft responsive, high-performing websites using modern technologies such as Laravel, React, and Django.",
+      "image": "web-development.jpg",
+      "heading": "Enterprise-grade web solutions tailored to your needs",
+      "description": "Specializing in complex web applications with module-based architecture and role-based access control for secure, scalable solutions.",
+      "features": [
+        "SaaS, ERP, CRM, POS systems",
+        "Module-based architecture & RBAC",
+        "Dynamic dashboards & admin panels",
+        "Modern tech stack (Laravel/React/Django)",
+        "Responsive & cross-browser compatible"
+      ],
+      "additionalInfo": [
+        "Every project begins with thorough requirement analysis to ensure the solution perfectly matches your business workflow and user needs.",
+        "I focus on clean, maintainable code with comprehensive documentation, making future expansions and team onboarding seamless."
+      ]
+    },
+    {
+      "id": "software-application-development",
+      "title": "Software Application Development",
+      "metaDescription": "Custom software application development for web, desktop, and cloud platforms with MVC architecture and security focus.",
+      "metaKeywords": "software development, custom software, MVC architecture, scalable apps",
+      "subtitle": "Building scalable and secure applications",
+      "summary": "Scalable and secure software apps for web, desktop, or cloud platforms.",
+      "image": "software-app.jpg",
+      "heading": "Tailored software solutions for your unique requirements",
+      "description": "From concept to deployment, I develop robust applications with clean architecture and future-proof designs.",
+      "features": [
+        "MVC architecture",
+        "Custom module/plugin support",
+        "Performance and security first",
+        "Cross-platform compatibility",
+        "Automated testing integration"
+      ],
+      "additionalInfo": [
+        "Following industry best practices, I implement proper design patterns and architecture to ensure your software remains maintainable as it grows.",
+        "Security is integrated at every layer - from input validation to data encryption and secure authentication protocols."
+      ]
+    },
+    {
+      "id": "ecommerce-solutions",
+      "title": "E-commerce Solutions & Payment Integration",
+      "metaDescription": "Complete e-commerce development with secure payment gateways including PayPal, Stripe, and SSLCOMMERZ integration.",
+      "metaKeywords": "e-commerce, payment integration, Shopify, WooCommerce, online store",
+      "subtitle": "Launch your online store with confidence",
+      "summary": "Launch your online store with seamless integration and secure transactions.",
+      "image": "ecommerce.jpg",
+      "heading": "Complete e-commerce solutions from storefront to checkout",
+      "description": "Whether you need a custom solution or platform customization, I build online stores that convert visitors into customers.",
+      "features": [
+        "Shopify, WooCommerce, custom carts",
+        "PayPal, Stripe, SSLCOMMERZ & more",
+        "User-friendly design with optimized checkout",
+        "Inventory management systems",
+        "Multi-currency & tax support"
+      ],
+      "additionalInfo": [
+        "I optimize every aspect of the shopping experience - from product discovery to checkout - to maximize your conversion rates.",
+        "All payment integrations are implemented with PCI compliance and security best practices to protect your customers' data."
+      ]
+    },
+    {
+      "id": "api-development",
+      "title": "API Development and Integration",
+      "metaDescription": "Custom RESTful API development and third-party API integration services for seamless system communication.",
+      "metaKeywords": "API development, RESTful APIs, system integration, middleware",
+      "subtitle": "Connecting your digital ecosystem",
+      "summary": "Build or integrate third-party APIs for communication between platforms.",
+      "image": "api-development.jpg",
+      "heading": "Robust APIs that power your digital infrastructure",
+      "description": "I develop well-documented, versioned APIs that serve as the backbone for your applications and integrations.",
+      "features": [
+        "RESTful APIs",
+        "Authentication, payment, logistics APIs",
+        "Seamless multi-system data flow",
+        "Webhooks & real-time updates",
+        "Comprehensive API documentation"
+      ],
+      "additionalInfo": [
+        "APIs are designed with scalability in mind, using proper rate limiting, caching strategies, and efficient data structures.",
+        "I implement thorough authentication and authorization mechanisms including OAuth, JWT, and API key management."
+      ]
+    },
+    {
+      "id": "database-design",
+      "title": "Database Design and Optimization",
+      "metaDescription": "Professional database schema design, optimization, and performance tuning services for your applications.",
+      "metaKeywords": "database design, SQL optimization, data modeling, query tuning",
+      "subtitle": "Structuring data for performance and scale",
+      "summary": "Efficient, scalable databases tailored to your app's data flow.",
+      "image": "database.jpg",
+      "heading": "Database solutions that grow with your business",
+      "description": "I design database architectures that handle your current workload while being ready for future growth.",
+      "features": [
+        "Schema design, normalization",
+        "Performance tuning and query optimization",
+        "Backup & data recovery strategies",
+        "Indexing & partitioning strategies",
+        "Data migration services"
+      ],
+      "additionalInfo": [
+        "Database designs follow proper normalization while strategically incorporating denormalization where it improves performance.",
+        "I implement comprehensive monitoring to identify and resolve performance bottlenecks before they impact users."
+      ]
+    },
+    {
+      "id": "maintenance-support",
+      "title": "Maintenance and Support",
+      "metaDescription": "Ongoing maintenance and support services to keep your applications stable, updated, and secure.",
+      "metaKeywords": "software maintenance, technical support, bug fixes, updates",
+      "subtitle": "Keeping your systems running smoothly",
+      "summary": "Keep your project stable, updated, and error-free.",
+      "image": "maintenance.jpg",
+      "heading": "Proactive maintenance for worry-free operations",
+      "description": "Regular updates and monitoring prevent issues before they affect your users and business operations.",
+      "features": [
+        "Bug fixing & patch updates",
+        "Feature upgrades & enhancements",
+        "Regular performance audits",
+        "Security updates & patches",
+        "24/7 emergency support options"
+      ],
+      "additionalInfo": [
+        "Maintenance plans are customized to your needs - from occasional updates to fully managed services with SLA guarantees.",
+        "I maintain detailed documentation of all changes and provide regular reports on system health and performance metrics."
+      ]
+    },
+    {
+      "id": "bug-fixing-optimization",
+      "title": "Bug Fixing & Optimization",
+      "metaDescription": "Expert debugging and performance optimization services for Laravel, PHP, and Django applications.",
+      "metaKeywords": "bug fixing, performance optimization, Laravel, PHP, Django",
+      "subtitle": "Smoothing out issues and boosting performance",
+      "summary": "Smooth out issues and boost performance on any web platform.",
+      "image": "optimization.jpg",
+      "heading": "Comprehensive troubleshooting and tuning",
+      "description": "I diagnose and resolve even the most elusive bugs while optimizing your application's speed and efficiency.",
+      "features": [
+        "Laravel, PHP, Django issue resolution",
+        "Hosting configuration and server setup",
+        "Security hardening and speed tuning",
+        "Database query optimization",
+        "Memory leak detection"
+      ],
+      "additionalInfo": [
+        "Using advanced profiling tools, I identify performance bottlenecks at every level - from frontend assets to database queries.",
+        "All fixes include detailed explanations and recommendations to prevent similar issues in the future."
+      ]
+    },
+    {
+      "id": "coding-help",
+      "title": "Coding Help & Algorithm Solutions",
+      "metaDescription": "Expert programming assistance for data structures, algorithms, and debugging complex coding problems.",
+      "metaKeywords": "coding help, algorithms, data structures, programming tutoring",
+      "subtitle": "Expert support for your coding challenges",
+      "summary": "Get expert support on logic building, coding problems & algorithms.",
+      "image": "coding-help.jpg",
+      "heading": "Personalized guidance for developers at all levels",
+      "description": "Whether you're learning programming or solving complex problems, I provide clear, practical solutions.",
+      "features": [
+        "Data structures, Programming",
+        "LeetCode, HackerRank, Problem solving",
+        "File handling, GUI apps, and debugging",
+        "Code reviews & best practices",
+        "System design consultation"
+      ],
+      "additionalInfo": [
+        "I break down complex problems into manageable steps, teaching you how to approach similar challenges independently.",
+        "Solutions focus on both correctness and efficiency, with explanations of time/space complexity considerations."
+      ]
+    },
+    {
+      "id": "hosting-devops",
+      "title": "Hosting, Deployment & DevOps",
+      "metaDescription": "Professional hosting setup, server configuration, and CI/CD pipeline implementation for seamless deployments.",
+      "metaKeywords": "hosting, deployment, DevOps, AWS, CI/CD",
+      "subtitle": "Reliable infrastructure for your applications",
+      "summary": "Set up, deploy, and manage your app on secure, scalable servers.",
+      "image": "devops.jpg",
+      "heading": "End-to-end deployment and infrastructure management",
+      "description": "From simple hosting to complex cloud architectures, I ensure your application is deployed optimally.",
+      "features": [
+        "AWS, Azure, DigitalOcean, cPanel, VPS",
+        "SSL, Git/GitHub, server migration",
+        "Continuous deployment (CI/CD)",
+        "Docker & containerization",
+        "Monitoring & alerting systems"
+      ],
+      "additionalInfo": [
+        "Infrastructure is designed with redundancy and scalability, whether you need a simple VPS or multi-region cloud setup.",
+        "I automate everything possible - from deployments to scaling - reducing human error and operational overhead."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+[
+    {
+    "id": "ecommerce-solutions",
+    "title": "E-commerce Solutions & Payment Integration",
+    "category": "Web Development",
+    "image": "services/e-commerce.png",
+    "image_alt": "E-commerce development with payment integration services",
+    "seo": {
+      "title": "E-commerce Development & Payment Integration Expert | ahmnanzil.me",
+      "description": "Complete e-commerce solutions with Shopify, WooCommerce, or custom carts. Secure payment integration with PayPal, Stripe, and SSLCOMMERZ.",
+      "keywords": "ecommerce development, online store, payment gateway integration, Shopify developer, WooCommerce expert",
+      "canonical": "https://ahmnanzil.me/services/ecommerce-solutions"
+    },
+    "short_description": "Complete online stores with seamless payments",
+    "summary": "I build high-converting e-commerce platforms with optimized checkout flows and secure payment processing integration.",
+    "main_heading": "Revenue-focused e-commerce solutions",
+    "description": "From product catalogs to checkout optimization, I develop e-commerce solutions that maximize conversions while ensuring PCI compliance and seamless payment processing.",
+    "features": [
+      "Shopify & WooCommerce development",
+      "Custom shopping cart solutions",
+      "PayPal, Stripe, SSLCOMMERZ integration",
+      "Checkout flow optimization",
+      "Inventory management systems",
+      "Order processing automation",
+      "Mobile-responsive storefronts"
+    ],
+    "additional_info": "All e-commerce solutions include performance monitoring and analytics setup.",
+    "detailed_description": "I create e-commerce platforms designed to sell. Beyond just building online stores, I optimize every touchpoint in the customer journey - from product discovery to checkout completion. My solutions integrate with major payment processors and shipping providers while maintaining the highest security standards for your customers' data.",
+    "structured_data": {
+      "@type": "WebApplication",
+      "applicationCategory": "ShoppingApplication",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "Varies"
+      }
+    }
+  },
+  {
+    "id": "custom-web-development",
+    "title": "Custom Web Development",
+    "category": "Web Development",
+    "image": "services/web.png",
+    "image_alt": "Custom web application development by Ahm Nanzil",
+    "seo": {
+      "title": "Custom Web Development Services | Laravel & Django Expert | ahmnanzil.me",
+      "description": "Professional custom web development with Laravel, React & Django. Specializing in SaaS, ERP, CRM, and POS systems with module-based architecture.",
+      "keywords": "custom web development, Laravel developer, Django developer, SaaS development, ERP systems, CRM solutions",
+      "canonical": "https://ahmnanzil.me/services/custom-web-development"
+    },
+    "short_description": "Enterprise-grade web applications built for performance",
+    "summary": "I craft responsive, high-performing websites using modern technologies like Laravel, React, and Django with focus on scalability and security.",
+    "main_heading": "Tailored web solutions for complex business needs",
+    "description": "From SaaS platforms to enterprise systems, I develop custom web applications with robust architecture, dynamic dashboards, and role-based access control. My solutions are optimized for real-world performance and seamless user experiences.",
+    "features": [
+      "Full-stack development with Laravel/React/Django",
+      "SaaS, ERP, CRM, and POS systems",
+      "Module-based architecture with RBAC",
+      "Interactive admin panels & dashboards",
+      "Database-driven dynamic content",
+      "API-first development approach",
+      "Automated testing & CI/CD pipelines"
+    ],
+    "additional_info": "Every project includes performance audits, security hardening, and documentation as standard deliverables.",
+    "detailed_description": "I specialize in transforming complex business requirements into elegant web solutions. Using MVC architecture and modern frameworks, I build systems that grow with your business. My development process includes rigorous testing, documentation, and performance optimization to ensure your application stands the test of time and traffic.",
+    "structured_data": {
+      "@type": "WebDevelopment",
+      "serviceType": "Custom web application development",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "Varies"
+      },
+      "technologies": ["Laravel", "React", "Django", "MySQL", "REST APIs"]
+    }
+  },
+  {
+    "id": "software-application-development",
+    "title": "Software Application Development",
+    "category": "Software Engineering",
+    "image": "services/software.png",
+    "image_alt": "Custom software development services by Ahm Nanzil",
+    "seo": {
+      "title": "Custom Software Development Services | Web & Desktop Apps | ahmnanzil.me",
+      "description": "Scalable and secure software applications for web, desktop, or cloud platforms with custom modules and performance-first approach.",
+      "keywords": "software development, custom applications, web apps, desktop apps, cloud solutions, MVC architecture",
+      "canonical": "https://ahmnanzil.me/services/software-application-development"
+    },
+    "short_description": "Scalable applications for web, desktop or cloud",
+    "summary": "I develop secure, high-performance software applications using proven architectures and modern development practices.",
+    "main_heading": "Future-proof software solutions built to scale",
+    "description": "From concept to deployment, I create custom software applications with clean architecture, modular design, and thorough documentation. My solutions prioritize security, performance, and maintainability.",
+    "features": [
+      "MVC architecture implementation",
+      "Custom module/plugin development",
+      "Cross-platform compatibility",
+      "Automated testing suites",
+      "Performance optimization",
+      "Security hardening",
+      "Comprehensive documentation"
+    ],
+    "additional_info": "All projects include post-deployment support and version update planning.",
+    "detailed_description": "I specialize in building software that solves real business problems. Whether you need a web application, desktop solution, or cloud-based system, I approach each project with careful planning and attention to architectural integrity. My development process ensures your software remains flexible for future enhancements while delivering immediate value.",
+    "structured_data": {
+      "@type": "SoftwareApplication",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "Varies"
+      },
+      "operatingSystem": "Windows, macOS, Linux, Web"
+    }
+  },
+  {
+    "id": "api-development",
+    "title": "API Development and Integration",
+    "category": "Backend Development",
+    "image": "services/api.png",
+    "image_alt": "Custom API development and integration services",
+    "seo": {
+      "title": "Custom API Development & Integration Services | ahmnanzil.me",
+      "description": "Professional RESTful API development and third-party API integration services for seamless system communication and data flow.",
+      "keywords": "API development, RESTful APIs, API integration, web services, backend development",
+      "canonical": "https://ahmnanzil.me/services/api-development"
+    },
+    "short_description": "Robust APIs for system communication",
+    "summary": "I design and implement secure, well-documented APIs that enable seamless data exchange between your applications and services.",
+    "main_heading": "Bridge your systems with reliable APIs",
+    "description": "From authentication systems to complex data pipelines, I develop APIs that serve as the backbone for your digital infrastructure.",
+    "features": [
+      "RESTful API design & development",
+      "Third-party API integration",
+      "Authentication systems (OAuth, JWT)",
+      "Payment gateway APIs",
+      "Logistics/shipping APIs",
+      "Webhook implementation",
+      "Comprehensive API documentation"
+    ],
+    "additional_info": "All APIs include rate limiting, caching, and monitoring by default.",
+    "detailed_description": "In today's interconnected digital landscape, APIs are the glue that holds systems together. I build APIs with careful attention to security, performance, and developer experience. Whether you need to connect internal systems or provide public endpoints for partners, my API solutions ensure reliable, well-documented communication channels for your data.",
+    "structured_data": {
+      "@type": "APIReference",
+      "name": "API Development Services",
+      "description": "Custom API development and integration solutions"
+    }
+  },
+  {
+    "id": "database-design",
+    "title": "Database Design and Optimization",
+    "category": "Backend Development",
+    "image": "services/database.png",
+    "image_alt": "Database design and optimization services",
+    "seo": {
+      "title": "Database Design & Optimization Expert | SQL & NoSQL Solutions | ahmnanzil.me",
+      "description": "Professional database schema design, query optimization, and performance tuning services for SQL and NoSQL databases.",
+      "keywords": "database design, query optimization, SQL tuning, database architecture, data modeling",
+      "canonical": "https://ahmnanzil.me/services/database-design"
+    },
+    "short_description": "Optimized databases for peak performance",
+    "summary": "I design efficient, scalable database architectures tailored to your application's specific data requirements and access patterns.",
+    "main_heading": "High-performance database solutions",
+    "description": "From schema design to query optimization, I ensure your data layer is structured for efficiency, scalability, and reliability.",
+    "features": [
+      "Relational database design",
+      "Query optimization & indexing",
+      "Database normalization",
+      "Performance benchmarking",
+      "Backup & recovery strategies",
+      "Data migration services",
+      "NoSQL database solutions"
+    ],
+    "additional_info": "All database projects include documentation and maintenance guidelines.",
+    "detailed_description": "A well-designed database is the foundation of any performant application. I approach database design with equal attention to current requirements and future growth. Whether you need a new database architecture or optimization of an existing system, my solutions reduce bottlenecks while ensuring data integrity and security.",
+    "structured_data": {
+      "@type": "DataCatalog",
+      "name": "Database Design Services",
+      "description": "Professional database architecture and optimization"
+    }
+  },
+  {
+    "id": "maintenance-support",
+    "title": "Maintenance and Support",
+    "category": "Technical Support",
+    "image": "services/maintance.png",
+    "image_alt": "Software maintenance and technical support services",
+    "seo": {
+      "title": "Software Maintenance & Technical Support Services | ahmnanzil.me",
+      "description": "Ongoing maintenance, updates, and support services to keep your applications running smoothly and securely.",
+      "keywords": "software maintenance, technical support, bug fixes, application updates, performance monitoring",
+      "canonical": "https://ahmnanzil.me/services/maintenance-support"
+    },
+    "short_description": "Keep your applications running smoothly",
+    "summary": "Proactive maintenance and support services to ensure your software remains stable, secure, and up-to-date.",
+    "main_heading": "Reliable technical support when you need it",
+    "description": "From emergency bug fixes to scheduled updates, I provide the technical support your business needs to maintain operational continuity.",
+    "features": [
+      "Bug fixing & troubleshooting",
+      "Security patch updates",
+      "Feature enhancements",
+      "Performance monitoring",
+      "Version upgrade assistance",
+      "Emergency support",
+      "Preventive maintenance"
+    ],
+    "additional_info": "Available for both existing projects and applications I've developed.",
+    "detailed_description": "Software requires ongoing care to remain secure and performant. My maintenance services provide peace of mind with scheduled updates, performance monitoring, and rapid response to critical issues. Whether you need occasional support or a comprehensive maintenance plan, I adapt to your business's needs and budget.",
+    "structured_data": {
+      "@type": "Maintenance",
+      "name": "Software Maintenance Services",
+      "description": "Ongoing technical support and maintenance plans"
+    }
+  },
+  {
+    "id": "bug-fixing",
+    "title": "Bug Fixing & Optimization",
+    "category": "Technical Support",
+    "image": "services/bug.png",
+    "image_alt": "Software bug fixing and performance optimization services",
+    "seo": {
+      "title": "Bug Fixing & Performance Optimization Services | ahmnanzil.me",
+      "description": "Expert debugging and optimization services for Laravel, PHP, Django applications. Server configuration and security hardening included.",
+      "keywords": "bug fixing, performance optimization, Laravel debugging, PHP optimization, Django troubleshooting",
+      "canonical": "https://ahmnanzil.me/services/bug-fixing"
+    },
+    "short_description": "Resolve issues and boost performance",
+    "summary": "I diagnose and fix technical issues while optimizing your application's speed, security, and reliability.",
+    "main_heading": "Technical troubleshooting and optimization",
+    "description": "From mysterious bugs to performance bottlenecks, I identify root causes and implement effective solutions.",
+    "features": [
+      "Laravel/PHP/Django debugging",
+      "Performance profiling",
+      "Server configuration",
+      "Security vulnerability fixes",
+      "Code optimization",
+      "Database tuning",
+      "Caching implementation"
+    ],
+    "additional_info": "Includes detailed reports on issues found and fixes applied.",
+    "detailed_description": "Even well-built applications occasionally need troubleshooting. My debugging services go beyond quick fixes to address underlying issues and prevent recurrence. Using systematic analysis and profiling tools, I identify performance bottlenecks, security vulnerabilities, and stability issues - then implement robust solutions with documentation to prevent regression.",
+    "structured_data": {
+      "@type": "Debug",
+      "name": "Debugging Services",
+      "description": "Technical troubleshooting and optimization solutions"
+    }
+  },
+  {
+    "id": "coding-help",
+    "title": "Coding Help & Algorithm Solutions",
+    "category": "Programming Help",
+    "image": "services/coding.png",
+    "image_alt": "Programming help and algorithm solutions services",
+    "seo": {
+      "title": "Programming Help & Algorithm Solutions | ahmnanzil.me",
+      "description": "Expert coding assistance, algorithm design, and problem-solving services for developers and students.",
+      "keywords": "programming help, algorithm solutions, coding problems, LeetCode, HackerRank, debugging",
+      "canonical": "https://ahmnanzil.me/services/coding-help"
+    },
+    "short_description": "Expert guidance for coding challenges",
+    "summary": "I provide targeted assistance with programming concepts, algorithm design, and technical problem-solving.",
+    "main_heading": "Overcome coding obstacles with expert help",
+    "description": "Whether you're stuck on a complex algorithm or need guidance on best practices, I offer clear, practical solutions.",
+    "features": [
+      "Algorithm design & optimization",
+      "Data structure implementation",
+      "LeetCode/HackerRank solutions",
+      "Debugging assistance",
+      "Code reviews",
+      "Programming concepts tutoring",
+      "Technical interview preparation"
+    ],
+    "additional_info": "Available for multiple programming languages and frameworks.",
+    "detailed_description": "Programming challenges come in many forms - from algorithmic puzzles to system design questions. My coding help services provide clear explanations and practical solutions tailored to your skill level. Whether you're preparing for technical interviews, working on academic projects, or troubleshooting production code, I help you understand both the 'how' and the 'why' behind effective solutions.",
+    "structured_data": {
+      "@type": "LearningResource",
+      "name": "Programming Help Services",
+      "description": "Coding assistance and algorithm solutions"
+    }
+  },
+  {
+    "id": "devops-hosting",
+    "title": "Hosting, Deployment & DevOps",
+    "category": "Infrastructure",
+    "image": "services/hosting.png",
+    "image_alt": "DevOps and hosting deployment services",
+    "seo": {
+      "title": "DevOps & Hosting Deployment Services | AWS, Azure Expert | ahmnanzil.me",
+      "description": "Professional hosting setup, server configuration, and CI/CD pipeline implementation for reliable application deployment.",
+      "keywords": "DevOps, hosting setup, server deployment, AWS, Azure, CI/CD, VPS configuration",
+      "canonical": "https://ahmnanzil.me/services/devops-hosting"
+    },
+    "short_description": "Professional deployment and server management",
+    "summary": "I configure, deploy, and manage your applications on secure, high-performance infrastructure.",
+    "main_heading": "Reliable infrastructure for your applications",
+    "description": "From cloud platforms to private servers, I implement robust hosting solutions with automation and monitoring.",
+    "features": [
+      "AWS/Azure/DigitalOcean setup",
+      "CI/CD pipeline implementation",
+      "Docker containerization",
+      "Server security hardening",
+      "SSL certificate management",
+      "Load balancing configuration",
+      "Monitoring & alerting"
+    ],
+    "additional_info": "Includes migration services from existing hosting providers.",
+    "detailed_description": "Proper infrastructure is crucial for application reliability and performance. My DevOps services ensure your projects are deployed on optimized, secure infrastructure with automated workflows. Whether you need a simple hosting setup or complex cloud architecture, I implement solutions with scalability, security, and maintainability in mind - complete with documentation and support.",
+    "structured_data": {
+      "@type": "WebHosting",
+      "name": "Hosting & DevOps Services",
+      "description": "Professional deployment and infrastructure management"
+    }
+  }
+]

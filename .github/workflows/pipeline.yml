@@ -1,0 +1,132 @@
+name: Push-to-AWS-EC2
+
+permissions:
+  contents: write
+  deployments: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy PHP App to AWS EC2 (Nginx)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔍 Pre-deployment health check
+        uses: appleboy/ssh-action@v1.0.3
+        continue-on-error: true
+        with:
+          host: ${{ secrets.AWS_HOST_DNS }}
+          username: ${{ secrets.AWS_USERNAME }}
+          password: ${{ secrets.AWS_PASSWORD }}
+          script: |
+            echo "=== System Health Check ==="
+            df -h | head -5
+            free -m
+            systemctl is-active nginx || echo "❌ Nginx not running"
+
+      - name: 🚀 Start GitHub Deployment
+        uses: bobheadxi/deployments@v1
+        id: deployment
+        with:
+          step: start
+          token: ${{ secrets.GITHUB_TOKEN }}
+          env: production
+          ref: ${{ github.ref }}
+
+      # 📤 DEPLOY VIA RSYNC (WITH PASSWORD)
+      - name: 📤 Deploy via rsync
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y sshpass rsync
+
+          # Create directory if not exists
+          sshpass -p "${{ secrets.AWS_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.AWS_USERNAME }}@${{ secrets.AWS_HOST_DNS }} "sudo mkdir -p /var/www/html"
+
+          # Deploy with rsync
+          sshpass -p "${{ secrets.AWS_PASSWORD }}" rsync -avz --delete \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            --rsync-path="sudo rsync" \
+            ./ ${{ secrets.AWS_USERNAME }}@${{ secrets.AWS_HOST_DNS }}:/var/www/html
+
+      # 🔧 SERVER SETUP (NGINX)
+      - name: 🔧 Server setup and post-deployment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_HOST_DNS }}
+          username: ${{ secrets.AWS_USERNAME }}
+          password: ${{ secrets.AWS_PASSWORD }}
+          script: |
+            echo "=== Post-Deployment Tasks ==="
+
+            # Install Nginx & PHP if not installed
+            if ! command -v nginx &> /dev/null; then
+              sudo apt-get update -y
+              sudo apt-get install -y nginx php-fpm php-mysql curl unzip
+              sudo systemctl enable nginx
+              sudo systemctl start nginx
+              echo "✅ Nginx installed"
+            fi
+
+            # Set correct ownership for web root
+            sudo chown -R www-data:www-data /var/www/html/
+            sudo chmod -R 755 /var/www/html/
+
+            # Restart PHP-FPM (version may vary)
+            sudo systemctl restart php*-fpm || sudo systemctl restart php-fpm || true
+
+            # Reload Nginx
+            sudo systemctl reload nginx
+
+      # ✅ VERIFY
+      - name: ✅ Deployment verification
+        uses: appleboy/ssh-action@v1.0.3
+        continue-on-error: true
+        with:
+          host: ${{ secrets.AWS_HOST_DNS }}
+          username: ${{ secrets.AWS_USERNAME }}
+          password: ${{ secrets.AWS_PASSWORD }}
+          script: |
+            echo "=== Verification ==="
+            systemctl status nginx --no-pager
+            ls -la /var/www/html | head -10
+            curl -I http://localhost || true
+            echo "🎉 Done"
+
+      - name: 🎯 Mark GitHub Deployment as Successful
+        if: success()
+        uses: bobheadxi/deployments@v1
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: success
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env: production
+
+      - name: ❌ Mark GitHub Deployment as Failed
+        if: failure()
+        uses: bobheadxi/deployments@v1
+        with:
+          step: finish
+          token: ${{ secrets.GITHUB_TOKEN }}
+          status: failure
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env: production
+
+      - name: 🚨 Notify on failure
+        if: failure()
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_HOST_DNS }}
+          username: ${{ secrets.AWS_USERNAME }}
+          password: ${{ secrets.AWS_PASSWORD }}
+          script: |
+            echo "🚨 Deployment failed at $(date)"
