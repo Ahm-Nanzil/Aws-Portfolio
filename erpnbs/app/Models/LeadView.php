@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class LeadView extends Model
+{
+    use HasFactory;
+    protected $fillable = [
+        'lead_id',
+        'title',
+        'description',
+        'assigned_users',
+        'date',
+        'time',
+        'location',
+        'status',
+        'recurrence',
+        'repeat_interval',
+        'end_recurrence',
+        'reminder',
+        'files',
+        'recurrence_status',
+        'created_by'
+    ];
+
+    protected $casts = [
+        'files' => 'array',
+    ];
+
+
+
+    public static $recurrances = [
+        1 => 'Daily',
+        2 => 'Weekly',
+        3 => 'Monthly',
+        4 => 'Yearly'
+    ];
+    public static $status = [
+        0 => 'On Going',
+        1 => 'Completed'
+    ];
+}
