@@ -1,0 +1,330 @@
+.feature {
+    padding-top: 68px;
+    .feature-content {
+        padding: 20px;
+        font-weight: 300;
+        font-size: 16px;
+    }
+    .card-body {
+        padding: 8px 0 0;
+        padding-bottom: 15px;
+    }
+    .feature-category-box {
+        display: inline-block;
+        &:hover {
+            .feature-hover {
+                display: flex!important;
+            }
+        }
+    }
+    .feature-hover {
+        z-index: 10;
+        background: #e2e2e2;
+        transition: 0.5s;
+        display: none !important;
+        width: 90%;
+        .triangle {
+            width: 20px; // height: 12.5px;
+            background: red;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0 12.5px 20px 12.5px;
+                border-color: transparent transparent #e2e2e2 transparent;
+            }
+        }
+
+        .apps-box {
+            padding: 10px 0;
+            position: relative;
+            width: 33.33%;
+            &:before {
+                content: "";
+                position: absolute;
+                right: 0;
+                top: 50%;
+                height: 20px;
+                width: 1px;
+                background: #969696;
+                transform: translateY(-50%);
+            }
+            a {
+                transition: 0.5s;
+                color: $base-color;
+                &:hover {
+                    color: $brand-color;
+                    text-decoration: none;
+                    i {
+                        color: $brand-color;
+                    }
+                }
+            }
+            i {
+                transition: 0.5s;
+                color: #5a5a5a;
+            }
+            .apps-big-icon {
+                font-size: 25px;
+            }
+        }
+        .apps-company-name {
+            margin-top: 5px;
+            i {
+                margin-left: 8px;
+            }
+        }
+    }
+    .feature-category {
+        position: relative;
+        z-index: 10;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-body h5 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 991px) {
+    .feature-content-box {
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .feature {
+        .card {
+            position: relative;
+            padding-bottom: 26px;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: 0;
+                height: 40px;
+                width: 2px;
+                background: #f8c8c8;
+                transform: translateY(-50%);
+            }
+        }
+        .feature-category-box {
+            display: block;
+        }
+        .feature-hover {
+            min-width: 690px;
+            .apps-box {
+                padding: 30px 0;
+            }
+            .apps-company-name {
+                margin-top: 15px;
+                font-size: 22px;
+            }
+        }
+        .feature-hover-left {
+            .feature-hover {
+                left: 0;
+            }
+        }
+        .feature-hover-right {
+            .feature-hover {
+                right: 0;
+            }
+        }
+        .apps-box {
+            .apps-big-icon {
+                font-size: 50px !important;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .feature {
+        .feature-hover {
+            .triangle {
+                top: -18px;
+            }
+        }
+        .feature-hover {
+            min-width: 450px;
+            .apps-box {
+                padding: 20px 0;
+                .apps-big-icon {
+                    font-size: 40px;
+                }
+            }
+            .apps-company-name {
+                margin-top: 10px;
+            }
+        }
+    }
+    .feature-content-box {
+        background: transparent;
+    }
+}
+
+@media (max-width: 1399px) {
+    .feature {
+        .card-body {
+            h2 {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .feature {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 332px;
+            background: $brand-color;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .feature {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 425px;
+            background: $brand-color;
+        }
+        .feature-content {
+            padding-bottom: 50px;
+            font-size: 19px;
+        }
+        .card {
+            padding-bottom: 65px;
+            &:before {
+                top: 35%;
+            }
+        }
+        .feature-hover {
+            .apps-box {
+                padding: 40px 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 1300px) {
+    .feature {
+        .feature-hover {
+            min-width: 700px;
+        }
+        .feature-hover-right {
+            .feature-hover {
+                right: -25px;
+            }
+        }
+        .feature-hover-left {
+            .feature-hover {
+                left: -25px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .main-title-box {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1500px) {
+    .feature {
+        .feature-hover {
+            min-width: 700px;
+        }
+        .feature-hover-right {
+            .feature-hover {
+                right: -20px;
+            }
+        }
+        .feature-hover-left {
+            .feature-hover {
+                left: -20px;
+            }
+        }
+    }
+}
+
+/* Home page 3 */
+
+.home-page-three {
+    &body {
+        overflow-x: hidden;
+    }
+    .feature {
+        position: relative;
+        &:before {
+            z-index: 1;
+            background: $linear-gradiant;
+        }
+        .container {
+            position: relative;
+            z-index: 20;
+        }
+        .bg-3 {
+            position: absolute;
+            top: 0;
+            right: 00px;
+            height: 100%;
+            z-index: -10;
+            text-align: right;
+            @media (min-width: 1024px) {
+                display: inline-block!important;
+                img {
+                    width: 73%;
+                }
+            }
+            @media (min-width: 1200px) {
+                img {
+                    width: 82%;
+                }
+            }
+            @media (min-width: 1400px) {
+                img {
+                    width: 86%;
+                }
+            }
+            @media (min-width: 1600px) {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .feature .feature-hover .apps-box a:hover {
+        color: $primary-color2;
+        i {
+            color: $primary-color2;
+        }
+    }
+    @media (max-width: 1023px) {
+        .feature-content-box.brand-bg {
+            background: $brand-color2;
+        }
+    }
+}

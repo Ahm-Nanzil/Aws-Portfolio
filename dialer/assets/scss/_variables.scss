@@ -1,0 +1,35 @@
+// Variables
+/*-------------------------
+	Font Family
+---------------------------*/
+
+$roboto: 'Roboto Condensed',
+sans-serif;
+/*-------------------------
+	Theme Color
+---------------------------*/
+
+$brand-color: #e94646;
+$primary-color: #faba35;
+$base-color: #242424;
+$white: #fff;
+$dark: #000000;
+
+$facebook: #4868ab;
+$twitter: #1da2f2;
+$linkedin: #0077b5;
+$pinterest: #cc2028;
+$instagram: #b13a96;
+$google-plus: #dc493c;
+$vimeo: #00aeee;
+$flickr: #ff2d84;
+
+// 2nd page color
+$brand-color2: #2b3a85;
+$primary-color2: #b31b48;
+$linear-gradiant: linear-gradient(to right, $brand-color2 25%, $primary-color2 75%);
+
+// 3rd page color;
+$brand-color3: #33ff99;
+$primary-color3: #0099ff;
+$linear-gradiant3: linear-gradient(to right, $brand-color3 25%, $primary-color3 75%);

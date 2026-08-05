@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Dialer - HTML5 Template</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- =========================
+        Loding All Stylesheet
+    ============================== -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/custom-style.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- =========================
+        Loding Main Theme Style
+    ============================== -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- =========================
+        Header Loding JS Script
+    ============================== -->
+    <script src="assets/js/modernizr.js"></script>
+  </head>
+
+  <body class="home-page-two home-page-three">
+    <!-- ========================= 
+        Header Information
+     ============================= -->
+    <!-- Login -->
+    <header class="header-info brand-bg">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-12 col-sm-6 col-md-6 col-lg-6 d-flex align-items-center justify-content-center justify-content-md-start"
+          >
+            <div class="bonus-offer white w-bold">
+              Refer Your Friend,
+              <span class="focus-text d-inline">Get 10%</span> Bonus Credit
+            </div>
+          </div>
+          <div
+            class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-center justify-content-md-end"
+          >
+            <nav>
+              <ul class="nav button_menu">
+                <li class="nav-item">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary nav-btn"
+                    data-toggle="modal"
+                    data-target="#header-login"
+                  >
+                    Log In
+                  </button>
+                </li>
+                <!-- <li class="nav-item">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary nav-btn"
+                    data-toggle="modal"
+                    data-target="#header-free-trial"
+                  >
+                    Free Trial
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary nav-btn"
+                    data-toggle="modal"
+                    data-target="#header-card"
+                  >
+                    Buy Credit
+                  </button>
+                </li> -->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="custom-login-modal">
+      <div class="modal fade" id="header-login">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="text-center" method="POST" action="" id="loginForm">
+                <div class="form-group">
+                  <input type="text" name="username" class="form-control" placeholder="Username" required />
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn btn-outline-primary nav-btn custom-login-modal-btn">Login</button>
+              </form>
+              <div id="loginError" style="color:red;margin-top:10px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Free Trial -->
+    <div class="custom-credit-modal">
+      <div class="modal fade" id="header-free-trial">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form>
+              <div class="form-group row">
+                <label for="company_name" class="col-sm-4 col-form-label"
+                  >Company Name
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="company_name" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="N_name" class="col-sm-4 col-form-label"
+                  >Name
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="N_name" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Email" class="col-sm-4 col-form-label"
+                  >Email
+                </label>
+                <div class="col-sm-8">
+                  <input type="email" class="form-control" id="Email" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Mobile" class="col-sm-4 col-form-label"
+                  >Mobile
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="Mobile" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Yahoo_Skype" class="col-sm-4 col-form-label"
+                  >Yahoo, Skype
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="Yahoo_Skype" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Website" class="col-sm-4 col-form-label"
+                  >Website
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="Website" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Address" class="col-sm-4 col-form-label"
+                  >Address
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="Address" />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="Message" class="col-sm-4 col-form-label"
+                  >Message
+                </label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" id="Message" />
+                </div>
+              </div>
+              <div class="col-md-12 text-right">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary nav-btn custom-login-modal-btn"
+                >
+                  Send Messages
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credit -->
+    <div class="custom-credit-modal">
+      <div class="modal fade" id="header-card">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-12 pd-0">
+                    <div class="d-flex justify-content-between">
+                      <div class="master-card card-active">
+                        <div class="media dropdown align-items-xl-center mrl-0">
+                          <div class="check-box-img">
+                            <img
+                              class="img-fluid none"
+                              src="assets/img/tick-mark.png"
+                              alt="tick mark"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <img
+                              class="img-fluid card-img"
+                              src="assets/img/card-icon.png"
+                              alt="card icon"
+                            />
+                            <p class="mr-0 white">Credit Card</p>
+                          </div>
+                        </div>
+                        <div class="card-available">
+                          <div class="d-flex">
+                            Accepted Card Types:
+                            <div class="card-available-img">
+                              <a href="#"
+                                ><img src="assets/img/card-icon-1.png" alt=""
+                              /></a>
+                              <a href="#"
+                                ><img src="assets/img/card-icon-2.png" alt=""
+                              /></a>
+                              <a href="#"
+                                ><img src="assets/img/card-icon-3.png" alt=""
+                              /></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="master-card">
+                        <div class="media dropdown align-items-center mrr-0">
+                          <div class="check-box-img">
+                            <img
+                              class="img-fluid none"
+                              src="assets/img/tick-mark.png"
+                              alt="tick mark"
+                            />
+                          </div>
+                          <div class="media-body d-flex">
+                            <img
+                              class="img-fluid paypal-card-img"
+                              src="assets/img/paypal.png"
+                              alt="card icon"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form class="text-center currency-form">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="User Name"
+                  />
+                </div>
+                <div class="form-group d-flex header-currency">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Credit Amount"
+                  />
+                  <div class="custom-select-currency">
+                    <select class="custom-select">
+                      <option selected>USD</option>
+                      <option value="1">POUNDS</option>
+                      <option value="1">BDT</option>
+                    </select>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary nav-btn custom-login-modal-btn"
+                >
+                  submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================= 
+        Main Nav
+     ============================= -->
+    <nav>
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center"
+          >
+            <div class="logo" style="max-height: 70px;" >
+              <a href="#">
+                <img src="assets/img/logo.png" class="img-fluid" alt="Logo" />
+              </a>
+            </div>
+          </div>
+          <div
+            class="col-6 col-sm-7 col-md-9 col-lg-9 col-xl-9 display_menu d-md-flex justify-content-md-end align-items-md-center dis-off"
+          >
+            <div class="d-none d-md-inline-block">
+              <ul class="nav link_menu">
+                <li class="nav-item">
+                  <a class="nav-link btn btn-primary" href="download.html"
+                    >Apps</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link btn btn-primary" href="rate-page.html"
+                    >Prices</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link btn btn-primary" href="faq.html">Help</a>
+                </li>
+              </ul>
+            </div>
+            <div class="social-media-link d-none d-md-block">
+              <a href="#"
+                ><img
+                  src="assets/img/social-media-icon-radius-1.png"
+                  alt="social-media"
+              /></a>
+              <a href="#"
+                ><img
+                  src="assets/img/social-media-icon-radius-2.png"
+                  alt="social-media"
+              /></a>
+              <a href="#"
+                ><img
+                  src="assets/img/social-media-icon-radius-3.png"
+                  alt="social-media"
+              /></a>
+            </div>
+
+            <div
+              class="dropdown header-top-lan-dropdown d-md-flex align-items-md-center d-none d-md-block"
+            >
+              <button
+                class="btn btn-secondary dropdown-toggle header-top-lan-btn"
+                type="button"
+                id="header-info-lan-btn"
+              >
+                <span class="d-md-none">
+                  <i class="fa fa-globe" aria-hidden="true"></i>
+                  <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+                <span class="d-md-block d-none text-capitalize w-light">
+                  <i class="fa fa-globe" aria-hidden="true"></i> Language
+                  <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+
+              <!-- Google Translate container -->
+              <div class="dropdown-menu country-name" id="google_translate_element"></div>
+            </div>
+
+            <!-- Google Translate API Script -->
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement(
+                  {
+                    pageLanguage: 'en', 
+                    includedLanguages: 'en,fr,bn,de,es',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                  },
+                  'google_translate_element'
+                );
+              }
+            </script>
+            <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+
+
+
+          </div>
+          <div
+            class="col-2 col-sm-2 align-items-md-right sm-ml-auto col-md-1 col-lg-1 col-xl-1 pd-0 d-md-flex justify-content-md-end align-items-md-center"
+          >
+            <div class="off-canvas in-2">
+              <!-- <a class="nav-link btn btn-primary pd-0" href="#"><i class="fa fa-bars" aria-hidden="true"></i></a> -->
+
+              <!-- <div id="push_sidebar">
+                <span class="nav_trigger">
+                  <i class="fa fa-navicon"></i>
+                </span>
+                <br />
+                <ul class="list-unstyled">
+                  <li>
+                    <a href="index.html">Home</a>
+                  </li>
+                  <li>
+                    <a class="wd-nav-active" href="index-two.html">Home v2</a>
+                  </li>
+                  <li>
+                    <a class="wd-nav-active" href="index-three.html">Home v3</a>
+                  </li>
+                  <li>
+                    <a class="wd-nav-active" href="index-four.html">Home v4</a>
+                  </li>
+                  <li>
+                    <a href="rate-page.html">Rate Page</a>
+                  </li>
+                  <li>
+                    <a href="download.html">Download</a>
+                  </li>
+                  <li>
+                    <a href="reseller.html">Reseller</a>
+                  </li>
+                  <li>
+                    <a href="faq.html">Faq</a>
+                  </li>
+                  <li>
+                    <a href="contact-us.html">Contact us</a>
+                  </li>
+                </ul>
+              </div>
+              <span class="nav_trigger">
+                <i class="fa fa-navicon"></i>
+              </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========================= 
+        Slider Section
+     ============================= -->
+    <section class="main-slider">
+      <div class="container">
+        <div class="row justify-content-md-between">
+          <div
+            class="col-3 col-sm-4 col-md-4 col-lg-5 col-xl-5 d-flex align-items-end"
+          >
+            <ul id="scene" class="scene wow fadeInUp">
+              <li class="layer" data-depth="0.50">
+                <img
+                  src="assets/img/slider-img-2.png"
+                  class="img-fluid main-slider-img"
+                  alt="phone muckup"
+                />
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="col-9 col-sm-8 col-md-7 col-lg-7 col-xl-7 white d-flex align-items-center"
+          >
+            <div class="slider-content-box wow fadeInUp" data-wow-delay=".4s">
+              <h1 class="white slider-title">
+                <span class="slider-subtitle d-block">If Emergency</span> We are
+                here to dial for although
+              </h1>
+              <p class="d-none d-md-block slider-content">
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form.
+              </p>
+              <a href="#" class="btn btn-3 btn-3e icon-arrow-right">
+                <p class="pos-r white">Join Now</p>
+              </a>
+              <a href="#" class="btn btn-3 btn-3e icon-arrow-right mr-0">
+                <p class="pos-r white">Download</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-content d-none d-md-inline-block">
+        <div id="banner-bg" class="app-3-bg">
+          <div class="layer" data-depth=".6">
+            <img src="assets/img/banner-2-bg.png" alt="" />
+            <img class="img-part" src="assets/img/2-inner.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Country Rate
+     ============================= -->
+    <section class="country-rate">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 primary-bg country-rate-form-area wow fadeInUp"
+            data-wow-delay=".8s"
+          >
+            <form class="country-form container">
+              <div class="row d-md-flex justify-content-md-center">
+                <div class="col-12 col-sm-7 col-md-6 col-xl-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Where Do You Want To Call?"
+                  />
+                </div>
+                <div class="col-12 col-sm-5 col-md-3 col-xl-3 pdl-0">
+                  <select class="custom-select border-0">
+                    <option selected>Germany(Euro)</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="country-rate-box white-bg ad-m wow fadeInUp">
+                  <div class="media">
+                    <div class="country-img-box pd-0 col-5 col-xl-6">
+                      <img
+                        class="mr-3 img-fluid"
+                        src="assets/img/flag-1.png"
+                        alt="Generic placeholder image"
+                      />
+                    </div>
+                    <div class="media-body">
+                      <h4 class="mt-0">Algeria</h4>
+                      From 0.0551 USD/min
+                      <a class="d-block base" href="#"
+                        >More
+                        <i class="fa fa-angle-right" aria-hidden="true"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="country-rate-box white-bg wow fadeInUp">
+                  <div class="media">
+                    <div class="country-img-box pd-0 col-5 col-xl-6">
+                      <img
+                        class="mr-3 img-fluid"
+                        src="assets/img/flag-2.png"
+                        alt="Generic placeholder image"
+                      />
+                    </div>
+                    <div class="media-body">
+                      <h4 class="mt-0">Bahrain</h4>
+                      From 0.0551 USD/min
+                      <a class="d-block base" href="#"
+                        >More
+                        <i class="fa fa-angle-right" aria-hidden="true"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="country-rate-box white-bg pos-r wow fadeInUp">
+                  <div class="ribbon"><span>Most Popular</span></div>
+                  <div class="media">
+                    <div class="country-img-box pd-0 col-5 col-xl-6">
+                      <img
+                        class="mr-3 img-fluid"
+                        src="assets/img/flag-3.png"
+                        alt="Generic placeholder image"
+                      />
+                    </div>
+                    <div class="media-body">
+                      <h4 class="mt-0">Bangladesh</h4>
+                      From 0.0551 USD/min
+                      <a class="d-block base" href="#"
+                        >More
+                        <i class="fa fa-angle-right" aria-hidden="true"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                <div class="country-rate-box white-bg wow fadeInUp">
+                  <div class="media">
+                    <div class="country-img-box pd-0 col-5 col-xl-6">
+                      <img
+                        class="mr-3 img-fluid"
+                        src="assets/img/flag-4.png"
+                        alt="Generic placeholder image"
+                      />
+                    </div>
+                    <div class="media-body">
+                      <h4 class="mt-0">Somalia</h4>
+                      From 0.0551 USD/min
+                      <a class="d-block base" href="#"
+                        >More
+                        <i class="fa fa-angle-right" aria-hidden="true"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center country-rate-btn wow fadeInUp"
+                data-wow-delay=".2s"
+              >
+                <a href="#" class="btn btn-3 btn-3e icon-arrow-right"
+                  >See All Prices</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Feature
+     ============================= -->
+    <section class="feature">
+      <div class="container custom-container">
+        <div class="row">
+          <div class="col-12">
+            <div class="main-title-box text-center wow fadeInUp">
+              <h1 class="w-bold main-title">
+                <span class="d-block main-subtitle brand w-light-i"
+                  >Apps Feature</span
+                >
+                Get Your Dialer App
+              </h1>
+              <div class="title-shap">
+                <img
+                  src="assets/img/title-shap.png"
+                  class="img-fluid"
+                  alt="title shap"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5 ph-mackup">
+            <ul id="get_app_tow" class="scene wow fadeInUp">
+              <li class="layer" data-depth="0.60">
+                <img
+                  src="assets/img/ph-mackup.png"
+                  class="img-fluid"
+                  alt="phone mackup"
+                />
+              </li>
+            </ul>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 d-flex align-items-end"
+          >
+            <div class="feature-content-box brand-bg wow fadeInUp">
+              <div class="feature-content white">
+                There are many variations of passages of Lorem Ipsum available,
+                but the majority have suffered alteration in some form There are
+                many variations of passages of Lorem Ipsum available, but the
+                majority have suffered alteration in some form, by injected
+                humour the majority
+              </div>
+              <div class="feature-category container">
+                <div class="row">
+                  <div
+                    class="col-12 col-md-4 col-xl-3 pd-0 text-center wow fadeInUp"
+                    data-wow-delay=".2s"
+                  >
+                    <div class="feature-category-box feature-hover-left">
+                      <div class="card d-block bg-none border-0 text-center">
+                        <img
+                          src="assets/img/feature-category-icon-1.png"
+                          alt="Card image cap"
+                        />
+                        <div class="card-body text-center">
+                          <h5 class="white w-bold">Laptop</h5>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <div class="feature-hover pos-a">
+                          <div class="triangle d-block d-md-none"></div>
+                          <div class="apps-box text-center">
+                            <div class="triangle d-none d-md-block"></div>
+                            <a href="#">
+                              <i
+                                class="fa fa-windows apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Windows
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center">
+                            <a href="#">
+                              <i
+                                class="fa fa-apple apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Mac
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center before-none">
+                            <a href="#">
+                              <i
+                                class="fa fa-linux apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Linux
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-12 col-md-4 col-xl-3 pd-0 text-center wow fadeInUp"
+                    data-wow-delay=".4s"
+                  >
+                    <div class="feature-category-box">
+                      <div class="card d-block bg-none border-0 text-center">
+                        <img
+                          src="assets/img/feature-category-icon-2.png"
+                          alt="Card image cap"
+                        />
+                        <div class="card-body text-center">
+                          <h5 class="white w-bold">Mobile</h5>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <div class="feature-hover pos-a">
+                          <div class="triangle d-block d-md-none"></div>
+                          <div class="apps-box text-center">
+                            <a href="#">
+                              <i
+                                class="fa fa-windows apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Windows
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center">
+                            <div class="triangle d-none d-md-block"></div>
+                            <a href="#">
+                              <i
+                                class="fa fa-apple apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Mac
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center before-none">
+                            <a href="#">
+                              <i
+                                class="fa fa-linux apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Linux
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="col-12 col-md-4 col-xl-3 pd-0 text-center wow fadeInUp"
+                    data-wow-delay=".6s"
+                  >
+                    <div class="feature-category-box feature-hover-right">
+                      <div
+                        class="card d-block bg-none border-0 text-center before-none"
+                      >
+                        <img
+                          src="assets/img/feature-category-icon-3.png"
+                          alt="Card image cap"
+                        />
+                        <div class="card-body text-center">
+                          <h5 class="white w-bold">Tablet</h5>
+                        </div>
+                      </div>
+                      <div class="d-flex justify-content-center">
+                        <div class="feature-hover pos-a">
+                          <div class="triangle d-block d-md-none"></div>
+                          <div class="apps-box text-center">
+                            <a href="#">
+                              <i
+                                class="fa fa-windows apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Windows
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center">
+                            <a href="#">
+                              <i
+                                class="fa fa-apple apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Mac
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                          <div class="apps-box text-center before-none">
+                            <div class="triangle d-none d-md-block"></div>
+                            <a href="#">
+                              <i
+                                class="fa fa-linux apps-big-icon"
+                                aria-hidden="true"
+                              ></i>
+                              <span class="apps-company-name d-block">
+                                Linux
+                                <i
+                                  class="fa fa-download"
+                                  aria-hidden="true"
+                                ></i>
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="feature-bg-img" class="bg-3 d-none d-xl-inline-block">
+        <div class="layer" data-depth=".6">
+          <img src="assets/img/feature-3-bg.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Testimonial
+     ============================= -->
+    <section class="testimonial-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="main-title-box text-center wow fadeInUp">
+              <h1 class="w-bold main-title">
+                <span class="d-block main-subtitle brand w-light-i"
+                  >Dialer App</span
+                >
+                Customers Testimonial
+              </h1>
+              <div class="title-shap">
+                <img
+                  src="assets/img/title-shap.png"
+                  class="img-fluid"
+                  alt="title shap"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 wow zoomIn">
+            <div id="testimonial-parallax-tow" class="scene">
+              <div class="layer" data-depth="0.20">
+                <div class="testimonial-container pos-r">
+                  <div class="testimonial-img">
+                    <img
+                      src="assets/img/testimonial-shap-right-3.png"
+                      class="img-fluid"
+                      alt="img icon"
+                    />
+                    <div class="hover-img">
+                      <img
+                        src="assets/img/testimonial-shap-right-shadow.png"
+                        class="img-fluid"
+                        alt="img icon"
+                      />
+                    </div>
+                  </div>
+                  <div class="testimonial-box pos-r">
+                    <div class="testimonial-box-title w-bold">Awesome App</div>
+                    <div class="testimonial-box-content">
+                      There are many variations of passages of Lorem Ipsum.
+                    </div>
+                    <div class="author-name">- Jonathone Deo</div>
+                    <div class="text-right">
+                      <div class="stor">
+                        Google Play
+                        <div class="wd-star">
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 wow zoomIn"
+            data-wow-delay=".2s"
+          >
+            <div id="testimonial-parallax2-tow" class="scene">
+              <div class="layer" data-depth="0.20">
+                <div class="testimonial-container pos-r">
+                  <div class="testimonial-img">
+                    <img
+                      src="assets/img/testimonial-shap-active-left-3.png"
+                      class="img-fluid"
+                      alt="img icon"
+                    />
+                    <div class="hover-img">
+                      <img
+                        src="assets/img/testimonial-shap-active-left-shadow.png"
+                        class="img-fluid"
+                        alt="img icon"
+                      />
+                    </div>
+                  </div>
+                  <div class="testimonial-box">
+                    <div class="testimonial-box-title w-bold white">
+                      Awesome App
+                    </div>
+                    <div class="testimonial-box-content white">
+                      There are many variations of passages of Lorem Ipsum.
+                    </div>
+                    <div class="author-name white">- Jonathone Deo</div>
+                    <div class="text-right">
+                      <div class="stor white">
+                        Google Play
+                        <div class="wd-star">
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 wow zoomIn"
+            data-wow-delay=".4s"
+          >
+            <div id="testimonial-parallax3-tow" class="scene">
+              <div class="layer" data-depth="0.50">
+                <div class="testimonial-container pos-r">
+                  <div class="testimonial-img">
+                    <img
+                      src="assets/img/testimonial-shap-active-right-3.png"
+                      class="img-fluid"
+                      alt="img icon"
+                    />
+                    <div class="hover-img">
+                      <img
+                        src="assets/img/testimonial-shap-right-shadow.png"
+                        class="img-fluid"
+                        alt="img icon"
+                      />
+                    </div>
+                  </div>
+                  <div class="testimonial-box">
+                    <div class="testimonial-box-title w-bold white">
+                      Awesome App
+                    </div>
+                    <div class="testimonial-box-content white">
+                      There are many variations of passages of Lorem Ipsum.
+                    </div>
+                    <div class="author-name white">- Jonathone Deo</div>
+                    <div class="text-right">
+                      <div class="stor white">
+                        Google Play
+                        <div class="wd-star">
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                          <i class="fa fa-star white" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3 wow zoomIn"
+            data-wow-delay=".6s"
+          >
+            <div id="testimonial-parallax4-tow" class="scene">
+              <div class="layer" data-depth="0.50">
+                <div class="testimonial-container pos-r">
+                  <div class="testimonial-img">
+                    <img
+                      src="assets/img/testimonial-shap-left-3.png"
+                      class="img-fluid"
+                      alt="img icon"
+                    />
+                    <div class="hover-img">
+                      <img
+                        src="assets/img/testimonial-shap-active-left-shadow.png"
+                        class="img-fluid"
+                        alt="img icon"
+                      />
+                    </div>
+                  </div>
+                  <div class="testimonial-box">
+                    <div class="testimonial-box-title w-bold">Awesome App</div>
+                    <div class="testimonial-box-content">
+                      There are many variations of passages of Lorem Ipsum.
+                    </div>
+                    <div class="author-name">- Jonathone Deo</div>
+                    <div class="text-right">
+                      <div class="stor">
+                        Google Play
+                        <div class="wd-star">
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                          <i class="fa fa-star primary" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-content">
+        <div id="testi-bg" class="testi-bg">
+          <div class="layer" data-depth=".6">
+            <img src="assets/img/testi-3-bg.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Call To Acton Section
+     ============================= -->
+    <section class="call-to-action">
+      <div class="container">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-xl-flex align-items-xl-center wow fadeInLeft"
+          >
+            <div class="call-to-action-box white">
+              <h4 class="call-to-action-title white">
+                Subscribe to our Newsletter
+              </h4>
+            </div>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-md-flex align-items-md-center wow fadeInRight"
+          >
+            <form class="call-to-action-form w-100">
+              <div class="form-group mr-0">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Enter Your Email"
+                />
+              </div>
+              <div
+                class="d-md-flex align-items-md-center d-flex justify-content-center justify-content-md-start"
+              >
+                <button type="submit" class="btn btn-primary primary-bg">
+                  Subscribe
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Dialer App
+     ============================= -->
+    <section class="dialer-app">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 wow fadeInUp">
+            <div class="main-title-box text-center">
+              <h1 class="w-bold main-title">
+                <span class="d-block main-subtitle brand w-light-i"
+                  >Dialer App</span
+                >
+                How it Works
+              </h1>
+              <div class="title-shap">
+                <img
+                  src="assets/img/title-shap.png"
+                  class="img-fluid"
+                  alt="title shap"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-10 col-md-6 col-lg-4 wow zoomIn">
+            <div class="dialer-app-box">
+              <div class="media pos-r">
+                <div class="dialer-app-box-img mr-3 align-self-center">
+                  <img
+                    class="img-fluid"
+                    src="assets/img/dialer-app-icon-1.png"
+                    alt="Generic placeholder image"
+                  />
+                </div>
+                <div class="media-body">
+                  <h5 class="mt-0 w-bold">Signup</h5>
+                  <div class="dialer-app-content">
+                    There are many variations passages, believable.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-10 col-md-6 col-lg-4 wow zoomIn">
+            <div class="dialer-app-box">
+              <div class="media pos-r">
+                <div class="dialer-app-box-img mr-3 align-self-center">
+                  <img
+                    class="img-fluid"
+                    src="assets/img/dialer-app-icon-2.png"
+                    alt="Generic placeholder image"
+                  />
+                </div>
+                <div class="media-body">
+                  <h5 class="mt-0 w-bold">Download</h5>
+                  <div class="dialer-app-content">
+                    There are many variations passages, believable.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-10 col-md-6 col-lg-4 wow zoomIn">
+            <div class="dialer-app-box">
+              <div class="media pos-r">
+                <div class="dialer-app-box-img mr-3 align-self-center">
+                  <img
+                    class="img-fluid"
+                    src="assets/img/dialer-app-icon-3.png"
+                    alt="Generic placeholder image"
+                  />
+                </div>
+                <div class="media-body">
+                  <h5 class="mt-0 w-bold">Verify Your Email</h5>
+                  <div class="dialer-app-content">
+                    There are many variations passages, believable.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 text-center wow fadeInUp">
+            <a href="#" class="btn btn-primary dialer-app-btn"
+              >Start making free calls</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="bg-content d-none d-md-inline-block">
+        <div id="dialer-app-bg" class="app-3-bg">
+          <div class="layer" data-depth=".6">
+            <img src="assets/img/app-3-bg.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        Stor Section
+     ============================= -->
+    <section class="stor-section">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-8 d-md-flex align-items-md-center wow fadeInLeft"
+            data-wow-delay="200"
+          >
+            <h4 class="stor-text">
+              Get Dialer application from these mobile stores:
+            </h4>
+          </div>
+          <div
+            class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-4 d-md-flex align-items-md-center wow fadeInRight"
+            data-wow-delay="200"
+          >
+            <div class="d-flex justify-content-center">
+              <a href="#">
+                <img
+                  src="assets/img/stor-img-1.png"
+                  class="img-fluid"
+                  alt="Stor img"
+                />
+              </a>
+              <a href="#">
+                <img
+                  src="assets/img/stor-img-2.png"
+                  class="img-fluid"
+                  alt="Stor img"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= 
+        footer
+     ============================= -->
+    <footer class="main-footer text-center">
+      <div class="footer-top">
+        <div class="container custom-container">
+          <div class="row">
+            <div
+              class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 wow fadeInUp"
+              data-wow-delay=""
+            >
+              <div class="footer-block-box pb-0">
+                <div class="row">
+                  <div class="col-12 col-lg-12 col-md-8 footer-logo white">
+                    <a href="#"
+                      ><img
+                        src="assets/img/footer-logo.png"
+                        class="img-fluid"
+                        style="height: 150px; width: 150px;"
+                        alt="footer logo"
+                    /></a>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Iste fuga dignissimos voluptatibus repellat tenetur
+                      laudantium voluptate.
+                    </p>
+                  </div>
+
+                  <div
+                    class="col-12 col-lg-12 col-md-4 footer-block-box mt-md-3"
+                  >
+                    <div class="block-box-title pos-r white">System Update</div>
+                    <div class="block-box-list">
+                      <a href="#" class="d-block white">New abou the dialer</a>
+                      <a href="#" class="d-block white">Dialer How it Works</a>
+                      <a href="#" class="d-block white">Inner count down</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 wow fadeInUp"
+              data-wow-delay=".2s"
+            >
+              <div class="footer-block-box">
+                <div class="block-box-title pos-r white">Discover</div>
+                <div class="block-box-list">
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> About
+                    the Dialer</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    How it Works?</a
+                  >
+                </div>
+              </div>
+              <div class="footer-block-box">
+                <div class="block-box-title pos-r white">Dialer</div>
+                <div class="block-box-list">
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    Become a Distributor User</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    Referral Program Use More</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    Terms &#38; Conditions Most</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    Privacy Policy</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 wow fadeInUp"
+              data-wow-delay=".4s"
+            >
+              <div class="footer-block-box">
+                <div class="block-box-title pos-r white">Rates</div>
+                <div class="block-box-list">
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> How
+                    Dialer Call &#38; SMS Rates</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> How
+                    Many Countries Use Dialer</a
+                  >
+                </div>
+              </div>
+              <div class="footer-block-box">
+                <div class="block-box-title pos-r white">Buy Credit</div>
+                <div class="block-box-list">
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Online
+                    Dialer Pay As You Go</a
+                  >
+                  <a href="#" class="d-block white"
+                    ><i class="fa fa-angle-right" aria-hidden="true"></i> Dialer
+                    Monthly Calling Plans List</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3 wow fadeInUp"
+              data-wow-delay=".6s"
+            >
+              <div class="footer-block-box footer-social">
+                <div class="block-box-title social-media-title pos-r white">
+                  You Can Find Us
+                </div>
+                <div class="social-media">
+                  <div class="d-flex">
+                    <a
+                      href="#"
+                      class="d-block facebook white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block instagram white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block twitter white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block google-plus white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-google-plus" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                  <div class="d-flex">
+                    <a
+                      href="#"
+                      class="d-block linkedin white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block vimeo white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-vimeo" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block pinterest white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-pinterest-p" aria-hidden="true"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="d-block flickr white d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa fa-flickr" aria-hidden="true"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-border">
+        <div class="container custom-container">
+          <div class="row copyright-area">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="copyright-cart d-lg-flex d-inline-lg-flex">
+                <div
+                  class="d-flex justify-content-start justify-content-center"
+                >
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-1.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-2.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-3.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-4.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                </div>
+                <div
+                  class="d-flex justify-content-start justify-content-center"
+                >
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-5.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-6.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-7.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                  <a href="#">
+                    <img
+                      src="assets/img/cart-img-8.png"
+                      class="img-fluid"
+                      alt="cart img"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center white d-md-flex align-items-md-center justify-content-md-end"
+            >
+              <!-- <div class="copyright-text">
+                <p>
+                  &copy; Developed by
+                  <a href="http://ahmnanzil.me/">Ahm Nanzil</a> 2025
+                </p>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68eb5c1faf8498194f4f9b82/1j7blvn9i';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <!-- =========================
+        Main Loding JS Script
+    ============================== -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/parallax.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

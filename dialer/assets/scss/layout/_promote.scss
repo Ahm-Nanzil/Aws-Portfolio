@@ -1,0 +1,170 @@
+#promote {
+    .dialer-app{
+        padding: 70px 0 50px;
+    }
+    .breadcome-title {
+        font-size: 35px;
+        line-height: 40px;
+    }
+    .breadcome-subtitle {
+        display: inline-block;
+        background: #fff;
+        border-radius: 5px;
+        line-height: 45px;
+        color: #242424; //        font-size: 26px;
+        //        padding: 2px 20px;
+        font-size: 19px;
+        padding: 2px 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        margin-top: 13px;
+    }
+    .breadcome-singin-btn {
+        padding: 6px 24px;
+        font-size: 18px;
+        &:hover {
+            border-color: $white;
+        }
+    }
+    p.white {
+        font-size: 16px;
+    }
+    .dialer-app .main-title {
+        font-size: 35px;
+        .main-subtitle {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+    }
+}
+
+.promote {
+    background: rgba($dark, .06);
+    padding: 68px 0 50px;
+    .promote-box {
+        padding: 20px 0;
+        position: relative;
+    }
+    .promote-content {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        transform: translateY(-50%);
+        padding: 0 20px;
+        img {
+            width: 40px;
+        }
+    }
+    .promote-title {
+        font-size: 15px;
+        margin-top: 8px;
+    }
+    .promote-title p {
+        font-size: 20px;
+    }
+}
+
+.breadcome-singin-btn {
+    padding: 5px 20px;
+    text-transform: none;
+    border: 1px solid $white;
+    font-weight: 400;
+    color: $white;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    &:hover {
+        color: $brand-color;
+        background: $white;
+    }
+}
+
+@media (min-width: 768px) {
+    .promote {
+        .promote-content {
+            img {
+                width: auto;
+            }
+        }
+        .promote-title {
+            margin-top: 12px;
+            font-size: 20px;
+            line-height: 25px;
+        }
+        .promote-title {
+            padding: 0 20px;
+        }
+    }
+    #promote {
+        .breadcome {
+            .breadcome-title {
+                font-size: 42px;
+                line-height: 61px;
+            }
+            p {
+                font-size: 20px;
+            }
+        }
+        .breadcome-subtitle {
+            font-size: 26px;
+            padding: 2px 20px; //            margin-top: 24px;
+        }
+    }
+    .breadcome-singin-btn {
+        padding: 10px 60px;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .promote {
+        .promote-title {
+            margin-top: 16px;
+            font-size: 24px;
+            line-height: 26px;
+            padding: 0 20px;
+        }
+        .breadcome-subtitle {
+            font-size: 30px;
+        }
+    }
+    #promote {
+        .breadcome {
+            .breadcome-title {
+                font-size: 50px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .promote {
+        .promote-title {
+            margin-top: 16px;
+            font-size: 24px;
+            line-height: 26px;
+            padding: 0 20px;
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .promote {
+        .promote-title {
+            padding: 0 75px;
+        }
+    }
+    .breadcome-subtitle {
+        font-size: 30px;
+        line-height: 45px;
+        padding: 2px 20px;
+        margin-bottom: 16px;
+    }
+    .breadcome-singin-btn {
+        padding: 10px 60px;
+        font-size: 20px;
+        &:hover {
+            border-color: $white;
+        }
+    }
+}

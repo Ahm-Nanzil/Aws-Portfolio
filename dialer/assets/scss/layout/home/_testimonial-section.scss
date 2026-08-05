@@ -1,0 +1,198 @@
+@import 'mixin';
+.testimonial-section {
+    padding: 70px 0;
+    .testimonial-box-title {
+        @include size_sm(15px)
+    }
+    .testimonial-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: left;
+        z-index: 10;
+        width: 60%
+    }
+    .testimonial-box-content {
+        padding: 8px 0;
+        line-height: 1.3;
+    }
+    .author-name {
+        font-style: italic;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+}
+
+.testimonial-img {
+    margin: 10px 0;
+    position: relative;
+    img {
+        position: relative;
+        z-index: 2;
+    }
+    .hover-img {
+        position: absolute;
+        top: 13px;
+        left: 0;
+        width: 100%;
+        z-index: 1; //        opacity: 0;
+        transition: all .4s;
+    }
+}
+
+.testimonial-container:hover .hover-img {
+    opacity: 1
+}
+
+.testimonial-section {
+    .testimonial-box {
+        font-size: 15px;
+        line-height: 25px;
+    }
+    .testimonial-box-content {
+        padding: 0;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+@media (min-width: 768px) {
+    .testimonial-section {
+        .layer {
+            padding: 20px;
+        }
+    }
+
+}
+
+@media (min-width: 992px) and (max-width: 1023px) {
+    .testimonial-img .hover-img {
+        top: 9px;
+        width: 97%;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .testimonial-section {
+        .testimonial-box-title {
+            @include size_sm(20px);
+            margin-bottom: 8px;
+        }
+        .testimonial-box {
+            text-align: left;
+        }
+    }
+    .testimonial-section {
+        .layer {
+            padding: 35px;
+        }
+    }
+    .home-page-two .testimonial-box {
+        padding-top: 20px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .testimonial-section {
+        .layer {
+            padding: 0;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .testimonial-section .testimonial-box-title {
+        font-size: 23px;
+        margin-bottom: 19px
+    }
+    .testimonial-section .testimonial-box-content {
+        max-width: 214px;
+    }
+}
+
+
+/*------------------------------
+	Home Page 2 Testimonial
+--------------------------------*/
+
+@media (max-width: 767px) {
+    .testimonial-img {
+        margin-top: 40px;
+    }
+    .testimonial-container {
+        text-align: center;
+    }
+    .home-page-two {
+        .testimonial-box {
+            width: 44%;
+        }
+        .testimonial-img .hover-img {
+            top: 0px;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+    .testimonial-img .hover-img {
+        top: 12px;
+    }
+    .testimonial-section {
+        .testimonial-box-title {
+            font-size: 18px;
+            margin-bottom: 8px
+        }
+        .testimonial-box-content {
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .testimonial-box {
+            width: 60%;
+        }
+    }
+}
+
+.home-page-three {
+    .testimonial-section {
+        position: relative;
+        .stor .primary{
+            color: $primary-color2;
+        }
+        .bg-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            bottom: 30px;
+            .testi-bg {
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    left: 89%;
+                    top: 62%;
+                    transform: translate(-50%, -50%);
+                    height: 150px;
+                    width: 150px;
+                    @include gardiant-bg(1, 1);
+                    border-radius: 50%;
+                }
+                .layer {
+                    position: relative;
+                    z-index: 2;
+                    img {
+                        opacity: .3;
+                    }
+                }
+            }
+        }
+        @media (min-width: 1400px) {
+            padding-bottom: 150px;
+            .bg-content {
+                display: inline-block
+            }
+        }
+    }
+}

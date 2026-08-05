@@ -1,0 +1,152 @@
+.demo {
+	.header-info {
+		padding: 20px 0;
+		.btn {
+			padding: 5px 20px;
+			border: 1px solid $white;
+			color: $white;
+			font-size: 14px;
+			&:hover {
+				color: $brand-color;
+				background: $white;
+			}
+			&:focus {
+				box-shadow: none;
+			}
+		}
+	}
+
+	.main-slider {
+		padding: 200px 0;
+		h1 {
+			text-transform: inherit;
+		}
+		.btn-9 {
+			padding: 10px 68px;
+		}
+	}
+
+	/* footer */
+	.stor-section {
+		background: rgba($dark, .9);
+		h4 {
+			color: rgba($white, .9);
+		}
+	}
+	.pur-btn {
+		font-size: 20px;
+		padding: 10px 20px;
+		border: 1px solid;
+		background: $brand-color;
+		border-radius: 3px;
+		color: $white;
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	#demos {
+		padding: 65px 0 50px;
+		.page-type {
+			margin-bottom: 50px;
+			font-size: 45px;
+			color: $brand-color;
+		}
+
+		.image-shop-box {
+			margin-bottom: 50px;
+			display: block;
+			text-align: center;
+		}
+
+		.image-bg {
+			background: url('../img/demo/demo-bg.png') no-repeat center top;
+			width: 373px;
+			height: 215px;
+			display: inline-block;
+			position: relative;
+			background-size: cover;
+		}
+		.image-bg .image-shop-scroll {
+			background-position: center 0;
+			background-repeat: no-repeat;
+			position: absolute;
+			width: 280px;
+			height: 165px;
+			top: 23px;
+			left: 0;
+			background-size: cover;
+			right: 0;
+			margin: 0 auto;
+		}
+
+		.image-bg .image-shop-scroll {
+			transition: all 6s ease-out 0s;
+			-webkit-transition: all 6s ease-out 0s;
+			-moz-transition: all 6s ease-out 0s;
+			-ms-transition: all 6s ease-out 0s;
+			-o-transition: all 6s ease-out 0s;
+		}
+
+		.image-bg:hover .image-shop-scroll {
+			background-position: center 100%!important;
+		}
+		.text-heading {
+			font-size: 20px;
+			font-weight: 700;
+		}
+
+		.demo-full:hover .text-heading {
+			color: $brand-color;
+		}
+
+		.inner-pages {
+			.image-bg {
+				width: 373px;
+				height: 215px;
+			}
+			.image-bg .image-shop-scroll {
+				width: 280px;
+				height: 165px;
+				top: 23px;
+				left: 0;
+			}
+		}
+		@media (min-width: 1200px) {
+			.image-bg {
+				width: 552px;
+				height: 316px;
+			}
+			.image-bg .image-shop-scroll {
+				width: 420px;
+				height: 253px;
+				top: 35px;
+				left: 2px;
+			}
+		}
+		@media (max-width: 575px) {
+			.image-bg {
+				width: 280px;
+				height: 165px;
+			}
+			.image-bg .image-shop-scroll {
+				width: 218px;
+				height: 125px;
+				top: 22px;
+				left: 0px;
+			}
+			.inner-pages {
+				.image-bg {
+					width: 320px;
+					height: 215px;
+				}
+				.image-bg .image-shop-scroll {
+					width: 285px;
+					height: 165px;
+					top: 23px;
+					left: 0;
+				}
+			}
+		}
+	}
+}

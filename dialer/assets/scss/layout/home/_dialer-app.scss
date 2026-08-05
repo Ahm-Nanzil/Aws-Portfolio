@@ -1,0 +1,188 @@
+.dialer-app {
+    padding: 60px 0;
+
+    .dialer-app-btn {
+        &:hover {
+            background: $brand-color !important;
+        }
+    }
+    .dialer-app-btn {
+        background: $primary-color !important;
+        color: $white;
+        margin-top: 10px;
+        padding: 15px 20px;
+        font-size: 15px;
+    }
+    .media {
+        padding: 12px 10px 15px;
+        line-height: 26px;
+    }
+    .media {
+        background: #ddd;
+        margin: 0 0 10px !important;
+    }
+    .dialer-app-box-img {
+        width: 60px;
+        background: #b6b5b3;
+        padding: 14px;
+        border-radius: 100%;
+        box-shadow: 0px 0px 0px 2px #fff;
+    }
+
+    .media-body {
+        h5 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        .dialer-app-content {
+            font-size: 16px
+        }
+    }
+
+}
+
+@media (min-width: 768px) {
+    .dialer-app {
+        .media-body {
+            h5 {
+                font-size: 24px;
+                margin-bottom: 7px;
+            }
+            .dialer-app-content {
+                font-size: 16px
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .dialer-app {
+        .main-title-box .title-shap img {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .dialer-app {
+        padding: 100px 0;
+    }
+}
+
+@media (min-width: 1400px) {
+    .home-page-two .dialer-app .dialer-app-box-img {
+        margin-left: -64px !important;
+    }
+    .dialer-app {
+        padding: 70px 0 70px;
+
+        .dialer-app-box-img {
+            width: 100px;
+            padding: 24px;
+            box-shadow: 0px 0px 0px 5px #fff;
+        }
+        .media-body {
+            padding-left: 10px;
+            padding-top: 5px;
+        }
+        .dialer-app-btn {
+            padding: 18px 35px;
+            margin-top: 17px;
+        }
+        .main-title-box {
+            margin-bottom: 60px;
+        }
+    }
+}
+
+.dialer-app-box {
+    .dialer-app-box-img {
+        transition: 0.5s;
+    }
+    &:hover {
+        .dialer-app-box-img {
+            background: $primary-color;
+            img {
+                -webkit-animation: rotating 20s linear infinite;
+                -moz-animation: rotating 20s linear infinite;
+                -ms-animation: rotating 20s linear infinite;
+                -o-animation: rotating 20s linear infinite;
+                animation: rotating 20s linear infinite;
+            }
+        }
+    }
+}
+
+@-webkit-keyframes rotating
+/* Safari and Chrome */
+
+    {
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* home page three */
+
+.home-page-three {
+    .dialer-app {
+        position: relative;
+        .dialer-app-box:hover .dialer-app-box-img {
+            background: $linear-gradiant;
+        }
+        .dialer-app-btn {
+            transition: all .8s;
+            background: $linear-gradiant!important;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+        .bg-content {
+            position: absolute;
+            left: 0px;
+            z-index: -9;
+            bottom: 20px;
+            @media (min-width: 768px) and (max-width: 991px) {
+                bottom: 150px;
+                img {
+                    width: 60%;
+                }
+            }
+            @media (min-width: 992px) {
+                img {
+                    width: 70%;
+                }
+            }
+            @media (min-width: 1200px) {
+                img {
+                    width: 90%;
+                }
+            }
+        }
+    }
+}

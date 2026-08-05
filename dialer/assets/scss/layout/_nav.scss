@@ -1,0 +1,241 @@
+nav {
+    padding: 15px 0;
+    position: relative;
+    z-index: 11;
+    border-bottom: 2px solid $primary-color;
+    .display_menu {
+        li {
+            a {
+                padding: 5px 5px;
+                font-size: 15px;
+                &:hover {
+                    background: transparent;
+                    color: $brand-color;
+                }
+                &:focus {
+                    color: red;
+                }
+            }
+        }
+    }
+    .button_menu {
+        .nav-btn {
+            margin-right: 5px;
+            border: 1px solid $brand-color;
+            line-height: 1;
+            font-size: 12px;
+            padding: 5px 8px;
+        }
+    }
+    .logo {
+        padding-bottom: 10px;
+    }
+    .nav-link {
+        &:focus {
+            box-shadow: none;
+            color: $brand-color;
+        }
+        &:active {
+            background: none;
+        }
+    }
+    @media (max-width: 767px) {
+        .button_menu {
+            .nav-btn {
+                padding: 5px;
+            }
+        }
+    }
+}
+
+/*-----------------------
+	Canvas
+--------------------------*/
+
+body.show_sidebar #push_sidebar {
+    // z-index: 99;
+}
+
+#push_sidebar li a {
+    text-align: center;
+}
+
+#push_sidebar {
+    background: rgba(162, 17, 17, 0.95);
+    padding: 10px 20px;
+}
+
+#push_sidebar li {
+    a {
+        background: transparent;
+        color: rgba($white, .8);
+        border-bottom: 1px solid rgba(241, 241, 241, 0.3686274509803922);
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    &:last-child {
+        a {
+            border-bottom: 0;
+        }
+    }
+}
+
+#push_sidebar li a:hover {
+    background: $brand-color;
+    color: $white;
+}
+
+.nav_trigger {
+    display: block;
+    .fa-times {
+        color: #fff;
+    }
+}
+
+.nav_trigger {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.home-page-two {
+    .nav_trigger {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+}
+
+body.show_sidebar .nav_trigger {
+    margin-right: 0;
+    width: 100%;
+}
+
+.list-unstyled {
+    margin-top: 20px;
+}
+
+.nav_trigger {
+    margin-top: 0;
+}
+
+
+@media (min-width: 768px) {
+    nav {
+        .link_menu {
+            margin-right: 20px;
+        }
+    }
+    nav .button_menu li {
+        margin-right: 10px;
+    }
+    .home-page-two {
+        .nav_trigger {
+            margin-right: 30px;
+        }
+        nav .header-top-lan-btn {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav_trigger {
+        margin-top: 0;
+    }
+    nav {
+        .button_menu {
+            li {
+                margin-right: 8px;
+                padding-right: 8px;
+                position: relative;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    height: 17px;
+                    width: 1px;
+                    background: #b8b8b8;
+                    transform: translateY(-50%);
+                }
+                &:last-child {
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+            .nav-btn {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+
+/*-----------------------
+	Canvas
+--------------------------*/
+
+.home-page-two {
+    .header-info {
+        nav {
+            border-bottom: 0;
+        }
+    }
+
+    nav {
+        .button_menu {
+            .nav-btn {
+                color: #fff;
+                border-color: $white;
+                &:hover {
+                    background: $white;
+                    color: $brand-color;
+                }
+            }
+        }
+        .header-top-lan-btn {
+            border: 1px solid $base-color;
+            i {
+                transition: 0.5s;
+            }
+            &:after {
+                display: none;
+            }
+            &:hover {
+                color: $primary-color;
+                border: 1px solid $primary-color;
+            }
+        }
+        .social-media-link {
+            margin-right: 20px;
+        }
+    }
+
+}
+
+/* ============= Index page 3 =============== */
+
+.home-page-three {
+    nav {
+        border-bottom-color: $primary-color2;
+        .header-top-lan-btn {
+            &:focus,
+            &:hover {
+                color: $primary-color2!important;
+                border-color: $primary-color2;
+                i {
+                    color: $primary-color2!important;
+                }
+            }
+        }
+    }
+    #push_sidebar{
+        background: rgba($primary-color2, .95);
+        li a:hover{
+            background: $primary-color2;
+        }
+    }
+    .show i{
+        color: $primary-color2;
+    }
+}

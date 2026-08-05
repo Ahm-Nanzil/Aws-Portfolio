@@ -1,0 +1,202 @@
+.main-footer {
+    background: url("../img/footer-bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center center;
+    .footer-top {
+        padding: 63px 0 35px;
+    }
+    .footer-logo a img {
+        margin-bottom: 20px;
+    }
+    .footer-block-box {
+        padding-bottom: 25px;
+    }
+    .block-box-title {
+        margin-bottom: 14px;
+        font-size: 28px;
+        position: relative;
+        display: inline-block;
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: #987223;
+        }
+    }
+    a {
+        margin-bottom: 10px;
+        font-size: 14px;
+        transition: 0.5s;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        i {
+            margin-right: 3px;
+            font-size: 17px;
+        }
+        &:hover {
+            text-decoration: none;
+            color: $brand-color;
+        }
+    }
+    .footer-logo {
+        p {
+            margin-top: 8px;
+            font-size: 15px;
+        }
+    }
+    .social-media {
+        margin-top: 15px;
+        a {
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            margin-right: 35px; // margin: 0 auto;
+            border-radius: 100%;
+            background: $brand-color;
+            margin-bottom: 8px;
+            margin: 0 auto 20px;
+            i {
+                margin-right: 0;
+                font-size: 22px;
+            }
+        }
+    }
+    .copyright-cart {
+        a {
+            display: inline-block;
+            margin: 5px;
+        }
+    }
+    .copyright-text {
+        a {
+            font-size: 16px;
+            margin: 0 2px;
+            color: $primary-color;
+            &:hover {
+                color: $brand-color;
+            }
+        }
+    }
+    .social-media {
+        a {
+            &:hover {
+                background: #fff !important;
+            }
+        }
+    }
+    .footer-border {
+        border-top: 1px solid #696a6a;
+        padding: 20px;
+    }
+    .footer-block-box.footer-social {
+        padding-bottom: 20px;
+    }
+}
+
+.copyright-text {
+    padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .main-footer {
+        text-align: left !important;
+        .social-media {
+            a {
+                width: 40px;
+                height: 40px;
+                font-size: 17px;
+            }
+        }
+        .footer-logo {
+            p {
+                font-size: 16px;
+                line-height: 26px;
+            }
+        }
+        .social-media-title {
+            margin-bottom: 15px;
+        }
+        .social-media-title {
+            margin-bottom: 28px;
+        }
+        .block-box-list {
+            a {
+                font-size: 15px;
+            }
+        }
+        .footer-block-box.footer-social {
+            padding-bottom: 0;
+        }
+        .copyright-text {
+            padding-top: 0px;
+        }
+    }
+}
+
+@media (max-width: 991px) {
+    .main-footer .footer-logo p {
+        margin-right: 0px;
+        padding-bottom: 25px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-footer {
+        .social-media {
+            a {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-footer {
+        .block-box-list {
+            a {
+                font-size: 16px;
+                padding-bottom: 0;
+                font-weight: 300;
+            }
+        }
+        .footer-logo {
+            p {
+                margin-top: 20px;
+                font-size: 17px;
+                margin-right: 0;
+            }
+        }
+        .social-media {
+            a {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1600px) {
+    .main-footer {
+        .block-box-list {
+            padding-top: 0;
+        }
+        .block-box-title {
+            font-size: 30px;
+        }
+        .footer-top {
+            padding-bottom: 60px;
+        }
+    }
+}
+
+.home-page-three{
+    .main-footer .copyright-text a{
+        color: $primary-color2;
+        font-weight: 700;
+    }
+}

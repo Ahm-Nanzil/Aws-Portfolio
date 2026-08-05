@@ -1,0 +1,360 @@
+.rate-inner {
+    .breadcome {
+        padding: 50px 0 100px;
+    }
+    .breadcome-title {
+        line-height: 45px
+    }
+    .breadcome-subtitle {
+        font-size: 26px;
+        line-height: 36px;
+    }
+    .country-rate {
+        background: none;
+        padding-bottom: 0px;
+        .country-rate-form-area {
+            box-shadow: 0px 13px 61px 0px rgba($dark, .8);
+        }
+    }
+    .country-rate-form-area {
+        margin-top: -50px;
+        margin-bottom: 65px;
+    }
+    .main-title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+    .country-img {
+        width: 70px;
+        img {
+            width: 100%;
+        }
+    }
+
+    .country-name1 {
+        margin-left: 10px;
+        color: $white;
+        h2 {
+            color: $white;
+            font-size: 25px;
+            font-weight: 700;
+            line-height: 40px;
+            span {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .currency {
+        select {
+            padding: 2px 2px;
+            cursor: pointer;
+            border: 1px solid;
+            border-radius: 3px;
+            color: $white;
+            background: transparent;
+            font-size: 18px;
+            &:focus {
+                outline: none;
+            }
+            option {
+                border-radius: 2px;
+                background: transparent;
+                color: $primary-color;
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    .call-package {
+        margin: 10px 0;
+        .package-offer {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba($dark, .36);
+            &:last-child {
+                border-bottom: none;
+            }
+            div {
+                display: inline-block;
+            }
+            h5 {
+                font-size: 18px;
+                color: $base-color;
+                font-weight: 700;
+                line-height: 24px;
+                i {
+                    font-size: 14px;
+                    vertical-align: top;
+                }
+            }
+            span {
+                font-size: 15px;
+                color: rgba($base-color, .8);
+                line-height: normal;
+                font-weight: 600;
+                line-height: 27px;
+            }
+            .package-types {
+                h5 {
+                    color: $brand-color;
+                }
+            }
+        }
+    }
+
+}
+
+.country-small-des {
+    box-shadow: 0px 4px 36px 0px rgba($base-color, .15);
+    margin: 35px 15px 62px;
+    .country-des {
+        background: $primary-color;
+        padding: 10px 8px;
+
+    }
+
+    .calls-des {
+        padding: 20px 15px;
+
+        h4 {
+            font-size: 16px;
+            line-height: 26px;
+            span {
+                font-size: 18px;
+                color: $brand-color;
+            }
+        }
+        p {
+            color: rgba($dark, .5);
+        }
+    }
+}
+
+#main-des {
+    padding-bottom: 40px;
+    .main-title-box {
+        margin-bottom: 0
+    }
+    .first-letter {
+        margin: 30px 0 25px;
+        li {
+            display: inline-block;
+            font-size: 22px;
+            line-height: 32px;
+            padding: 0 3px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all .4s;
+            -webkit-transition: all .4s;
+            margin: 0 2px;
+            &:hover,
+            &.active {
+                background: $brand-color;
+                color: $white;
+            }
+        }
+    }
+    .single-country-des {
+        box-shadow: 0px 4px 36px 0px rgba($dark, 0.15);
+        padding: 30px 15px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        display: none;
+        &.active {
+            display: inherit;
+        }
+        p {
+            margin-top: 20px;
+            font-weight: 300;
+        }
+    }
+    .country-name2 {
+        h3 {
+            margin-left: 8px;
+            font-size: 18px;
+            line-height: 28px;
+            font-weight: 700;
+        }
+        a {
+            background: $brand-color;
+            color: $white;
+            border: 1px solid $brand-color;
+            padding: 4px 9px;
+            font-size: 14px;
+            &:hover {
+                color: $brand-color;
+                background: $white;
+            }
+        }
+    }
+    .des-single {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba($dark, .1);
+    }
+
+    .img-box {
+        width: 70px;
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.call-price-des {
+    padding-top: 20px;
+    .price-type {
+        h2 {
+            font-size: 14px;
+            line-height: normal;
+            font-weight: 700;
+        }
+        span {
+            font-size: 14px;
+            font-weight: 400;
+        }
+        &.price-h {
+            h2 {
+                color: $brand-color;
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .rate-inner {
+        .call-package {
+            .package-offer {
+                padding: 10px 0;
+                h5 {
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+                span {
+                    font-size: 17px;
+                    line-height: 27px;
+                }
+            }
+        }
+    }
+
+    .call-price-des {
+        .price-type {
+            h2 {
+                font-size: 16px;
+                line-height: normal;
+            }
+            span {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .rate-inner {
+        .breadcome-subtitle {
+            font-size: 26px;
+            line-height: 36px;
+        }
+        .country-rate-form-area {
+            margin-top: -50px;
+        }
+        .country-des {
+            padding: 15px 20px;
+        }
+        .country-img {
+            width: 150px;
+        }
+        .country-name1 {
+            margin-left: 10px;
+            h2 {
+                font-size: 30px;
+                line-height: 40px;
+            }
+            span {
+                font-size: 15px;
+            }
+        }
+        .currency {
+            select {
+                padding: 4px 12px;
+                font-size: 18px;
+            }
+        }
+        .calls-des {
+            padding: 20px 30px;
+        }
+        .img-box {
+            width: 120px;
+        }
+    }
+
+    #main-des {
+        .country-name2 {
+            h3 {
+                margin-left: 25px;
+                font-size: 30px;
+                line-height: 40px;
+            }
+            a {
+                padding: 10px 30px;
+            }
+        }
+        .img-box {
+            width: 120px;
+        }
+        .first-letter {
+            li {
+                font-size: 30px;
+                line-height: 40px;
+                padding: 0 5px;
+                margin: 0 5px;
+            }
+        }
+        .single-country-des {
+            padding: 30px 30px;
+        }
+    }
+    .call-price-des {
+        padding-top: 30px;
+        .price-type {
+            h2 {
+                font-size: 20px;
+                line-height: normal;
+            }
+            span {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .rate-inner {
+        .breadcome-title {
+            font-size: 45px;
+        }
+        .breadcome-subtitle {
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .rate-inner {}
+}
+
+@media (min-width: 1400px) {
+    .rate-inner {}
+}
+
+@media (min-width: 1600px) {
+    .rate-inner {
+        .country-des {
+            padding: 15px 20px;
+        }
+    }
+}

@@ -1,0 +1,1141 @@
+/**
+ * ---------------------------------------------------------------------------
+ * 01. Google Font
+ * ---------------------------------------------------------------------------
+ */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300i,300,400,700');
+@import 'mixin';
+@import 'function';
+
+/**
+ * ---------------------------------------------------------------------------
+ * 01. Theme Reset Code
+ * ---------------------------------------------------------------------------
+ */
+
+body {
+    font-family: $roboto;
+    @include size_sm(14px);
+    color: $base-color;
+    line-height: 1.5 !important;
+    overflow-x: hidden;
+    width: auto;
+    position: relative;
+}
+
+/* -----------------
+	Heading Grop
+--------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $base-color;
+    margin: 0;
+}
+
+h1 {
+    @include size_sm(22px);
+}
+
+h2 {
+    @include size_sm(20px);
+}
+
+h3 {
+    @include size_sm(18px);
+}
+
+h4 {
+    @include size_sm(16px);
+}
+
+h5 {
+    @include size_sm(14px);
+}
+
+h6 {
+    @include size_sm(12px);
+}
+
+/* -----------------
+	Text Grop
+--------------------*/
+
+p {
+    margin: 0
+}
+
+/* -----------------
+	Button
+--------------------*/
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    &:active,
+    &:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: transparent;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    text-decoration: none;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* -----------------
+	Margin 
+--------------------*/
+
+.mr-0 {
+    margin: 0 !important;
+}
+
+.mrl-0 {
+    margin-left: 0 !important;
+}
+
+.mrr-0 {
+    margin-right: 0 !important;
+}
+
+.mrb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mlr-0 {
+    margin-left: 0!important;
+    margin-right: 0!important;
+}
+
+/* -----------------
+	Padding 
+--------------------*/
+
+.pd-0 {
+    padding: 0 !important;
+}
+
+.pdl-0 {
+    padding-left: 0 !important;
+}
+
+.pdr-0 {
+    padding-right: 0 !important;
+}
+
+.pdb-0 {
+    padding-bottom: 0 !important;
+}
+
+.plr-0 {
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+
+/* -----------------
+	Color Group 
+--------------------*/
+
+.brand {
+    color: $brand-color
+}
+
+.primary {
+    color: $primary-color
+}
+
+.base {
+    color: $base-color
+}
+
+.white {
+    color: $white
+}
+
+.brand-bg {
+    background: $brand-color
+}
+
+.primary-bg {
+    background: $primary-color
+}
+
+.base-bg {
+    background: $base-color
+}
+
+.white-bg {
+    background: $white
+}
+
+.focus-text {
+    color: $primary-color
+}
+
+.bg-none {
+    background: transparent
+}
+
+.facebook {
+    background: $facebook !important;
+}
+
+.twitter {
+    background: $twitter !important;
+}
+
+.linkedin {
+    background: $linkedin !important;
+}
+
+.pinterest {
+    background: $pinterest !important;
+}
+
+.instagram {
+    background: $instagram !important;
+}
+
+.google-plus {
+    background: $google-plus !important;
+}
+
+.vimeo {
+    background: $vimeo !important;
+}
+
+.flickr {
+    background: $flickr !important;
+}
+
+/* -----------------
+	border Class
+--------------------*/
+
+.border-0 {
+    border: 0;
+}
+
+.border-color-none {
+    border-color: transparent
+}
+
+/* -----------------
+	Font W Class
+--------------------*/
+
+.w-light {
+    font-weight: 300;
+}
+
+.w-light-i {
+    font-weight: 300;
+    font-style: italic;
+}
+
+.w-normal {
+    font-weight: 400;
+}
+
+.w-bold {
+    font-weight: 700;
+}
+
+/* -----------------
+	Global Class
+--------------------*/
+
+.width-auto {
+    width: auto !important;
+}
+
+.pos-r {
+    position: relative;
+}
+
+.pos-a {
+    position: absolute;
+}
+
+#googleMap {
+    height: 300px;
+}
+
+/*-----------------------
+	Modal Style
+--------------------------*/
+
+.master-card {
+    margin-bottom: 20px;
+    width: 50%;
+    .dropdown {
+        background: #555;
+        padding: 12px;
+        height: 100%;
+        cursor: pointer;
+    }
+}
+
+.custom-credit-modal,
+.custom-login-modal {
+    .modal-content {
+        background: #f1f1f1;
+    }
+    .modal-header {
+        display: inline-block;
+        border-color: rgba(119, 119, 119, 0.30);
+        padding: 5px;
+    }
+    .modal-title {
+        font-weight: 700;
+        font-size: 18px;
+        display: inline;
+    }
+    .modal-content {
+        border-radius: 0;
+        border: 4px solid $primary-color;
+    }
+    .custom-login-modal-btn {
+        padding: 0;
+        background: $brand-color;
+        color: #fff;
+        padding: 5px 25px;
+        border: 1px solid transparent;
+        &:hover {
+            color: $brand-color;
+            background: transparent;
+            border: 1px solid $brand-color;
+        }
+    }
+    .modal .modal-dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+    .form-group {
+        margin-bottom: 0.5rem;
+    }
+    input {
+        &:focus {
+            border-color: $brand-color;
+        }
+    }
+}
+
+.custom-credit-modal {
+    .modal {
+        .modal-dialog {
+            width: 80%;
+        }
+    }
+    .media-body {
+        padding-left: 8px;
+    }
+    .card-img {
+        width: 30px;
+    }
+    .paypal-img {
+        width: 60px;
+    }
+    .paypal-card-img {
+        width: 50px;
+    }
+    .check-box-img {
+        width: 15px;
+        opacity: 0;
+    }
+}
+
+.card-available {
+    position: absolute;
+    width: 100%;
+    display: none;
+    background: #dedddd;
+    padding: 5px;
+    margin: 5px 0 0;
+    z-index: 10;
+}
+
+.custom-credit-modal {
+    .card-active {
+        .dropdown {
+            background: #e94646;
+        }
+        .card-available {
+            display: block;
+        }
+        .check-box-img {
+            opacity: 1;
+        }
+    }
+    .form-group {
+        margin-top: 0px;
+    }
+    .modal-header {
+        border: 0;
+    }
+    .modal-content {
+        padding: 10px;
+    }
+}
+
+.card-available-img {
+    margin-left: 5px;
+    img {
+        width: 25px;
+    }
+}
+
+.currency-form {
+    select,
+    input {
+        text-align: center;
+        border-radius: 0;
+        background: #f1f1f1;
+        font-size: 14px;
+    }
+    select {
+        box-shadow: none;
+    }
+}
+
+.header-currency {
+    margin-top: 10px !important;
+    margin-bottom: 20px !important;
+    input {
+        margin-right: 10px;
+    }
+    .custom-select-currency {
+        position: relative;
+        &:before {
+            content: "\f107";
+            font-family: FontAwesome;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            font-size: 20px;
+            margin-right: 10px;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+
+
+/* -----------------
+	Ribbon Style
+--------------------*/
+
+.box {
+    width: 200px;
+    height: 300px;
+    position: relative;
+    border: 1px solid #BBB;
+    background: #EEE;
+}
+
+.ribbon {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+
+.ribbon span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 100px;
+    display: block;
+    background: #faba35;
+    background: linear-gradient(#faba35 0%, #faba35 100%);
+    box-shadow: 0 3px 10px -5px #faba35;
+    position: absolute;
+    top: 19px;
+    left: -21px;
+}
+
+.ribbon span::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #faba35;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #faba35;
+}
+
+.ribbon span::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #faba35;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #faba35;
+}
+
+/* ---------------------------
+	Button Style
+------------------------------*/
+
+.header-top-lan-dropdown {
+    .header-top-lan-btn {
+        padding: 5px !important;
+        i {
+            margin: 0 5px;
+        }
+        &:hover {
+            background: transparent;
+            i {
+                color: $primary-color !important;
+            }
+        }
+        &:active,
+        &:focus {
+            background: transparent;
+        }
+    }
+    .dropdown-menu {
+        border-radius: 0;
+        font-size: 12px;
+        display: none;
+        padding: 10px 0;
+        width: 100%;
+        border-radius: 0 0 9px 9px;
+        button {
+            padding: 5px 10px 5px 20px;
+            font-size: 15px;
+            position: relative;
+            &::after {
+                content: '\f00c';
+                position: absolute;
+                right: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 14px;
+                font-family: 'FontAwesome';
+                color: $brand-color;
+                display: none;
+            }
+            &:hover {
+                &::after {
+                    display: inline-block;
+                }
+            }
+        }
+        min-width: inherit;
+    }
+}
+
+.show {
+    i {
+        color: $primary-color;
+    }
+}
+
+.show > .btn-secondary.dropdown-toggle {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.button_menu {
+    button {
+        &:hover {
+            background: $brand-color;
+            border-color: transparent;
+        }
+        &:active,
+        &:focus {
+            box-shadow: none;
+            background: $brand-color;
+            border-color: transparent;
+        }
+    }
+}
+
+.all_prices {
+    padding: 20px 0;
+}
+
+/*
+	Angle Button
+*/
+
+/* General button style (reset) */
+
+.btn {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block; // margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+/* Pseudo elements for icons */
+
+.btn:before,
+.icon-heart:after,
+.icon-star:after,
+.icon-plus:after,
+.icon-file:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Filled heart */
+
+.icon-arrow-right:before {
+    content: "\f061";
+}
+
+/* Button 3 */
+
+.btn-3 {
+    background: $brand-color;
+    color: #fff;
+}
+
+.btn-3:hover {
+    background: $brand-color;
+}
+
+.btn-3:active {
+    background: #f58500;
+    top: 2px;
+}
+
+.btn-3:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3.3;
+    font-size: 100%;
+    width: 40px;
+}
+
+/* Button 3a */
+
+.btn-3a {
+    padding: 25px 60px 25px 120px;
+}
+
+.btn-3a:before {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Button 3b */
+
+.btn-3b {
+    padding: 25px 60px 25px 120px;
+    border-radius: 10px;
+}
+
+.btn-3b:before {
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Button 3c */
+
+.btn-3c {
+    padding: 80px 20px 20px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px #da9622;
+}
+
+.btn-3c:active {
+    box-shadow: 0 3px #dc7801;
+}
+
+.btn-3c:before {
+    height: 60px;
+    width: 100%;
+    line-height: 60px;
+    background: #fff;
+    color: $brand-color;
+    border-radius: 10px 10px 0 0;
+}
+
+.btn-3c:active:before {
+    color: #f58500;
+}
+
+/* Button 3d */
+
+.btn-3d {
+    padding: 25px 60px 25px 120px;
+    border-radius: 10px;
+}
+
+.btn-3d:before {
+    background: #fff;
+    color: #fcad26;
+    z-index: 2;
+    border-radius: 10px 0 0 10px;
+}
+
+.btn-3d:after {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    z-index: 1;
+    left: 55px;
+    top: 50%;
+    margin: -10px 0 0 -10px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.btn-3d:active:before {
+    color: #f58500;
+}
+
+.btn-3d:active {
+    top: 0;
+}
+
+.btn-3d:active:after {
+    left: 60px;
+}
+
+/* Button 3e */
+
+.btn-3e {
+    // padding: 25px 120px 25px 60px;
+    padding: 15px 60px 15px 24px;
+    overflow: hidden;
+}
+
+.btn-3e:before {
+    left: auto;
+    right: 0px;
+    z-index: 2;
+}
+
+.btn-3e:after {
+    width: 30%;
+    height: 200%;
+    background: $primary-color;
+    z-index: 1;
+    right: 0;
+    top: 0; // margin: -5px 0 0 -5px;
+    -webkit-transform-origin: 0 0; // -webkit-transform: rotate(-20deg);
+    -moz-transform-origin: 0 0; // -moz-transform: rotate(-20deg);
+    -ms-transform-origin: 0 0; // -ms-transform: rotate(-20deg);
+    transform-origin: 0 0; // transform: rotate(-20deg);
+    margin: -45px 0 0 0;
+    transform: rotate(27deg) translateX(45px);
+}
+
+.btn-3e:hover:after {
+    width: 35%;
+}
+
+
+/* ---------------------------
+	Main Title
+------------------------------*/
+
+.main-title {
+    margin-bottom: 15px;
+    .main-subtitle {
+        margin-bottom: 5px;
+        font-size: 20px;
+    }
+}
+
+.title-shap {
+    width: 50%;
+    margin: 0 auto;
+}
+
+/* ---------------------------
+	Before Style
+------------------------------*/
+
+.before-none {
+    &:before {
+        display: none;
+    }
+}
+
+/* ---------------------------
+	Breadcome Style
+------------------------------*/
+
+.breadcome {
+    padding: 22px 0 30px;
+    background: $primary-color;
+    .breadcome-title {
+        font-size: 35px;
+        line-height: 40px;
+        font-weight: 500;
+    }
+    .sub-title {
+        font-size: 20px;
+    }
+    .breadcome-list-group {
+        li {
+            margin-bottom: 5px;
+            padding-left: 20px !important;
+            position: relative;
+            font-size: 17px;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 0;
+                height: 1px;
+                width: 15px;
+                background: $white;
+                transform: translateY(-50%);
+            }
+            @media (min-width: 768px) and (max-width: 991px) {
+                font-size: 16px
+            }
+        }
+    }
+}
+
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: $white;
+    z-index: 900;
+    .preloader-item {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/*-------------------------
+	Media Query
+---------------------------*/
+
+// Small devices (landscape phones, 576px and up)
+//@media (max-width: 767px) {
+//    .breadcome {
+//        .breadcome-title {
+//            font-size: 42px;
+//            line-height: 56px;
+//            margin-bottom: 20px;
+//        }
+//        .sub-title {
+//            max-width: 380px;
+//        }
+//    }
+//}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    h1 {
+        @include size_md(25px);
+    }
+    h2 {
+        @include size_md(23px);
+    }
+    h3 {
+        @include size_md(21px);
+    }
+    h4 {
+        @include size_md(19px);
+    }
+    h5 {
+        @include size_md(17px);
+    }
+    h6 {
+        @include size_md(15px);
+    }
+    .dialer-app-box {
+        margin: 0 0 20px !important;
+    }
+    .master-card {
+        .dropdown {
+            margin: 0 8px;
+        }
+    }
+    .card-available {
+        padding: 7px 32px;
+        .d-flex {
+            font-size: 18px;
+            line-height: 30px;
+        }
+    }
+    .card-available-img {
+        img {
+            width: auto;
+            margin-left: 15px;
+        }
+    }
+    .currency-form {
+        margin-top: 40px;
+        select,
+        input {
+            padding: 15px;
+        }
+    }
+    .main-title-box {
+        margin-bottom: 40px;
+    }
+
+    .custom-credit-modal {
+        .modal-content {
+            padding: 20px;
+        }
+        .card-active {
+            .dropdown {
+                background: #e94646;
+            }
+            .card-available {
+                display: block;
+            }
+            .check-box-img {
+                opacity: 1;
+            }
+        }
+        .form-group {
+            margin-top: 20px;
+        }
+        .modal-header {
+            border: 0;
+        }
+    }
+    .card-available-img {
+        margin-left: 5px;
+        img {
+            width: 25px;
+        }
+    }
+    .breadcome {
+        padding: 30px 0 45px;
+        .breadcome-title {
+            margin-bottom: 0;
+            font-size: 42px;
+            line-height: 61px;
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1400px) {
+
+    h1 {
+        @include size_xl(90px);
+    }
+    h2 {
+        @include size_xl(54px);
+    }
+    h3 {
+        @include size_xl(50px);
+    }
+    h4 {
+        @include size_xl(36px);
+    }
+    h5 {
+        @include size_xl(24px);
+    }
+    h6 {
+        @include size_xl(18px);
+    }
+
+    .custom-container {
+        max-width: 1650px;
+    }
+
+    .custom-credit-modal,
+    .custom-login-modal {
+        .modal-title {
+            font-size: 24px;
+        }
+        .modal-content {
+            padding: 15px 15px;
+        }
+        .modal {
+            .modal-dialog {
+                width: 100%;
+            }
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .main-title-box {
+        margin-bottom: 50px;
+        .main-subtitle {
+            font-size: 18px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .main-title {
+            font-size: 25px;
+            line-height: 1;
+        }
+    }
+    .breadcome .breadcome-title {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .breadcome {
+        padding: 32px 0 50px;
+        .breadcome-list-group li {
+            font-size: 18px;
+        }
+    }
+    .main-title-box {
+        margin-bottom: 50px;
+    }
+    .card-available {
+        padding: 7px 15px;
+    }
+    .custom-credit-modal {
+        .media-body {
+            padding-left: 15px !important;
+            margin-left: 15px;
+
+        }
+        .check-box-img {
+            width: auto;
+        }
+        .card-active {
+            .dropdown {
+                .media-body {
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        height: 40px;
+                        width: 1px;
+                        background: $white;
+                        transform: translateY(-50%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1500px) {
+    body {
+        @include size_xl(18px);
+    }
+    .main-title-box {
+        margin-bottom: 30px;
+        .main-subtitle {
+            font-size: 22px;
+            line-height: 1;
+        }
+        .main-title {
+            font-size: 36px;
+            line-height: 1;
+        }
+    }
+}
+
+.home-page-three {
+    .header-top-lan-dropdown .dropdown-menu button::after {
+        color: $primary-color2;
+    }
+    .brand {
+        color: $brand-color2;
+    }
+    .btn-3 {
+        background: $brand-color2;
+    }
+    .btn-3e:after {
+        background: $primary-color2;
+    }
+    .ribbon span {
+        background: $linear-gradiant;
+        &::before {
+            border-left: 3px solid $brand-color2;
+            border-top: 3px solid $brand-color2;
+        }
+        &::after {
+            border-right: 3px solid $primary-color2;
+            border-top: 3px solid $primary-color2;
+        }
+    }
+    .custom-credit-modal .modal-content,
+    .custom-login-modal .modal-content {
+        border-color: $primary-color2;
+    }
+}
+
+/* prelaoder */

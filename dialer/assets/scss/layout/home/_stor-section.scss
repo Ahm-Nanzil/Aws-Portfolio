@@ -1,0 +1,35 @@
+.stor-section {
+    padding: 18px 0 20px;
+    background: #f1f1f1;
+    .stor-text {
+        margin-bottom: 18px;
+        text-align: center;
+        font-size: 26px;
+        line-height: 33px
+    }
+    img {
+        padding: 0 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .stor-section {
+        padding: 48px 0 50px;
+        .stor-text {
+            margin: 0;
+            text-align: left;
+            font-size: 30px;
+            line-height: 40px;
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .stor-section {
+        padding: 63px 0 65px;
+        .stor-text {
+            font-size: 35px;
+        }
+    }
+
+}

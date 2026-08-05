@@ -1,0 +1,322 @@
+@import '.../../mixin';
+
+.country-rate {
+    .country-form {
+        padding: 10px 0;
+    }
+    .country-rate-box {
+        padding: 14px 5px;
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid $primary-color;
+        color: rgba(101, 101, 101, 0.60);
+    }
+    .country-rate-form-area {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute; // bottom: -49%;
+            bottom: -25%;
+            left: 12%;
+            height: 40px;
+            width: 22px;
+            background: url(../img/arrow.png) no-repeat;
+        }
+    }
+    .country-rate-btn {
+        margin: 20px 0 0;
+    }
+    input {
+        font-size: 12px;
+        box-shadow: 0px 5px 7px 1px rgba(51, 51, 51, 0.1);
+    }
+    .btn-3e {
+        padding: 10px 43px 10px 24px;
+        &:before {
+            line-height: 2.6;
+        }
+        &:after {
+            transform: rotate(27deg) translateX(42px);
+        }
+        &:hover {
+            color: $white;
+        }
+    }
+    .media-body {
+        padding-left: 9px;
+        a {
+            transition: all .3s linear;
+            -webkit-transition: all .3s linear;
+            -o-transition: all .3s linear;
+            &:hover {
+                color: $primary-color;
+                &::before {
+                    color: $brand-color;
+                }
+            }
+        }
+    }
+    .form-control {
+        text-align: center;
+        border-color: transparent;
+        font-size: 16px;
+    }
+    ::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: rgba(36, 36, 36, 0.50);
+    }
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: rgba(36, 36, 36, 0.50);
+    }
+    :-ms-input-placeholder {
+        /* IE 10+ */
+        color: rgba(36, 36, 36, 0.50);
+    }
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: rgba(36, 36, 36, 0.50);
+    }
+}
+
+.custom-select {
+    font-size: 12px;
+    height: auto;
+    padding: .475rem 1.75rem 0.475rem .75rem;
+    box-shadow: 0px 5px 7px 1px rgba(51, 51, 51, 0.1);
+    font-size: 16px;
+}
+
+.home-page-two {
+    .country-rate .media-body {
+        h4 {
+            margin-bottom: 2px;
+        }
+        a {
+            margin-top: 6px;
+            font-size: 16px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .country-rate {
+        padding-bottom: 60px;
+        background: url("../img/country-rate-map-bg.png") no-repeat;
+        background-size: cover;
+        .all_prices {
+            padding: 0 0 20px;
+        }
+        .country-form {
+            padding: 20px 0;
+        }
+        .form-control {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .custom-select {
+            padding: 10px;
+            display: block;
+            width: 100%;
+            font-size: 17px;
+        }
+    }
+    .country-rate-form-area {
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 991px) and (max-width: 1024px) {
+    .country-rate {
+        .media-body {
+            padding-top: 15px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .country-rate {
+        .country-rate-btn {
+            margin: 50px 0;
+        }
+        .country-form {
+            padding: 25px 0;
+        }
+        .country-rate-btn {
+            margin: 25px 0 0;
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .country-rate {
+        .country-rate-form-area {
+            margin-bottom: 50px;
+        }
+        .country-rate-form-area {
+            &:before {
+                bottom: -49%;
+            }
+        }
+        .country-rate-form-area {
+            &:before {
+                bottom: -30%;
+            }
+        }
+        .country-rate-box {
+            .country-img-box {
+                img {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1400px) {
+    .country-rate {
+        .media-body {
+            padding-top: 5px;
+            font-size: 20px;
+            line-height: 28px;
+        }
+        a {
+            font-size: 17px;
+        }
+        .country-img-box {
+            padding-right: 0;
+        }
+        .media-body {
+            font-size: 16px;
+            h4 {
+                font-size: 20px;
+                line-height: 1;
+            }
+        }
+        .custom-select,
+        .form-control {
+            padding: 14px;
+            font-size: 20px;
+        }
+        .country-rate-form-area {
+            margin-bottom: 70px;
+        }
+        .country-rate-btn {
+            margin: 40px 0 0;
+        }
+        .btn-3e {
+            padding: 15px 57px 15px 20px;
+        }
+        .btn-3e:before {
+            line-height: 3;
+        }
+        .btn-3e:after {
+            transform: rotate(27deg) translateX(50px);
+        }
+    }
+}
+
+@media (min-width: 1650px) {
+    .country-rate {
+        .country-rate-form-area {
+            margin-bottom: 55px;
+            margin-top: -50px;
+        }
+        .country-form {
+            padding: 30px 0;
+        }
+        .custom-select,
+        .form-control {
+            font-size: 18px;
+        }
+    }
+    .country-rate {
+        .media-body {
+            padding-left: 20px;
+        }
+    }
+
+    .home-page-two {
+        .country-rate {
+            .country-rate-form-area {
+                margin-top: auto;
+            }
+        }
+    }
+}
+
+
+/*-----------------------------
+	Home Page 2	
+-------------------------------*/
+
+@media (min-width: 1024px) {
+    .home-page-two {
+        .country-rate {
+            padding-top: 130px;
+            padding-bottom: 70px;
+            .main-slider {
+                margin-bottom: -100px;
+            }
+            a {
+                font-size: 17px;
+                line-height: 1;
+                text-decoration: none;
+                transition: 0.5s;
+            }
+        }
+        .country-img-box {
+            padding-right: 20px !important;
+        }
+        .media-body {
+            padding: 0;
+            font-size: 13px;
+            color: rgba($base-color, .8);
+            h4 {
+                font-size: 24px;
+                line-height: 24px;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 575px) {
+    .country-form {
+        text-align: center;
+        .custom-select {
+            margin-top: 10px;
+        }
+    }
+    .ad-m {
+        margin-top: 25px!important;
+    }
+}
+
+/* Home page 3 */
+
+.home-page-three {
+    .country-rate {
+        .country-rate-form-area {
+            background: $linear-gradiant;
+            &:before {
+                background: url(../img/arrow-2.png) no-repeat;
+                z-index: 0;
+            }
+        }
+        .country-rate-box {
+            border-color: $brand-color2
+        }
+        .media-body {
+            a {
+                &:hover {
+                    color: $primary-color2;
+                    &::before {
+                        color: $brand-color2;
+                    }
+                }
+            }
+        }
+    }
+}

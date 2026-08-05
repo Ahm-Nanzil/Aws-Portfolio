@@ -1,0 +1,141 @@
+.home-page-four {
+    /* base */
+    .brand {
+        color: $primary-color3;
+    }
+    .header-top-lan-dropdown .dropdown-menu button::after {
+        color: $primary-color3;
+    }
+    /* Header section */
+    .header-info {
+        background: $linear-gradiant3;
+    }
+    .bonus-offer span {
+        color: $primary-color3;
+    }
+    .custom-credit-modal .modal-content,
+    .custom-login-modal .modal-content {
+        border-color: $primary-color3;
+    }
+    .custom-credit-modal .custom-login-modal-btn,
+    .custom-login-modal .custom-login-modal-btn {
+        background: $primary-color3;
+    }
+    .custom-credit-modal .card-active .dropdown {
+        background: $primary-color3;
+    }
+    .custom-credit-modal input:focus,
+    .custom-login-modal input:focus {
+        border-color: $primary-color3;
+    }
+    /* nav */
+    nav {
+        border-bottom-color: $primary-color3;
+    }
+    .display_menu li a:hover {
+        color: $primary-color3;
+    }
+    nav .header-top-lan-btn:focus,
+    nav .header-top-lan-btn:hover {
+        color: $primary-color3!important;
+        border-color: $primary-color3;
+        i,
+        span {
+            color: $primary-color3!important;
+        }
+    }
+    .button_menu button:active,
+    .button_menu button:focus {
+        background: $primary-color3
+    }
+    nav .button_menu .nav-btn:hover {
+        color: $primary-color3;
+    }
+    .show i {
+        color: $primary-color3;
+    }
+    /* side nav */
+    #push_sidebar {
+        background: rgba($primary-color3, .90);
+    }
+    #push_sidebar li a:hover {
+        background: $primary-color3;
+    }
+    /* Banner */
+    .main-slider::after {
+        @include gardiant-bg3(25%, 75%);
+    }
+    .slider-title .slider-subtitle {
+        color: $brand-color3;
+    }
+    .btn-3 {
+        background: $primary-color3;
+    }
+    .btn-3e:after {
+        background: $brand-color3;
+    }
+    /* Counrty rate */
+    .country-rate .country-rate-form-area {
+        background: $linear-gradiant3;
+    }
+    .ribbon span {
+        background: $linear-gradiant3;
+    }
+    .ribbon span::before {
+        border-left-color: $brand-color3;
+        border-top-color: $brand-color3;
+    }
+    .ribbon span::after {
+        border-right-color: $primary-color3;
+        border-top-color: $primary-color3;
+    }
+    .country-rate .media-body a:hover {
+        color: $primary-color3;
+    }
+    .country-rate .country-rate-form-area:before {
+        background: url(../img/arrow-4.png) no-repeat;
+    }
+    /* feature  */
+    .feature:before {
+        background: $linear-gradiant3
+    }
+    .testimonial-section .bg-content .testi-bg::after {
+        background: $linear-gradiant3;
+    }
+    .feature .feature-hover .apps-box a:hover {
+        color: $primary-color3;
+        i {
+            color: $primary-color3;
+        }
+    }
+    @media (max-width: 1023px) {
+        .feature-content-box.brand-bg {
+            background: $primary-color3;
+        }
+    }
+    /* call to action */
+    .call-to-action::after {
+        background: $linear-gradiant3;
+    }
+    .call-to-action input {
+        color: $primary-color3!important;
+    }
+    .call-to-action button {
+        background: $brand-color3;
+        font-weight: 700;
+    }
+    /* dialer app */
+    .dialer-app .dialer-app-box:hover .dialer-app-box-img {
+        background: $linear-gradiant3;
+    }
+    .dialer-app .dialer-app-btn {
+        background: $linear-gradiant3!important;
+    }
+    /* footer */
+    .main-footer a:hover {
+        color: $primary-color3;
+    }
+    .main-footer .copyright-text a {
+        color: $primary-color3;
+    }
+}
