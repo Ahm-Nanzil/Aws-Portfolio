@@ -1,0 +1,98 @@
+<?php
+// include '../config/db.php';
+include 'includes/header.php';
+include 'includes/sidebar.php';
+include 'includes/navbar.php';
+?>
+
+     
+
+<?php include 'includes/footer.php'; ?>
+
+
+
+
+
+<?php
+include 'includes/header.php';
+include 'includes/sidebar.php';
+include 'includes/navbar.php';
+
+$notification = ''; 
+$pageName = 'home'; 
+
+/**
+ * Save or update a page section
+ *
+ * @param PDO $pdo
+ * @param string $pageName
+ * @param string $section
+ * @param array $data
+ * @return string JSON-encoded notification
+ */
+function savePageSection($pdo, $pageName, $section, $data) {
+    $contentData = $data;
+    unset($contentData['section']); 
+    $contentJson = json_encode($contentData);
+
+    $stmt = $pdo->prepare("SELECT id FROM pages WHERE page_name = ? AND section_name = ?");
+    $stmt->execute([$pageName, $section]);
+    $existing = $stmt->fetch();
+
+    if ($existing) {
+        $update = $pdo->prepare("UPDATE pages SET content = ?, updated_at = NOW() WHERE id = ?");
+        $update->execute([$contentJson, $existing['id']]);
+        return json_encode(['type' => 'success', 'message' => ucfirst($section) . ' section updated!']);
+    } else {
+        $insert = $pdo->prepare("INSERT INTO pages (page_name, section_name, content) VALUES (?, ?, ?)");
+        $insert->execute([$pageName, $section, $contentJson]);
+        return json_encode(['type' => 'success', 'message' => ucfirst($section) . ' section saved!']);
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['section'])) {
+    $section = $_POST['section'];
+    $notification = savePageSection($pdo, $pageName, $section, $_POST);
+}
+
+$sections = [];
+$stmt = $pdo->prepare("SELECT section_name, content FROM pages WHERE page_name = ?");
+$stmt->execute([$pageName]);
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($rows as $row) {
+    $sections[$row['section_name']] = json_decode($row['content'], true);
+}
+
+
+?>
+
+
+
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-category">Frontend Management</h5>
+          <h3 class="card-title">About Page Management</h3>
+          
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<?php include 'includes/footer.php'; ?>

@@ -1,0 +1,6 @@
+$page = pageData('home')
+
+
+<?php
+echo htmlspecialchars($page[''][''] ?? '');
+?>
