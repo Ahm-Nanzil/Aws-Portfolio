@@ -15,9 +15,9 @@
 
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
-define('DB_NAME', 'german_uni_manager');
-define('DB_USER', 'gum_app');
-define('DB_PASS', 'ChangeMe_App_Pass123');
+define('DB_NAME', 'uni_manager');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
 // Set to true while diagnosing a connection problem to see the raw PDO
 // error on screen. Turn this back off (false) for normal / production use.
