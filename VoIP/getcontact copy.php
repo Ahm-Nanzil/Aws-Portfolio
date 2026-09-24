@@ -41,8 +41,8 @@
                       <h2
                         class="elementor-heading-title elementor-size-default"
                       >
-                       <?= setting('phone') ?? '+8801879378377' ?><br />
-                        <?= setting('email') ?? 'ahmnanzilofficial@gmail.com' ?>
+                       <?= setting('phone') ?? '+88123456789' ?><br />
+                        <?= setting('email') ?? 'support@nanoratech.com' ?>
                       </h2>
                     </div>
                   </div>

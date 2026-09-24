@@ -27,7 +27,7 @@
           <button id="facebook" class="btn btn-round btn-info"><i class="fab fa-facebook-f"></i> &middot; 50</button>
           <br>
           <br>
-          <a class="github-button" href="https://github.com/Ahm-Nanzil" target="_blank" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
+          <a class="github-button" href="https://github.com" target="_blank" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
         </li>
       </ul>
     </div>

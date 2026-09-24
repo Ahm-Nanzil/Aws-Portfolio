@@ -42,7 +42,7 @@ $page = pageData('home')
                 <div class="elementor-widget-container">
                   <h2 class="elementor-heading-title elementor-size-default">
                     <?php
-                      echo htmlspecialchars($page['hero']['title'] ?? 'Welcome to Nan Tech BD');
+                      echo htmlspecialchars($page['hero']['title'] ?? 'Welcome to Our VoIP Services');
                       ?>
                   </h2>
                 </div>

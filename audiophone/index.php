@@ -41,7 +41,7 @@ $page = pageData('home')
                 <div class="elementor-widget-container">
                   <h2 class="elementor-heading-title elementor-size-default">
                     <?php
-                      echo htmlspecialchars($page['hero']['title'] ?? 'Welcome to Nan Tech BD');
+                      echo htmlspecialchars($page['hero']['title'] ?? 'Welcome to Global Tech BD');
                       ?>
                   </h2>
                 </div>
@@ -837,8 +837,8 @@ $page = pageData('home')
                       <h2
                         class="elementor-heading-title elementor-size-default"
                       >
-                        <?= setting('phone') ?? '+8801879378377' ?><br />
-                        <?= setting('email') ?? 'ahmnanzilofficial@gmail.com' ?>
+                        <?= setting('phone') ?? '123456789' ?><br />
+                        <?= setting('email') ?? 'support@nanoratech.com' ?>
                       </h2>
                     </div>
                   </div>

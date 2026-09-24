@@ -206,7 +206,7 @@ $page = pageData('sms_route')
 				<div class="elementor-element elementor-element-e29d9f8 elementor-widget elementor-widget-heading" data-id="e29d9f8" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
 					<h2 class="elementor-heading-title elementor-size-default"><br> 
-<?= setting('email') ?? 'ahmnanzilofficial@gmail.com' ?></h2>				</div>
+<?= setting('email') ?? 'support@nanoratech.com' ?></h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-538dfa8 elementor-shape-rounded elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons" data-id="538dfa8" data-element_type="widget" data-widget_type="social-icons.default">
 				<div class="elementor-widget-container">

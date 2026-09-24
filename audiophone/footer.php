@@ -237,8 +237,8 @@
                           > <?= setting('address') ?? 'Dhaka, Bangladesh'; ?></span
                         >
                       </p>
-                      <p><strong>Email: </strong> <?= setting('email') ?? 'ahmnanzilofficial@gmail.com'; ?></p>
-                      <p><strong>Phone:</strong>  <?= setting('phone') ?? '+8801879378377'; ?></p>
+                      <p><strong>Email: </strong> <?= setting('email') ?? 'support@nanoratech.com'; ?></p>
+                      <p><strong>Phone:</strong>  <?= setting('phone') ?? '123456789'; ?></p>
                       <div
                         class="site-header-top-section-right site-header-section site-header-section-right"
                       >
@@ -393,8 +393,8 @@
                         >
                           <a
                             style="color: #808080"
-                            href="https://github.com/Ahm-Nanzil"
-                            >Ahm Nanzil</a
+                            href="https://github.com/"
+                            >Nanora Technology</a
                           ></span
                         >
                       </p>
@@ -646,7 +646,7 @@
 <!-- Simple WhatsApp Button -->
 <div class="whatsapp-float" style="position: fixed; bottom: 15px; right: 15px; z-index: 99999999;">
     <a href="
-    https://wa.me/<?= setting('whatsapp') ?? '+8801879378377'; ?>
+    https://wa.me/<?= setting('whatsapp') ?? '123456789'; ?>
     " target="_blank" style="display: flex; align-items: center; text-decoration: none;">
         <p style="padding: 8px 16px; line-height: 1.6; background-color: #25d366; color: #ffffff; border-radius: 10px; margin: 0 10px; display: none;" class="whatsapp-text">
             WhatsApp us

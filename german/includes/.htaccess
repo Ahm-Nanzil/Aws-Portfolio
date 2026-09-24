@@ -1,0 +1,13 @@
+# Deny all direct web access to this folder.
+# PHP scripts (via require/file_get_contents) can still read/write these
+# files locally — only direct HTTP requests to them are blocked.
+
+<IfModule mod_authz_core.c>
+    # Apache 2.4+
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    # Apache 2.2 and earlier
+    Order allow,deny
+    Deny from all
+</IfModule>

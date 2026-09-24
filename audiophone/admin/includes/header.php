@@ -52,7 +52,7 @@ function setting(string $key, bool $withMeta = false) {
   <title>
     <?= setting('tab_title') 
         ?setting('tab_title') 
-        : 'Ahm Nanzil'; ?>
+        : 'Nanora Technology'; ?>
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />

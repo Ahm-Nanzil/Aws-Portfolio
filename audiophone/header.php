@@ -1600,7 +1600,7 @@ function setting(string $key, bool $withMeta = false) {
                                   href=""
                                   target="_self"
                                   class="button header-button button-size-small button-style-filled"
-                                  > <?= setting('email') ?? 'ahmnanzilofficial@gmail.com'; ?></a
+                                  > <?= setting('email') ?? 'support@nanoratech.com'; ?></a
                                 >
                               </div>
                             </div>

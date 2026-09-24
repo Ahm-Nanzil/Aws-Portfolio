@@ -118,8 +118,8 @@ $page = pageData('contact')
 					<div class="e-con-inner">
 				<div class="elementor-element elementor-element-be7f4a6 elementor-widget elementor-widget-heading" data-id="be7f4a6" data-element_type="widget" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
-					<h2 class="elementor-heading-title elementor-size-default"><?= setting('phone') ?? '+8801879378377' ?><br> 
-<?= setting('email') ?? 'ahmnanzilofficial@gmail.com' ?></h2>				</div>
+					<h2 class="elementor-heading-title elementor-size-default"><?= setting('phone') ?? '+88123456789' ?><br> 
+<?= setting('email') ?? 'support@nanoratech.com' ?></h2>				</div>
 				</div>
 				<div class="elementor-element elementor-element-4593892 elementor-shape-rounded elementor-grid-0 e-grid-align-center elementor-widget elementor-widget-social-icons" data-id="4593892" data-element_type="widget" data-widget_type="social-icons.default">
 				<div class="elementor-widget-container">

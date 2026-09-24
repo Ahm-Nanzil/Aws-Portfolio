@@ -6,7 +6,7 @@
             <script>
               document.write(new Date().getFullYear())
             </script>2025 made with <i class="tim-icons icon-heart-2"></i> by
-            <a href="https://github.com/Ahm-Nanzil" target="_blank">Ahm Nanzil</a>
+            <a href="https://github.com/Nanora-Technology" target="_blank">Nanora Technology</a>
           </div>
         </div>
       </footer>

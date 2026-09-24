@@ -120,15 +120,15 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($settings['email'] ?? 'ahmnanzilofficial@gmail.com', ENT_QUOTES) ?>">
+            <input type="email" name="email" class="form-control" value="<?= htmlspecialchars($settings['email'] ?? 'support@nanoratech.com', ENT_QUOTES) ?>">
           </div>
           <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="phone" class="form-control" value="<?= htmlspecialchars($settings['phone'] ?? '+8801879378377', ENT_QUOTES) ?>">
+            <input type="text" name="phone" class="form-control" value="<?= htmlspecialchars($settings['phone'] ?? '123456789', ENT_QUOTES) ?>">
           </div>
           <div class="form-group">
             <label>Whatsapp</label>
-            <input type="text" name="whatsapp" class="form-control" value="<?= htmlspecialchars($settings['whatsapp'] ?? '+8801879378377', ENT_QUOTES) ?>">
+            <input type="text" name="whatsapp" class="form-control" value="<?= htmlspecialchars($settings['whatsapp'] ?? '123456789', ENT_QUOTES) ?>">
           </div>
         </div>
         <input type="hidden" name="section" value="contact">
