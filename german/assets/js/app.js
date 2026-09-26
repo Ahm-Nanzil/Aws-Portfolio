@@ -130,3 +130,46 @@ function initTableFilter(tableSelector, filterFormSelector, searchInputSelector)
   }
   applyFilters();
 }
+
+// ---------------------------------------------------------------------
+// Dashboard hero entrance — the app's one orchestrated motion moment.
+// Staggers the stat cards in on load and counts each number up from
+// zero. Runs only where .stat-card elements exist (the dashboard and
+// admin panel), and is skipped entirely if the visitor prefers reduced
+// motion — the cards and numbers still render correctly either way,
+// just without the animation.
+// ---------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.stat-card');
+  if (!cards.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  cards.forEach(function (card, i) {
+    const valueEl = card.querySelector('.stat-value');
+    const target = valueEl ? parseInt(valueEl.textContent, 10) : NaN;
+
+    if (prefersReducedMotion) {
+      return; // Leave the static, already-correct numbers exactly as rendered.
+    }
+
+    card.style.setProperty('--i', i);
+    card.classList.add('stagger-fade-in');
+
+    if (!isNaN(target) && valueEl) {
+      const duration = 650;
+      const start = performance.now() + i * 55; // line up with the card's own fade-in delay
+      valueEl.textContent = '0';
+
+      function tick(now) {
+        const elapsed = now - start;
+        if (elapsed < 0) { requestAnimationFrame(tick); return; }
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+        valueEl.textContent = Math.round(eased * target);
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  });
+});

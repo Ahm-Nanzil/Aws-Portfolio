@@ -10,6 +10,9 @@ $activeNav = $activeNav ?? '';
 <title><?= h($pageTitle) ?> · German University Research Manager</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="<?= h(base_path()) ?>/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +21,9 @@ $activeNav = $activeNav ?? '';
     <button class="btn btn-link text-decoration-none d-lg-none me-1 p-1" id="sidebarToggleBtn" type="button" aria-label="Toggle navigation">
       <i class="bi bi-list fs-3"></i>
     </button>
-    <a class="navbar-brand fw-semibold" href="<?= h(base_path()) ?>/dashboard.php">🇩🇪 German University Research Manager</a>
+    <a class="navbar-brand" href="<?= h(base_path()) ?>/dashboard.php">
+      <span class="brand-mark">🇩🇪</span><span class="brand-word">German University <em>Research Manager</em></span>
+    </a>
     <form class="d-none d-md-flex ms-auto me-3 global-search-form" role="search" action="<?= h(base_path()) ?>/search.php" method="get">
       <input class="form-control form-control-sm" type="search" name="q" placeholder="Search everything…" value="<?= h($_GET['q'] ?? '') ?>" style="width:260px;">
     </form>
@@ -26,9 +31,10 @@ $activeNav = $activeNav ?? '';
       <i class="bi bi-moon-stars"></i>
     </button>
     <div class="dropdown">
-      <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        <i class="bi bi-person-circle me-1"></i><?= h(current_user()['name'] ?? '') ?>
-        <?php if (is_admin()): ?><span class="badge text-bg-dark ms-1">Admin</span><?php endif; ?>
+      <button class="btn btn-sm user-chip dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        <span class="user-chip-avatar"><?= h(strtoupper(substr(current_user()['name'] ?? '?', 0, 1))) ?></span>
+        <?= h(current_user()['name'] ?? '') ?>
+        <?php if (is_admin()): ?><span class="badge role-pill-admin ms-1">Admin</span><?php endif; ?>
       </button>
       <ul class="dropdown-menu dropdown-menu-end">
         <?php if (is_admin()): ?>

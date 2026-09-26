@@ -13,7 +13,7 @@ include __DIR__ . '/../includes/header.php';
 
 <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
   <h4 class="mb-0"><i class="bi bi-shield-lock me-2"></i>Admin Panel</h4>
-  <a href="dashboard.php" class="btn btn-sm btn-outline-secondary"><i class="bi bi-speedometer2 me-1"></i>My Own Dashboard</a>
+  <a href="<?= h(base_path()) ?>/dashboard.php" class="btn btn-sm btn-outline-secondary"><i class="bi bi-speedometer2 me-1"></i>My Own Dashboard</a>
 </div>
 
 <div class="row g-3 mb-4 row-cols-2 row-cols-md-3 row-cols-xl-6">
@@ -56,7 +56,7 @@ include __DIR__ . '/../includes/header.php';
             <td class="small text-muted"><?= fmt_date($u['created_at']) ?></td>
             <td class="text-end text-nowrap">
               <?php if ((int)$u['id'] !== $me['id']): ?>
-                <a href="impersonate.php?user_id=<?= (int)$u['id'] ?>" class="btn btn-sm btn-outline-primary" title="View as this user"><i class="bi bi-eye"></i></a>
+                <a href="impersonate.php?user_id=<?= (int)$u['id'] ?>&t=<?= h(csrf_token()) ?>" class="btn btn-sm btn-outline-primary" title="View as this user"><i class="bi bi-eye"></i></a>
                 <form method="post" action="user-toggle-status.php" class="d-inline">
                   <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
                   <input type="hidden" name="id" value="<?= (int)$u['id'] ?>">

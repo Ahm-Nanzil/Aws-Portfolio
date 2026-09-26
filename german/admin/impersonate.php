@@ -3,6 +3,12 @@ require __DIR__ . '/../includes/auth.php';
 require_admin();
 
 $userId = (int)($_GET['user_id'] ?? 0);
+$token = $_GET['t'] ?? '';
+if (!hash_equals(csrf_token(), $token)) {
+    http_response_code(400);
+    die('Invalid or expired link. Please go back to the Admin Panel and try again.');
+}
+
 $me = current_user();
 
 if ($userId === $me['id']) {

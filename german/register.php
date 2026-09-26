@@ -32,17 +32,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <title>Register · German University Research Manager</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body class="auth-body">
-<div class="auth-wrap">
-  <div class="card shadow-sm auth-card">
-    <div class="card-body p-4">
-      <div class="text-center mb-3">
-        <div class="fs-1">🇩🇪</div>
-        <h4 class="mb-0">Create Your Account</h4>
-        <p class="text-muted small">Start organizing your German university research.</p>
-      </div>
+<div class="auth-shell">
+  <div class="auth-brand-panel">
+    <div>
+      <div class="auth-brand-mark">🇩🇪</div>
+      <h1 class="auth-brand-headline">Every university,<br>every deadline,<br>one dashboard.</h1>
+      <p class="auth-brand-sub">Your own private account — admission requirements, fees, documents, and notes, organized by program.</p>
+    </div>
+    <div class="auth-brand-foot">German University Research Manager</div>
+  </div>
+  <div class="auth-form-panel">
+    <div class="auth-form-inner">
+      <h4 class="mb-1">Create your account</h4>
+      <p class="text-muted small mb-4">Start organizing your German university research.</p>
       <?php if ($error): ?><div class="alert alert-danger"><?= h($error) ?></div><?php endif; ?>
       <form method="post">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
@@ -63,9 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label class="form-label">Confirm Password</label>
           <input type="password" name="password_confirm" class="form-control" required minlength="8">
         </div>
-        <button type="submit" class="btn btn-primary w-100"><i class="bi bi-person-plus me-1"></i>Create Account</button>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i>Create Account</button>
       </form>
-      <p class="text-center small text-muted mt-3 mb-0">Already have an account? <a href="login.php">Log in</a></p>
+      <p class="text-center small text-muted mt-4 mb-0">Already have an account? <a href="login.php">Log in</a></p>
     </div>
   </div>
 </div>

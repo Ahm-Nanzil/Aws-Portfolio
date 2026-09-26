@@ -45,17 +45,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <title>First-time Setup · German University Research Manager</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body class="auth-body">
-<div class="auth-wrap">
-  <div class="card shadow-sm auth-card">
-    <div class="card-body p-4">
-      <div class="text-center mb-3">
-        <div class="fs-1">🇩🇪</div>
-        <h4 class="mb-0">Welcome</h4>
-        <p class="text-muted small">This looks like a brand-new install. Create the administrator account to get started.</p>
-      </div>
+<div class="auth-shell">
+  <div class="auth-brand-panel">
+    <div>
+      <div class="auth-brand-mark">🇩🇪</div>
+      <h1 class="auth-brand-headline">Welcome. Let's set<br>up your workspace.</h1>
+      <p class="auth-brand-sub">This is a brand-new install. The first account you create here becomes the administrator.</p>
+    </div>
+    <div class="auth-brand-foot">German University Research Manager</div>
+  </div>
+  <div class="auth-form-panel">
+    <div class="auth-form-inner">
+      <h4 class="mb-1">Create the admin account</h4>
+      <p class="text-muted small mb-4">You'll manage users from here, and still get your own research dashboard.</p>
       <?php if ($error): ?><div class="alert alert-danger"><?= h($error) ?></div><?php endif; ?>
       <form method="post">
         <div class="mb-3">
@@ -75,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <label class="form-label">Confirm Password</label>
           <input type="password" name="password_confirm" class="form-control" required minlength="8">
         </div>
-        <button type="submit" class="btn btn-primary w-100"><i class="bi bi-shield-check me-1"></i>Create Admin Account</button>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-shield-check me-1"></i>Create Admin Account</button>
       </form>
     </div>
   </div>
