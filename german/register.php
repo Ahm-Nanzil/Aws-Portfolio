@@ -9,19 +9,23 @@ if (is_logged_in()) {
 }
 
 $error = '';
+$checkEmailMessage = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
-    [$ok, $message] = register_student(
+    [$ok, $message, $needsVerification] = register_student(
         $_POST['name'] ?? '',
         $_POST['email'] ?? '',
         $_POST['password'] ?? '',
         $_POST['password_confirm'] ?? ''
     );
-    if ($ok) {
+    if ($ok && $needsVerification) {
+        $checkEmailMessage = $message;
+    } elseif ($ok) {
         flash('success', $message);
         redirect(base_path() . '/dashboard.php');
+    } else {
+        $error = $message;
     }
-    $error = $message;
 }
 ?>
 <!DOCTYPE html>
@@ -51,6 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="auth-form-inner">
       <h4 class="mb-1">Create your account</h4>
       <p class="text-muted small mb-4">Start organizing your German university research.</p>
+      <?php if ($checkEmailMessage): ?>
+        <div class="text-center py-3">
+          <div class="fs-1 mb-3 text-primary"><i class="bi bi-envelope-paper"></i></div>
+          <p><?= h($checkEmailMessage) ?></p>
+          <p class="text-muted small">Didn't get it? Check your spam folder, or try logging in to resend it.</p>
+          <a href="login.php" class="btn btn-outline-secondary btn-sm">Back to Log In</a>
+        </div>
+      <?php else: ?>
       <?php if ($error): ?><div class="alert alert-danger"><?= h($error) ?></div><?php endif; ?>
       <form method="post">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
@@ -73,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button type="submit" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i>Create Account</button>
       </form>
+      <?php endif; ?>
       <p class="text-center small text-muted mt-4 mb-0">Already have an account? <a href="login.php">Log in</a></p>
     </div>
   </div>

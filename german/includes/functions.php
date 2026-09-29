@@ -82,10 +82,11 @@ function db_find_user_by_email(string $email): ?array {
     return $row ?: null;
 }
 
-function db_create_user(string $name, string $email, string $passwordHash, string $role = 'student'): int {
+function db_create_user(string $name, string $email, string $passwordHash, string $role = 'student', bool $preVerified = true): int {
     $now = db_now();
-    $stmt = pdo()->prepare('INSERT INTO users (name, email, password_hash, role, status, created_at, updated_at) VALUES (?, ?, ?, ?, "active", ?, ?)');
-    $stmt->execute([$name, trim(strtolower($email)), $passwordHash, $role, $now, $now]);
+    $verifiedAt = $preVerified ? $now : null;
+    $stmt = pdo()->prepare('INSERT INTO users (name, email, password_hash, role, status, email_verified_at, created_at, updated_at) VALUES (?, ?, ?, ?, "active", ?, ?, ?)');
+    $stmt->execute([$name, trim(strtolower($email)), $passwordHash, $role, $verifiedAt, $now, $now]);
     return (int)pdo()->lastInsertId();
 }
 
@@ -128,6 +129,68 @@ function db_global_stats(): array {
         'totalUniversities' => (int)$pdo->query('SELECT COUNT(*) FROM universities')->fetchColumn(),
         'totalPrograms' => (int)$pdo->query('SELECT COUNT(*) FROM programs')->fetchColumn(),
     ];
+}
+
+// =======================================================================
+// SETTINGS  (simple admin-toggleable key/value store)
+// =======================================================================
+
+function get_setting(string $name, ?string $default = null): ?string {
+    $stmt = pdo()->prepare('SELECT value FROM settings WHERE name = ?');
+    $stmt->execute([$name]);
+    $value = $stmt->fetchColumn();
+    return $value === false ? $default : $value;
+}
+
+function set_setting(string $name, string $value): void {
+    $stmt = pdo()->prepare('INSERT INTO settings (name, value, updated_at) VALUES (?, ?, ?)
+        ON DUPLICATE KEY UPDATE value = VALUES(value), updated_at = VALUES(updated_at)');
+    $stmt->execute([$name, $value, db_now()]);
+}
+
+function is_email_verification_required(): bool {
+    return get_setting('require_email_verification', '0') === '1';
+}
+
+// =======================================================================
+// EMAIL VERIFICATION
+// =======================================================================
+
+function generate_verification_token(): string {
+    return bin2hex(random_bytes(32));
+}
+
+/** Sets a fresh verification token (24h expiry) on a user and returns it. */
+function set_user_verification_token(int $userId): string {
+    $token = generate_verification_token();
+    $expires = date('Y-m-d H:i:s', strtotime('+24 hours'));
+    $stmt = pdo()->prepare('UPDATE users SET verification_token = ?, verification_token_expires = ?, verification_last_sent_at = ? WHERE id = ?');
+    $stmt->execute([$token, $expires, db_now(), $userId]);
+    return $token;
+}
+
+function db_find_user_by_verification_token(string $token): ?array {
+    $stmt = pdo()->prepare('SELECT * FROM users WHERE verification_token = ?');
+    $stmt->execute([$token]);
+    $row = $stmt->fetch();
+    return $row ?: null;
+}
+
+function mark_user_verified(int $userId): void {
+    $stmt = pdo()->prepare('UPDATE users SET email_verified_at = ?, verification_token = NULL, verification_token_expires = NULL WHERE id = ?');
+    $stmt->execute([db_now(), $userId]);
+}
+
+function is_user_verified(array $user): bool {
+    return !empty($user['email_verified_at']);
+}
+
+/** Seconds remaining before this user is allowed to request another verification email (throttle). Returns 0 if allowed now. */
+function verification_resend_cooldown_remaining(array $user): int {
+    if (empty($user['verification_last_sent_at'])) return 0;
+    $cooldownSeconds = 60;
+    $elapsed = time() - strtotime($user['verification_last_sent_at']);
+    return max(0, $cooldownSeconds - $elapsed);
 }
 
 // =======================================================================

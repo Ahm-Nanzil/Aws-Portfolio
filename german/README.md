@@ -58,6 +58,13 @@ Apache, Nginx+PHP-FPM, XAMPP, or shared hosting with a MySQL database
    ```
    mysql -u gum_app -p german_uni_manager < schema.sql
    ```
+   If you already have this app installed from before email
+   verification existed, run `upgrade-email-verification.sql` against
+   your existing database instead (it only adds new columns/tables and
+   never touches your existing data):
+   ```
+   mysql -u gum_app -p german_uni_manager < upgrade-email-verification.sql
+   ```
 
 3. **Edit `config.php`** with your database host, name, username, and
    password.
@@ -162,14 +169,74 @@ against the database:
 UPDATE users SET role = 'admin' WHERE email = 'someone@example.com';
 ```
 
+## Email verification (optional, off by default)
+
+You can require new accounts to confirm their email address before
+they're allowed to log in. This is entirely optional and controlled
+from the **Admin Panel** — nothing about it is required to run the app.
+
+### Setting up the mail server
+
+1. Open `config.php` and fill in the `SMTP_*` constants with your mail
+   provider's details — your own mail server, your hosting provider's
+   SMTP relay, or a transactional email service (Gmail SMTP, SendGrid,
+   Mailgun, Postmark, Brevo, etc. all work the same way):
+   ```php
+   define('SMTP_HOST', 'smtp.yourprovider.com');
+   define('SMTP_PORT', 587);
+   define('SMTP_ENCRYPTION', 'tls');   // 'tls', 'ssl', or '' for none
+   define('SMTP_USERNAME', 'your-smtp-username');
+   define('SMTP_PASSWORD', 'your-smtp-password');
+   define('SMTP_FROM_EMAIL', 'no-reply@yourdomain.com');
+   define('SMTP_FROM_NAME', 'German University Research Manager');
+   ```
+   Mail is sent via [PHPMailer](https://github.com/PHPMailer/PHPMailer),
+   already included under `includes/PHPMailer/` — no Composer or extra
+   installation needed.
+
+2. In the Admin Panel, use the **Send Test Email** button (under the
+   "Email Verification" card) to confirm your settings actually work
+   before turning verification on. If it fails, it tells you the exact
+   SMTP error so you can fix your credentials.
+
+3. If you need to see the raw SMTP conversation while debugging, set
+   `SMTP_DEBUG` to `true` in `config.php` — details get written to your
+   server's PHP error log. Turn it back off afterward.
+
+### Turning verification on or off
+
+In the Admin Panel, under "Email Verification", click **Enable Email
+Verification**. From that point on:
+
+- New registrations are created but can't log in until they click the
+  link in the confirmation email sent to them.
+- The registration page shows a "check your email" message instead of
+  taking them straight to the dashboard.
+- If someone tries to log in before confirming, they see a clear
+  message and a **Resend verification email** button (limited to one
+  resend per 60 seconds per account, to avoid spam).
+- Verification links expire after 24 hours; an expired link offers to
+  send a fresh one.
+
+Click **Disable Email Verification** at any time to go back to instant
+registration — exactly how the app behaved before this feature existed.
+
+**Existing accounts are never affected.** Turning verification on only
+applies to *new* registrations from that point forward — nobody who
+already has an account gets locked out. The bootstrap admin account
+(created via `setup.php`) is also always exempt, since there's no one
+else to verify it.
+
 ## Project structure
 
 ```
 german-university-manager/
-├── config.php                    → DB credentials (edit this first)
+├── config.php                    → DB + SMTP credentials (edit this first)
 ├── schema.sql                    → run once to create the MySQL tables
+├── upgrade-email-verification.sql → run instead, on an existing install
 ├── setup.php                     → one-time bootstrap admin creation
 ├── login.php / register.php / logout.php
+├── verify.php                    → email verification landing page
 ├── index.php                     → routes to setup/login/dashboard as appropriate
 ├── dashboard.php, universities.php, university.php,
 │   programs.php, program.php, search.php, import-export.php
@@ -178,21 +245,26 @@ german-university-manager/
 │                                     see includes/auth.php)
 │
 ├── admin/
-│   ├── index.php                  → user list + global stats
+│   ├── index.php                  → user list, global stats, mail settings
 │   ├── user-toggle-status.php     → activate/disable a user
 │   ├── user-delete.php            → delete a user (cascades their data)
 │   ├── impersonate.php            → admin "View as" a student
-│   └── stop-impersonate.php
+│   ├── stop-impersonate.php
+│   ├── settings-update.php        → toggle email verification on/off
+│   └── send-test-email.php        → send a test email via current SMTP config
 │
 ├── actions/                       → POST-only handlers, all scoped to
 │                                     effective_user_id() with ownership
 │                                     checks, redirect back when done
+│   └── resend-verification.php    → resend a verification email (throttled)
 │
 ├── includes/
 │   ├── helpers.php                → escaping, CSRF, redirects, badges
 │   ├── db.php                     → PDO connection
 │   ├── auth.php                   → sessions, login, roles, impersonation
 │   ├── functions.php              → all MySQL data access lives here
+│   ├── mailer.php                 → SMTP sending + email templates
+│   ├── PHPMailer/                 → vendored PHPMailer (no Composer needed)
 │   ├── header.php / footer.php / sidebar.php
 │   └── .htaccess                  → blocks direct web access
 │
@@ -249,3 +321,11 @@ at the server level.
 - Admin cannot delete their own account or the last remaining admin. ✅
 - CSRF and login/role checks verified on both regular actions and admin
   actions. ✅
+- Email verification: registering with it OFF still logs in instantly;
+  turning it ON sends a real SMTP email (tested against a local SMTP
+  server) and blocks login with a clear message + working resend button
+  until the link is clicked; expired and reused links are handled
+  correctly; the resend cooldown is enforced; turning it back OFF
+  restores instant registration; existing accounts made before the
+  feature existed are never locked out; a non-admin cannot flip the
+  setting. ✅

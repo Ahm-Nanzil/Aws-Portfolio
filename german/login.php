@@ -9,11 +9,12 @@ if (is_logged_in()) {
 }
 
 $error = '';
+$unverifiedEmail = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     csrf_check();
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
-    [$ok, $message] = attempt_login($email, $password);
+    [$ok, $message, $unverifiedEmail] = attempt_login($email, $password);
     if ($ok) {
         flash('success', $message);
         redirect(base_path() . '/dashboard.php');
@@ -52,6 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert alert-<?= h($f['type']) ?>"><?= h($f['message']) ?></div>
       <?php endforeach; ?>
       <?php if ($error): ?><div class="alert alert-danger"><?= h($error) ?></div><?php endif; ?>
+      <?php if ($unverifiedEmail): ?>
+        <form method="post" action="actions/resend-verification.php" class="mb-3">
+          <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+          <input type="hidden" name="email" value="<?= h($unverifiedEmail) ?>">
+          <button type="submit" class="btn btn-outline-secondary btn-sm w-100"><i class="bi bi-envelope me-1"></i>Resend verification email</button>
+        </form>
+      <?php endif; ?>
       <form method="post">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
         <div class="mb-3">

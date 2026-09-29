@@ -15,10 +15,15 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash VARCHAR(255) NOT NULL,
   role ENUM('admin','student') NOT NULL DEFAULT 'student',
   status ENUM('active','disabled') NOT NULL DEFAULT 'active',
+  email_verified_at DATETIME NULL DEFAULT NULL,
+  verification_token VARCHAR(64) NULL DEFAULT NULL,
+  verification_token_expires DATETIME NULL DEFAULT NULL,
+  verification_last_sent_at DATETIME NULL DEFAULT NULL,
   created_at DATETIME NOT NULL,
   updated_at DATETIME NOT NULL,
   PRIMARY KEY (id),
-  UNIQUE KEY uniq_users_email (email)
+  UNIQUE KEY uniq_users_email (email),
+  KEY idx_users_verification_token (verification_token)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ---------------------------------------------------------------------
@@ -87,3 +92,20 @@ CREATE TABLE IF NOT EXISTS programs (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- ---------------------------------------------------------------------
+-- settings  (simple key/value store for admin-toggleable options,
+-- e.g. whether email verification is required at registration)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS settings (
+  name VARCHAR(100) NOT NULL,
+  value VARCHAR(255) NOT NULL DEFAULT '',
+  updated_at DATETIME NOT NULL,
+  PRIMARY KEY (name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Email verification is OFF by default so a fresh install behaves
+-- exactly like before until an admin turns it on from the Admin Panel.
+INSERT INTO settings (name, value, updated_at)
+VALUES ('require_email_verification', '0', NOW())
+ON DUPLICATE KEY UPDATE name = name;

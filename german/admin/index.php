@@ -5,6 +5,7 @@ require_admin();
 $stats = db_global_stats();
 $users = db_all_users_with_stats();
 $me = current_user();
+$emailVerificationRequired = is_email_verification_required();
 
 $pageTitle = 'Admin Panel';
 $activeNav = 'admin';
@@ -80,6 +81,44 @@ include __DIR__ . '/../includes/header.php';
         <?php endforeach; ?>
       </tbody>
     </table>
+  </div>
+</div>
+
+<div class="card shadow-sm mt-4">
+  <div class="card-header bg-transparent fw-semibold"><i class="bi bi-envelope-check me-2"></i>Email Verification</div>
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <p class="mb-1">
+          Require new accounts to confirm their email address before they can log in.
+          Currently:
+          <span class="badge text-bg-<?= $emailVerificationRequired ? 'success' : 'secondary' ?>"><?= $emailVerificationRequired ? 'Enabled' : 'Disabled' ?></span>
+        </p>
+        <p class="text-muted small mb-0">
+          When enabled, new registrations get a verification email (sent via the SMTP settings in <code>config.php</code>) and can't log in until they click the link.
+          Existing accounts are never affected retroactively. Turning this off returns registration to instant access, exactly as before.
+        </p>
+      </div>
+      <form method="post" action="settings-update.php">
+        <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+        <input type="hidden" name="require_email_verification" value="<?= $emailVerificationRequired ? '0' : '1' ?>">
+        <button type="submit" class="btn btn-<?= $emailVerificationRequired ? 'outline-secondary' : 'primary' ?>">
+          <?= $emailVerificationRequired ? 'Disable' : 'Enable' ?> Email Verification
+        </button>
+      </form>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <p class="mb-1 fw-semibold">Test your mail server</p>
+        <p class="text-muted small mb-0">Sends a real test email using the SMTP settings currently in <code>config.php</code>, so you can confirm they work before relying on them.</p>
+      </div>
+      <form method="post" action="send-test-email.php" class="d-flex gap-2">
+        <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+        <input type="email" name="test_email" class="form-control form-control-sm" placeholder="you@example.com" required value="<?= h($me['email']) ?>" style="min-width:220px;">
+        <button type="submit" class="btn btn-outline-primary btn-sm text-nowrap"><i class="bi bi-envelope-paper me-1"></i>Send Test Email</button>
+      </form>
+    </div>
   </div>
 </div>
 

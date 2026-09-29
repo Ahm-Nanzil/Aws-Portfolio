@@ -55,7 +55,7 @@ $deadlines = array_slice($deadlines, 0, 8);
 
 // ---- Recently updated (universities + programs combined) ----
 $recent = [];
-foreach ($universities as $u) {
+foreach ($data['universities'] as $u) {
     $recent[] = ['type' => 'University', 'name' => $u['name'], 'updatedAt' => $u['updated_at'], 'url' => 'university.php?id=' . urlencode($u['id'])];
 }
 foreach ($allPrograms as $x) {

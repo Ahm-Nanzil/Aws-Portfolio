@@ -5,6 +5,7 @@
  */
 
 require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/mailer.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -109,46 +110,67 @@ function logout_user(): void {
 }
 
 /**
- * @return array{0: bool, 1: string} [success, message]
+ * @return array{0: bool, 1: string, 2: ?string} [success, message, unverified_email]
+ * unverified_email is set only when login failed specifically because
+ * the account hasn't confirmed its email yet — the login page uses it
+ * to offer a "resend verification email" action.
  */
 function attempt_login(string $email, string $password): array {
     $row = db_find_user_by_email($email);
     if ($row === null || !password_verify($password, $row['password_hash'])) {
-        return [false, 'Incorrect email or password.'];
+        return [false, 'Incorrect email or password.', null];
     }
     if ($row['status'] !== 'active') {
-        return [false, 'This account has been disabled. Please contact the administrator.'];
+        return [false, 'This account has been disabled. Please contact the administrator.', null];
+    }
+    if (is_email_verification_required() && !is_user_verified($row)) {
+        return [false, 'Please verify your email address before logging in. Check your inbox for the verification link.', $row['email']];
     }
     login_user($row);
-    return [true, 'Welcome back, ' . $row['name'] . '!'];
+    return [true, 'Welcome back, ' . $row['name'] . '!', null];
 }
 
 /**
- * Self-service registration always creates a "student" account.
- * @return array{0: bool, 1: string}
+ * Self-service registration always creates a "student" account. If
+ * email verification is turned on in the Admin Panel, the account is
+ * created unverified and a verification email is sent instead of
+ * logging the person in immediately.
+ *
+ * @return array{0: bool, 1: string, 2: bool} [success, message, needsVerification]
  */
 function register_student(string $name, string $email, string $password, string $passwordConfirm): array {
     $name = trim($name);
     $email = trim(strtolower($email));
 
     if ($name === '' || $email === '' || $password === '') {
-        return [false, 'Please fill in all fields.'];
+        return [false, 'Please fill in all fields.', false];
     }
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return [false, 'Please enter a valid email address.'];
+        return [false, 'Please enter a valid email address.', false];
     }
     if (strlen($password) < 8) {
-        return [false, 'Password must be at least 8 characters long.'];
+        return [false, 'Password must be at least 8 characters long.', false];
     }
     if ($password !== $passwordConfirm) {
-        return [false, 'Passwords do not match.'];
+        return [false, 'Passwords do not match.', false];
     }
     if (db_find_user_by_email($email) !== null) {
-        return [false, 'An account with that email already exists. Try logging in instead.'];
+        return [false, 'An account with that email already exists. Try logging in instead.', false];
     }
 
-    $id = db_create_user($name, $email, password_hash($password, PASSWORD_DEFAULT), 'student');
+    $requireVerification = is_email_verification_required();
+    $id = db_create_user($name, $email, password_hash($password, PASSWORD_DEFAULT), 'student', !$requireVerification);
     $row = db_find_user_by_id($id);
+
+    if ($requireVerification) {
+        $token = set_user_verification_token($id);
+        [$sent, $mailError] = send_verification_email($row, $token);
+        if (!$sent) {
+            return [true, 'Account created, but we could not send the verification email (' . $mailError . '). Please contact the administrator.', true];
+        }
+        return [true, 'Account created! Check ' . $email . ' for a verification link before logging in.', true];
+    }
+
     login_user($row);
-    return [true, 'Account created. Welcome, ' . $name . '!'];
+    return [true, 'Account created. Welcome, ' . $name . '!', false];
 }
