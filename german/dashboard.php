@@ -31,27 +31,66 @@ $stats = [
     ['Offers Received', $offers, 'bi-trophy', 'success'],
 ];
 
-// ---- Upcoming deadlines (across all deadline fields) ----
+
+// ---- Upcoming deadlines (one entry per program) ----
 $deadlines = [];
+
 foreach ($allPrograms as $x) {
-    $p = $x['program']; $u = $x['university'];
+    $p = $x['program'];
+    $u = $x['university'];
+
+    // Exclude programs that have already been applied for.
+    $status = $p['personal']['applicationStatus'] ?? '';
+    if ($status === 'Applied' || $status === 'Offer Received') {
+        continue;
+    }
+
     $candidates = [
-        'Deadline' => $p['application']['deadline'],
-        'Winter Deadline' => $p['application']['winterDeadline'],
-        'Summer Deadline' => $p['application']['summerDeadline'],
-        'Int\'l Applicant Deadline' => $p['application']['intlDeadline'],
+        'Deadline' => $p['application']['deadline'] ?? '',
+        'Winter Deadline' => $p['application']['winterDeadline'] ?? '',
+        'Summer Deadline' => $p['application']['summerDeadline'] ?? '',
+        "Int'l Applicant Deadline" => $p['application']['intlDeadline'] ?? '',
     ];
+
+    $programDeadlines = [];
+
     foreach ($candidates as $label => $dateVal) {
-        if (!empty($dateVal)) {
-            $days = days_until($dateVal);
-            if ($days !== null && $days >= -3) { // include very recently passed too
-                $deadlines[] = ['uni' => $u, 'prog' => $p, 'label' => $label, 'date' => $dateVal, 'days' => $days];
-            }
+        if (empty($dateVal)) {
+            continue;
+        }
+
+        $days = days_until($dateVal);
+
+        // Show only upcoming deadlines.
+        if ($days !== null && $days >= 0) {
+            $programDeadlines[] = [
+                'uni' => $u,
+                'prog' => $p,
+                'label' => $label,
+                'date' => $dateVal,
+                'days' => $days,
+            ];
         }
     }
+
+    // Select only the nearest upcoming deadline for this program.
+    if (!empty($programDeadlines)) {
+        usort(
+            $programDeadlines,
+            fn($a, $b) => $a['days'] <=> $b['days']
+        );
+
+        $deadlines[] = $programDeadlines[0];
+    }
 }
+
+// Sort programs by their nearest deadline.
 usort($deadlines, fn($a, $b) => $a['days'] <=> $b['days']);
+
+// Display at most 8 programs.
 $deadlines = array_slice($deadlines, 0, 8);
+
+
 
 // ---- Recently updated (universities + programs combined) ----
 $recent = [];
