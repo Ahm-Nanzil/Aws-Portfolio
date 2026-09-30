@@ -632,3 +632,22 @@ a:hover { color: var(--primary-dark); }
 @media print {
   .app-sidebar, .app-navbar, .impersonation-banner { display: none !important; }
 }
+
+
+
+/* Clickable dashboard statistic cards */
+.stat-card-button {
+    display: block;
+    width: 100%;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    text-decoration: none;
+}
+
+.stat-card-button:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
