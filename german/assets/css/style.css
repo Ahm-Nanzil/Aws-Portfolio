@@ -274,7 +274,7 @@ a:hover { color: var(--primary-dark); }
 }
 @media (max-width: 768px) {
   .sidebar-section-title {
-    padding-bottom: 30px;
+    padding-bottom: 40px;
   }
 }
 
