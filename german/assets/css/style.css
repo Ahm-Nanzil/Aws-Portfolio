@@ -271,7 +271,11 @@ a:hover { color: var(--primary-dark); }
   color: var(--ink-faint);
   padding: 0.4rem 0.65rem 0.3rem;
   letter-spacing: 0.02em;
-  padding-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .sidebar-section-title {
+    padding-bottom: 30px;
+  }
 }
 
 .top-nav .nav-link {
