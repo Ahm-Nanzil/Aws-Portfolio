@@ -273,6 +273,12 @@ a:hover { color: var(--primary-dark); }
   letter-spacing: 0.02em;
 }
 
+@media (max-width: 768px) {
+  .sidebar-section-title {
+    padding-bottom: 40px;
+  }
+}
+
 .top-nav .nav-link {
   color: var(--ink);
   border-radius: var(--radius-sm);
