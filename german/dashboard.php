@@ -220,6 +220,7 @@ foreach ($allPrograms as $x) {
                 'prog' => $p,
                 'label' => $label,
                 'date' => $dateVal,
+                'startDate' => $p['application']['startDate'] ?? '',
                 'days' => $days,
             ];
         }
@@ -444,9 +445,17 @@ include __DIR__ . '/includes/header.php';
                         </div>
 
                         <div class="text-end">
+                            <div class="small text-muted mb-1">
+                                Start:
+                                <?= !empty($d['startDate'])
+                                    ? h(fmt_date($d['startDate']))
+                                    : '—' ?>
+                            </div>
+
                             <div class="<?= $d['days'] < 0 ? 'text-muted' : ($d['days'] <= 7 ? 'deadline-soon' : ($d['days'] <= 30 ? 'deadline-week' : '')) ?>">
                                 <?= fmt_date($d['date']) ?>
                             </div>
+
                             <div class="small text-muted">
                                 <?= $d['days'] < 0 ? 'Passed' : ($d['days'] === 0 ? 'Today' : $d['days'] . ' days left') ?>
                             </div>
