@@ -523,6 +523,7 @@ function export_user_data(int $userId): array {
         $programs = [];
         foreach (get_programs_for_university($userId, (int)$uni['id']) as $p) {
             $programs[] = [
+                'id' => (int)$p['id'],
                 'name' => $p['name'], 'degree' => $p['degree'], 'subject' => $p['subject'],
                 'department' => $p['department'], 'faculty' => $p['faculty'], 'website' => $p['website'],
                 'description' => $p['description'], 'studyLocation' => $p['studyLocation'], 'duration' => $p['duration'],
@@ -533,6 +534,7 @@ function export_user_data(int $userId): array {
             ];
         }
         $universities[] = [
+            'id' => (int)$uni['id'],
             'name' => $uni['name'], 'officialName' => $uni['official_name'], 'city' => $uni['city'],
             'state' => $uni['state'], 'type' => $uni['type'], 'website' => $uni['website'],
             'intlWebsite' => $uni['intl_website'], 'applicationPortal' => $uni['application_portal'],
@@ -545,55 +547,601 @@ function export_user_data(int $userId): array {
     }
     return [
         'exportedAt' => date('c'),
+        'exportUserId' => $userId, // used only to recognize "this is my own previous export" for id-based matching
         'universities' => $universities,
     ];
 }
 
+// NOTE: the old single-step import_user_data() function has been
+// replaced by the Smart Merge pipeline below (build_import_plan /
+// commit_import_plan for "Smart Merge", replace_all_user_data() for
+// "Replace All"), used by actions/import-preview.php and
+// actions/import-commit.php. The old function duplicated universities
+// on every merge import and could silently delete data on replace —
+// see the engine below for the fix.
+
+// =======================================================================
+// SMART MERGE (UPSERT) IMPORT ENGINE
+// =======================================================================
+//
+// Two-phase design so the UI can show a preview before anything is
+// written: build_import_plan() only READS the database and returns a
+// plan describing what would happen; commit_import_plan() is what
+// actually writes, wrapped in a single transaction so a failure partway
+// through leaves the database exactly as it was before the import.
+
+/** Lowercases, folds German umlauts, and strips punctuation/whitespace differences for robust name comparison. Deliberately avoids mbstring (not guaranteed on all hosting) by folding case-sensitive umlaut variants before a plain strtolower(). */
+function normalize_match_key(string $s): string {
+    $s = trim($s);
+    $s = strtr($s, [
+        'Ä' => 'ae', 'Ö' => 'oe', 'Ü' => 'ue', 'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss',
+    ]);
+    $s = strtolower($s);
+    $s = preg_replace('/[^\p{L}\p{N}]+/u', ' ', $s);
+    $s = preg_replace('/\s+/', ' ', $s);
+    return trim($s ?? '');
+}
+
+function university_row_to_camel(array $row): array {
+    return [
+        'name' => $row['name'], 'officialName' => $row['official_name'], 'city' => $row['city'],
+        'state' => $row['state'], 'type' => $row['type'], 'website' => $row['website'],
+        'intlWebsite' => $row['intl_website'], 'applicationPortal' => $row['application_portal'],
+        'applicationMethod' => $row['application_method'], 'applicationFee' => $row['application_fee'],
+        'tuitionFee' => $row['tuition_fee'], 'semesterContribution' => $row['semester_contribution'],
+        'generalNotes' => $row['general_notes'], 'status' => $row['status'],
+    ];
+}
+
+function program_overview_keys(): array {
+    return ['name', 'degree', 'subject', 'department', 'faculty', 'website', 'description', 'studyLocation', 'duration', 'ects', 'studyMode', 'intake'];
+}
+
+/** A value counts as "provided" only if it's a non-empty, non-whitespace string. Empty imported fields must never blank out existing data. */
+function is_meaningful_value($v): bool {
+    return $v !== null && trim((string)$v) !== '';
+}
+
 /**
- * Imports a previously exported array into $userId's own account.
- * $mode is 'replace' (wipes this user's existing data first) or 'merge'
- * (adds alongside). Only ever touches rows owned by $userId.
+ * Compares an existing flat field set against incoming data for the
+ * given keys. Never lets an empty/missing incoming value erase an
+ * existing one. Returns the full merged field set (ready to hand to
+ * create/update) plus a list of which keys actually changed (for the
+ * preview UI).
  */
-function import_user_data(int $userId, array $data, string $mode): int {
-    if ($mode === 'replace') {
+function diff_and_merge_fields(array $existing, array $incoming, array $keys): array {
+    $merged = $existing;
+    $changes = [];
+    foreach ($keys as $key) {
+        if (!array_key_exists($key, $incoming)) continue;
+        $incomingVal = is_array($incoming[$key]) ? $incoming[$key] : (string)$incoming[$key];
+        if (!is_meaningful_value(is_array($incomingVal) ? '1' : $incomingVal) && !is_array($incomingVal)) continue;
+        $existingVal = $existing[$key] ?? '';
+        if ((string)$incomingVal !== (string)$existingVal) {
+            $changes[$key] = ['from' => $existingVal, 'to' => $incomingVal];
+            $merged[$key] = $incomingVal;
+        }
+    }
+    return ['merged' => $merged, 'changes' => $changes];
+}
+
+/** Same idea as diff_and_merge_fields() but for merging TWO imported records together (duplicate rows within one uploaded file). Later non-empty values win on conflict. */
+function merge_two_imported_maps(array $base, array $overlay, array $keys): array {
+    $out = $base;
+    foreach ($keys as $key) {
+        if (isset($overlay[$key]) && is_meaningful_value(is_array($overlay[$key]) ? '1' : $overlay[$key])) {
+            $out[$key] = $overlay[$key];
+        }
+    }
+    return $out;
+}
+
+/**
+ * Collapses duplicate entries within the SAME imported list (matched by
+ * normalized name, plus $extraKey when given, e.g. degree for programs)
+ * into single entries, merging their fields non-destructively and
+ * concatenating any nested 'programs' lists. This is what prevents a
+ * file that lists the same university twice from creating two records.
+ *
+ * Used for Smart Merge (an untrusted uploaded file). It is deliberately
+ * NOT used by replace_all_user_data() — see that function's docblock
+ * for why a full-replace restore must not deduplicate.
+ */
+function collapse_duplicate_imports(array $items, array $mergeKeys, ?string $extraKey = null): array {
+    $order = [];
+    $byKey = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) continue;
+        $name = (string)($item['name'] ?? '');
+        $k = normalize_match_key($name) . ($extraKey ? '|' . normalize_match_key((string)($item[$extraKey] ?? '')) : '');
+        if ($k === '') { $k = '__unnamed_' . count($order); } // never silently drop a nameless row
+        if (!isset($byKey[$k])) {
+            $byKey[$k] = $item;
+            $order[] = $k;
+        } else {
+            $mergedPrograms = array_merge($byKey[$k]['programs'] ?? [], $item['programs'] ?? []);
+            $byKey[$k] = merge_two_imported_maps($byKey[$k], $item, $mergeKeys);
+            if ($mergedPrograms) $byKey[$k]['programs'] = $mergedPrograms;
+        }
+    }
+    $result = [];
+    foreach ($order as $k) $result[] = $byKey[$k];
+    return $result;
+}
+
+/**
+ * Builds the Smart Merge plan for an uploaded export WITHOUT writing
+ * anything to the database. Safe to call as many times as needed (e.g.
+ * while the user is reviewing the preview).
+ */
+function build_import_plan(int $userId, array $data): array {
+    $existingUnis = get_universities($userId);
+    $existingById = [];
+    foreach ($existingUnis as $u) $existingById[(int)$u['id']] = $u;
+
+    $incomingUnis = collapse_duplicate_imports($data['universities'] ?? [], university_field_map());
+
+    $claimedUniIds = [];
+    $plan = ['universities' => []];
+
+    foreach ($incomingUnis as $idx => $uniData) {
+        $name = trim((string)($uniData['name'] ?? ''));
+        $nameKey = normalize_match_key($name);
+        $stateKey = normalize_match_key((string)($uniData['state'] ?? ''));
+
+        $matchMethod = 'none';
+        $existingId = null;
+        $candidates = [];
+
+        // 1) Match by the university's own previously-exported id, if it's
+        //    still present in this account (most reliable: re-importing
+        //    your own export always lands on exactly the same record).
+        $incomingId = isset($uniData['id']) ? (int)$uniData['id'] : 0;
+        if ($incomingId > 0 && isset($existingById[$incomingId]) && !in_array($incomingId, $claimedUniIds, true)) {
+            $matchMethod = 'id';
+            $existingId = $incomingId;
+        }
+
+        // 2) Fall back to normalized name (+ state to disambiguate).
+        if ($existingId === null && $nameKey !== '') {
+            $nameMatches = [];
+            foreach ($existingUnis as $u) {
+                if (in_array((int)$u['id'], $claimedUniIds, true)) continue;
+                if (normalize_match_key($u['name']) === $nameKey) $nameMatches[] = $u;
+            }
+            if (count($nameMatches) === 1) {
+                $matchMethod = 'name';
+                $existingId = (int)$nameMatches[0]['id'];
+            } elseif (count($nameMatches) > 1) {
+                if ($stateKey !== '') {
+                    $stateFiltered = array_values(array_filter($nameMatches, fn($u) => normalize_match_key($u['state']) === $stateKey));
+                    if (count($stateFiltered) === 1) {
+                        $matchMethod = 'name_state';
+                        $existingId = (int)$stateFiltered[0]['id'];
+                    }
+                }
+                if ($existingId === null) {
+                    $matchMethod = 'ambiguous';
+                    foreach ($nameMatches as $u) {
+                        $candidates[] = ['id' => (int)$u['id'], 'name' => $u['name'], 'city' => $u['city'], 'state' => $u['state']];
+                    }
+                }
+            }
+        }
+
+        $uniPlanItem = [
+            'import_index' => $idx,
+            'name' => $name, 'city' => $uniData['city'] ?? '', 'state' => $uniData['state'] ?? '',
+            'match_method' => $matchMethod,
+            'candidates' => $candidates,
+            'existing_id' => $existingId,
+        ];
+
+        if ($matchMethod === 'ambiguous') {
+            $uniPlanItem['action'] = 'ambiguous';
+            $uniPlanItem['programs'] = []; // resolved later, after the user picks a target
+        } elseif ($existingId !== null) {
+            $claimedUniIds[] = $existingId;
+            $existingRow = $existingById[$existingId];
+            $existingFields = university_row_to_camel($existingRow);
+            $incomingFields = array_intersect_key($uniData, array_flip(university_field_map()));
+            $diff = diff_and_merge_fields($existingFields, $incomingFields, university_field_map());
+            $uniPlanItem['action'] = empty($diff['changes']) ? 'unchanged' : 'update';
+            $uniPlanItem['field_changes'] = $diff['changes'];
+            $uniPlanItem['programs'] = build_program_plan($userId, $existingId, $uniData['programs'] ?? []);
+        } else {
+            $uniPlanItem['action'] = 'new';
+            $uniPlanItem['programs'] = build_program_plan($userId, null, $uniData['programs'] ?? []);
+        }
+
+        $plan['universities'][] = $uniPlanItem;
+    }
+
+    // Roll up counts for the summary header on the preview page.
+    $stats = ['new_universities' => 0, 'updated_universities' => 0, 'unchanged_universities' => 0, 'ambiguous_universities' => 0, 'new_programs' => 0, 'updated_programs' => 0, 'unchanged_programs' => 0, 'ambiguous_programs' => 0];
+    foreach ($plan['universities'] as $u) {
+        $stats[$u['action'] . '_universities']++;
+        foreach ($u['programs'] as $p) {
+            $stats[$p['action'] . '_programs']++;
+        }
+    }
+    $plan['stats'] = $stats;
+    $plan['untouchedExistingCount'] = count($existingUnis) - count($claimedUniIds);
+
+    return $plan;
+}
+
+/** Same matching logic as universities, scoped to one (matched-or-new) parent university's existing programs. */
+function build_program_plan(int $userId, ?int $existingUniId, array $incomingPrograms): array {
+    $existingPrograms = $existingUniId !== null ? get_programs_for_university($userId, $existingUniId) : [];
+    $existingById = [];
+    foreach ($existingPrograms as $p) $existingById[(int)$p['id']] = $p;
+
+    $incomingPrograms = collapse_duplicate_imports($incomingPrograms, program_overview_keys(), 'degree');
+
+    $claimedIds = [];
+    $planItems = [];
+
+    foreach ($incomingPrograms as $idx => $progData) {
+        $name = trim((string)($progData['name'] ?? ''));
+        $nameKey = normalize_match_key($name);
+        $degreeKey = normalize_match_key((string)($progData['degree'] ?? ''));
+
+        $matchMethod = 'none';
+        $existingId = null;
+        $candidates = [];
+
+        $incomingId = isset($progData['id']) ? (int)$progData['id'] : 0;
+        if ($incomingId > 0 && isset($existingById[$incomingId]) && !in_array($incomingId, $claimedIds, true)) {
+            $matchMethod = 'id';
+            $existingId = $incomingId;
+        }
+
+        if ($existingId === null && $nameKey !== '') {
+            $nameMatches = [];
+            foreach ($existingPrograms as $p) {
+                if (in_array((int)$p['id'], $claimedIds, true)) continue;
+                if (normalize_match_key($p['name']) === $nameKey) $nameMatches[] = $p;
+            }
+            if (count($nameMatches) === 1) {
+                $matchMethod = 'name';
+                $existingId = (int)$nameMatches[0]['id'];
+            } elseif (count($nameMatches) > 1) {
+                if ($degreeKey !== '') {
+                    $degreeFiltered = array_values(array_filter($nameMatches, fn($p) => normalize_match_key($p['degree']) === $degreeKey));
+                    if (count($degreeFiltered) === 1) {
+                        $matchMethod = 'name_degree';
+                        $existingId = (int)$degreeFiltered[0]['id'];
+                    }
+                }
+                if ($existingId === null) {
+                    $matchMethod = 'ambiguous';
+                    foreach ($nameMatches as $p) {
+                        $candidates[] = ['id' => (int)$p['id'], 'name' => $p['name'], 'degree' => $p['degree']];
+                    }
+                }
+            }
+        }
+
+        $item = [
+            'import_index' => $idx,
+            'name' => $name, 'degree' => $progData['degree'] ?? '',
+            'match_method' => $matchMethod, 'candidates' => $candidates, 'existing_id' => $existingId,
+        ];
+
+        if ($matchMethod === 'ambiguous') {
+            $item['action'] = 'ambiguous';
+        } elseif ($existingId !== null) {
+            $claimedIds[] = $existingId;
+            $existing = $existingById[$existingId];
+            $incomingOverview = array_intersect_key($progData, array_flip(program_overview_keys()));
+            $diff = diff_and_merge_fields($existing, $incomingOverview, program_overview_keys());
+            $changed = !empty($diff['changes']);
+            foreach (['language' => default_language(), 'fees' => default_fees(), 'application' => default_application(), 'admission' => default_admission(), 'personal' => default_personal()] as $section => $defaults) {
+                if (isset($progData[$section]) && is_array($progData[$section])) {
+                    $sectionDiff = diff_and_merge_fields($existing[$section] ?? $defaults, $progData[$section], array_keys($defaults));
+                    if (!empty($sectionDiff['changes'])) $changed = true;
+                }
+            }
+            $item['action'] = $changed ? 'update' : 'unchanged';
+            $item['field_changes'] = $diff['changes'];
+        } else {
+            $item['action'] = 'new';
+        }
+
+        $planItems[] = $item;
+    }
+
+    return $planItems;
+}
+
+/**
+ * Actually writes a Smart Merge plan to the database, inside a single
+ * transaction — if anything throws partway through, everything is
+ * rolled back and the database is left exactly as it was.
+ *
+ * $resolutions lets the confirm step tell us what to do with entries
+ * the plan marked 'ambiguous': for university index $i, a key
+ * "u{$i}" => 'new' (create as a new university) or "u{$i}" => '<existingId>'
+ * (merge into that specific existing university) or "u{$i}" => 'skip'.
+ * Same idea for programs, keyed "u{$i}_p{$j}".
+ */
+function commit_import_plan(int $userId, array $data, array $plan, array $resolutions): array {
+    $incomingUnis = collapse_duplicate_imports($data['universities'] ?? [], university_field_map());
+    $summary = ['created_universities' => 0, 'updated_universities' => 0, 'unchanged_universities' => 0, 'skipped_universities' => 0, 'created_programs' => 0, 'updated_programs' => 0, 'unchanged_programs' => 0, 'skipped_programs' => 0];
+
+    $pdo = pdo();
+    $pdo->beginTransaction();
+    try {
+        foreach ($plan['universities'] as $i => $uniPlan) {
+            $uniData = $incomingUnis[$uniPlan['import_index']];
+            $action = $uniPlan['action'];
+            $targetUniId = $uniPlan['existing_id'];
+
+            if ($action === 'ambiguous') {
+                $resolution = $resolutions['u' . $i] ?? 'skip';
+                if ($resolution === 'skip') {
+                    $summary['skipped_universities']++;
+                    continue;
+                } elseif ($resolution === 'new') {
+                    $action = 'new';
+                    $targetUniId = null;
+                } elseif (ctype_digit((string)$resolution)) {
+                    $existingRow = get_university($userId, (int)$resolution);
+                    if ($existingRow === null) { // safety: ignore a resolution pointing at a university this user doesn't own
+                        $summary['skipped_universities']++;
+                        continue;
+                    }
+                    $existingFields = university_row_to_camel($existingRow);
+                    $incomingFields = array_intersect_key($uniData, array_flip(university_field_map()));
+                    $diff = diff_and_merge_fields($existingFields, $incomingFields, university_field_map());
+                    $action = empty($diff['changes']) ? 'unchanged' : 'update';
+                    $targetUniId = (int)$resolution;
+                } else {
+                    $summary['skipped_universities']++;
+                    continue;
+                }
+            }
+
+            if ($action === 'new') {
+                $fields = array_merge(array_fill_keys(university_field_map(), ''), array_intersect_key($uniData, array_flip(university_field_map())));
+                $targetUniId = create_university($userId, $fields);
+                $summary['created_universities']++;
+            } elseif ($action === 'update') {
+                $existingRow = get_university($userId, $targetUniId);
+                $existingFields = university_row_to_camel($existingRow);
+                $incomingFields = array_intersect_key($uniData, array_flip(university_field_map()));
+                $diff = diff_and_merge_fields($existingFields, $incomingFields, university_field_map());
+                update_university($userId, $targetUniId, $diff['merged']);
+                $summary['updated_universities']++;
+            } else { // unchanged
+                $summary['unchanged_universities']++;
+            }
+
+            $progSummary = commit_program_plan($userId, $targetUniId, $uniData['programs'] ?? [], $uniPlan['programs'], $resolutions, $i);
+            foreach ($progSummary as $k => $v) $summary[$k] += $v;
+        }
+
+        $pdo->commit();
+        return $summary;
+    } catch (\Throwable $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
+}
+
+function commit_program_plan(int $userId, int $uniId, array $incomingPrograms, array $programPlan, array $resolutions, int $uniIndex): array {
+    $incomingPrograms = collapse_duplicate_imports($incomingPrograms, program_overview_keys(), 'degree');
+    $summary = ['created_programs' => 0, 'updated_programs' => 0, 'unchanged_programs' => 0, 'skipped_programs' => 0];
+
+    foreach ($programPlan as $j => $progPlan) {
+        $progData = $incomingPrograms[$progPlan['import_index']];
+        $action = $progPlan['action'];
+        $targetProgId = $progPlan['existing_id'];
+
+        if ($action === 'ambiguous') {
+            $resolution = $resolutions['u' . $uniIndex . '_p' . $j] ?? 'skip';
+            if ($resolution === 'skip') {
+                $summary['skipped_programs']++;
+                continue;
+            } elseif ($resolution === 'new') {
+                $action = 'new';
+                $targetProgId = null;
+            } elseif (ctype_digit((string)$resolution)) {
+                $targetProgId = (int)$resolution;
+                $existing = get_program($userId, $targetProgId);
+                if ($existing === null || (int)$existing['university_id'] !== $uniId) {
+                    $summary['skipped_programs']++;
+                    continue;
+                }
+                $action = 'update';
+            } else {
+                $summary['skipped_programs']++;
+                continue;
+            }
+        }
+
+        if ($action === 'new') {
+            $overview = array_merge(['name' => '', 'degree' => 'M.Sc.', 'subject' => '', 'department' => '', 'faculty' => '', 'website' => '', 'description' => '', 'studyLocation' => '', 'duration' => '', 'ects' => '', 'studyMode' => 'Full-time', 'intake' => 'Winter'], array_intersect_key($progData, array_flip(program_overview_keys())));
+            $newProgId = create_program($userId, $uniId, $overview);
+            apply_program_sections($userId, $newProgId, $progData, true);
+            $summary['created_programs']++;
+        } elseif ($action === 'update') {
+            $existing = get_program($userId, $targetProgId);
+            $incomingOverview = array_intersect_key($progData, array_flip(program_overview_keys()));
+            $diff = diff_and_merge_fields($existing, $incomingOverview, program_overview_keys());
+            update_program_overview($userId, $targetProgId, $diff['merged']);
+            apply_program_sections($userId, $targetProgId, $progData, false);
+            $summary['updated_programs']++;
+        } else {
+            $summary['unchanged_programs']++;
+        }
+    }
+
+    return $summary;
+}
+
+/** Merges the language/fees/application/admission/personal sections and the documents/links lists into an existing (or brand-new) program row, non-destructively. */
+function apply_program_sections(int $userId, int $progId, array $progData, bool $isNew): void {
+    $existing = $isNew ? null : get_program($userId, $progId);
+
+    foreach (['language' => default_language(), 'fees' => default_fees(), 'application' => default_application(), 'admission' => default_admission(), 'personal' => default_personal()] as $section => $defaults) {
+        if (!isset($progData[$section]) || !is_array($progData[$section])) continue;
+        $base = $isNew ? $defaults : ($existing[$section] ?? $defaults);
+        $diff = diff_and_merge_fields($base, $progData[$section], array_keys($defaults));
+        if ($isNew || !empty($diff['changes'])) {
+            update_program_section($userId, $progId, $section, $diff['merged']);
+        }
+    }
+
+    if (isset($progData['documents']) && is_array($progData['documents'])) {
+        $existingDocs = $isNew ? [] : ($existing['documents'] ?? []);
+        $byName = [];
+        foreach ($existingDocs as $idx => $d) $byName[normalize_match_key($d['name'])] = $idx;
+        foreach ($progData['documents'] as $incomingDoc) {
+            if (!is_array($incomingDoc)) continue;
+            $key = normalize_match_key($incomingDoc['name'] ?? '');
+            if ($key !== '' && isset($byName[$key])) {
+                $idx = $byName[$key];
+                if (is_meaningful_value($incomingDoc['status'] ?? '')) $existingDocs[$idx]['status'] = $incomingDoc['status'];
+            } else {
+                $existingDocs[] = ['id' => generate_sub_id('doc'), 'name' => $incomingDoc['name'] ?? 'Document', 'status' => $incomingDoc['status'] ?? 'Unknown'];
+            }
+        }
+        pdo()->prepare('UPDATE programs SET documents_json = ? WHERE id = ? AND user_id = ?')->execute([json_encode(array_values($existingDocs)), $progId, $userId]);
+    }
+
+    if (isset($progData['links']) && is_array($progData['links'])) {
+        $existingLinks = $isNew ? [] : ($existing['links'] ?? []);
+        $byKey = [];
+        foreach ($existingLinks as $idx => $l) $byKey[normalize_match_key($l['title'] . '|' . $l['url'])] = $idx;
+        foreach ($progData['links'] as $incomingLink) {
+            if (!is_array($incomingLink)) continue;
+            $key = normalize_match_key(($incomingLink['title'] ?? '') . '|' . ($incomingLink['url'] ?? ''));
+            if ($key !== '' && isset($byKey[$key])) {
+                $idx = $byKey[$key];
+                if (is_meaningful_value($incomingLink['description'] ?? '')) $existingLinks[$idx]['description'] = $incomingLink['description'];
+            } else {
+                $existingLinks[] = ['id' => generate_sub_id('link'), 'title' => $incomingLink['title'] ?? '', 'url' => $incomingLink['url'] ?? '', 'description' => $incomingLink['description'] ?? ''];
+            }
+        }
+        pdo()->prepare('UPDATE programs SET links_json = ? WHERE id = ? AND user_id = ?')->execute([json_encode(array_values($existingLinks)), $progId, $userId]);
+    }
+}
+
+/**
+ * "Replace All": wipes this user's current data and replaces it with
+ * the imported file, inside a single transaction. A safety snapshot of
+ * the data being replaced is taken first (see create_import_backup())
+ * by the caller, BEFORE this function runs.
+ *
+ * Deliberately does NOT run the imported universities through
+ * collapse_duplicate_imports(): that de-duplication step exists to
+ * protect Smart Merge from an untrusted file that accidentally lists
+ * the same university twice. Here, the data being restored is either a
+ * full export or an internal backup snapshot — both are, by
+ * construction, already a faithful one-row-per-university record of
+ * real (possibly similarly-named) universities, so collapsing by
+ * normalized name would wrongly merge two genuinely distinct
+ * universities that just happen to share a name.
+ */
+function replace_all_user_data(int $userId, array $data): array {
+    $pdo = pdo();
+    $pdo->beginTransaction();
+    try {
         foreach (get_universities($userId) as $uni) {
             delete_university($userId, (int)$uni['id']);
         }
-    }
-    $count = 0;
-    foreach ($data['universities'] ?? [] as $uniData) {
-        if (!is_array($uniData)) continue;
-        $uniFields = array_merge(array_fill_keys(university_field_map(), ''), $uniData);
-        $uniId = create_university($userId, $uniFields);
-        foreach ($uniData['programs'] ?? [] as $progData) {
-            if (!is_array($progData)) continue;
-            $overview = array_merge([
-                'name' => '', 'degree' => 'M.Sc.', 'subject' => '', 'department' => '', 'faculty' => '',
-                'website' => '', 'description' => '', 'studyLocation' => '', 'duration' => '', 'ects' => '',
-                'studyMode' => 'Full-time', 'intake' => 'Winter',
-            ], $progData);
-            $progId = create_program($userId, $uniId, $overview);
-            foreach (['language' => default_language(), 'fees' => default_fees(), 'application' => default_application(), 'admission' => default_admission(), 'personal' => default_personal()] as $section => $defaults) {
-                if (isset($progData[$section]) && is_array($progData[$section])) {
-                    update_program_section($userId, $progId, $section, array_merge($defaults, $progData[$section]));
-                }
+        $created = [];
+        foreach ($data['universities'] ?? [] as $uniData) {
+            if (!is_array($uniData)) continue;
+            $fields = array_merge(array_fill_keys(university_field_map(), ''), array_intersect_key($uniData, array_flip(university_field_map())));
+            $uniId = create_university($userId, $fields);
+            foreach ($uniData['programs'] ?? [] as $progData) {
+                if (!is_array($progData)) continue;
+                $overview = array_merge(['name' => '', 'degree' => 'M.Sc.', 'subject' => '', 'department' => '', 'faculty' => '', 'website' => '', 'description' => '', 'studyLocation' => '', 'duration' => '', 'ects' => '', 'studyMode' => 'Full-time', 'intake' => 'Winter'], array_intersect_key($progData, array_flip(program_overview_keys())));
+                $progId = create_program($userId, $uniId, $overview);
+                apply_program_sections($userId, $progId, $progData, true);
             }
-            if (isset($progData['documents']) && is_array($progData['documents'])) {
-                $docs = [];
-                foreach ($progData['documents'] as $d) {
-                    $docs[] = ['id' => generate_sub_id('doc'), 'name' => $d['name'] ?? 'Document', 'status' => $d['status'] ?? 'Unknown'];
-                }
-                pdo()->prepare('UPDATE programs SET documents_json = ? WHERE id = ? AND user_id = ?')->execute([json_encode($docs), $progId, $userId]);
-            }
-            if (isset($progData['links']) && is_array($progData['links'])) {
-                $links = [];
-                foreach ($progData['links'] as $l) {
-                    $links[] = ['id' => generate_sub_id('link'), 'title' => $l['title'] ?? '', 'url' => $l['url'] ?? '', 'description' => $l['description'] ?? ''];
-                }
-                pdo()->prepare('UPDATE programs SET links_json = ? WHERE id = ? AND user_id = ?')->execute([json_encode($links), $progId, $userId]);
-            }
+            $created[] = $uniId;
         }
-        $count++;
+        $pdo->commit();
+        return ['universities' => $created];
+    } catch (\Throwable $e) {
+        $pdo->rollBack();
+        throw $e;
     }
-    return $count;
+}
+
+// =======================================================================
+// IMPORT SESSIONS (holds an uploaded file + its plan between the
+// preview and confirm steps of the Smart Merge wizard)
+// =======================================================================
+
+function create_import_session(int $userId, string $filename, array $payload, array $plan, string $mode): string {
+    cleanup_expired_import_sessions();
+    $token = bin2hex(random_bytes(24));
+    $stmt = pdo()->prepare('INSERT INTO import_sessions (token, user_id, filename, mode, payload, plan, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$token, $userId, $filename, $mode, json_encode($payload), json_encode($plan), db_now()]);
+    return $token;
+}
+
+function get_import_session(string $token, int $userId): ?array {
+    $stmt = pdo()->prepare('SELECT * FROM import_sessions WHERE token = ? AND user_id = ?');
+    $stmt->execute([$token, $userId]);
+    $row = $stmt->fetch();
+    if (!$row) return null;
+    $row['payload'] = json_decode($row['payload'], true) ?: [];
+    $row['plan'] = json_decode($row['plan'], true) ?: [];
+    return $row;
+}
+
+function delete_import_session(string $token): void {
+    pdo()->prepare('DELETE FROM import_sessions WHERE token = ?')->execute([$token]);
+}
+
+function cleanup_expired_import_sessions(): void {
+    pdo()->prepare('DELETE FROM import_sessions WHERE created_at < ?')->execute([date('Y-m-d H:i:s', strtotime('-2 hours'))]);
+}
+
+// =======================================================================
+// IMPORT BACKUPS (automatic safety snapshots, e.g. before Replace All)
+// =======================================================================
+
+function create_import_backup(int $userId, string $reason): int {
+    $data = export_user_data($userId);
+    $uniCount = count($data['universities']);
+    $progCount = 0;
+    foreach ($data['universities'] as $u) $progCount += count($u['programs']);
+    $stmt = pdo()->prepare('INSERT INTO import_backups (user_id, reason, payload, university_count, program_count, created_at) VALUES (?, ?, ?, ?, ?, ?)');
+    $stmt->execute([$userId, $reason, json_encode($data), $uniCount, $progCount, db_now()]);
+    $id = (int)pdo()->lastInsertId();
+    delete_old_backups($userId, 5);
+    return $id;
+}
+
+function list_import_backups(int $userId): array {
+    $stmt = pdo()->prepare('SELECT id, reason, university_count, program_count, created_at FROM import_backups WHERE user_id = ? ORDER BY created_at DESC');
+    $stmt->execute([$userId]);
+    return $stmt->fetchAll();
+}
+
+function get_import_backup(int $userId, int $backupId): ?array {
+    $stmt = pdo()->prepare('SELECT * FROM import_backups WHERE id = ? AND user_id = ?');
+    $stmt->execute([$backupId, $userId]);
+    $row = $stmt->fetch();
+    if (!$row) return null;
+    $row['payload'] = json_decode($row['payload'], true) ?: [];
+    return $row;
+}
+
+function delete_old_backups(int $userId, int $keep = 5): void {
+    $stmt = pdo()->prepare('SELECT id FROM import_backups WHERE user_id = ? ORDER BY created_at DESC');
+    $stmt->execute([$userId]);
+    $ids = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $toDelete = array_slice($ids, $keep);
+    if ($toDelete) {
+        $placeholders = implode(',', array_fill(0, count($toDelete), '?'));
+        pdo()->prepare("DELETE FROM import_backups WHERE id IN ($placeholders)")->execute($toDelete);
+    }
 }

@@ -109,3 +109,41 @@ CREATE TABLE IF NOT EXISTS settings (
 INSERT INTO settings (name, value, updated_at)
 VALUES ('require_email_verification', '0', NOW())
 ON DUPLICATE KEY UPDATE name = name;
+
+-- ---------------------------------------------------------------------
+-- import_sessions  (holds an uploaded import file + its computed merge
+-- plan between the "preview" and "confirm" steps of the Smart Merge
+-- import wizard. Short-lived — rows are deleted once committed or
+-- cancelled, and any left over after 2 hours are treated as expired.)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS import_sessions (
+  token VARCHAR(64) NOT NULL,
+  user_id INT UNSIGNED NOT NULL,
+  filename VARCHAR(255) NOT NULL DEFAULT '',
+  mode ENUM('smart_merge','replace_all') NOT NULL DEFAULT 'smart_merge',
+  payload LONGTEXT NOT NULL,
+  plan LONGTEXT NOT NULL,
+  created_at DATETIME NOT NULL,
+  PRIMARY KEY (token),
+  KEY idx_import_sessions_user (user_id),
+  CONSTRAINT fk_import_sessions_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ---------------------------------------------------------------------
+-- import_backups  (automatic snapshots taken right before a destructive
+-- operation — currently "Replace All" — so it can be undone. Also used
+-- to hold the "before restore" snapshot when restoring an older backup.
+-- Only the most recent few per user are kept; see delete_old_backups().)
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS import_backups (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id INT UNSIGNED NOT NULL,
+  reason VARCHAR(100) NOT NULL DEFAULT '',
+  payload LONGTEXT NOT NULL,
+  university_count INT UNSIGNED NOT NULL DEFAULT 0,
+  program_count INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at DATETIME NOT NULL,
+  PRIMARY KEY (id),
+  KEY idx_import_backups_user (user_id),
+  CONSTRAINT fk_import_backups_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

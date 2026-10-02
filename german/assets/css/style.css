@@ -272,11 +272,6 @@ a:hover { color: var(--primary-dark); }
   padding: 0.4rem 0.65rem 0.3rem;
   letter-spacing: 0.02em;
 }
-@media (max-width: 768px) {
-  .sidebar-section-title {
-    padding-bottom: 40px;
-  }
-}
 
 .top-nav .nav-link {
   color: var(--ink);
@@ -631,23 +626,4 @@ a:hover { color: var(--primary-dark); }
    --------------------------------------------------------------------- */
 @media print {
   .app-sidebar, .app-navbar, .impersonation-banner { display: none !important; }
-}
-
-
-
-/* Clickable dashboard statistic cards */
-.stat-card-button {
-    display: block;
-    width: 100%;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    text-decoration: none;
-}
-
-.stat-card-button:focus-visible {
-    outline: 3px solid var(--primary);
-    outline-offset: 3px;
 }
