@@ -2,11 +2,14 @@
 // Sidebar is self-contained: it loads its own copy of the current
 // (effective) user's data so any page can include header.php without
 // worrying about this dependency.
+// NOTE: every variable here is prefixed "sb" because this file is included
+// into the page's own variable scope; plain names like $uni/$prog/$uniId
+// would overwrite the page's variables.
 $sidebarUserId = effective_user_id();
 $sidebarUniversities = get_universities($sidebarUserId);
 $sidebarProgramsGrouped = get_programs_light_grouped($sidebarUserId);
-$currentUniId = (int)($_GET['university_id'] ?? ($activeNav === 'university' ? ($_GET['id'] ?? 0) : 0));
-$currentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 0;
+$sbCurrentUniId = (int)($_GET['university_id'] ?? ($activeNav === 'university' ? ($_GET['id'] ?? 0) : 0));
+$sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 0;
 ?>
 <aside class="app-sidebar" id="appSidebar">
   <div class="sidebar-scroll">
@@ -32,29 +35,29 @@ $currentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 0;
       <?php if (empty($sidebarUniversities)): ?>
         <div class="text-muted small px-3 py-2">No universities yet. Click + to add one.</div>
       <?php endif; ?>
-      <?php foreach ($sidebarUniversities as $uni): $uniId = (int)$uni['id']; ?>
-        <?php $isOpenUni = ($uniId === $currentUniId); ?>
+      <?php foreach ($sidebarUniversities as $sbUni): $sbUniId = (int)$sbUni['id']; ?>
+        <?php $sbIsOpenUni = ($sbUniId === $sbCurrentUniId); ?>
         <div class="tree-uni">
-          <div class="tree-uni-row <?= $isOpenUni ? 'tree-open' : '' ?>">
-            <button class="tree-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#tree-<?= $uniId ?>" aria-expanded="<?= $isOpenUni ? 'true' : 'false' ?>">
+          <div class="tree-uni-row <?= $sbIsOpenUni ? 'tree-open' : '' ?>">
+            <button class="tree-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#tree-<?= $sbUniId ?>" aria-expanded="<?= $sbIsOpenUni ? 'true' : 'false' ?>">
               <i class="bi bi-caret-right-fill tree-caret"></i>
             </button>
-            <a href="<?= h(base_path()) ?>/university.php?id=<?= $uniId ?>" class="tree-uni-link <?= $isOpenUni && empty($currentProgId) && $activeNav === 'university' ? 'fw-semibold text-primary' : '' ?>">
-              🏛 <?= h($uni['name'] ?: '(Unnamed university)') ?>
+            <a href="<?= h(base_path()) ?>/university.php?id=<?= $sbUniId ?>" class="tree-uni-link <?= $sbIsOpenUni && empty($sbCurrentProgId) && $activeNav === 'university' ? 'fw-semibold text-primary' : '' ?>">
+              🏛 <?= h($sbUni['name'] ?: '(Unnamed university)') ?>
             </a>
-            <span class="badge rounded-pill text-bg-<?= status_badge_class($uni['status']) ?> tree-status-badge"><?= h($uni['status']) ?></span>
+            <span class="badge rounded-pill text-bg-<?= status_badge_class($sbUni['status']) ?> tree-status-badge"><?= h($sbUni['status']) ?></span>
           </div>
-          <div class="collapse <?= $isOpenUni ? 'show' : '' ?>" id="tree-<?= $uniId ?>">
+          <div class="collapse <?= $sbIsOpenUni ? 'show' : '' ?>" id="tree-<?= $sbUniId ?>">
             <div class="tree-children">
-              <a href="<?= h(base_path()) ?>/university.php?id=<?= $uniId ?>&tab=overview" class="tree-item">📋 University Information</a>
-              <div class="tree-item tree-programs-label">🎓 Programs (<?= (int)$uni['program_count'] ?>)</div>
-              <?php foreach (($sidebarProgramsGrouped[$uniId] ?? []) as $prog): ?>
-                <a href="<?= h(base_path()) ?>/program.php?id=<?= (int)$prog['id'] ?>&university_id=<?= $uniId ?>"
-                   class="tree-item tree-program <?= (int)$prog['id'] === $currentProgId ? 'fw-semibold text-primary' : '' ?>">
-                  💻 <?= h($prog['name'] ?: '(Unnamed program)') ?>
+              <a href="<?= h(base_path()) ?>/university.php?id=<?= $sbUniId ?>&tab=overview" class="tree-item">📋 University Information</a>
+              <div class="tree-item tree-programs-label">🎓 Programs (<?= (int)$sbUni['program_count'] ?>)</div>
+              <?php foreach (($sidebarProgramsGrouped[$sbUniId] ?? []) as $sbProg): ?>
+                <a href="<?= h(base_path()) ?>/program.php?id=<?= (int)$sbProg['id'] ?>&university_id=<?= $sbUniId ?>"
+                   class="tree-item tree-program <?= (int)$sbProg['id'] === $sbCurrentProgId ? 'fw-semibold text-primary' : '' ?>">
+                  💻 <?= h($sbProg['name'] ?: '(Unnamed program)') ?>
                 </a>
               <?php endforeach; ?>
-              <a href="<?= h(base_path()) ?>/university.php?id=<?= $uniId ?>&tab=notes" class="tree-item">📝 Notes</a>
+              <a href="<?= h(base_path()) ?>/university.php?id=<?= $sbUniId ?>&tab=notes" class="tree-item">📝 Notes</a>
             </div>
           </div>
         </div>
@@ -68,13 +71,15 @@ $currentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 0;
 <div class="modal fade" id="addUniversityModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="post" action="<?= h(base_path()) ?>/actions/university-save.php">
+      <form method="post" action="<?= h(base_path()) ?>/actions/university-save.php" id="addUniversityForm">
         <div class="modal-header">
           <h5 class="modal-title"><i class="bi bi-bank me-2"></i>Add University</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+          <input type="hidden" name="action" value="create">
+          <input type="hidden" name="submit_token" value="<?= h(issue_submit_token('university_create')) ?>">
           <input type="hidden" name="redirect_to" value="<?= h($_SERVER['REQUEST_URI'] ?? 'dashboard.php') ?>">
           <div class="mb-2">
             <label class="form-label">University Name *</label>
@@ -107,3 +112,25 @@ $currentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 0;
     </div>
   </div>
 </div>
+
+<script>
+// Prevent double-submits of the quick-add form (double-click / Enter + click).
+(function () {
+  var f = document.getElementById('addUniversityForm');
+  if (!f) return;
+  f.addEventListener('submit', function (e) {
+    if (f.dataset.submitted === '1') { e.preventDefault(); return; }
+    f.dataset.submitted = '1';
+    var b = f.querySelector('button[type="submit"]');
+    if (b) b.disabled = true;
+  });
+  // Restore the button if the page is shown again from the back/forward cache.
+  window.addEventListener('pageshow', function (ev) {
+    if (ev.persisted) {
+      f.dataset.submitted = '0';
+      var b = f.querySelector('button[type="submit"]');
+      if (b) b.disabled = false;
+    }
+  });
+})();
+</script>

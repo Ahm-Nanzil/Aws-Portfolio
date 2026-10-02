@@ -11,7 +11,13 @@ csrf_check();
 
 $redirectTo = safe_redirect_target($_POST['redirect_to'] ?? null, $base . '/universities.php');
 
-$id = (int)($_POST['id'] ?? 0);
+// The form must say explicitly whether it is a creation or an update.
+// A missing/invalid ID can therefore never turn an update into a creation.
+$action = (string)($_POST['action'] ?? '');
+if (!in_array($action, ['create', 'update'], true)) {
+    flash('danger', 'Invalid request: no action was specified. Nothing was changed.');
+    redirect($base . '/universities.php');
+}
 
 $fields = [
     'name' => trim($_POST['name'] ?? ''),
@@ -47,18 +53,88 @@ if (!in_array($fields['status'], $validStatuses, true)) {
     $fields['status'] = 'Not Started';
 }
 
-if ($id > 0) {
-    $existing = get_university($userId, $id);
-    if ($existing === null) {
-        flash('danger', 'University not found.');
+$pdo = pdo();
+
+// ---------------------------------------------------------------------
+// UPDATE — exactly one explicitly selected university owned by this user
+// ---------------------------------------------------------------------
+if ($action === 'update') {
+    $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+    if ($id === false || $id === null) {
+        flash('danger', 'Missing or invalid university ID. Nothing was changed.');
         redirect($base . '/universities.php');
     }
-    update_university($userId, $id, $fields);
+    $id = (int)$id;
+
+    try {
+        $pdo->beginTransaction();
+        lock_user_row($userId);
+
+        $existing = get_university_for_update($userId, $id);
+        if ($existing === null) {
+            $pdo->rollBack();
+            flash('danger', 'University not found.');
+            redirect($base . '/universities.php');
+        }
+
+        // Only enforce the duplicate rule when the name/state actually changes,
+        // so records that already have a twin can still be edited.
+        $identityChanged =
+            normalize_match_key($fields['name']) !== normalize_match_key((string)$existing['name']) ||
+            normalize_match_key($fields['state']) !== normalize_match_key((string)$existing['state']);
+        if ($identityChanged && find_duplicate_university($userId, $fields['name'], $fields['state'], $id) !== null) {
+            $pdo->rollBack();
+            flash('danger', 'Another university named "' . $fields['name'] . '" already exists in your list. Nothing was changed.');
+            redirect($redirectTo);
+        }
+
+        if (!update_university($userId, $id, $fields)) {
+            throw new RuntimeException('The selected university could not be updated.');
+        }
+        $pdo->commit();
+    } catch (Throwable $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
+        error_log('university-save (update id ' . $id . '): ' . $e->getMessage());
+        flash('danger', 'Failed to save the university. Nothing was changed.');
+        redirect($redirectTo);
+    }
+
     flash('success', 'University "' . $fields['name'] . '" updated.');
     redirect($redirectTo);
 }
 
-$newId = create_university($userId, $fields);
+// ---------------------------------------------------------------------
+// CREATE — only when the request is explicitly a creation request
+// ---------------------------------------------------------------------
+if (!consume_submit_token('university_create', (string)($_POST['submit_token'] ?? ''))) {
+    flash('warning', 'This form was already submitted (or has expired), so no new university was created. Please check your list.');
+    redirect($base . '/universities.php');
+}
+
+try {
+    $pdo->beginTransaction();
+    lock_user_row($userId);
+
+    $dup = find_duplicate_university($userId, $fields['name'], $fields['state'], null);
+    if ($dup !== null) {
+        $pdo->rollBack();
+        flash('danger', 'A university named "' . $dup['name'] . '" already exists in your list, so no new record was created.');
+        redirect($redirectTo);
+    }
+
+    $newId = create_university($userId, $fields);
+    $pdo->commit();
+} catch (Throwable $e) {
+    if ($pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+    error_log('university-save (create): ' . $e->getMessage());
+    flash('danger', 'Failed to add the university. Nothing was saved.');
+    redirect($redirectTo);
+}
+
 flash('success', 'University "' . $fields['name'] . '" added.');
 // After creating a brand-new university from the quick-add modal (which
 // can be triggered from any page), send the user straight to its detail

@@ -56,6 +56,7 @@ include __DIR__ . '/includes/header.php';
     <div class="card-body">
       <form method="post" action="actions/university-save.php">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+        <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= h($uni['id']) ?>">
         <input type="hidden" name="generalNotes" value="<?= h($uni['general_notes']) ?>">
         <input type="hidden" name="redirect_to" value="university.php?id=<?= urlencode($id) ?>&tab=overview">
@@ -224,6 +225,7 @@ include __DIR__ . '/includes/header.php';
     <div class="card-body">
       <form method="post" action="actions/university-save.php">
         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
+        <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= h($uni['id']) ?>">
         <input type="hidden" name="name" value="<?= h($uni['name']) ?>">
         <input type="hidden" name="officialName" value="<?= h($uni['official_name']) ?>">

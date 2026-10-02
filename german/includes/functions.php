@@ -219,7 +219,6 @@ function university_field_map(): array {
 function camel_to_snake(string $s): string {
     return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $s));
 }
-
 function create_university(int $userId, array $fields): int {
     $now = db_now();
     $cols = ['user_id', 'created_at', 'updated_at'];
@@ -231,10 +230,17 @@ function create_university(int $userId, array $fields): int {
     $placeholders = implode(', ', array_fill(0, count($cols), '?'));
     $sql = 'INSERT INTO universities (' . implode(', ', $cols) . ') VALUES (' . $placeholders . ')';
     pdo()->prepare($sql)->execute($vals);
-    return (int)pdo()->lastInsertId();
+    $newId = (int)pdo()->lastInsertId();
+    if ($newId <= 0) {
+        throw new RuntimeException('create_university: no insert id returned.');
+    }
+    return $newId;
 }
 
 function update_university(int $userId, int $id, array $fields): bool {
+    if ($id <= 0) {
+        return false;
+    }
     $sets = [];
     $vals = [];
     foreach (university_field_map() as $key) {
@@ -245,10 +251,19 @@ function update_university(int $userId, int $id, array $fields): bool {
     $vals[] = db_now();
     $vals[] = $id;
     $vals[] = $userId;
-    $sql = 'UPDATE universities SET ' . implode(', ', $sets) . ' WHERE id = ? AND user_id = ?';
+    $sql = 'UPDATE universities SET ' . implode(', ', $sets) . ' WHERE id = ? AND user_id = ? LIMIT 1';
     $stmt = pdo()->prepare($sql);
     $stmt->execute($vals);
-    return true;
+    $affected = $stmt->rowCount();
+    if ($affected > 1) {
+        throw new RuntimeException('update_university affected more than one row (id ' . $id . ').');
+    }
+    if ($affected === 1) {
+        return true;
+    }
+    // MySQL reports 0 changed rows when the values were identical; confirm the
+    // row really exists and belongs to this user before reporting success.
+    return get_university($userId, $id) !== null;
 }
 
 function update_university_status(int $userId, int $id, string $status): bool {
@@ -262,6 +277,65 @@ function delete_university(int $userId, int $id): bool {
     return $stmt->rowCount() > 0;
 }
 
+/** Locks the user's row so concurrent create/update requests for one user run one at a time. Call inside a transaction. */
+function lock_user_row(int $userId): void {
+    $stmt = pdo()->prepare('SELECT id FROM users WHERE id = ? FOR UPDATE');
+    $stmt->execute([$userId]);
+}
+
+/** Like get_university(), but takes a row lock. Call inside a transaction. */
+function get_university_for_update(int $userId, int $id): ?array {
+    $stmt = pdo()->prepare('SELECT * FROM universities WHERE id = ? AND user_id = ? FOR UPDATE');
+    $stmt->execute([$id, $userId]);
+    $row = $stmt->fetch();
+    return $row ?: null;
+}
+
+/**
+ * Finds another university belonging to THIS user with the same normalized
+ * name (and the same state, or either state blank). Never looks at other users.
+ */
+function find_duplicate_university(int $userId, string $name, string $state, ?int $excludeId = null): ?array {
+    $nameKey = normalize_match_key($name);
+    if ($nameKey === '') {
+        return null;
+    }
+    $stateKey = normalize_match_key($state);
+    $stmt = pdo()->prepare('SELECT id, name, state FROM universities WHERE user_id = ?');
+    $stmt->execute([$userId]);
+    foreach ($stmt->fetchAll() as $row) {
+        if ($excludeId !== null && (int)$row['id'] === $excludeId) {
+            continue;
+        }
+        if (normalize_match_key((string)$row['name']) !== $nameKey) {
+            continue;
+        }
+        $rowState = normalize_match_key((string)$row['state']);
+        if ($stateKey === '' || $rowState === '' || $stateKey === $rowState) {
+            return $row;
+        }
+    }
+    return null;
+}
+
+/** Issues a single-use form token (stored in the session) to block double-submits. */
+function issue_submit_token(string $scope): string {
+    $token = bin2hex(random_bytes(16));
+    $_SESSION['submit_tokens'][$scope][$token] = time();
+    if (count($_SESSION['submit_tokens'][$scope]) > 50) {
+        $_SESSION['submit_tokens'][$scope] = array_slice($_SESSION['submit_tokens'][$scope], -50, null, true);
+    }
+    return $token;
+}
+
+/** Returns true exactly once per issued token. */
+function consume_submit_token(string $scope, string $token): bool {
+    if ($token === '' || !isset($_SESSION['submit_tokens'][$scope][$token])) {
+        return false;
+    }
+    unset($_SESSION['submit_tokens'][$scope][$token]);
+    return true;
+}
 // =======================================================================
 // PROGRAMS  (all scoped to a given $userId)
 // =======================================================================
