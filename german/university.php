@@ -59,7 +59,7 @@ include __DIR__ . '/includes/header.php';
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= h($uni['id']) ?>">
         <input type="hidden" name="generalNotes" value="<?= h($uni['general_notes']) ?>">
-        <input type="hidden" name="redirect_to" value="university.php?id=<?= urlencode($id) ?>&tab=overview">
+        <input type="hidden" name="redirect_to" value="/university.php?id=<?= urlencode($id) ?>&tab=overview">
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label">University Name *</label>
@@ -240,7 +240,7 @@ include __DIR__ . '/includes/header.php';
         <input type="hidden" name="tuitionFee" value="<?= h($uni['tuition_fee']) ?>">
         <input type="hidden" name="semesterContribution" value="<?= h($uni['semester_contribution']) ?>">
         <input type="hidden" name="status" value="<?= h($uni['status']) ?>">
-        <input type="hidden" name="redirect_to" value="university.php?id=<?= urlencode($id) ?>&tab=notes">
+        <input type="hidden" name="redirect_to" value="/university.php?id=<?= urlencode($id) ?>&tab=notes">
         <label class="form-label">General Notes</label>
         <textarea name="generalNotes" rows="10" class="form-control" placeholder="General notes about this university…"><?= h($uni['general_notes']) ?></textarea>
         <div class="mt-3">
