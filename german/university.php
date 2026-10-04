@@ -14,7 +14,7 @@ $programs = get_programs_for_university($userId, $id);
 $tab = $_GET['tab'] ?? 'overview';
 if (!in_array($tab, ['overview', 'programs', 'notes'], true)) $tab = 'overview';
 
-$statuses = ['Not Started', 'Researching', 'Completed', 'Shortlisted', 'Applied', 'Offer Received', 'Rejected'];
+$statuses = ['Not Started', 'Application Fee Paid', 'Researching', 'Completed', 'Shortlisted', 'Applied', 'Offer Received', 'Rejected'];
 $types = ['Public', 'Private', 'University of Applied Sciences'];
 
 $pageTitle = $uni['name'];
