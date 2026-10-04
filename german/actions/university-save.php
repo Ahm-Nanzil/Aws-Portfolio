@@ -48,7 +48,16 @@ foreach (['website', 'intlWebsite', 'applicationPortal'] as $urlField) {
     }
 }
 
-$validStatuses = ['Not Started', 'Researching', 'Completed', 'Shortlisted', 'Applied', 'Offer Received', 'Rejected'];
+$validStatuses = [
+    'Not Started',
+    'Application Fee Paid',
+    'Researching',
+    'Completed',
+    'Shortlisted',
+    'Applied',
+    'Offer Received',
+    'Rejected'
+];
 if (!in_array($fields['status'], $validStatuses, true)) {
     $fields['status'] = 'Not Started';
 }
