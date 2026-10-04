@@ -11,7 +11,16 @@ csrf_check();
 
 $id = (int)($_POST['id'] ?? 0);
 $status = trim($_POST['status'] ?? '');
-$validStatuses = ['Not Started', 'Researching', 'Completed', 'Shortlisted', 'Applied', 'Offer Received', 'Rejected'];
+$validStatuses = [
+    'Not Started',
+    'Application Fee Paid',
+    'Researching',
+    'Completed',
+    'Shortlisted',
+    'Applied',
+    'Offer Received',
+    'Rejected'
+];
 if (!in_array($status, $validStatuses, true)) {
     flash('danger', 'Invalid status value.');
     redirect(safe_redirect_target($_POST['redirect_to'] ?? null, $base . '/universities.php'));
