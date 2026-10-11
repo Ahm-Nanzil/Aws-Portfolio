@@ -33,9 +33,21 @@ function tabLink($key, $icon, $label, $tab, $progId, $uniId) {
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb small">
-    <li class="breadcrumb-item"><a href="universities.php">University Explorer</a></li>
-    <li class="breadcrumb-item"><a href="university.php?id=<?= urlencode($uniId) ?>"><?= h($uni['name']) ?></a></li>
-    <li class="breadcrumb-item active"><?= h($program['name']) ?></li>
+    
+<li class="breadcrumb-item">
+    <a href="university.php?id=<?= urlencode($uniId) ?>">
+        <?= h($uni['name']) ?>
+    </a>
+</li>
+<li class="breadcrumb-item">
+    <a href="university.php?id=<?= urlencode($uniId) ?>&tab=programs">
+        Programs
+    </a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">
+    <?= h($program['name']) ?>
+</li>
+
   </ol>
 </nav>
 

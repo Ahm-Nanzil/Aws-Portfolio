@@ -50,7 +50,10 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
           <div class="collapse <?= $sbIsOpenUni ? 'show' : '' ?>" id="tree-<?= $sbUniId ?>">
             <div class="tree-children">
               <a href="<?= h(base_path()) ?>/university.php?id=<?= $sbUniId ?>&tab=overview" class="tree-item">📋 University Information</a>
-              <div class="tree-item tree-programs-label">🎓 Programs (<?= (int)$sbUni['program_count'] ?>)</div>
+              <a href="<?= h(base_path()) ?>/university.php?id=<?= $sbUniId ?>&tab=programs"
+                class="tree-item tree-programs-label text-decoration-none">
+                  🎓 Programs (<?= (int)$sbUni['program_count'] ?>)
+              </a>              
               <?php foreach (($sidebarProgramsGrouped[$sbUniId] ?? []) as $sbProg): ?>
                 <a href="<?= h(base_path()) ?>/program.php?id=<?= (int)$sbProg['id'] ?>&university_id=<?= $sbUniId ?>"
                    class="tree-item tree-program <?= (int)$sbProg['id'] === $sbCurrentProgId ? 'fw-semibold text-primary' : '' ?>">
