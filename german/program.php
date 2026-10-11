@@ -522,11 +522,35 @@ function tabLink($key, $icon, $label, $tab, $progId, $uniId) {
         </select>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Application Status</label>
-        <select name="applicationStatus" class="form-select">
-          <?php foreach (['Not Started', 'Researching', 'Ready to Apply', 'Applied', 'Offer Received', 'Rejected'] as $v): ?><option <?= $v === $pe['applicationStatus'] ? 'selected' : '' ?>><?= h($v) ?></option><?php endforeach; ?>
-        </select>
-      </div>
+  <label class="form-label">Application Status</label>
+  <select name="applicationStatus" id="applicationStatus" class="form-select">
+    <?php foreach ([
+      'Not Started',
+      'Researching',
+      'Ready to Apply',
+      'Applied',
+      'Unable to Apply',
+      'Offer Received',
+      'Rejected'
+    ] as $v): ?>
+      <option value="<?= h($v) ?>" <?= $v === ($pe['applicationStatus'] ?? 'Not Started') ? 'selected' : '' ?>>
+        <?= h($v) ?>
+      </option>
+    <?php endforeach; ?>
+  </select>
+</div>
+
+<div class="col-md-8 <?= ($pe['applicationStatus'] ?? '') === 'Unable to Apply' ? '' : 'd-none' ?>"
+     id="unableToApplyReasonWrapper">
+  <label class="form-label">Reason Unable to Apply *</label>
+  <textarea
+    name="unableToApplyReason"
+    id="unableToApplyReason"
+    class="form-control"
+    rows="3"
+    placeholder="Explain why you cannot apply to this program..."
+  ><?= h($pe['unableToApplyReason'] ?? '') ?></textarea>
+</div>
       <div class="col-md-4">
         <label class="form-label">Last Checked</label>
         <input type="date" name="lastChecked" class="form-control" value="<?= h($pe['lastChecked']) ?>">
@@ -543,7 +567,23 @@ function tabLink($key, $icon, $label, $tab, $progId, $uniId) {
     <div class="mt-3"><button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Notes</button></div>
   </form>
 <?php endif; ?>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const status = document.getElementById('applicationStatus');
+    const wrapper = document.getElementById('unableToApplyReasonWrapper');
+    const reason = document.getElementById('unableToApplyReason');
 
+    function toggleReason() {
+        const show = status.value === 'Unable to Apply';
+
+        wrapper.classList.toggle('d-none', !show);
+        reason.required = show;
+    }
+
+    status.addEventListener('change', toggleReason);
+    toggleReason();
+});
+</script>
 </div>
 </div>
 

@@ -145,10 +145,36 @@ include __DIR__ . '/includes/header.php';
       <div class="col-md-6 col-xl-4">
         <div class="card h-100 shadow-sm">
           <div class="card-body d-flex flex-column">
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <h6 class="mb-0"><a href="program.php?id=<?= urlencode($prog['id']) ?>&university_id=<?= urlencode($id) ?>" class="text-decoration-none">💻 <?= h($prog['name']) ?></a></h6>
-              <span class="badge text-bg-<?= priority_badge_class($prog['personal']['priority']) ?>"><?= h($prog['personal']['priority']) ?></span>
-            </div>
+            
+<?php
+$programStatus = $prog['personal']['applicationStatus'] ?? 'Not Started';
+$programPriority = $prog['personal']['priority'] ?? 'Medium';
+$unableReason = trim((string)($prog['personal']['unableToApplyReason'] ?? ''));
+?>
+
+<div class="d-flex justify-content-between align-items-start mb-2">
+    <h6 class="mb-0">
+        <a href="program.php?id=<?= urlencode($prog['id']) ?>&university_id=<?= urlencode($id) ?>" class="text-decoration-none">
+            💻 <?= h($prog['name']) ?>
+        </a>
+    </h6>
+
+    <?php if ($programStatus === 'Unable to Apply'): ?>
+        <span class="badge text-bg-danger">Unable to Apply</span>
+    <?php else: ?>
+        <span class="badge text-bg-<?= priority_badge_class($programPriority) ?>">
+            <?= h($programPriority) ?>
+        </span>
+    <?php endif; ?>
+</div>
+
+<?php if ($programStatus === 'Unable to Apply' && $unableReason !== ''): ?>
+    <div class="alert alert-warning py-2 px-3 mb-2 small">
+        
+        <div><?= nl2br(h($unableReason)) ?></div>
+    </div>
+<?php endif; ?>
+
             <div class="small text-muted mb-2"><?= h($prog['degree']) ?><?= $prog['subject'] ? ' · ' . h($prog['subject']) : '' ?></div>
             <div class="chip-list mb-3">
               <span class="badge text-bg-<?= status_badge_class($prog['personal']['applicationStatus']) ?>"><?= h($prog['personal']['applicationStatus']) ?></span>
@@ -156,6 +182,7 @@ include __DIR__ . '/includes/header.php';
               <?php if ($prog['language']['englishTaught'] === 'Yes'): ?><span class="badge text-bg-info">English-taught</span><?php endif; ?>
               <?php if ($prog['language']['moiAccepted'] === 'Yes'): ?><span class="badge text-bg-secondary">MOI OK</span><?php endif; ?>
             </div>
+            
             <div class="mt-auto d-flex gap-2">
               <a href="program.php?id=<?= urlencode($prog['id']) ?>&university_id=<?= urlencode($id) ?>" class="btn btn-sm btn-outline-primary flex-grow-1"><i class="bi bi-pencil-square me-1"></i>Open</a>
               <form method="post" action="actions/program-duplicate.php" class="d-inline">

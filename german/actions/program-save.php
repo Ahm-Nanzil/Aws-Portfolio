@@ -145,19 +145,50 @@ switch ($section) {
         redirect($base . '/program.php?id=' . $progId . '&tab=admission');
         break;
 
-    case 'personal':
-        $data = [
-            'eligibility' => txt('eligibility') ?: 'Unknown',
-            'priority' => txt('priority') ?: 'Medium',
-            'applicationStatus' => txt('applicationStatus') ?: 'Not Started',
-            'notes' => txt('notes'),
-            'questions' => txt('questions'),
-            'lastChecked' => txt('lastChecked'),
-        ];
-        update_program_section($userId, $progId, 'personal', $data);
-        flash('success', 'Program updated (Notes).');
-        redirect($base . '/program.php?id=' . $progId . '&tab=personal');
-        break;
+        case 'personal':
+            $allowedStatuses = [
+                'Not Started',
+                'Researching',
+                'Ready to Apply',
+                'Applied',
+                'Unable to Apply',
+                'Offer Received',
+                'Rejected'
+            ];
+
+            $applicationStatus = txt('applicationStatus') ?: 'Not Started';
+
+            if (!in_array($applicationStatus, $allowedStatuses, true)) {
+                flash('danger', 'Invalid application status.');
+                redirect($base . '/program.php?id=' . $progId . '&tab=personal');
+            }
+
+            $unableToApplyReason = txt('unableToApplyReason');
+
+            if ($applicationStatus === 'Unable to Apply' && $unableToApplyReason === '') {
+                flash('danger', 'Please provide a reason for being unable to apply.');
+                redirect($base . '/program.php?id=' . $progId . '&tab=personal');
+            }
+
+            if ($applicationStatus !== 'Unable to Apply') {
+                $unableToApplyReason = '';
+            }
+
+            $data = [
+                'eligibility' => txt('eligibility') ?: 'Unknown',
+                'priority' => txt('priority') ?: 'Medium',
+                'applicationStatus' => $applicationStatus,
+                'unableToApplyReason' => $unableToApplyReason,
+                'notes' => txt('notes'),
+                'questions' => txt('questions'),
+                'lastChecked' => txt('lastChecked'),
+            ];
+
+            update_program_section($userId, $progId, 'personal', $data);
+
+            flash('success', 'Program personal information updated.');
+            redirect($base . '/program.php?id=' . $progId . '&tab=personal');
+            break;
 
     default:
         flash('danger', 'Unknown form section.');
