@@ -84,10 +84,38 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
           <input type="hidden" name="action" value="create">
           <input type="hidden" name="submit_token" value="<?= h(issue_submit_token('university_create')) ?>">
           <input type="hidden" name="redirect_to" value="<?= h($_SERVER['REQUEST_URI'] ?? 'dashboard.php') ?>">
-          <div class="mb-2">
-            <label class="form-label">University Name *</label>
-            <input type="text" name="name" class="form-control" required autofocus placeholder="e.g. University of Passau">
+          
+          <div class="mb-2 position-relative">
+              <label class="form-label">University Name *</label>
+
+              <input
+                  type="text"
+                  id="masterUniversitySearch"
+                  name="name"
+                  class="form-control"
+                  required
+                  autocomplete="off"
+                  placeholder="Start typing a university name..."
+              >
+
+              <input
+                  type="hidden"
+                  id="masterUniversityId"
+                  name="master_university_id"
+                  value=""
+              >
+
+              <div
+                  id="masterUniversitySuggestions"
+                  class="list-group position-absolute w-100"
+                  style="z-index: 1056; max-height: 240px; overflow-y: auto;"
+              ></div>
+
+              <small class="text-muted">
+                  Select one university from the suggestions.
+              </small>
           </div>
+
           <div class="row g-2">
             <div class="col-6">
               <label class="form-label">City</label>
@@ -136,4 +164,144 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
     }
   });
 })();
+
+
+
+(function () {
+    const input = document.getElementById('masterUniversitySearch');
+    const idInput = document.getElementById('masterUniversityId');
+    const suggestions = document.getElementById(
+        'masterUniversitySuggestions'
+    );
+    const form = document.getElementById('addUniversityForm');
+
+    if (!input || !idInput || !suggestions || !form) return;
+
+    const basePath = <?= json_encode(base_path()) ?>;
+    let timer = null;
+    let requestNumber = 0;
+
+    function clearSuggestions() {
+        suggestions.replaceChildren();
+    }
+
+    input.addEventListener('input', function () {
+        // Typing again invalidates the previous selection.
+        idInput.value = '';
+        clearSuggestions();
+
+        const query = input.value.trim();
+        const currentRequest = ++requestNumber;
+
+        clearTimeout(timer);
+
+        if (query.length < 2) return;
+
+        timer = setTimeout(async function () {
+            try {
+                const response = await fetch(
+                    basePath + '/actions/university-list.php?q=' +
+                    encodeURIComponent(query),
+                    { headers: { 'Accept': 'application/json' } }
+                );
+
+                if (!response.ok) throw new Error('Search failed');
+
+                const results = await response.json();
+
+                if (currentRequest !== requestNumber) return;
+
+                clearSuggestions();
+
+                if (!Array.isArray(results)) return;
+
+                results.forEach(function (uni) {
+                    const option = document.createElement('button');
+                    option.type = 'button';
+                    option.className = 'list-group-item list-group-item-action';
+
+                    const title = document.createElement('strong');
+                    title.textContent = uni.name;
+
+                    const details = document.createElement('small');
+                    details.className = 'd-block text-muted';
+                    details.textContent = [
+                        uni.city,
+                        uni.state,
+                        uni.type
+                    ].filter(Boolean).join(' · ');
+
+                    option.append(title, details);
+
+                    option.addEventListener('click', function () {
+                        input.value = uni.name;
+                        idInput.value = uni.id;
+
+                        // Fill the existing modal's city, state and type.
+                        form.querySelector('[name="city"]').value =
+                            uni.city || '';
+
+                        form.querySelector('[name="state"]').value =
+                            uni.state || '';
+
+                        form.querySelector('[name="type"]').value =
+                            uni.type || 'Public';
+
+                        clearSuggestions();
+                    });
+
+                    suggestions.appendChild(option);
+                });
+
+                if (results.length === 0) {
+                    const empty = document.createElement('div');
+                    empty.className =
+                        'list-group-item text-muted';
+                    empty.textContent = 'No matching university found.';
+                    suggestions.appendChild(empty);
+                }
+            } catch (error) {
+                if (currentRequest === requestNumber) {
+                    clearSuggestions();
+                    const errorItem = document.createElement('div');
+                    errorItem.className =
+                        'list-group-item text-danger';
+                    errorItem.textContent =
+                        'Could not search universities. Please try again.';
+                    suggestions.appendChild(errorItem);
+                }
+            }
+        }, 250);
+    });
+
+    form.addEventListener('submit', function (event) {
+        if (!idInput.value) {
+            event.preventDefault();
+            input.setCustomValidity(
+                'Please select a university from the suggestions.'
+            );
+            input.reportValidity();
+            return;
+        }
+
+        input.setCustomValidity('');
+    });
+
+    input.addEventListener('input', function () {
+        input.setCustomValidity('');
+    });
+
+    // Clear the search UI whenever the modal is closed.
+    const modal = document.getElementById('addUniversityModal');
+
+    if (modal) {
+        modal.addEventListener('hidden.bs.modal', function () {
+            input.value = '';
+            idInput.value = '';
+            clearSuggestions();
+            input.setCustomValidity('');
+        });
+    }
+})();
+
 </script>

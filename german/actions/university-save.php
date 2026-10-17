@@ -122,6 +122,49 @@ if (!consume_submit_token('university_create', (string)($_POST['submit_token'] ?
     redirect($base . '/universities.php');
 }
 
+/*
+ * Require selection from the master university list.
+ * Only applies to CREATE; existing UPDATE logic remains unchanged.
+ */
+$masterUniversityId = filter_var(
+    $_POST['master_university_id'] ?? null,
+    FILTER_VALIDATE_INT,
+    ['options' => ['min_range' => 1]]
+);
+
+if ($masterUniversityId === false || $masterUniversityId === null) {
+    flash('danger', 'Please select a university from the suggestions.');
+    redirect($redirectTo);
+}
+
+$masterStmt = $pdo->prepare("
+    SELECT id, name, official_name, city, state, type, website
+    FROM german_universities
+    WHERE id = ?
+    LIMIT 1
+");
+
+$masterStmt->execute([(int)$masterUniversityId]);
+$masterUniversity = $masterStmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$masterUniversity) {
+    flash('danger', 'The selected university was not found in the master list.');
+    redirect($redirectTo);
+}
+
+// Replace browser-submitted identity fields with trusted database values.
+$fields['name'] = $masterUniversity['name'];
+$fields['officialName'] = $masterUniversity['official_name'];
+$fields['city'] = $masterUniversity['city'];
+$fields['state'] = $masterUniversity['state'];
+$fields['type'] = $masterUniversity['type'];
+
+// Use the master website when the form has no website.
+if ($fields['website'] === '') {
+    $fields['website'] = $masterUniversity['website'] ?? '';
+}
+
+
 try {
     $pdo->beginTransaction();
     lock_user_row($userId);
