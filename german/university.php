@@ -61,10 +61,55 @@ include __DIR__ . '/includes/header.php';
         <input type="hidden" name="generalNotes" value="<?= h($uni['general_notes']) ?>">
         <input type="hidden" name="redirect_to" value="/university.php?id=<?= urlencode($id) ?>&tab=overview">
         <div class="row g-3">
+          
           <div class="col-md-6">
             <label class="form-label">University Name *</label>
-            <input type="text" name="name" class="form-control" value="<?= h($uni['name']) ?>" required>
+
+            <?php if (!empty($uni['master_university_id'])): ?>
+              <input
+                type="text"
+                name="name"
+                class="form-control"
+                value="<?= h($uni['name']) ?>"
+                readonly
+              >
+              <small class="text-muted">
+                <i class="bi bi-lock me-1"></i>
+                Matched to the master list. The name is locked.
+              </small>
+            <?php else: ?>
+              <div class="position-relative">
+                <input
+                  type="text"
+                  id="editMasterUniversitySearch"
+                  name="name"
+                  class="form-control"
+                  value="<?= h($uni['name']) ?>"
+                  required
+                  autocomplete="off"
+                  placeholder="Search and select the correct university"
+                >
+
+                <input
+                  type="hidden"
+                  id="editMasterUniversityId"
+                  name="master_university_id"
+                  value=""
+                >
+
+                <div
+                  id="editMasterUniversitySuggestions"
+                  class="list-group position-absolute w-100 university-autocomplete-suggestions"
+                  style="z-index: 1056; max-height: 240px; overflow-y: auto;"
+                ></div>
+              </div>
+
+              <small class="text-muted">
+                Select the correct university from the suggestions to lock its name.
+              </small>
+            <?php endif; ?>
           </div>
+
           <div class="col-md-6">
             <label class="form-label">Official Name</label>
             <input type="text" name="officialName" class="form-control" value="<?= h($uni['official_name']) ?>">
@@ -277,5 +322,135 @@ $unableReason = trim((string)($prog['personal']['unableToApplyReason'] ?? ''));
     </div>
   </div>
 <?php endif; ?>
+
+
+<script>
+(function () {
+    const input = document.getElementById('editMasterUniversitySearch');
+    const idInput = document.getElementById('editMasterUniversityId');
+    const suggestions = document.getElementById('editMasterUniversitySuggestions');
+
+    if (!input || !idInput || !suggestions) return;
+
+    const form = input.closest('form');
+    const basePath = <?= json_encode(base_path()) ?>;
+    let timer;
+    let requestNumber = 0;
+    let selectedName = '';
+
+    function clearSuggestions() {
+        suggestions.replaceChildren();
+    }
+
+    input.addEventListener('input', function () {
+        idInput.value = '';
+        selectedName = '';
+        clearSuggestions();
+
+        const query = input.value.trim();
+        const currentRequest = ++requestNumber;
+
+        clearTimeout(timer);
+        if (query.length < 2) return;
+
+        timer = setTimeout(async function () {
+            try {
+                const response = await fetch(
+                    basePath + '/actions/university-list.php?q=' +
+                    encodeURIComponent(query),
+                    { headers: { 'Accept': 'application/json' } }
+                );
+
+                if (!response.ok) throw new Error('Search failed');
+
+                const results = await response.json();
+                if (currentRequest !== requestNumber) return;
+
+                clearSuggestions();
+
+                if (!Array.isArray(results)) return;
+
+                results.forEach(function (uni) {
+                    const option = document.createElement('button');
+                    option.type = 'button';
+                    option.className = 'list-group-item list-group-item-action';
+
+                    const title = document.createElement('strong');
+                    title.textContent = uni.name;
+
+                    const details = document.createElement('small');
+                    details.className = 'd-block text-muted';
+                    details.textContent = [
+                        uni.city, uni.state, uni.type
+                    ].filter(Boolean).join(' · ');
+
+                    option.append(title, details);
+
+                    option.addEventListener('click', function () {
+                        input.value = uni.name;
+                        idInput.value = uni.id;
+                        selectedName = uni.name;
+
+                        const city = form.querySelector('[name="city"]');
+                        const state = form.querySelector('[name="state"]');
+                        const type = form.querySelector('[name="type"]');
+                        const officialName =
+                            form.querySelector('[name="officialName"]');
+
+                        if (city) city.value = uni.city || '';
+                        if (state) state.value = uni.state || '';
+
+                        if (type) {
+                            const exists = Array.from(type.options).some(
+                                option => option.value === uni.type
+                            );
+                            if (exists) type.value = uni.type;
+                        }
+
+                        if (officialName) {
+                            officialName.value = uni.official_name || '';
+                        }
+
+                        clearSuggestions();
+                    });
+
+                    suggestions.appendChild(option);
+                });
+
+                if (results.length === 0) {
+                    const empty = document.createElement('div');
+                    empty.className = 'list-group-item text-muted';
+                    empty.textContent = 'No matching university found.';
+                    suggestions.appendChild(empty);
+                }
+            } catch (error) {
+                if (currentRequest !== requestNumber) return;
+                clearSuggestions();
+
+                const message = document.createElement('div');
+                message.className = 'list-group-item text-danger';
+                message.textContent = 'Could not search universities.';
+                suggestions.appendChild(message);
+            }
+        }, 250);
+    });
+
+    form.addEventListener('submit', function (event) {
+        // Require a new selection if the name was changed.
+        if (!idInput.value || input.value !== selectedName) {
+            event.preventDefault();
+            input.setCustomValidity(
+                'Please select the correct university from the suggestions.'
+            );
+            input.reportValidity();
+        }
+    });
+
+    input.addEventListener('input', function () {
+        input.setCustomValidity('');
+    });
+})();
+</script>
+
 
 <?php include __DIR__ . '/includes/footer.php'; ?>

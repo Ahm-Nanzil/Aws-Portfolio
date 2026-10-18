@@ -107,7 +107,7 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
 
               <div
                   id="masterUniversitySuggestions"
-                  class="list-group position-absolute w-100"
+                  class="list-group position-absolute w-100 university-autocomplete-suggestions"
                   style="z-index: 1056; max-height: 240px; overflow-y: auto;"
               ></div>
 

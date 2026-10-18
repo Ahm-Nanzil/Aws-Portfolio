@@ -373,6 +373,34 @@ a:hover { color: var(--primary-dark); }
 }
 .list-group-item-action:hover { background-color: var(--surface-alt); }
 
+
+/* University autocomplete: opaque, theme-aware suggestions */
+.university-autocomplete-suggestions {
+  background-color: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.university-autocomplete-suggestions .list-group-item {
+  background-color: var(--surface);
+  color: var(--ink);
+  border-color: var(--border);
+}
+
+.university-autocomplete-suggestions .list-group-item-action:hover,
+.university-autocomplete-suggestions .list-group-item-action:focus {
+  background-color: var(--surface-alt);
+  color: var(--ink);
+}
+
+.university-autocomplete-suggestions .text-muted {
+  color: var(--ink-muted) !important;
+}
+
+
 .nav-tabs { border-bottom-color: var(--border); }
 .nav-tabs .nav-link {
   color: var(--ink-muted);
