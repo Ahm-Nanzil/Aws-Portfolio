@@ -17,17 +17,27 @@ try {
     $pdo = pdo();
 
     $stmt = $pdo->prepare("
-        SELECT id, name, official_name, city, state, type
+        SELECT
+            id,
+            COALESCE(NULLIF(TRIM(english_name), ''), name) AS name,
+            official_name,
+            english_name,
+            city,
+            state,
+            type
         FROM german_universities
         WHERE name LIKE ?
-           OR official_name LIKE ?
-           OR short_name LIKE ?
-        ORDER BY name ASC
+        OR official_name LIKE ?
+        OR short_name LIKE ?
+        OR english_name LIKE ?
+        ORDER BY
+            COALESCE(NULLIF(TRIM(english_name), ''), name) ASC
         LIMIT 15
     ");
 
     $search = '%' . $q . '%';
-    $stmt->execute([$search, $search, $search]);
+    $stmt->execute([$search, $search, $search, $search]);
+
 
     echo json_encode(
         $stmt->fetchAll(),

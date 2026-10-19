@@ -337,6 +337,7 @@ $unableReason = trim((string)($prog['personal']['unableToApplyReason'] ?? ''));
     let timer;
     let requestNumber = 0;
     let selectedName = '';
+    const originalName = input.value.trim();
 
     function clearSuggestions() {
         suggestions.replaceChildren();
@@ -378,13 +379,17 @@ $unableReason = trim((string)($prog['personal']['unableToApplyReason'] ?? ''));
                     const title = document.createElement('strong');
                     title.textContent = uni.name;
 
+                    const official = document.createElement('small');
+                    official.className = 'd-block text-muted';
+                    official.textContent = uni.official_name || '';
+
                     const details = document.createElement('small');
                     details.className = 'd-block text-muted';
                     details.textContent = [
                         uni.city, uni.state, uni.type
                     ].filter(Boolean).join(' · ');
 
-                    option.append(title, details);
+                    option.append(title, official, details);
 
                     option.addEventListener('click', function () {
                         input.value = uni.name;
@@ -436,14 +441,24 @@ $unableReason = trim((string)($prog['personal']['unableToApplyReason'] ?? ''));
     });
 
     form.addEventListener('submit', function (event) {
-        // Require a new selection if the name was changed.
-        if (!idInput.value || input.value !== selectedName) {
+        const currentName = input.value.trim();
+
+        // Allow edits to other fields if the name has not changed.
+        if (!idInput.value && currentName === originalName) {
+            return;
+        }
+
+        // A changed name must come from a selected suggestion.
+        if (!idInput.value || currentName !== selectedName) {
             event.preventDefault();
             input.setCustomValidity(
                 'Please select the correct university from the suggestions.'
             );
             input.reportValidity();
+            return;
         }
+
+        input.setCustomValidity('');
     });
 
     input.addEventListener('input', function () {

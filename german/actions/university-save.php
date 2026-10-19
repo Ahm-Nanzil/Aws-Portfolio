@@ -86,6 +86,68 @@ if ($action === 'update') {
             redirect($base . '/universities.php');
         }
 
+        // Preserve the English name after a record has been linked.
+        $linkMasterId = null;
+
+        if (!empty($existing['master_university_id'])) {
+            // Already linked: do not allow the name to be changed.
+            $fields['name'] = $existing['name'];
+        } else {
+            $rawMasterId = trim((string)($_POST['master_university_id'] ?? ''));
+
+            if ($rawMasterId !== '') {
+                $submittedMasterId = filter_var(
+                    $rawMasterId,
+                    FILTER_VALIDATE_INT,
+                    ['options' => ['min_range' => 1]]
+                );
+
+                if ($submittedMasterId === false) {
+                    $pdo->rollBack();
+                    flash('danger', 'Invalid master university selection.');
+                    redirect($redirectTo);
+                }
+
+                $masterStmt = $pdo->prepare("
+                    SELECT
+                        id,
+                        COALESCE(NULLIF(TRIM(english_name), ''), name) AS name,
+                        official_name,
+                        city,
+                        state,
+                        type
+                    FROM german_universities
+                    WHERE id = ?
+                    LIMIT 1
+                ");
+
+                $masterStmt->execute([(int)$submittedMasterId]);
+                $master = $masterStmt->fetch(PDO::FETCH_ASSOC);
+
+                if (!$master) {
+                    $pdo->rollBack();
+                    flash('danger', 'The selected university was not found.');
+                    redirect($redirectTo);
+                }
+
+                // Replace submitted identity fields with master-list values.
+                $fields['name'] = $master['name'];
+                $fields['officialName'] = $master['official_name'];
+                $fields['city'] = $master['city'];
+                $fields['state'] = $master['state'];
+                $fields['type'] = $master['type'];
+
+                $linkMasterId = (int)$master['id'];
+            } elseif (
+                normalize_match_key($fields['name']) !==
+                normalize_match_key((string)$existing['name'])
+            ) {
+                $pdo->rollBack();
+                flash('danger', 'Please select the correct university from the suggestions.');
+                redirect($redirectTo);
+            }
+        }
+
         // Only enforce the duplicate rule when the name/state actually changes,
         // so records that already have a twin can still be edited.
         $identityChanged =
@@ -98,9 +160,30 @@ if ($action === 'update') {
         }
 
         if (!update_university($userId, $id, $fields)) {
-            throw new RuntimeException('The selected university could not be updated.');
-        }
-        $pdo->commit();
+                throw new RuntimeException(
+                    'The selected university could not be updated.'
+                );
+            }
+
+            if ($linkMasterId !== null) {
+                $linkStmt = $pdo->prepare("
+                    UPDATE universities
+                    SET master_university_id = ?
+                    WHERE id = ?
+                    AND user_id = ?
+                    AND master_university_id IS NULL
+                ");
+
+                $linkStmt->execute([$linkMasterId, $id, $userId]);
+
+                if ($linkStmt->rowCount() !== 1) {
+                    throw new RuntimeException(
+                        'Could not save the master university link.'
+                    );
+                }
+            }
+
+            $pdo->commit();
     } catch (Throwable $e) {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
@@ -138,7 +221,14 @@ if ($masterUniversityId === false || $masterUniversityId === null) {
 }
 
 $masterStmt = $pdo->prepare("
-    SELECT id, name, official_name, city, state, type, website
+    SELECT
+        id,
+        COALESCE(NULLIF(TRIM(english_name), ''), name) AS name,
+        official_name,
+        city,
+        state,
+        type,
+        website
     FROM german_universities
     WHERE id = ?
     LIMIT 1
@@ -177,6 +267,24 @@ try {
     }
 
     $newId = create_university($userId, $fields);
+
+    $linkStmt = $pdo->prepare("
+        UPDATE universities
+        SET master_university_id = ?
+        WHERE id = ? AND user_id = ?
+    ");
+    $linkStmt->execute([
+        (int)$masterUniversityId,
+        $newId,
+        $userId
+    ]);
+
+    if ($linkStmt->rowCount() !== 1) {
+        throw new RuntimeException(
+            'Could not save the master university link.'
+        );
+    }
+
     $pdo->commit();
 } catch (Throwable $e) {
     if ($pdo->inTransaction()) {

@@ -115,6 +115,17 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
                   Select one university from the suggestions.
               </small>
           </div>
+          <div class="mb-2">
+              <label class="form-label">Official Name</label>
+              <input
+                  type="text"
+                  id="masterUniversityOfficialName"
+                  name="officialName"
+                  class="form-control"
+                  readonly
+                  placeholder="Populated after selecting a university"
+              >
+          </div>
 
           <div class="row g-2">
             <div class="col-6">
@@ -223,6 +234,10 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
                     const title = document.createElement('strong');
                     title.textContent = uni.name;
 
+                    const official = document.createElement('small');
+                    official.className = 'd-block text-muted';
+                    official.textContent = uni.official_name || '';
+
                     const details = document.createElement('small');
                     details.className = 'd-block text-muted';
                     details.textContent = [
@@ -231,11 +246,14 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
                         uni.type
                     ].filter(Boolean).join(' · ');
 
-                    option.append(title, details);
+                    option.append(title, official, details);
 
                     option.addEventListener('click', function () {
                         input.value = uni.name;
                         idInput.value = uni.id;
+
+                        form.querySelector('[name="officialName"]').value =
+                        uni.official_name || '';
 
                         // Fill the existing modal's city, state and type.
                         form.querySelector('[name="city"]').value =
@@ -298,6 +316,7 @@ $sbCurrentProgId = ($activeNav ?? '') === 'program' ? (int)($_GET['id'] ?? 0) : 
         modal.addEventListener('hidden.bs.modal', function () {
             input.value = '';
             idInput.value = '';
+            form.querySelector('[name="officialName"]').value = '';
             clearSuggestions();
             input.setCustomValidity('');
         });
