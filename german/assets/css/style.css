@@ -683,6 +683,30 @@ a:hover { color: var(--primary-dark); }
 
 
 
+/* Dashboard panels: fixed maximum height with internal scrolling */
+.dashboard-list-scroll {
+    max-height: 360px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+
+/* Keep list items readable when names are long */
+.dashboard-list-scroll .list-group-item {
+    min-width: 0;
+}
+
+.dashboard-list-scroll .list-group-item > div:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Keep the scrollbar inside the dashboard panel */
+.dashboard-list-scroll {
+    scrollbar-width: thin;
+}
+
+
 
 /* Dashboard panels: responsive mobile layout */
 @media (max-width: 767.98px) {
