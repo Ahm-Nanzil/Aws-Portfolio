@@ -184,64 +184,79 @@ $statDetails['Offers Received'] = array_map(
 
 // ---- Upcoming deadlines (one entry per program) ----
 
-$deadlines = [];
+/* ---- Seasonal upcoming deadlines ---- */
+
+$summerDeadlines = [];
+$winterDeadlines = [];
 
 foreach ($allPrograms as $x) {
     $p = $x['program'];
     $u = $x['university'];
 
-    // Exclude programs that have already been applied for.
+    // Exclude programs already applied for or with an offer.
     $status = $p['personal']['applicationStatus'] ?? '';
 
     if ($status === 'Applied' || $status === 'Offer Received') {
         continue;
     }
 
-    $candidates = [
-        'Deadline' => $p['application']['deadline'] ?? '',
-        'Winter Deadline' => $p['application']['winterDeadline'] ?? '',
-        'Summer Deadline' => $p['application']['summerDeadline'] ?? '',
-        "Int'l Applicant Deadline" => $p['application']['intlDeadline'] ?? '',
+    $seasons = [
+        'summer' => [
+            'date' => $p['application']['summerDeadline'] ?? '',
+            'label' => 'Summer Deadline',
+        ],
+        'winter' => [
+            'date' => $p['application']['winterDeadline'] ?? '',
+            'label' => 'Winter Deadline',
+        ],
     ];
 
-    $programDeadlines = [];
+    foreach ($seasons as $season => $info) {
+        $dateVal = $info['date'];
 
-    foreach ($candidates as $label => $dateVal) {
         if (empty($dateVal)) {
             continue;
         }
 
         $days = days_until($dateVal);
 
-        // Show only upcoming deadlines.
-        if ($days !== null && $days >= 0) {
-            $programDeadlines[] = [
-                'uni' => $u,
-                'prog' => $p,
-                'label' => $label,
-                'date' => $dateVal,
-                'startDate' => $p['application']['startDate'] ?? '',
-                'days' => $days,
-            ];
+        // Include only upcoming deadlines.
+        if ($days === null || $days < 0) {
+            continue;
         }
-    }
 
-    // Select only the nearest upcoming deadline for this program.
-    if (!empty($programDeadlines)) {
-        usort(
-            $programDeadlines,
-            fn($a, $b) => $a['days'] <=> $b['days']
-        );
+        $entry = [
+            'uni' => $u,
+            'prog' => $p,
+            'label' => $info['label'],
+            'date' => $dateVal,
+            'startDate' => $p['application']['startDate'] ?? '',
+            'days' => $days,
+        ];
 
-        $deadlines[] = $programDeadlines[0];
+        if ($season === 'summer') {
+            $summerDeadlines[] = $entry;
+        } else {
+            $winterDeadlines[] = $entry;
+        }
     }
 }
 
-// Sort programs by their nearest deadline.
-usort($deadlines, fn($a, $b) => $a['days'] <=> $b['days']);
+// Show the nearest deadlines first.
+usort(
+    $summerDeadlines,
+    fn($a, $b) => $a['days'] <=> $b['days']
+);
 
-// Display at most 8 programs.
-$deadlines = array_slice($deadlines, 0, 8);
+usort(
+    $winterDeadlines,
+    fn($a, $b) => $a['days'] <=> $b['days']
+);
+
+// Limit each seasonal list independently.
+$summerDeadlines = array_slice($summerDeadlines, 0, 8);
+$winterDeadlines = array_slice($winterDeadlines, 0, 8);
+
 
 // ---- Recently updated (universities + programs combined) ----
 
@@ -419,32 +434,35 @@ include __DIR__ . '/includes/header.php';
 
 <div class="row g-3">
 
+    
+    <!-- Summer Upcoming Deadlines -->
     <div class="col-lg-6">
         <div class="card h-100 shadow-sm">
             <div class="card-header bg-transparent fw-semibold">
-                <i class="bi bi-alarm me-2"></i>Upcoming Deadlines
+                <i class="bi bi-sun me-2"></i>Summer Upcoming Deadlines
             </div>
 
-            <div class="list-group list-group-flush">
-                <?php if (empty($deadlines)): ?>
+            <div class="list-group list-group-flush dashboard-list-scroll">
+                <?php if (empty($summerDeadlines)): ?>
                     <div class="list-group-item text-muted small">
-                        No deadlines recorded yet. Add deadlines on each program's Application tab.
+                        No upcoming summer deadlines recorded.
                     </div>
                 <?php endif; ?>
 
-                <?php foreach ($deadlines as $d): ?>
+                <?php foreach ($summerDeadlines as $d): ?>
                     <a href="program.php?id=<?= urlencode($d['prog']['id']) ?>&university_id=<?= urlencode($d['uni']['id']) ?>&tab=application"
-                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center gap-3">
+
                         <div>
                             <div class="fw-semibold">
                                 <?= h($d['prog']['name']) ?>
                             </div>
                             <div class="small text-muted">
-                                <?= h($d['uni']['name']) ?> · <?= h($d['label']) ?>
+                                <?= h($d['uni']['name']) ?> · Summer Deadline
                             </div>
                         </div>
 
-                        <div class="text-end">
+                        <div class="text-end flex-shrink-0">
                             <div class="small text-muted mb-1">
                                 Start:
                                 <?= !empty($d['startDate'])
@@ -452,12 +470,14 @@ include __DIR__ . '/includes/header.php';
                                     : '—' ?>
                             </div>
 
-                            <div class="<?= $d['days'] < 0 ? 'text-muted' : ($d['days'] <= 7 ? 'deadline-soon' : ($d['days'] <= 30 ? 'deadline-week' : '')) ?>">
+                            <div class="<?= $d['days'] <= 7 ? 'deadline-soon' : ($d['days'] <= 30 ? 'deadline-week' : '') ?>">
                                 <?= fmt_date($d['date']) ?>
                             </div>
 
                             <div class="small text-muted">
-                                <?= $d['days'] < 0 ? 'Passed' : ($d['days'] === 0 ? 'Today' : $d['days'] . ' days left') ?>
+                                <?= $d['days'] === 0
+                                    ? 'Today'
+                                    : $d['days'] . ' days left' ?>
                             </div>
                         </div>
                     </a>
@@ -466,13 +486,65 @@ include __DIR__ . '/includes/header.php';
         </div>
     </div>
 
+    <!-- Winter Upcoming Deadlines -->
+    <div class="col-lg-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-header bg-transparent fw-semibold">
+                <i class="bi bi-snow me-2"></i>Winter Upcoming Deadlines
+            </div>
+
+            <div class="list-group list-group-flush dashboard-list-scroll">
+                <?php if (empty($winterDeadlines)): ?>
+                    <div class="list-group-item text-muted small">
+                        No upcoming winter deadlines recorded.
+                    </div>
+                <?php endif; ?>
+
+                <?php foreach ($winterDeadlines as $d): ?>
+                    <a href="program.php?id=<?= urlencode($d['prog']['id']) ?>&university_id=<?= urlencode($d['uni']['id']) ?>&tab=application"
+                    class="list-group-item list-group-item-action d-flex justify-content-between align-items-center gap-3">
+
+                        <div>
+                            <div class="fw-semibold">
+                                <?= h($d['prog']['name']) ?>
+                            </div>
+                            <div class="small text-muted">
+                                <?= h($d['uni']['name']) ?> · Winter Deadline
+                            </div>
+                        </div>
+
+                        <div class="text-end flex-shrink-0">
+                            <div class="small text-muted mb-1">
+                                Start:
+                                <?= !empty($d['startDate'])
+                                    ? h(fmt_date($d['startDate']))
+                                    : '—' ?>
+                            </div>
+
+                            <div class="<?= $d['days'] <= 7 ? 'deadline-soon' : ($d['days'] <= 30 ? 'deadline-week' : '') ?>">
+                                <?= fmt_date($d['date']) ?>
+                            </div>
+
+                            <div class="small text-muted">
+                                <?= $d['days'] === 0
+                                    ? 'Today'
+                                    : $d['days'] . ' days left' ?>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+
     <div class="col-lg-6">
         <div class="card h-100 shadow-sm">
             <div class="card-header bg-transparent fw-semibold">
                 <i class="bi bi-clock-history me-2"></i>Recently Updated
             </div>
 
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush dashboard-list-scroll">
                 <?php if (empty($recent)): ?>
                     <div class="list-group-item text-muted small">
                         Nothing recorded yet.
@@ -503,7 +575,7 @@ include __DIR__ . '/includes/header.php';
                 <i class="bi bi-star-fill text-danger me-2"></i>High Priority Programs
             </div>
 
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush dashboard-list-scroll">
                 <?php if (empty($highPriority)): ?>
                     <div class="list-group-item text-muted small">
                         No programs marked High priority yet.
@@ -534,7 +606,7 @@ include __DIR__ . '/includes/header.php';
                 <i class="bi bi-question-circle me-2"></i>Needs Verification
             </div>
 
-            <div class="list-group list-group-flush">
+            <div class="list-group list-group-flush dashboard-list-scroll">
                 <?php if (empty($needsVerification)): ?>
                     <div class="list-group-item text-muted small">
                         Nothing pending verification. 🎉
