@@ -1,4 +1,4 @@
-export interface Unit {
+﻿export interface Unit {
     id?: number;
     name: string;
     author: number;

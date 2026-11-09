@@ -23,7 +23,7 @@ class RegisterHistory extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'registers_history';
+    protected $table = 'nexopos_' . 'registers_history';
 
     const ACTION_OPENING = 'register-opening';
 

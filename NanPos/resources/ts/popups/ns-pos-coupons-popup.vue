@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg ns-box w-95vw md:w-[60vw] lg:w-[40vw]">
         <div class="border-b ns-box-header p-2 flex justify-between items-center">
             <h3 class="font-bold">{{ __( 'Coupons' ) }}</h3>

@@ -32,7 +32,7 @@ class ProductCategoryCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_products_categories';
+    protected $table = 'nexopos_products_categories';
 
     /**
      * base route name
@@ -59,7 +59,7 @@ class ProductCategoryCrud extends CrudService
             'user' => [ User::class, 'author' ],
         ],
         'leftJoin' => [
-            [ 'possoft_products_categories as parent', 'possoft_products_categories.parent_id', '=', 'parent.id' ],
+            [ 'nexopos_products_categories as parent', 'nexopos_products_categories.parent_id', '=', 'parent.id' ],
         ],
     ];
 
@@ -69,10 +69,10 @@ class ProductCategoryCrud extends CrudService
     ];
 
     protected $permissions = [
-        'create' => 'possoft.create.categories',
-        'read' => 'possoft.read.categories',
-        'update' => 'possoft.update.categories',
-        'delete' => 'possoft.delete.categories',
+        'create' => 'nexopos.create.categories',
+        'read' => 'nexopos.read.categories',
+        'update' => 'nexopos.update.categories',
+        'delete' => 'nexopos.delete.categories',
     ];
 
     /**

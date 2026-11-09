@@ -109,11 +109,11 @@ final class AuthorizationHardeningTest extends TestCase
 
     public function test_specialized_crud_resources_do_not_use_boolean_grants(): void
     {
-        $this->assertSame( 'possoft.read.procurements', ( new ProviderProcurementsCrud )->getPermission( 'read' ) );
+        $this->assertSame( 'nexopos.read.procurements', ( new ProviderProcurementsCrud )->getPermission( 'read' ) );
         $this->assertFalse( ( new ProviderProcurementsCrud )->getPermission( 'delete' ) );
-        $this->assertSame( 'possoft.read.orders-instalments', ( new OrderInstalmentCrud )->getPermission( 'read' ) );
+        $this->assertSame( 'nexopos.read.orders-instalments', ( new OrderInstalmentCrud )->getPermission( 'read' ) );
         $this->assertFalse( ( new OrderInstalmentCrud )->getPermission( 'update' ) );
-        $this->assertSame( 'possoft.read.procurements', ( new ProcurementProductCrud )->getPermission( 'read' ) );
+        $this->assertSame( 'nexopos.read.procurements', ( new ProcurementProductCrud )->getPermission( 'read' ) );
         $this->assertFalse( ( new ProcurementProductCrud )->getPermission( 'update' ) );
     }
 
@@ -152,17 +152,17 @@ final class AuthorizationHardeningTest extends TestCase
         Sanctum::actingAs( $user, [ '*' ] );
 
         $previousFeatures = ns()->option->get( 'ns_pos_action_permission_restricted_features', [] );
-        ns()->option->set( 'ns_pos_action_permission_restricted_features', [ 'possoft.cart.product-price' ] );
+        ns()->option->set( 'ns_pos_action_permission_restricted_features', [ 'nexopos.cart.product-price' ] );
 
         $access = new PermissionAccess;
         $access->requester_id = $user->id;
         $access->granter_id = 1;
         $access->status = PermissionAccess::GRANTED;
-        $access->permission = 'possoft.cart.product-price';
+        $access->permission = 'nexopos.cart.product-price';
         $access->expired_at = now()->addMinute();
         $access->save();
 
-        $this->assertTrue( app( UsersService::class )->isPosActionAllowed( 'possoft.cart.product-price' ) );
+        $this->assertTrue( app( UsersService::class )->isPosActionAllowed( 'nexopos.cart.product-price' ) );
 
         ns()->option->set( 'ns_pos_action_permission_restricted_features', $previousFeatures );
         $user->delete();
@@ -262,7 +262,7 @@ final class AuthorizationHardeningTest extends TestCase
 
         $result = app( UsersService::class )->setUser( [
             'username' => 'authorization_test_' . Str::random( 8 ),
-            'email' => 'authorization_test_' . Str::random( 8 ) . '@possoft-test.invalid',
+            'email' => 'authorization_test_' . Str::random( 8 ) . '@nexopos-test.invalid',
             'password' => Str::random( 16 ),
             'active' => true,
         ] );

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_payments_types', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_payments_types', function ( Blueprint $table ) {
             $table->id();
             $table->string( 'label' );
             $table->string( 'identifier' );
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_payments_types' );
+        Schema::dropIfExists( 'nexopos_payments_types' );
     }
 };

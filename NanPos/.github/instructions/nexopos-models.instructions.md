@@ -1,7 +1,7 @@
 
 ## Model Events and Listeners Pattern
 
-**CRITICAL**: PosSOFT follows a strict event-driven architecture for model lifecycle hooks. When models use the `$dispatchesEvents` property, **NEVER** add logic directly in model `boot()` methods using static event listeners like `static::deleting()`, `static::created()`, etc.
+**CRITICAL**: NexoPOS follows a strict event-driven architecture for model lifecycle hooks. When models use the `$dispatchesEvents` property, **NEVER** add logic directly in model `boot()` methods using static event listeners like `static::deleting()`, `static::created()`, etc.
 
 ### ❌ WRONG Approach:
 ```php
@@ -103,7 +103,7 @@ class DeleteRelatedRecordsJob implements ShouldQueue
 3. **Reusability**: Services can be called from multiple places (controllers, commands, listeners)
 4. **Performance**: Jobs enable async operations for time-consuming tasks
 5. **Maintainability**: Clear separation between event handling and business logic
-6. **Event Flow**: Respects PosSOFT event architecture
+6. **Event Flow**: Respects NexoPOS event architecture
 
 ### Listener Responsibilities
 

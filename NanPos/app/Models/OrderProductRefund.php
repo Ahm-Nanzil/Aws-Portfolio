@@ -22,7 +22,7 @@ class OrderProductRefund extends NsModel
 
     const CONDITION_UNSPOILED = 'unspoiled';
 
-    protected $table = 'possoft_' . 'orders_products_refunds';
+    protected $table = 'nexopos_' . 'orders_products_refunds';
 
     public function unit()
     {

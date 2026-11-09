@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_users_widgets' ) || Schema::hasColumn( 'possoft_users_widgets', 'layout' ) ) {
+        if ( ! Schema::hasTable( 'nexopos_users_widgets' ) || Schema::hasColumn( 'nexopos_users_widgets', 'layout' ) ) {
             return;
         }
 
-        Schema::table( 'possoft_users_widgets', function ( Blueprint $table ) {
+        Schema::table( 'nexopos_users_widgets', function ( Blueprint $table ) {
             $table->string( 'layout', 3 )->nullable()->after( 'position' );
         } );
     }
@@ -25,11 +25,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if ( ! Schema::hasTable( 'possoft_users_widgets' ) || ! Schema::hasColumn( 'possoft_users_widgets', 'layout' ) ) {
+        if ( ! Schema::hasTable( 'nexopos_users_widgets' ) || ! Schema::hasColumn( 'nexopos_users_widgets', 'layout' ) ) {
             return;
         }
 
-        Schema::table( 'possoft_users_widgets', function ( Blueprint $table ) {
+        Schema::table( 'nexopos_users_widgets', function ( Blueprint $table ) {
             $table->dropColumn( 'layout' );
         } );
     }

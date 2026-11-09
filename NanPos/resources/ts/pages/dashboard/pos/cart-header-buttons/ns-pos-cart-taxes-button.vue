@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-button">
         <button @click="selectTaxGroup()" class="w-full h-10 px-3 outline-hidden flex items-center">
             <i class="las la-balance-scale-left"></i>
@@ -34,7 +34,7 @@ export default {
             /**
              * We'll check if the user has the right to manage taxes.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.taxes' );
+            await ActionPermissions.canProceed( 'nexopos.cart.taxes' );
 
             try {
                 const response              =   await new Promise<{}>( ( resolve, reject ) => {

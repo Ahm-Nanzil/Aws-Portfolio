@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::createIfMissing( 'possoft_transactions_balance_days', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions_balance_days', function ( Blueprint $table ) {
             $table->id();
             $table->decimal( 'opening_balance', 18, 5 )->default( 0 );
             $table->decimal( 'income', 18, 5 )->default( 0 );
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_transactions_balance_days' );
+        Schema::dropIfExists( 'nexopos_transactions_balance_days' );
     }
 };

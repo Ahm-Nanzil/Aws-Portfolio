@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="prompt-popup" :class="size" class="rounded-lg overflow-hidden w-[71.43vw] md:w-[42.86vw] flex flex-col shadow-lg">
         <div class="flex items-center justify-center flex-col flex-auto p-2">
             <h2 class="text-xl md:text-2xl font-body text-center">{{ title }}</h2>

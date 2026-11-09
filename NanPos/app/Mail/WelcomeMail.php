@@ -31,7 +31,7 @@ class WelcomeMail extends Mailable
     public function build()
     {
         return $this
-            ->subject( ns()->option->get( 'ns_notifications_registrations_user_email_title', __( '[PosSOFT] Your Account Has Been Created' ) ) )
+            ->subject( ns()->option->get( 'ns_notifications_registrations_user_email_title', __( '[PosSoft] Your Account Has Been Created' ) ) )
             ->from( ns()->option->get( 'ns_store_email', 'notifications@possoft.com' ) )
             ->markdown( 'mails/welcome-mail' );
     }

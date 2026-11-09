@@ -1,4 +1,4 @@
-/**
+﻿/**
  * will bootstrap time
  */
 import './shared/time';

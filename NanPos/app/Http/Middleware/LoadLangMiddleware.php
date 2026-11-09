@@ -31,7 +31,7 @@ class LoadLangMiddleware
                 $language = Auth::user()->attribute->language;
             }
 
-            App::setLocale( in_array( $language, array_keys( config( 'possoft.languages' ) ) ) ? $language : 'en' );
+            App::setLocale( in_array( $language, array_keys( config( 'nexopos.languages' ) ) ) ? $language : 'en' );
         } else {
             App::setLocale( ns()->option->get( 'ns_store_language', 'en' ) );
         }

@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { __ } from '~/libraries/lang';
 export default {
     name: 'ns-pos-dashboard-button',

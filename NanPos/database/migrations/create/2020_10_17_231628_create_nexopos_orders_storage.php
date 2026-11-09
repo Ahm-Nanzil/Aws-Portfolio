@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_orders_storage', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_orders_storage', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'product_id' )->nullable();
             $table->integer( 'unit_quantity_id' )->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_orders_storage' );
+        Schema::dropIfExists( 'nexopos_orders_storage' );
     }
 };

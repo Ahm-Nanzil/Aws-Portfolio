@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class UpdateCategoryTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.update.categories' ];
+    protected array $permissions = [ 'nexopos.update.categories' ];
 
     public string $name = 'update_product_category';
 

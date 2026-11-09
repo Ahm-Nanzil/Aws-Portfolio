@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="marketplace-shell w-full flex flex-col gap-6">
         <Teleport to="#marketplace-title-actions">
             <button
@@ -62,7 +62,7 @@
                                     <span
                                         class="flex h-5 w-5 items-center justify-center rounded-full border text-[10px] font-bold transition-colors"
                                         :class="isCategorySelected( category.key ) ? 'border-primary bg-primary text-white' : 'border-box-edge text-transparent group-hover:border-primary/30 group-hover:text-primary'">
-                                        ✓
+                                        âœ“
                                     </span>
                                 </button>
                             </div>
@@ -134,8 +134,8 @@
 </template>
 <script lang="ts">
 import NsMarketplaceItem from './ns-marketplace-item.vue';
-import NsMypossoftLicenseSelection from './ns-mypossoft-license-selection.vue';
-import NsMypossoft from './ns-mypossoft.vue';
+import NsMynexoposLicenseSelection from './ns-mynexopos-license-selection.vue';
+import NsMynexopos from './ns-mynexopos.vue';
 import NsMarketplaceSettings from './ns-marketplace-settings.vue';
 
 declare const nsSnackBar;
@@ -308,7 +308,7 @@ export default {
 
         handleInstall( item: Record<string, any> ) {
             if ( ! this.isConnected ) {
-                return Popup.show( NsMypossoft )
+                return Popup.show( NsMynexopos )
             }
 
             item.isInstalling = true;
@@ -318,7 +318,7 @@ export default {
                     try {
                         console.log({ licenses})
                         const license = await new Promise( ( resolve, reject ) => {
-                            Popup.show( NsMypossoftLicenseSelection, { item, licenses, resolve, reject })
+                            Popup.show( NsMynexoposLicenseSelection, { item, licenses, resolve, reject })
                         });
     
                         this.assignLicense( license, item )
@@ -400,7 +400,7 @@ export default {
 
         handleBuy( item ) {
             if ( ! this.isConnected ) {
-                return Popup.show( NsMypossoft )
+                return Popup.show( NsMynexopos )
             }
 
             item.isAddingToCart = true;
@@ -460,7 +460,7 @@ export default {
     },
     mounted() {
         if ( this.authenticate ) {
-            Popup.show( NsMypossoft );
+            Popup.show( NsMynexopos );
         }
 
         this.loadItems();

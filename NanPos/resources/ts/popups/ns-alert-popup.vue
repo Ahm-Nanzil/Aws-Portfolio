@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="alert-popup" :class="size" class="rounded-lg overflow-hidden w-[85.71vw] md:w-[57.14vw] lg:w-[42.86vw] flex flex-col shadow-lg">
         <div class="flex items-center justify-center flex-col flex-auto p-4">
             <h2 class="text-xl md:text-2xl font-body text-center" v-if="title">{{ title }}</h2>

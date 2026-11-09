@@ -41,7 +41,7 @@ class OllamaTranslateCommand extends Command
         }
 
         if ( $baseLanguage === 'all' ) {
-            $lang = config( 'possoft.languages', [] );
+            $lang = config( 'nexopos.languages', [] );
 
             foreach ( $lang as $code => $name ) {
 
@@ -79,8 +79,8 @@ class OllamaTranslateCommand extends Command
     {
         $basename = basename( $file );
         $targetLanguage = Str::beforeLast( $basename, '.json' );
-        $targetLanguageName = config( "possoft.languages.{$targetLanguage}", $targetLanguage );
-        $baseLanguageName = config( "possoft.languages.{$baseLanguage}", $baseLanguage );
+        $targetLanguageName = config( "nexopos.languages.{$targetLanguage}", $targetLanguage );
+        $baseLanguageName = config( "nexopos.languages.{$baseLanguage}", $baseLanguage );
         $force = (bool) $this->option( 'force' );
         $dry = (bool) $this->option( 'dry' );
         $limit = $this->option( 'limit' ) !== null ? (int) $this->option( 'limit' ) : null;

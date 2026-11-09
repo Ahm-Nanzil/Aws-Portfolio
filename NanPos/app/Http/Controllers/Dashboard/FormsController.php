@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/

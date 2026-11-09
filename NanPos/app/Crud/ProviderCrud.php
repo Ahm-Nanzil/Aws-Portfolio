@@ -25,7 +25,7 @@ class ProviderCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_providers';
+    protected $table = 'nexopos_providers';
 
     /**
      * base route name
@@ -82,10 +82,10 @@ class ProviderCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.create.providers',
-        'read' => 'possoft.read.providers',
-        'update' => 'possoft.update.providers',
-        'delete' => 'possoft.delete.providers',
+        'create' => 'nexopos.create.providers',
+        'read' => 'nexopos.read.providers',
+        'update' => 'nexopos.update.providers',
+        'delete' => 'nexopos.delete.providers',
     ];
 
     /**

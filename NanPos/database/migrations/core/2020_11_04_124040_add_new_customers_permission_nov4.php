@@ -18,7 +18,7 @@ return new class extends Migration
         return false;
     }
 
-    private $permission = 'possoft.customers.manage-account-history';
+    private $permission = 'nexopos.customers.manage-account-history';
 
     /**
      * Run the migrations.
@@ -38,8 +38,8 @@ return new class extends Migration
         }
 
         Role::namespace( 'admin' )->addPermissions( $this->permission );
-        Role::namespace( 'possoft.store.administrator' )->addPermissions( $this->permission );
-        Role::namespace( 'possoft.store.cashier' )->addPermissions( $this->permission );
+        Role::namespace( 'nexopos.store.administrator' )->addPermissions( $this->permission );
+        Role::namespace( 'nexopos.store.cashier' )->addPermissions( $this->permission );
     }
 
     /**
@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_permissions' ) ) {
+        if ( Schema::hasTable( 'nexopos_permissions' ) ) {
             $permission = Permission::namespace( $this->permission );
 
             if ( $permission instanceof Permission ) {

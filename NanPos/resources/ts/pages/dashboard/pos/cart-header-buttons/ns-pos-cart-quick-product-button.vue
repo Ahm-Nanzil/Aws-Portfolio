@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-button" v-if="options.ns_pos_quick_product === 'yes'">
         <button @click="openAddQuickProduct()" class="w-full h-10 px-3 outline-hidden flex items-center">
             <i class="las la-plus"></i>
@@ -35,7 +35,7 @@ export default {
             /**
              * We'll check if the user has the right to add a quick product.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.products' );
+            await ActionPermissions.canProceed( 'nexopos.cart.products' );
             
             try {
                 const promise   =   await new Promise( ( resolve, reject ) => {

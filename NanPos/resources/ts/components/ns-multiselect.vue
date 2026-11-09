@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col ns-multiselect" :class="hasError ? 'has-error' : 'is-pristine'">
         <label :for="field.name"  class="block mb-1 leading-5 font-medium"><slot></slot></label>
         <div class="flex flex-col">

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow-xl rounded overflow-hidden w-[85.71vw] md:w-[57.14vw] lg:w-[42.86vw] flex flex-col border border-box-edge bg-box-background text-fontcolor">
         <div class="border-b border-box-edge px-6 py-5 bg-box-elevation-background">
             <div class="flex items-center gap-4">
@@ -6,7 +6,7 @@
                     <i class="las la-shield-alt text-2xl"></i>
                 </div>
                 <div class="min-w-0">
-                    <h1 class="text-2xl font-bold text-fontcolor leading-tight">{{ __( 'My PosSOFT' ) }}</h1>
+                    <h1 class="text-2xl font-bold text-fontcolor leading-tight">{{ __( 'PosSoft Marketplace' ) }}</h1>
                     <p class="text-sm text-fontcolor-soft mt-1">{{ __( 'Authenticate to install modules' ) }}</p>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                         <div>
                             <h4 class="text-sm font-medium text-fontcolor">{{ __( 'Socket Features' ) }}</h4>
                             <p class="mt-1 text-xs leading-5 text-fontcolor-soft">
-                                {{ __( 'These are useful to use the Barcode Scanner Utility on PosSOFT.' ) }}
+                                {{ __( 'These are useful to use the Barcode Scanner Utility on PosSoft.' ) }}
                             </p>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
             <div class="mt-5 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-3">
                 <div class="text-xs text-fontcolor-soft flex items-center gap-2">
                     <i class="las la-lock"></i>
-                    <span>{{ __( 'Your credentials are handled by My PosSOFT.' ) }}</span>
+                    <span>{{ __( 'Your credentials are handled by My PosSoft.' ) }}</span>
                 </div>
                 <ns-button
                     :href="authorizationUrl"
@@ -90,7 +90,7 @@
                     <span class="flex items-center justify-center gap-2">
                         <i v-if="isOpening" class="las la-sync animate-spin"></i>
                         <i v-else class="las la-external-link-alt"></i>
-                        <span>{{ isOpening ? __( 'Opening My PosSOFT...' ) : __( 'Go to My PosSOFT' ) }}</span>
+                        <span>{{ isOpening ? __( 'Opening My PosSoft...' ) : __( 'Go to PosSoft Marketplace' ) }}</span>
                     </span>
                 </ns-button>
             </div>

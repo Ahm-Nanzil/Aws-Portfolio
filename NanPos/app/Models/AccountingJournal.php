@@ -15,7 +15,7 @@ class AccountingJournal extends NsModel
 
     public const STATUS_REVERSED = 'reversed';
 
-    protected $table = 'possoft_accounting_journals';
+    protected $table = 'nexopos_accounting_journals';
 
     protected $fillable = [
         'source_type',

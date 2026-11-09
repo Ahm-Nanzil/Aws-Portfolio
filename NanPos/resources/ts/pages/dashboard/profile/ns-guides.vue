@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="p-2 flex flex-col gap-4">
         <h1 class="text-xl font-bold">{{ __( 'Completed Guides' ) }}</h1>
         <div class="flex gap-2 flex-col">

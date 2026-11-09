@@ -17,7 +17,7 @@ class OrderTax extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_taxes';
+    protected $table = 'nexopos_' . 'orders_taxes';
 
     public $timestamps = false;
 

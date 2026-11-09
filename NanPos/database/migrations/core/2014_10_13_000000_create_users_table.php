@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_users' ) ) {
-            Schema::create( 'possoft_users', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_users' ) ) {
+            Schema::create( 'nexopos_users', function ( Blueprint $table ) {
                 $table->increments( 'id' );
                 $table->string( 'username' );
                 $table->boolean( 'active' )->default( false );
@@ -59,6 +59,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_users' );
+        Schema::dropIfExists( 'nexopos_users' );
     }
 };

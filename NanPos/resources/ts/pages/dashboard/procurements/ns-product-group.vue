@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col px-4 w-full">
         <div class="md:-mx-4 flex flex-col md:flex-row">
             <div class="md:px-4 w-full">

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-button">
         <button @click="openNotePopup()" class="w-full h-10 px-3 outline-hidden">
             <i class="las la-comment"></i>
@@ -34,7 +34,7 @@ export default {
             /**
              * We'll ensure the user has the right to add comments to an order.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.comments' );
+            await ActionPermissions.canProceed( 'nexopos.cart.comments' );
             
             try {
                 const response  =   await new Promise<{}>( ( resolve, reject ) => {

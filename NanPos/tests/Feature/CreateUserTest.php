@@ -187,7 +187,7 @@ class CreateUserTest extends TestCase
 
         $firstRole = Role::where( 'namespace', Role::ADMIN )->first();
 
-        $firstRole->users()->where( 'possoft_users.id', '<>', Auth::id() )->limit( 1 )->get()->each( function ( User $user ) {
+        $firstRole->users()->where( 'nexopos_users.id', '<>', Auth::id() )->limit( 1 )->get()->each( function ( User $user ) {
             $this->attemptAuthenticate( $user );
 
             /**
@@ -353,7 +353,7 @@ class CreateUserTest extends TestCase
                  * those routes.
                  */
                 if ( preg_match( '/\{(.+)\}/', $uri ) === 0 && ! in_array( $uri, [
-                    'dashboard/oauth/mypossoft/callback',
+                    'dashboard/oauth/mynexopos/callback',
                 ] ) ) {
                     $response = $this
                         ->actingAs( $user )

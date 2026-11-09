@@ -13,7 +13,7 @@ use Laravel\Mcp\Response;
 
 class UploadMediaTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.upload.medias' ];
+    protected array $permissions = [ 'nexopos.upload.medias' ];
 
     public string $name = 'upload_media';
 

@@ -16,7 +16,7 @@ class AdService
     {
         return Cache::remember( 'nexoplatform_ads', 60 * 60 * 24, function () {
             try {
-                $response = Http::timeout( 5 )->get( 'https://my.possoft.com/api/nexoplatform/ads' );
+                $response = Http::timeout( 5 )->get( 'https://my.nexopos.com/api/nexoplatform/ads' );
 
                 if ( $response->successful() ) {
                     return $response->json();
@@ -74,7 +74,7 @@ class AdService
         $ads = [
             [
                 'title' => __( 'Need Something Specific?' ),
-                'message' => __( 'Check out our store for exclusive PosSOFT modules.' ),
+                'message' => __( 'Check out our store for exclusive NexoPOS modules.' ),
                 'icon' => 'la-store',
                 'url' => ns()->route( 'ns.dashboard.modules-marketplace' ),
                 'routes' => [],
@@ -82,7 +82,7 @@ class AdService
             ], [
                 'title' => __( 'Secure Sensitive Operations' ),
                 'message' => __( 'Not every actions should be granted to cashiers.' ),
-                'url' => 'https://my.possoft.com/en/marketplace/item/possoft-authorizer',
+                'url' => 'https://my.nexopos.com/en/marketplace/item/nexopos-authorizer',
                 'strict' => false,
             ],
         ];
@@ -91,7 +91,7 @@ class AdService
 
         if ( $marketplaceService->testConnection() ) {
             $ads[] = [
-                'title' => __( 'New to PosSOFT?' ),
+                'title' => __( 'New to NexoPOS?' ),
                 'message' => __( 'Connect your store to our marketplace and discover new modules.' ),
                 'icon' => 'la-plug',
                 'url' => ns()->route( 'ns.dashboard.modules-marketplace' ),

@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import { BehaviorSubject } from 'rxjs';
 import { nsHttpClient, nsSnackBar } from '../bootstrap';
 import FormValidation from '../libraries/form-validation';

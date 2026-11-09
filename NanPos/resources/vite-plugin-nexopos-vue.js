@@ -1,20 +1,20 @@
 import * as VueExports from "vue";
 
-const virtualModuleId = "virtual:possoft-vue-runtime";
+const virtualModuleId = "virtual:nexopos-vue-runtime";
 const resolvedVirtualModuleId = `\0${virtualModuleId}`;
 const validExportName = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 
 /**
  * Vite plugin that rewrites every `import … from 'vue'` in a module build to
- * the shared PosSOFT Vue runtime exposed by resources/ts/vue-runtime.ts
+ * the shared NexoPOS Vue runtime exposed by resources/ts/vue-runtime.ts
  * (`window.ns.vue` / `window.NexoPOSVue`).
  *
  * Modules keep normal Vue SFC + `import { createApp, ref } from 'vue'` DX while
  * sharing a single Vue object with core (no dual-Vue identity issues).
  */
-export function possoftVueRuntime() {
+export function nexoposVueRuntime() {
     return {
-        name: "possoft-vue-runtime",
+        name: "nexopos-vue-runtime",
         enforce: "pre",
         resolveId(source) {
             if (source === "vue" || source === "vue/dist/vue.esm-bundler" || source === "vue/dist/vue.esm-bundler.js") {
@@ -36,7 +36,7 @@ const runtime = globalThis.ns?.vue ?? globalThis.NexoPOSVue;
 
 if (!runtime) {
     throw new Error(
-        "The PosSOFT Vue runtime is unavailable. Ensure resources/ts/vue-runtime.ts is loaded (via the host layout) before module assets."
+        "The NexoPOS Vue runtime is unavailable. Ensure resources/ts/vue-runtime.ts is loaded (via the host layout) before module assets."
     );
 }
 

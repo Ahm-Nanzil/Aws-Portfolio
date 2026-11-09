@@ -1,4 +1,4 @@
-<template>
+﻿<template>
 	<div class="flex flex-col gap-4">
 		<div v-if="loading" class="flex flex-col items-center justify-center gap-2 text-fontcolor-soft">
 			<ns-spinner size="24" border="4"></ns-spinner>

@@ -18,6 +18,6 @@ class ProfileWidget extends WidgetService
     {
         $this->name = __( 'Profile' );
         $this->description = __( 'Will display a profile widget with user stats.' );
-        $this->permission = 'possoft.see.profile-widget';
+        $this->permission = 'nexopos.see.profile-widget';
     }
 }

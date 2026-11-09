@@ -25,7 +25,7 @@ class Coupon extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'coupons';
+    protected $table = 'nexopos_' . 'coupons';
 
     const TYPE_PERCENTAGE = 'percentage_discount';
 

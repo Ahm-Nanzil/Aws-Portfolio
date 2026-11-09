@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 export default defineComponent({
     name: 'ns-print-label-settings',
     props: [ 'popup' ],

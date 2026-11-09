@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Will bootstrap time and 
  * start counting
  */

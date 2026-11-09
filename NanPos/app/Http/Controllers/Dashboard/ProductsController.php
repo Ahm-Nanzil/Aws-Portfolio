@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -93,7 +93,7 @@ class ProductsController extends DashboardController
 
     public function convertUnits( Request $request, Product $product )
     {
-        ns()->restrict( [ 'possoft.convert.products-units' ] );
+        ns()->restrict( [ 'nexopos.convert.products-units' ] );
 
         return $this->productService->convertUnitQuantities(
             product: $product,
@@ -332,7 +332,7 @@ class ProductsController extends DashboardController
 
     public function editProduct( Product $product )
     {
-        ns()->restrict( [ 'possoft.update.products' ] );
+        ns()->restrict( [ 'nexopos.update.products' ] );
 
         return View::make( 'pages.dashboard.products.create', [
             'title' => __( 'Edit a product' ),
@@ -350,7 +350,7 @@ class ProductsController extends DashboardController
 
     public function createProduct()
     {
-        ns()->restrict( [ 'possoft.create.products' ] );
+        ns()->restrict( [ 'nexopos.create.products' ] );
 
         return View::make( 'pages.dashboard.products.create', [
             'title' => __( 'Create a product' ),
@@ -456,7 +456,7 @@ class ProductsController extends DashboardController
 
     public function deleteUnitQuantity( ProductUnitQuantity $unitQuantity )
     {
-        ns()->restrict( [ 'possoft.delete.products-units', 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.delete.products-units', 'nexopos.make.products-adjustments' ] );
 
         if ( $unitQuantity->quantity > 0 ) {
             $this->productService->stockAdjustment( ProductHistory::ACTION_DELETED, [
@@ -477,7 +477,7 @@ class ProductsController extends DashboardController
 
     public function createAdjustment( Request $request )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         $validator = Validator::make( $request->all(), [
             'products' => 'required',
@@ -752,7 +752,7 @@ class ProductsController extends DashboardController
 
     public function saveDraftAdjustment( Request $request )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         $validator = Validator::make( $request->all(), [
             'products' => 'required|array',
@@ -777,14 +777,14 @@ class ProductsController extends DashboardController
 
     public function getAdjustment( ProductAdjustment $adjustment )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         return $adjustment->load( 'items' );
     }
 
     public function updateDraftAdjustment( ProductAdjustment $adjustment, Request $request )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         if ( $adjustment->status !== ProductAdjustment::STATUS_DRAFT ) {
             throw new NotAllowedException( __( 'Only draft adjustments can be updated.' ) );
@@ -814,7 +814,7 @@ class ProductsController extends DashboardController
 
     public function executeAdjustment( ProductAdjustment $adjustment )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         $results = $this->productService->executeAdjustmentDraft( $adjustment );
 
@@ -827,7 +827,7 @@ class ProductsController extends DashboardController
 
     public function deleteDraftAdjustment( ProductAdjustment $adjustment )
     {
-        ns()->restrict( [ 'possoft.make.products-adjustments' ] );
+        ns()->restrict( [ 'nexopos.make.products-adjustments' ] );
 
         if ( $adjustment->status !== ProductAdjustment::STATUS_DRAFT ) {
             throw new NotAllowedException( __( 'Only draft adjustments can be deleted.' ) );

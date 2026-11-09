@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -258,7 +258,7 @@ class TransactionController extends DashboardController
 
     public function resetDefaultAccounts( Request $request )
     {
-        ns()->restrict( [ 'possoft.create.transactions-account' ] );
+        ns()->restrict( [ 'nexopos.create.transactions-account' ] );
 
         return $this->transactionService->createDefaultAccounts();
     }

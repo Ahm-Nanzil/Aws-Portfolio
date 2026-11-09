@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table( 'possoft_products_categories', function ( Blueprint $table ) {
-            if ( ! Schema::hasColumn( 'possoft_products_categories', 'scale_range_id' ) ) {
+        Schema::table( 'nexopos_products_categories', function ( Blueprint $table ) {
+            if ( ! Schema::hasColumn( 'nexopos_products_categories', 'scale_range_id' ) ) {
                 $table->unsignedBigInteger( 'scale_range_id' )->nullable()->after( 'parent_id' );
                 $table->foreign( 'scale_range_id' )
                     ->references( 'id' )
-                    ->on( 'possoft_scale_ranges' )
+                    ->on( 'nexopos_scale_ranges' )
                     ->onDelete( 'set null' );
             }
         } );
@@ -27,8 +27,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table( 'possoft_products_categories', function ( Blueprint $table ) {
-            if ( Schema::hasColumn( 'possoft_products_categories', 'scale_range_id' ) ) {
+        Schema::table( 'nexopos_products_categories', function ( Blueprint $table ) {
+            if ( Schema::hasColumn( 'nexopos_products_categories', 'scale_range_id' ) ) {
                 $table->dropForeign( [ 'scale_range_id' ] );
                 $table->dropColumn( 'scale_range_id' );
             }

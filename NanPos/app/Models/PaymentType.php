@@ -9,7 +9,7 @@ class PaymentType extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_payments_types';
+    protected $table = 'nexopos_payments_types';
 
     protected function casts(): array
     {

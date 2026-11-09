@@ -47,7 +47,7 @@ class CustomerCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_users';
+    protected $table = 'nexopos_users';
 
     /**
      * base route name
@@ -82,9 +82,9 @@ class CustomerCrud extends CrudService
      */
     public $relations = [
         'leftJoin' => [
-            [ 'possoft_customers_groups as group', 'possoft_users.group_id', '=', 'group.id' ],
+            [ 'nexopos_customers_groups as group', 'nexopos_users.group_id', '=', 'group.id' ],
         ],
-        [ 'possoft_users as user', 'user.id', '=', 'possoft_users.author_id' ],
+        [ 'nexopos_users as user', 'user.id', '=', 'nexopos_users.author_id' ],
     ];
 
     /**
@@ -128,10 +128,10 @@ class CustomerCrud extends CrudService
     public $fillable = [];
 
     protected $permissions = [
-        'create' => 'possoft.create.customers',
-        'read' => 'possoft.read.customers',
-        'update' => 'possoft.update.customers',
-        'delete' => 'possoft.delete.customers',
+        'create' => 'nexopos.create.customers',
+        'read' => 'nexopos.read.customers',
+        'update' => 'nexopos.update.customers',
+        'delete' => 'nexopos.delete.customers',
     ];
 
     private Options $options;
@@ -181,9 +181,9 @@ class CustomerCrud extends CrudService
 
     public function hook( $query ): void
     {
-        $query->join( 'possoft_users_roles_relations', 'possoft_users.id', '=', 'possoft_users_roles_relations.user_id' );
-        $query->join( 'possoft_roles', 'possoft_roles.id', '=', 'possoft_users_roles_relations.role_id' );
-        $query->where( 'possoft_roles.namespace', Role::STORECUSTOMER );
+        $query->join( 'nexopos_users_roles_relations', 'nexopos_users.id', '=', 'nexopos_users_roles_relations.user_id' );
+        $query->join( 'nexopos_roles', 'nexopos_roles.id', '=', 'nexopos_users_roles_relations.role_id' );
+        $query->where( 'nexopos_roles.namespace', Role::STORECUSTOMER );
         $query->orderBy( 'id', 'desc' );
     }
 
@@ -261,7 +261,7 @@ class CustomerCrud extends CrudService
                             value: $entry->phone ?? '',
                             validation: collect( [
                                 ns()->option->get( 'ns_customers_force_unique_phone', 'no' ) === 'yes' ? (
-                                    $entry instanceof Customer && ! empty( $entry->phone ) ? Rule::unique( 'possoft_users', 'phone' )->ignore( $entry->id ) : Rule::unique( 'possoft_users', 'phone' )
+                                    $entry instanceof Customer && ! empty( $entry->phone ) ? Rule::unique( 'nexopos_users', 'phone' )->ignore( $entry->id ) : Rule::unique( 'nexopos_users', 'phone' )
                                 ) : '',
                             ] )->toArray(),
                             description: __( 'Provide the customer phone number' ),
@@ -327,7 +327,7 @@ class CustomerCrud extends CrudService
          */
         if ( empty( $inputs[ 'email' ] ) ) {
             $domain = parse_url( url( '/' ) );
-            $lastCustomer = User::orderBy( 'possoft_users.id', 'desc' )->first();
+            $lastCustomer = User::orderBy( 'nexopos_users.id', 'desc' )->first();
 
             if ( $lastCustomer instanceof User ) {
                 $lastCustomerId = $lastCustomer->id + 1;
@@ -335,7 +335,7 @@ class CustomerCrud extends CrudService
                 $lastCustomerId = 1;
             }
 
-            $inputs[ 'email' ] = 'customer-' . $lastCustomerId + 1 . '@' . ( $domain[ 'host' ] ?? 'possoft.com' );
+            $inputs[ 'email' ] = 'customer-' . $lastCustomerId + 1 . '@' . ( $domain[ 'host' ] ?? 'nexopos.com' );
         }
 
         /**

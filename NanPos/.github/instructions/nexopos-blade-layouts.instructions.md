@@ -1,14 +1,14 @@
-# PosSOFT Blade Layout System Guide
+# NexoPOS Blade Layout System Guide
 
-This comprehensive guide explains how to use the Blade templating system in PosSOFT to create layouts, manage headers and titles, and implement various page structures.
+This comprehensive guide explains how to use the Blade templating system in NexoPOS to create layouts, manage headers and titles, and implement various page structures.
 
 ## Overview
 
-PosSOFT uses Laravel's Blade templating engine with a structured layout system that provides consistent UI patterns across the application. The system is built around extendable layouts that handle common UI elements like navigation, headers, titles, and footers.
+NexoPOS uses Laravel's Blade templating engine with a structured layout system that provides consistent UI patterns across the application. The system is built around extendable layouts that handle common UI elements like navigation, headers, titles, and footers.
 
 ## Layout Structure
 
-The layout files are located in `resources/views/layout/` and provide the foundation for all pages in PosSOFT.
+The layout files are located in `resources/views/layout/` and provide the foundation for all pages in NexoPOS.
 
 ### Core Layout Files
 
@@ -563,4 +563,4 @@ modules/YourModule/
 @endsection
 ```
 
-This layout system provides flexibility while maintaining consistency across the PosSOFT application, allowing developers to create professional-looking pages with minimal effort.
+This layout system provides flexibility while maintaining consistency across the NexoPOS application, allowing developers to create professional-looking pages with minimal effort.

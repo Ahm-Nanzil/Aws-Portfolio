@@ -44,7 +44,7 @@ class ProductUnitQuantity extends NsModel
 {
     use BroadcastsEvents, HasFactory;
 
-    protected $table = 'possoft_' . 'products_unit_quantities';
+    protected $table = 'nexopos_' . 'products_unit_quantities';
 
     protected $dispatchesEvents = [
         'created' => ProductUnitQuantityAfterCreatedEvent::class,

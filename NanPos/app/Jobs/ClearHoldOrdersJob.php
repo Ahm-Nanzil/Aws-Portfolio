@@ -79,7 +79,7 @@ class ClearHoldOrdersJob implements ShouldQueue
                 ),
             )->dispatchForGroup( [
                 'admin',
-                'possoft.store.administrator',
+                'nexopos.store.administrator',
             ] );
         }
     }

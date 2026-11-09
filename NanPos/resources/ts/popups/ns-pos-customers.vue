@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="ns-pos-customers" class="shadow-lg rounded-lg w-[95vw] h-[95vh] lg:w-[60vw] flex flex-col overflow-hidden">
         <div class="ns-header p-2 flex justify-between items-center border-b">
             <h3 class="font-semibold">{{ __( 'Customers' ) }}</h3>
@@ -10,7 +10,7 @@
             <ns-tabs :active="activeTab" @changeTab="activeTab = $event">
                 <ns-tabs-item identifier="create-customers" :label="__( 'New Customer' )">
                     <ns-crud-form
-                        v-if="userCan( 'possoft.create.customers' )"
+                        v-if="userCan( 'nexopos.create.customers' )"
                         @updated="prefillForm( $event )"
                         @save="handleSavedCustomer( $event )"
                         submit-url="/api/crud/ns.customers"
@@ -18,7 +18,7 @@
                         <template v-slot:title>{{ __( 'Customer Name' ) }}</template>
                         <template v-slot:save>{{ __( 'Save Customer' ) }}</template>
                     </ns-crud-form>
-                    <div v-if="! userCan( 'possoft.create.customers' )" class="h-full flex-col w-full flex items-center justify-center text-font">
+                    <div v-if="! userCan( 'nexopos.create.customers' )" class="h-full flex-col w-full flex items-center justify-center text-font">
                         <i class="lar la-hand-paper ns-icon text-6xl"></i>
                         <h3 class="font-medium text-2xl">{{ __( 'Not Authorized' ) }}</h3>
                         <p>{{ __( 'Creating customers has been explicitly disabled from the settings.' ) }}</p>
@@ -195,7 +195,7 @@
                                                                     <h3>{{ coupon.name }}</h3>
                                                                     <div class="">
                                                                         <ul class="-mx-2 flex">
-                                                                            <li class="text-xs text-fontcolor px-2">{{ __( 'Usage :' ) }} {{ coupon.usage }}/{{ coupon.limit_usage === 0 ? '∞' : coupon.limit_usage }}</li>
+                                                                            <li class="text-xs text-fontcolor px-2">{{ __( 'Usage :' ) }} {{ coupon.usage }}/{{ coupon.limit_usage === 0 ? 'âˆž' : coupon.limit_usage }}</li>
                                                                             <li class="text-xs text-fontcolor px-2">{{ __( 'Code :' ) }} {{ coupon.code }}</li>
                                                                         </ul>
                                                                     </div>

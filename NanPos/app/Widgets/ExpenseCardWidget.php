@@ -12,6 +12,6 @@ class ExpenseCardWidget extends WidgetService
     {
         $this->name = __( 'Expense Card Widget' );
         $this->description = __( 'Will display a card of current and overall expenses.' );
-        $this->permission = 'possoft.see.expense-card-widget';
+        $this->permission = 'nexopos.see.expense-card-widget';
     }
 }

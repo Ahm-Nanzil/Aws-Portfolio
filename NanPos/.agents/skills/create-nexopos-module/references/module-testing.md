@@ -1,6 +1,6 @@
-# Testing PosSOFT modules
+# Testing NexoPOS modules
 
-Module tests belong to the module, but they run inside the host PosSOFT application. This is the default for modules that depend on PosSOFT services, models, routes, migrations, permissions, options, events, or module discovery.
+Module tests belong to the module, but they run inside the host NexoPOS application. This is the default for modules that depend on NexoPOS services, models, routes, migrations, permissions, options, events, or module discovery.
 
 ## Required architecture
 
@@ -61,7 +61,7 @@ abstract class TestCase extends ApplicationTestCase
 
 Do not duplicate `CreatesApplication` merely to locate the host bootstrap. The shared test bootstrap owns application-root selection.
 
-Pure unit tests that do not need Laravel may extend `PHPUnit\Framework\TestCase`. Use `Tests\TestCase` for Eloquent, the database, routes, controllers, the service container, events, permissions, options, module activation, and other PosSOFT integrations.
+Pure unit tests that do not need Laravel may extend `PHPUnit\Framework\TestCase`. Use `Tests\TestCase` for Eloquent, the database, routes, controllers, the service container, events, permissions, options, module activation, and other NexoPOS integrations.
 
 ## Optional module PHPUnit configuration
 
@@ -98,7 +98,7 @@ The Laravel Artisan test command in this application already injects the root PH
 ## Isolation and database safety
 
 - Tests must establish their own activation, migration, permissions, options, factories, and records. Do not depend on another test file running first.
-- Prefer `LazilyRefreshDatabase` when it is compatible with the PosSOFT and module migration lifecycle.
+- Prefer `LazilyRefreshDatabase` when it is compatible with the NexoPOS and module migration lifecycle.
 - Use factory states and model assertions where available.
 - Create model data before enabling broad event or exception fakes.
 - Use SQLite only when the relevant application and module migrations support it. Otherwise, configure a dedicated test database.
@@ -109,7 +109,7 @@ The Laravel Artisan test command in this application already injects the root PH
 
 Do not migrate module tests to Pest to solve bootstrap problems. Pest runs on PHPUnit and uses the same bootstrap and Composer loaders, while this repository standardizes on PHPUnit classes.
 
-Orchestra Testbench is only appropriate when code is intentionally designed as a reusable Laravel package independent of PosSOFT. Do not recreate PosSOFT services and module discovery in a Testbench fixture for ordinary modules.
+Orchestra Testbench is only appropriate when code is intentionally designed as a reusable Laravel package independent of NexoPOS. Do not recreate NexoPOS services and module discovery in a Testbench fixture for ordinary modules.
 
 ## Review checklist
 

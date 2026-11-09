@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="pos-grid" class="flex-auto flex flex-col overflow-hidden">
         <div id="tools" class="flex pl-2" v-if="visibleSection === 'grid'">
             <div @click="switchTo( 'cart' )" class="switch-cart flex cursor-pointer rounded-tl-lg rounded-tr-lg px-3 py-2 border-t border-r border-l">
@@ -470,10 +470,10 @@ export default {
             POS.addToCart( product );
         },
 
-        inviteToMyPosSoftConnexion() {
+        inviteToMyNexoPOSConnexion() {
             nsNotice.info( 
                 __( 'Authentication Required' ),
-                __( 'You need to connect your installation to My PosSOFT for using websocket features.' ), {
+                __( 'You need to connect your installation to My PosSoft for using websocket features.' ), {
                 actions: {
                     close: {
                         type: 'info',

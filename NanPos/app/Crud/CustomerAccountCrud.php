@@ -33,7 +33,7 @@ class CustomerAccountCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_customers_account_history';
+    protected $table = 'nexopos_customers_account_history';
 
     /**
      * default slug
@@ -62,10 +62,10 @@ class CustomerAccountCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.customers.manage-account-history',
-        'read' => 'possoft.customers.manage-account-history',
-        'update' => 'possoft.customers.manage-account-history',
-        'delete' => 'possoft.customers.manage-account-history',
+        'create' => 'nexopos.customers.manage-account-history',
+        'read' => 'nexopos.customers.manage-account-history',
+        'update' => 'nexopos.customers.manage-account-history',
+        'delete' => 'nexopos.customers.manage-account-history',
     ];
 
     protected $queryFilters = [];
@@ -82,7 +82,7 @@ class CustomerAccountCrud extends CrudService
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
@@ -91,7 +91,7 @@ class CustomerAccountCrud extends CrudService
             [ User::class, 'user' ],
         ],
         'leftJoin' => [
-            [ 'possoft_orders as order', 'order.id', '=', 'possoft_customers_account_history.order_id' ],
+            [ 'nexopos_orders as order', 'order.id', '=', 'nexopos_customers_account_history.order_id' ],
         ],
     ];
 
@@ -109,7 +109,7 @@ class CustomerAccountCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [
@@ -187,7 +187,7 @@ class CustomerAccountCrud extends CrudService
         $this->queryFilters = [
             [
                 'type' => 'daterangepicker',
-                'name' => 'possoft_customers_account_history.created_at',
+                'name' => 'nexopos_customers_account_history.created_at',
                 'description' => __( 'Restrict the records by the creation date.' ),
                 'label' => __( 'Created Between' ),
             ], [
@@ -204,7 +204,7 @@ class CustomerAccountCrud extends CrudService
             ], [
                 'type' => 'select',
                 'label' => __( 'Author' ),
-                'name' => 'possoft_customers_account_history.author_id',
+                'name' => 'nexopos_customers_account_history.author_id',
                 'description' => __( 'Restrict the records by the author.' ),
                 'options' => Helper::toJsOptions( $UserClass::get(), [ 'id', 'username' ] ),
             ],
@@ -225,7 +225,7 @@ class CustomerAccountCrud extends CrudService
     public function hook( $query ): void
     {
         $query->orderBy( 'id', 'desc' );
-        $query->where( Hook::filter( 'ns-model-table', 'possoft_customers_account_history.customer_id' ), request()->query( 'customer_id' ) );
+        $query->where( Hook::filter( 'ns-model-table', 'nexopos_customers_account_history.customer_id' ), request()->query( 'customer_id' ) );
     }
 
     public function addFooterSummary( CrudBeforeExportEvent $event )

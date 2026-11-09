@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_products_categories' ) ) {
-            Schema::createIfMissing( 'possoft_products_categories', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_products_categories' ) ) {
+            Schema::createIfMissing( 'nexopos_products_categories', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->string( 'name' );
                 $table->integer( 'parent_id' )->default( 0 )->nullable();
@@ -43,8 +43,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_products_categories' ) ) {
-            Schema::dropIfExists( 'possoft_products_categories' );
+        if ( Schema::hasTable( 'nexopos_products_categories' ) ) {
+            Schema::dropIfExists( 'nexopos_products_categories' );
         }
     }
 };

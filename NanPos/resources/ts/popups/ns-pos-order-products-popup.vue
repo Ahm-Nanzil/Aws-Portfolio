@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { nsCurrency } from '~/filters/currency';
 import { nsHttpClient } from '~/bootstrap';
 import { __ } from '~/libraries/lang';

@@ -17,7 +17,7 @@ return new class extends Migration
         return false;
     }
 
-    const permissionName = 'possoft.make-payment.orders';
+    const permissionName = 'nexopos.make-payment.orders';
 
     /**
      * Run the migrations.
@@ -37,7 +37,7 @@ return new class extends Migration
         }
 
         Role::namespace( 'admin' )->addPermissions( $permission );
-        Role::namespace( 'possoft.store.administrator' )->addPermissions( $permission );
+        Role::namespace( 'nexopos.store.administrator' )->addPermissions( $permission );
     }
 
     /**
@@ -47,7 +47,7 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_permissions' ) ) {
+        if ( Schema::hasTable( 'nexopos_permissions' ) ) {
             $permission = Permission::namespace( self::permissionName );
             $permission->removeFromRoles();
         }

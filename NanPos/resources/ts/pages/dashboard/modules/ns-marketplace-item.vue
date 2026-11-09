@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow ns-box rounded flex flex-col">
         <div class="min-h-[100px] bg-red-200">
             <img :src="item.thumbnail" alt="Module Image" class="w-full h-32 object-cover rounded-t">

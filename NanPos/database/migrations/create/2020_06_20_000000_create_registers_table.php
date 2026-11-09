@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_registers' ) ) {
-            Schema::createIfMissing( 'possoft_registers', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_registers' ) ) {
+            Schema::createIfMissing( 'nexopos_registers', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->string( 'name' );
                 $table->string( 'status' )->default( 'closed' ); // open, closed, disabled
@@ -39,8 +39,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_registers' ) ) {
-            Schema::dropIfExists( 'possoft_registers' );
+        if ( Schema::hasTable( 'nexopos_registers' ) ) {
+            Schema::dropIfExists( 'nexopos_registers' );
         }
     }
 };

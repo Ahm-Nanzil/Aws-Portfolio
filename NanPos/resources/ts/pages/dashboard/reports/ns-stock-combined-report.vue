@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="report-section" class="px-4">
         <div class="flex -mx-2">
             <div class="px-2 flex -mx-2">

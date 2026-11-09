@@ -54,7 +54,7 @@ class OrderProduct extends NsModel
 
     const CONDITION_UNSPOILED = 'unspoiled';
 
-    protected $table = 'possoft_' . 'orders_products';
+    protected $table = 'nexopos_' . 'orders_products';
 
     protected $casts = [
         'id' => 'integer',

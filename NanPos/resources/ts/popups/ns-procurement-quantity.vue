@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow min-h-[40vh] w-[75vw] md:w-[60vw] lg:w-[60vw] xl:w-[40vw] relative">
         <div class="flex-shrink-0 flex p-2 border-b ns-box-header justify-between items-center">
             <h1 class="text-xl font-bold text-fontcolor text-center">{{ __( 'Define Quantity' ) }}</h1>

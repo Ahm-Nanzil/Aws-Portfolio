@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col flex-auto ns-select" v-if="field" :class="( hasError ? 'has-error' : 'is-pristine' )" :disabled="field.disabled">
         <label :for="field.name" class="block leading-5 font-medium"><slot></slot></label>
         <div :name="field.name" :class="( field.disabled ? 'cursor-not-allowed' : 'cursor-default' ) + ' ' + ( showResults ? 'rounded-t-md' : 'rounded-md')" 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg w-[85.71vw] lg:w-[60vw] ns-box overflow-hidden flex flex-col">
         <template v-if="unitQuantities.length > 0">
             <div class="p-2 border-b ns-box-header text-fontcolor text-center font-medium flex justify-between items-center">

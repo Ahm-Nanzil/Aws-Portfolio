@@ -18,6 +18,6 @@ class BestCustomersWidget extends WidgetService
     {
         $this->name = __( 'Best Customers' );
         $this->description = __( 'Will display all customers with the highest purchases.' );
-        $this->permission = 'possoft.see.best-customers-widget';
+        $this->permission = 'nexopos.see.best-customers-widget';
     }
 }

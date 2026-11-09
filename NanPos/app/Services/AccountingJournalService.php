@@ -401,7 +401,7 @@ class AccountingJournalService
             ->where( 'delivery_status', Procurement::STOCKED )
             ->where( 'payment_status', Procurement::PAYMENT_UNPAID )
             ->sum( 'cost' );
-        $customerDeposits = (float) DB::table( 'possoft_users' )
+        $customerDeposits = (float) DB::table( 'nexopos_users' )
             ->where( 'account_amount', '>', 0 )
             ->sum( 'account_amount' );
 

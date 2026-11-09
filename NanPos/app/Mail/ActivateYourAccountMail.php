@@ -31,7 +31,7 @@ class ActivateYourAccountMail extends Mailable
     public function build()
     {
         return $this
-            ->subject( ns()->option->get( 'ns_notifications_registrations_user_activate_title', __( '[PosSOFT] Activate Your Account' ) ) )
+            ->subject( ns()->option->get( 'ns_notifications_registrations_user_activate_title', __( '[PosSoft] Activate Your Account' ) ) )
             ->from( ns()->option->get( 'ns_store_email', 'notifications@possoft.com' ) )
             ->markdown( 'mails/activate-your-account-mail' );
     }

@@ -1,4 +1,4 @@
-export interface HttpStatusResponse {
+﻿export interface HttpStatusResponse {
     status: 'success' | 'error' | 'warning' | 'info';
     message: string;
     data?: {

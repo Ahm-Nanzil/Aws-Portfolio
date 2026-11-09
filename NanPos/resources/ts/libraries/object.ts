@@ -1,4 +1,4 @@
-export function insertBeforeKey(obj, key, newKey, value) {
+﻿export function insertBeforeKey(obj, key, newKey, value) {
     const newObj = {};
     Object.keys(obj).forEach((k) => {
       if (k === key) {

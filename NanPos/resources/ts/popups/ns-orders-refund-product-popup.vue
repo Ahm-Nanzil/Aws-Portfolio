@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-xl ns-box w-95vw md:w-[60vw] lg:w-[42.86vw] h-95vh md:h-[60vh] lg:h-[70vh] overflow-hidden flex flex-col">
         <div class="p-2 flex justify-between border-b ns-box-header items-center">
             <h3 class="text-semibold">{{ __( 'Products' ) }}</h3>

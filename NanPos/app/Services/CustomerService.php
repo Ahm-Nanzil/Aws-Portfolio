@@ -136,7 +136,7 @@ class CustomerService
              * Let's find if a similar customer exist using the provided email.
              */
             $customer = Customer::byEmail( $fields[ 'email' ] )
-                ->where( 'possoft_users.id', '<>', $id )
+                ->where( 'nexopos_users.id', '<>', $id )
                 ->first();
         }
 
@@ -548,7 +548,7 @@ class CustomerService
                     ),
                     identifier: 'coupon-issuing-issue-' . $reward->id,
                     url: ns()->route( 'ns.dashboard.rewards-edit', [ 'reward' => $reward->id ] ),
-                )->dispatchForGroupNamespaces( [ 'admin', 'possoft.store.administrator' ] );
+                )->dispatchForGroupNamespaces( [ 'admin', 'nexopos.store.administrator' ] );
             }
         }
     }

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="ns-best-cashiers" class="ns-box flex flex-auto flex-col shadow rounded-lg overflow-hidden">
         <div class="flex-auto">
             <div class="ns-box-header text-center border-b w-full flex justify-between items-center p-2">

@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class TaxGroupsResource extends AuthorizedResource
 {
-    protected array $permissions = [ 'possoft.read.taxes' ];
+    protected array $permissions = [ 'nexopos.read.taxes' ];
 
     protected string $uri = 'pos://resources/tax-groups';
 

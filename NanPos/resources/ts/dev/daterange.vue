@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import moment from 'moment';
 import { nsDaterangePicker } from '~/components/components';
 

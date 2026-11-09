@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 export default {
     template: '#ns-procurement-invoice',
     methods: {

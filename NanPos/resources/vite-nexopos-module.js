@@ -4,13 +4,13 @@ import vuePlugin from "@vitejs/plugin-vue";
 import tailwindcss from "@tailwindcss/vite";
 import mkcert from "vite-plugin-mkcert";
 import path from "node:path";
-import { possoftVueRuntime } from "./vite-plugin-possoft-vue.js";
+import { nexoposVueRuntime } from "./vite-plugin-nexopos-vue.js";
 
 /**
- * Shared Vite config factory for PosSOFT modules.
+ * Shared Vite config factory for NexoPOS modules.
  *
  * Ensures module builds:
- * - rewrite `vue` imports to the shared PosSOFT runtime
+ * - rewrite `vue` imports to the shared NexoPOS runtime
  * - compile `.vue` SFCs
  * - emit assets under Public/build with a Laravel Vite manifest
  *
@@ -63,7 +63,7 @@ export function defineNexoPOSModuleConfig(options) {
                 ...server,
             },
             plugins: [
-                possoftVueRuntime(),
+                nexoposVueRuntime(),
                 vuePlugin({
                     template: {
                         transformAssetUrls: {
@@ -99,4 +99,4 @@ export function defineNexoPOSModuleConfig(options) {
     };
 }
 
-export { possoftVueRuntime };
+export { nexoposVueRuntime };

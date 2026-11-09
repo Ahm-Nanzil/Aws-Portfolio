@@ -24,7 +24,7 @@ class PosProductResource extends JsonResource
         ] );
 
         $canEditPurchasePrice = $request->user() !== null
-            && Gate::forUser( $request->user() )->allows( 'possoft.pos.edit-purchase-price' );
+            && Gate::forUser( $request->user() )->allows( 'nexopos.pos.edit-purchase-price' );
 
         $product['unit_quantities'] = collect( $product['unit_quantities'] ?? [] )
             ->where( 'visible', true )

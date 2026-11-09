@@ -16,7 +16,7 @@ use Tests\TestCase;
 
 class McpAuthorizationSecurityTest extends TestCase
 {
-    public function test_tool_registration_requires_its_possoft_permission(): void
+    public function test_tool_registration_requires_its_nexopos_permission(): void
     {
         $user = Mockery::mock( User::class );
         $user->shouldReceive( 'allowedTo' )
@@ -29,7 +29,7 @@ class McpAuthorizationSecurityTest extends TestCase
         $this->assertFalse( ( new UpdateSettingsTool )->shouldRegister( $request ) );
     }
 
-    public function test_resource_registration_requires_its_possoft_permission(): void
+    public function test_resource_registration_requires_its_nexopos_permission(): void
     {
         $user = Mockery::mock( User::class );
         $user->shouldReceive( 'allowedTo' )

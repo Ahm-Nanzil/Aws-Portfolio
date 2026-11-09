@@ -13,24 +13,24 @@ return new class extends Migration
     public function up(): void
     {
         /**
-         * Rename columns on possoft_orders_products:
+         * Rename columns on nexopos_orders_products:
          * price_with_tax        → price_gross
          * price_without_tax     → price_net
          * total_price_with_tax  → total_price_gross
          * total_price_without_tax → total_price_net
          */
-        if ( Schema::hasTable( 'possoft_orders_products' ) ) {
-            Schema::table( 'possoft_orders_products', function ( Blueprint $table ) {
-                if ( Schema::hasColumn( 'possoft_orders_products', 'price_with_tax' ) ) {
+        if ( Schema::hasTable( 'nexopos_orders_products' ) ) {
+            Schema::table( 'nexopos_orders_products', function ( Blueprint $table ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'price_with_tax' ) ) {
                     $table->renameColumn( 'price_with_tax', 'price_gross' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'price_without_tax' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'price_without_tax' ) ) {
                     $table->renameColumn( 'price_without_tax', 'price_net' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'total_price_with_tax' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'total_price_with_tax' ) ) {
                     $table->renameColumn( 'total_price_with_tax', 'total_price_gross' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'total_price_without_tax' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'total_price_without_tax' ) ) {
                     $table->renameColumn( 'total_price_without_tax', 'total_price_net' );
                 }
             } );
@@ -40,8 +40,8 @@ return new class extends Migration
          * Rename option key ns_pos_price_with_tax → ns_pos_prefered_price
          * and map values: yes → gross_prices, no → net_prices
          */
-        if ( Schema::hasTable( 'possoft_options' ) ) {
-            DB::table( 'possoft_options' )
+        if ( Schema::hasTable( 'nexopos_options' ) ) {
+            DB::table( 'nexopos_options' )
                 ->where( 'key', 'ns_pos_price_with_tax' )
                 ->update( [
                     'key' => 'ns_pos_prefered_price',
@@ -52,8 +52,8 @@ return new class extends Migration
         /**
          * Also update any stored order settings that reference the old key
          */
-        if ( Schema::hasTable( 'possoft_orders_settings' ) ) {
-            DB::table( 'possoft_orders_settings' )
+        if ( Schema::hasTable( 'nexopos_orders_settings' ) ) {
+            DB::table( 'nexopos_orders_settings' )
                 ->where( 'key', 'ns_pos_price_with_tax' )
                 ->update( [
                     'key' => 'ns_pos_prefered_price',
@@ -67,25 +67,25 @@ return new class extends Migration
      */
     public function down(): void
     {
-        if ( Schema::hasTable( 'possoft_orders_products' ) ) {
-            Schema::table( 'possoft_orders_products', function ( Blueprint $table ) {
-                if ( Schema::hasColumn( 'possoft_orders_products', 'price_gross' ) ) {
+        if ( Schema::hasTable( 'nexopos_orders_products' ) ) {
+            Schema::table( 'nexopos_orders_products', function ( Blueprint $table ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'price_gross' ) ) {
                     $table->renameColumn( 'price_gross', 'price_with_tax' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'price_net' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'price_net' ) ) {
                     $table->renameColumn( 'price_net', 'price_without_tax' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'total_price_gross' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'total_price_gross' ) ) {
                     $table->renameColumn( 'total_price_gross', 'total_price_with_tax' );
                 }
-                if ( Schema::hasColumn( 'possoft_orders_products', 'total_price_net' ) ) {
+                if ( Schema::hasColumn( 'nexopos_orders_products', 'total_price_net' ) ) {
                     $table->renameColumn( 'total_price_net', 'total_price_without_tax' );
                 }
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_options' ) ) {
-            DB::table( 'possoft_options' )
+        if ( Schema::hasTable( 'nexopos_options' ) ) {
+            DB::table( 'nexopos_options' )
                 ->where( 'key', 'ns_pos_prefered_price' )
                 ->update( [
                     'key' => 'ns_pos_price_with_tax',
@@ -93,8 +93,8 @@ return new class extends Migration
                 ] );
         }
 
-        if ( Schema::hasTable( 'possoft_orders_settings' ) ) {
-            DB::table( 'possoft_orders_settings' )
+        if ( Schema::hasTable( 'nexopos_orders_settings' ) ) {
+            DB::table( 'nexopos_orders_settings' )
                 ->where( 'key', 'ns_pos_prefered_price' )
                 ->update( [
                     'key' => 'ns_pos_price_with_tax',

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -236,7 +236,7 @@ class ProcurementController extends DashboardController
      */
     public function createProcurement()
     {
-        ns()->restrict( [ 'possoft.create.procurements' ] );
+        ns()->restrict( [ 'nexopos.create.procurements' ] );
 
         return View::make( 'pages.dashboard.procurements.create', Hook::filter( 'ns-create-procurement-labels', [
             'title' => __( 'New Procurement' ),
@@ -246,7 +246,7 @@ class ProcurementController extends DashboardController
 
     public function updateProcurement( Procurement $procurement )
     {
-        ns()->restrict( [ 'possoft.update.procurements' ] );
+        ns()->restrict( [ 'nexopos.update.procurements' ] );
 
         if ( $procurement->delivery_status === Procurement::STOCKED ) {
             throw new NotAllowedException( __( 'Unable to edit a procurement that is stocked. Consider performing an adjustment or either delete the procurement.' ) );
@@ -261,7 +261,7 @@ class ProcurementController extends DashboardController
 
     public function procurementInvoice( Procurement $procurement )
     {
-        ns()->restrict( [ 'possoft.read.procurements' ] );
+        ns()->restrict( [ 'nexopos.read.procurements' ] );
 
         return View::make( 'pages.dashboard.procurements.invoice', [
             'title' => sprintf( __( '%s - Invoice' ), $procurement->name ),

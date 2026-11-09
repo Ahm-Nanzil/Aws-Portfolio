@@ -13,7 +13,7 @@ return SettingForm::tab(
             label: __( 'Theme' ),
             name: 'theme',
             value: Auth::user()->attribute->theme ?? '',
-            options: Helper::kvToJsOptions( config( 'possoft.themes' ) ),
+            options: Helper::kvToJsOptions( config( 'nexopos.themes' ) ),
             description: __( 'Define what is the theme that applies to the dashboard.' ),
         ),
         FormInput::media(
@@ -30,7 +30,7 @@ return SettingForm::tab(
             label: __( 'Language' ),
             name: 'language',
             value: Auth::user()->attribute->language ?? '',
-            options: Helper::kvToJsOptions( config( 'possoft.languages' ) ),
+            options: Helper::kvToJsOptions( config( 'nexopos.languages' ) ),
             description: __( 'Choose the language for the current account.' ),
         ),
     )

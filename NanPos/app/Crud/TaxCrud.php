@@ -29,7 +29,7 @@ class TaxCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_taxes';
+    protected $table = 'nexopos_taxes';
 
     /**
      * default slug
@@ -58,15 +58,15 @@ class TaxCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.create.taxes',
-        'read' => 'possoft.read.taxes',
-        'update' => 'possoft.update.taxes',
-        'delete' => 'possoft.delete.taxes',
+        'create' => 'nexopos.create.taxes',
+        'read' => 'nexopos.read.taxes',
+        'update' => 'nexopos.update.taxes',
+        'delete' => 'nexopos.delete.taxes',
     ];
 
     public $relations = [
-        [ 'possoft_users as user', 'possoft_taxes.author_id', '=', 'user.id' ],
-        [ 'possoft_taxes_groups as parent', 'possoft_taxes.tax_group_id', '=', 'parent.id' ],
+        [ 'nexopos_users as user', 'nexopos_taxes.author_id', '=', 'user.id' ],
+        [ 'nexopos_taxes_groups as parent', 'nexopos_taxes.tax_group_id', '=', 'parent.id' ],
     ];
 
     /**
@@ -75,7 +75,7 @@ class TaxCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     protected $pick = [

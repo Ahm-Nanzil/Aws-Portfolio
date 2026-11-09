@@ -40,7 +40,7 @@ Do not add a wrapper component if `ns-box` fits.
 
 ## Accessible names without `sr-only`
 
-Do not use Tailwind's `sr-only` utility in PosSOFT Vue or Blade markup. The current application can render it as a layout box, creating unexplained whitespace and nested or double scrollbars.
+Do not use Tailwind's `sr-only` utility in NexoPOS Vue or Blade markup. The current application can render it as a layout box, creating unexplained whitespace and nested or double scrollbars.
 
 Give icon-only interactive elements their accessible name directly:
 
@@ -61,7 +61,7 @@ Reuse `ns-input`, `ns-select`, `ns-textarea`, `ns-checkbox`, or another existing
 <input id="reference" class="mt-1 h-10 w-full rounded-md border border-input-edge bg-input-background px-3 text-fontcolor outline-none placeholder:text-fontcolor-soft focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:bg-input-disabled">
 ```
 
-Use native `disabled` and an associated label. Match `has-error`/`is-pristine` when integrating PosSOFT validation.
+Use native `disabled` and an associated label. Match `has-error`/`is-pristine` when integrating NexoPOS validation.
 
 ## Buttons and feedback
 
@@ -109,7 +109,7 @@ Do not interpolate class fragments. Pair color with text/icons for status. Inspe
 - Optional loading label goes **below** the spinner (`flex-col`), not beside it, for panel/page loads.
 - On failure, replace the spinner with an error message (and retry if useful); never leave a permanent spinning state.
 
-Module-specific prefix rules: `create-possoft-module` → `references/module-frontend.md`.
+Module-specific prefix rules: `create-nexopos-module` → `references/module-frontend.md`.
 
 ## Tabs and tables
 
@@ -145,7 +145,7 @@ Popup.show(nsConfirmPopup, {
 });
 ```
 
-Keep the mutation inside the confirmed callback. Do not use `window.confirm()` or an inline card in place of the PosSOFT popup.
+Keep the mutation inside the confirmed callback. Do not use `window.confirm()` or an inline card in place of the NexoPOS popup.
 
 ## Global hook pattern
 

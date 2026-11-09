@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg h-95vh md:h-[60vh] lg:h-[80vh] w-[95vw] md:w-[66.67vw] lg:w-[50vw] ns-box flex flex-col">
         <div class="p-2 border-b ns-box-header flex justify-between items-center">
             <h3 class="font-semibold">{{ __( 'Layaway Parameters' ) }}</h3>

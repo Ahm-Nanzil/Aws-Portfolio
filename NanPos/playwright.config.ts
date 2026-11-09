@@ -9,7 +9,7 @@ import { config } from 'dotenv';
 config(); // reads .env from the project root
 
 /**
- * PosSOFT Playwright Configuration
+ * NexoPOS Playwright Configuration
  * @see https://playwright.dev/docs/test-configuration
  */
 export default defineConfig({

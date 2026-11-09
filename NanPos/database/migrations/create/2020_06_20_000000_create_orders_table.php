@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_orders' ) ) {
-            Schema::createIfMissing( 'possoft_orders', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_orders' ) ) {
+            Schema::createIfMissing( 'nexopos_orders', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->text( 'description' )->nullable();
                 $table->string( 'code' );
@@ -60,16 +60,16 @@ return new class extends Migration
             } );
         }
 
-        if ( ! Schema::hasTable( 'possoft_orders_count' ) ) {
-            Schema::createIfMissing( 'possoft_orders_count', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_orders_count' ) ) {
+            Schema::createIfMissing( 'nexopos_orders_count', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'count' );
                 $table->datetime( 'date' );
             } );
         }
 
-        if ( ! Schema::hasTable( 'possoft_orders_taxes' ) ) {
-            Schema::createIfMissing( 'possoft_orders_taxes', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_orders_taxes' ) ) {
+            Schema::createIfMissing( 'nexopos_orders_taxes', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'tax_id' )->nullable();
                 $table->integer( 'order_id' )->nullable();
@@ -87,16 +87,16 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_orders' ) ) {
-            Schema::dropIfExists( 'possoft_orders' );
+        if ( Schema::hasTable( 'nexopos_orders' ) ) {
+            Schema::dropIfExists( 'nexopos_orders' );
         }
 
-        if ( Schema::hasTable( 'possoft_orders_count' ) ) {
-            Schema::dropIfExists( 'possoft_orders_count' );
+        if ( Schema::hasTable( 'nexopos_orders_count' ) ) {
+            Schema::dropIfExists( 'nexopos_orders_count' );
         }
 
-        if ( Schema::hasTable( 'possoft_orders_taxes' ) ) {
-            Schema::dropIfExists( 'possoft_orders_taxes' );
+        if ( Schema::hasTable( 'nexopos_orders_taxes' ) ) {
+            Schema::dropIfExists( 'nexopos_orders_taxes' );
         }
     }
 };

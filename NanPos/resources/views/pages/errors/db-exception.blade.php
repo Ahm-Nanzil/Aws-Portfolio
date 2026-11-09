@@ -1,4 +1,4 @@
-@extends( 'layout.default' )
+﻿@extends( 'layout.default' )
 
 @section( 'layout.default.body' )
     <div class="h-full w-full overflow-y-auto pb-10 bg-gradient-to-bl from-teal-500 to-blue-500 flex items-center justify-center">
@@ -10,17 +10,17 @@
             <div class="my-2 shadow overflow-hidden rounded bg-white w-95vw md:w-3/4 lg:w-3/5">
                 <p class="md:w-auto w-95vw bg-gray-700 text-gray-100 lg:text-lg text-center p-4">{{ $message }}</p>
                 <div class="p-4 text-gray-600 text-center text-sm">
-                    {{ __( 'PosSOFT wasn\'t able to perform a database request. This error might be related to a misconfiguration on your .env file. The following guide might be useful to help you solving this issue.' ) }}
+                    {{ __( 'PosSoft wasn\'t able to perform a database request. This error might be related to a misconfiguration on your .env file. The following guide might be useful to help you solving this issue.' ) }}
                 </div>
                 <ul class="flex flex-col">
                     <li class="flex">
-                        <a target="_blank" href="https://my.possoft.com/en/documentation/how-tos/how-to-change-database-configuration" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
+                        <a href="{{ url('/') }}" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
                             <i class="las la-hand-point-right"></i>
                             <span class="ml-2">{{ __( 'How to change database configuration' ) }}</span>
                         </a>
                     </li>
                     <li class="flex">
-                        <a target="_blank" href="https://my.possoft.com/en/documentation/troubleshooting/common-database-issues" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
+                        <a href="{{ url('/') }}" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
                             <i class="las la-hand-point-right"></i>
                             <span class="ml-2">{{ __( 'Common Database Issues' ) }}</span>
                         </a>

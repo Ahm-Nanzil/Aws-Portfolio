@@ -13,7 +13,7 @@ final class StoreCashierRegisterPermissionTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private const PERMISSION = 'possoft.read.registers';
+    private const PERMISSION = 'nexopos.read.registers';
 
     protected function setUp(): void
     {
@@ -104,7 +104,7 @@ final class StoreCashierRegisterPermissionTest extends TestCase
                 $menus['registers']['childrens']['list']['permissions']
             );
             $this->assertSame(
-                [ 'possoft.create.registers' ],
+                [ 'nexopos.create.registers' ],
                 $menus['registers']['childrens']['create']['permissions']
             );
         } finally {

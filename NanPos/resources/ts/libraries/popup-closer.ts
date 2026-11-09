@@ -1,4 +1,4 @@
-declare const nsHotPress;
+﻿declare const nsHotPress;
 
 /**
  * Must be used on component

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * if either resolve and reject are defined
  * we need to resolve something when the popup
  * is being closed. Otherwise the popup is only closed

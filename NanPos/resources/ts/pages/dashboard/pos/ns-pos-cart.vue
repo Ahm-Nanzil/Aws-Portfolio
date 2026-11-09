@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="pos-cart" class="flex-auto flex flex-col">
         <div id="tools" class="flex pl-2 ns-tab" v-if="visibleSection === 'cart' && ! isUnified">
             <div @click="switchTo( 'cart' )" class="flex cursor-pointer rounded-tl-lg rounded-tr-lg px-3 py-2 font-semibold active tab">
@@ -531,26 +531,26 @@ export default {
 
         /**
          * Convert simple locale code to full locale string for Intl API
-         * Based on languages defined in config/possoft.php
+         * Based on languages defined in config/nexopos.php
          * e.g., 'en' -> 'en-US', 'fr' -> 'fr-FR'
          */
         getFullLocale( locale ) {
-            // Map language codes from config/possoft.php to full locale strings
+            // Map language codes from config/nexopos.php to full locale strings
             // Supported: en, de, fr, es, it, id, ar, pt, tr, km, vi, sq, ko
             const localeMap = {
                 'en': 'en-US',    // English
                 'de': 'de-DE',    // Deutsch
-                'fr': 'fr-FR',    // Français
+                'fr': 'fr-FR',    // FranÃ§ais
                 'es': 'es-ES',    // Espanol
                 'it': 'it-IT',    // Italian
                 'id': 'id-ID',    // Indonesian
                 'ar': 'ar-SA',    // Arabic
                 'pt': 'pt-PT',    // Portuguese
-                'tr': 'tr-TR',    // Türkçe
-                'km': 'km-KH',    // ភាសាខ្មែរ (Khmer)
+                'tr': 'tr-TR',    // TÃ¼rkÃ§e
+                'km': 'km-KH',    // áž—áž¶ážŸáž¶ážáŸ’áž˜áŸ‚ážš (Khmer)
                 'vi': 'vi-VN',    // Vietnamese
                 'sq': 'sq-AL',    // Shqiptare (Albanian)
-                'ko': 'ko-KR'     // 한국어 (Korean)
+                'ko': 'ko-KR'     // í•œêµ­ì–´ (Korean)
             };
             
             return localeMap[ locale ] || `${locale}-${locale.toUpperCase()}`;
@@ -560,7 +560,7 @@ export default {
             /**
              * We'll check if the user has the right to add a quick product.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.products' );
+            await ActionPermissions.canProceed( 'nexopos.cart.products' );
             
             try {
                 const promise   =   await new Promise( ( resolve, reject ) => {
@@ -596,7 +596,7 @@ export default {
                      * We'll check if the user has the right to edit a 
                      * purchase price of a product.
                      */
-                    await ActionPermissions.canProceed( 'possoft.cart.product-price' );
+                    await ActionPermissions.canProceed( 'nexopos.cart.product-price' );
 
                     const newPrice  =   await new Promise( ( resolve, reject ) => {
                         return Popup.show( nsPosProductPricePopupVue, { product: Object.assign({}, product ), resolve, reject })
@@ -638,7 +638,7 @@ export default {
             /**
              * We'll check if the user has the right to manage coupons.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.coupons' );
+            await ActionPermissions.canProceed( 'nexopos.cart.coupons' );
 
             try {
                 const response  =   await new Promise( ( resolve, reject ) => {
@@ -678,7 +678,7 @@ export default {
             /**
              * We'll ensure the user has the right to add comments to an order.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.comments' );
+            await ActionPermissions.canProceed( 'nexopos.cart.comments' );
             
             try {
                 const response  =   await new Promise<{}>( ( resolve, reject ) => {
@@ -700,7 +700,7 @@ export default {
             /**
              * We'll check if the user has the right to manage taxes.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.taxes' );
+            await ActionPermissions.canProceed( 'nexopos.cart.taxes' );
 
             try {
                 const response              =   await new Promise<{}>( ( resolve, reject ) => {
@@ -741,7 +741,7 @@ export default {
                 reference.disable_flat = true;
             }
 
-            await ActionPermissions.canProceed( type === 'product' ? 'possoft.cart.product-discount' : 'possoft.cart.discount' );
+            await ActionPermissions.canProceed( type === 'product' ? 'nexopos.cart.product-discount' : 'nexopos.cart.discount' );
 
             try {
                 const promise   =   await new Promise( ( resolve, reject ) => {
@@ -785,7 +785,7 @@ export default {
                  * We restrict the usage of the wholesale-price
                  * behind a permission defined on ActionPermissions.
                  */
-                await ActionPermissions.canProceed( 'possoft.cart.product-wholesale-price' );
+                await ActionPermissions.canProceed( 'nexopos.cart.product-wholesale-price' );
 
                 Popup.show( PosConfirmPopup, {
                     title: __( 'Enable WholeSale Price' ),
@@ -812,7 +812,7 @@ export default {
             /**
              * We need to check if the user has the right to delete a product.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.product-delete' );
+            await ActionPermissions.canProceed( 'nexopos.cart.product-delete' );
 
             Popup.show( PosConfirmPopup, {
                 title: __( 'Confirm Your Action' ),

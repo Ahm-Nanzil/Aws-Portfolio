@@ -12,6 +12,6 @@ class IncompleteSaleCardWidget extends WidgetService
     {
         $this->name = __( 'Incomplete Sale Card Widget' );
         $this->description = __( 'Will display a card of current and overall incomplete sales.' );
-        $this->permission = 'possoft.see.incomplete-sale-card-widget';
+        $this->permission = 'nexopos.see.incomplete-sale-card-widget';
     }
 }

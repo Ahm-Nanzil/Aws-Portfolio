@@ -1,10 +1,10 @@
-<template>
+﻿<template>
     <div class="bg-white rounded shadow my-4" v-if="! isCheckingDatabase">
         <div class="welcome-box p-3 text-gray-600">
             <div class="border-b border-box-edge pb-4 mb-4">
                 <div v-if="isMySQL">
                     <h3 class="font-bold text-lg">{{ __( 'MySQL is selected as database driver' ) }}</h3>
-                    <p>{{ __( 'Please provide the credentials to ensure PosSOFT can connect to the database.' ) }}</p>
+                    <p>{{ __( 'Please provide the credentials to ensure PosSoft can connect to the database.' ) }}</p>
                 </div>
                 <div v-if="isSqlite">
                     <h3 class="font-bold text-lg">{{ __( 'Sqlite is selected as database driver' ) }}</h3>
@@ -12,7 +12,7 @@
                 </div>
                 <div v-if="isMariaDB">
                     <h3 class="font-bold text-lg">{{ __( 'MariaDB is selected as database driver' ) }}</h3>
-                    <p>{{ __( 'Please provide the credentials to ensure PosSOFT can connect to the database.' ) }}</p>
+                    <p>{{ __( 'Please provide the credentials to ensure PosSoft can connect to the database.' ) }}</p>
                 </div>
             </div>
             <div class="md:-mx-4 md:flex">
@@ -173,7 +173,7 @@ export default {
                     label: __( 'Database Name' ),
                     description: __( 'Provide the database name.' ),
                     name: 'database_name',
-                    value : 'possoft_v4',
+                    value : 'nexopos_v4',
                     show: ( form ) => {
                         return [ 'mysql', 'mariadb' ].includes( form.database_driver );
                     }

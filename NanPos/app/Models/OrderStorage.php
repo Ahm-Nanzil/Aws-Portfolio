@@ -15,7 +15,7 @@ class OrderStorage extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_storage';
+    protected $table = 'nexopos_' . 'orders_storage';
 
     public function scopeWithIdentifier( $query, $id )
     {

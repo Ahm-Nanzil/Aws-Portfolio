@@ -2,16 +2,16 @@
 applyTo: '**'
 ---
 
-# PosSOFT Options/Settings API Guide
+# NexoPOS Options/Settings API Guide
 
-The PosSOFT Options API provides a centralized system for storing and retrieving application settings and configuration values. This comprehensive guide explains how to use the Options service throughout the application.
+The NexoPOS Options API provides a centralized system for storing and retrieving application settings and configuration values. This comprehensive guide explains how to use the Options service throughout the application.
 
 ## Overview
 
-The Options service (`app/Services/Options.php`) manages key-value pairs stored in the `possoft_options` database table. It provides methods for reading, writing, and deleting configuration options with support for various data types including strings, integers, floats, arrays, and JSON objects.
+The Options service (`app/Services/Options.php`) manages key-value pairs stored in the `nexopos_options` database table. It provides methods for reading, writing, and deleting configuration options with support for various data types including strings, integers, floats, arrays, and JSON objects.
 
 **Service Class**: `app/Services/Options.php`  
-**Database Table**: `possoft_options`  
+**Database Table**: `nexopos_options`  
 **Access Method**: `ns()->option` (global helper)
 
 ## Architecture
@@ -19,7 +19,7 @@ The Options service (`app/Services/Options.php`) manages key-value pairs stored 
 ### Option Model
 
 **Location**: `app/Models/Option.php`  
-**Table**: `possoft_options`
+**Table**: `nexopos_options`
 
 #### Table Structure
 ```php
@@ -77,7 +77,7 @@ $options = ns()->option->get([
     'ns_currency_symbol'
 ]);
 
-// Returns: ['PosSOFT', 'light', '$']
+// Returns: ['NexoPOS', 'light', '$']
 ```
 
 #### All Options
@@ -207,7 +207,7 @@ public function rebuild(): void
 ns()->option->rebuild();
 
 // Typically used after bulk database changes
-DB::table('possoft_options')->where('key', 'like', 'temp_%')->delete();
+DB::table('nexopos_options')->where('key', 'like', 'temp_%')->delete();
 ns()->option->rebuild();
 ```
 
@@ -719,7 +719,7 @@ $precision = ns()->option->get('ns_currency_precision');
 ### 3. Use Consistent Prefixes
 
 ```php
-// Core PosSOFT options
+// Core NexoPOS options
 ns()->option->set('ns_store_name', 'Store');
 ns()->option->set('ns_currency_symbol', '$');
 
@@ -827,7 +827,7 @@ public function validateForm(Request $request): array
     return [
         'general.ns_module_enabled' => ['required', 'in:yes,no'],
         'general.ns_module_category_ids' => ['nullable', 'array'],
-        'general.ns_module_category_ids.*' => ['integer', 'exists:possoft_products_categories,id'],
+        'general.ns_module_category_ids.*' => ['integer', 'exists:nexopos_products_categories,id'],
     ];
 }
 
@@ -879,7 +879,7 @@ class MyModuleService
 
 ```php
 // When making bulk database changes
-DB::table('possoft_options')
+DB::table('nexopos_options')
     ->where('key', 'like', 'temp_%')
     ->delete();
 
@@ -1176,7 +1176,7 @@ Route::post('/settings', [SettingsController::class, 'update'])
 
 ## Summary
 
-The PosSOFT Options API provides a powerful and flexible system for managing application settings:
+The NexoPOS Options API provides a powerful and flexible system for managing application settings:
 
 - **Simple Interface**: Easy-to-use `get()`, `set()`, and `delete()` methods
 - **Type Safety**: Automatic type casting for strings, integers, floats, and arrays
@@ -1189,7 +1189,7 @@ Use the Options API whenever you need to store configuration values, feature fla
 
 ## Related Documentation
 
-- `.github/instructions/possoft-modules.instructions.md` - Module development
-- `.github/instructions/possoft-permissions.instructions.md` - Permission system
+- `.github/instructions/nexopos-modules.instructions.md` - Module development
+- `.github/instructions/nexopos-permissions.instructions.md` - Permission system
 - `app/Models/Option.php` - Option model source
 - `app/Services/Options.php` - Options service source

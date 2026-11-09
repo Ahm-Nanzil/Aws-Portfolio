@@ -168,7 +168,7 @@ class SetupService
         ] );
 
         /**
-         * PosSOFT uses Sanctum, we're making sure to publish the package.
+         * NexoPOS uses Sanctum, we're making sure to publish the package.
          */
         Artisan::call( 'vendor:publish', [
             '--force' => true,
@@ -247,7 +247,7 @@ class SetupService
 
         return [
             'status' => 'success',
-            'message' => __( 'PosSOFT has been successfully installed.' ),
+            'message' => __( 'NexoPOS has been successfully installed.' ),
         ];
     }
 

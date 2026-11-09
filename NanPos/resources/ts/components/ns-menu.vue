@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <li>
         <template v-if="to && ! hasChildren">
             <a @click="goTo( to, $event )" :href="to" :class="defaultToggledState ? 'toggled' : 'normal'" class="flex rounded-r-lg justify-between py-2 border-l-8 px-3 font-bold ns-aside-menu">

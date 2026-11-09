@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow ns-box">
         <div class="head p-2 ns-box-header flex justify-between border-b">
             <div class="-mx-2 flex flex-wrap">

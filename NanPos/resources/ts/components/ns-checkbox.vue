@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div :class="field ? 'flex flex-col' : ''">
         <div class="ns-checkbox cursor-pointer flex" :class="(isChecked ? 'checked' : '') + ' ' + ( field?  (hasError ? 'has-error': 'is-pristine') : 'justify-center items-center' )" @click="toggleIt()">
             <div class="w-5 h-5 flex border items-center justify-center cursor-pointer">

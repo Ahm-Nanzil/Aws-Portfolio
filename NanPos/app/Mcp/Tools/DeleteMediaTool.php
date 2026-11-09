@@ -10,7 +10,7 @@ use Laravel\Mcp\Response;
 
 class DeleteMediaTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.delete.medias' ];
+    protected array $permissions = [ 'nexopos.delete.medias' ];
 
     public string $name = 'delete_media';
 

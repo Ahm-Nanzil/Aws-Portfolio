@@ -40,7 +40,7 @@ if ( Auth::check() ) {
     @vite([ 'resources/ts/vue-runtime.ts' ])
     @vite([ 'resources/ts/lang-loader.ts' ])
 </head>
-<body <?php echo in_array( app()->getLocale(), config( 'possoft.rtl-languages' ) ) ? 'dir="rtl"' : "";?>>
+<body <?php echo in_array( app()->getLocale(), config( 'nexopos.rtl-languages' ) ) ? 'dir="rtl"' : "";?>>
     <div class="h-full w-full flex flex-col">
         <div class="overflow-hidden flex flex-auto">
             <div id="dashboard-body" class="flex flex-auto flex-col overflow-hidden">

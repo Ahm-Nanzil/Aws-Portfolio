@@ -20,7 +20,7 @@ class OrderPayment extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_payments';
+    protected $table = 'nexopos_' . 'orders_payments';
 
     const PAYMENT_CASH = 'cash-payment';
 
@@ -50,7 +50,7 @@ class OrderPayment extends NsModel
 
     public function getPaymentLabelAttribute()
     {
-        $paymentTypes = Cache::remember( 'possoft.pos.payments-key', '3600', function () {
+        $paymentTypes = Cache::remember( 'nexopos.pos.payments-key', '3600', function () {
             return PaymentType::active()->get()->mapWithKeys( function ( $paymentType ) {
                 return [ $paymentType->identifier => $paymentType->label ];
             } );

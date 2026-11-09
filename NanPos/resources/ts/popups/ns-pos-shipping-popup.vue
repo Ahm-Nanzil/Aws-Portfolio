@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box w-[85.71vw] md:w-[80vw] lg:w-[60vw] h-[85vh] md:h-[80vh] shadow-lg flex flex-col overflow-hidden">
         <div class="p-2 border-b ns-box-header flex justify-between items-center">
             <h3 class="font-bold text-font">{{ __( 'Shipping & Billing' ) }}</h3>

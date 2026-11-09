@@ -43,7 +43,7 @@ class CouponCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_coupons';
+    protected $table = 'nexopos_coupons';
 
     /**
      * default slug
@@ -72,15 +72,15 @@ class CouponCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.create.coupons',
-        'read' => 'possoft.read.coupons',
-        'update' => 'possoft.update.coupons',
-        'delete' => 'possoft.delete.coupons',
+        'create' => 'nexopos.create.coupons',
+        'read' => 'nexopos.read.coupons',
+        'update' => 'nexopos.update.coupons',
+        'delete' => 'nexopos.delete.coupons',
     ];
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
@@ -108,7 +108,7 @@ class CouponCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [
@@ -200,7 +200,7 @@ class CouponCrud extends CrudService
                             name: 'code',
                             validation: [
                                 'required',
-                                Rule::unique( 'possoft_coupons', 'code' )->ignore( $entry !== null ? $entry->id : 0 ),
+                                Rule::unique( 'nexopos_coupons', 'code' )->ignore( $entry !== null ? $entry->id : 0 ),
                             ],
                             description: __( 'Might be used while printing the coupon.' ),
                             value: $entry->code ?? '',

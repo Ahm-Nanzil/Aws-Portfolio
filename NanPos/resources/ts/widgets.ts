@@ -1,4 +1,4 @@
-import { defineAsyncComponent } from 'vue';
+﻿import { defineAsyncComponent } from 'vue';
 
 window[ 'nsBestCustomers' ]                 =   defineAsyncComponent( () => import( './widgets/ns-best-customers.vue' ) );
 window[ 'nsBestCashiers' ]                  =   defineAsyncComponent( () => import( './widgets/ns-best-cashiers.vue' ) );
@@ -8,4 +8,4 @@ window[ 'nsProfileWidget' ]                 =   defineAsyncComponent( () => impo
 window[ 'nsSaleCardWidget' ]                =   defineAsyncComponent( () => import( './widgets/ns-sale-card-widget.vue' ) );
 window[ 'nsIncompleteSaleCardWidget' ]      =   defineAsyncComponent( () => import( './widgets/ns-incomplete-sale-card-widget.vue' ) );
 window[ 'nsExpenseCardWidget' ]             =   defineAsyncComponent( () => import( './widgets/ns-transaction-card-widget.vue' ) );
-window[ 'nsMyPosSoftWidget' ]               =   defineAsyncComponent( () => import( './widgets/ns-my-possoft-widget.vue' ) );
+window[ 'nsMyNexoPosWidget' ]               =   defineAsyncComponent( () => import( './widgets/ns-my-nexopos-widget.vue' ) );

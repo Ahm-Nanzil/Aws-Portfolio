@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    private const TABLE = 'possoft_transactions_actions_rules';
+    private const TABLE = 'nexopos_transactions_actions_rules';
 
     /**
      * Repair only rules that still match the legacy default relationships.

@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import popupCloser from '~/libraries/popup-closer';
 import nsPosCashRegistersActionPopupVue from './ns-pos-cash-registers-action-popup.vue';
 import nsPosCashRegistersHistoryVue from './ns-pos-cash-registers-history-popup.vue';

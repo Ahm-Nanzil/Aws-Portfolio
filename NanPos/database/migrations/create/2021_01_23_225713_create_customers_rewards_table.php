@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_customers_rewards', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_customers_rewards', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'customer_id' );
             $table->integer( 'reward_id' );
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_customers_rewards' );
+        Schema::dropIfExists( 'nexopos_customers_rewards' );
     }
 };

@@ -3,11 +3,11 @@
 use App\Models\Permission;
 use App\Models\Role;
 
-$storeAdmin = Role::firstOrNew( [ 'namespace' => 'possoft.store.administrator' ] );
+$storeAdmin = Role::firstOrNew( [ 'namespace' => 'nexopos.store.administrator' ] );
 $storeAdmin->name = __( 'Store Administrator' );
-$storeAdmin->namespace = 'possoft.store.administrator';
+$storeAdmin->namespace = 'nexopos.store.administrator';
 $storeAdmin->locked = true;
-$storeAdmin->description = __( 'Has a control over an entire store of PosSOFT.' );
+$storeAdmin->description = __( 'Has a control over an entire store of NexoPOS.' );
 $storeAdmin->save();
 
 $storeAdmin->addPermissions( [ 'read.dashboard' ] );

@@ -40,7 +40,7 @@ class TransactionCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_transactions';
+    protected $table = 'nexopos_transactions';
 
     /**
      * base route name
@@ -66,7 +66,7 @@ class TransactionCrud extends CrudService
         'join' => [
             [ User::class, 'user' ],
         ],
-        [ 'possoft_transactions_accounts as transactions_accounts', 'transactions_accounts.id', '=', 'possoft_transactions.account_id' ],
+        [ 'nexopos_transactions_accounts as transactions_accounts', 'transactions_accounts.id', '=', 'nexopos_transactions.account_id' ],
     ];
 
     protected $pick = [
@@ -75,10 +75,10 @@ class TransactionCrud extends CrudService
     ];
 
     protected $permissions = [
-        'create' => 'possoft.create.transactions',
-        'read' => 'possoft.read.transactions',
-        'update' => 'possoft.update.transactions',
-        'delete' => 'possoft.delete.transactions',
+        'create' => 'nexopos.create.transactions',
+        'read' => 'nexopos.read.transactions',
+        'update' => 'nexopos.update.transactions',
+        'delete' => 'nexopos.delete.transactions',
     ];
 
     /**

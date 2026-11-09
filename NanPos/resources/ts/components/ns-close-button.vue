@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <button class="outline-hidden ns-close-button hover:border-transparent border rounded-full h-6 min-w-[1.5rem] flex items-center justify-center">
         <i class="las la-times text-xs"></i> <slot></slot>
     </button>

@@ -43,7 +43,7 @@ test.describe('Dashboard', () => {
 
         await page.goto('/dashboard');
 
-        // PosSOFT redirects unauthenticated users to /sign-in
+        // NexoPOS redirects unauthenticated users to /sign-in
         await page.waitForURL(/sign-in|login/, { timeout: 10_000 });
         expect(page.url()).toMatch(/sign-in|login/);
 

@@ -13,5 +13,5 @@ class TransactionBalanceDay extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_transactions_balance_days';
+    protected $table = 'nexopos_transactions_balance_days';
 }

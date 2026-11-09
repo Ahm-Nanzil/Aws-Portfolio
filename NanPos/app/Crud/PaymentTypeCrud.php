@@ -33,7 +33,7 @@ class PaymentTypeCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_payments_types';
+    protected $table = 'nexopos_payments_types';
 
     /**
      * default slug
@@ -62,15 +62,15 @@ class PaymentTypeCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.manage-payments-types',
-        'read' => 'possoft.manage-payments-types',
-        'update' => 'possoft.manage-payments-types',
-        'delete' => 'possoft.manage-payments-types',
+        'create' => 'nexopos.manage-payments-types',
+        'read' => 'nexopos.manage-payments-types',
+        'update' => 'nexopos.manage-payments-types',
+        'delete' => 'nexopos.manage-payments-types',
     ];
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
@@ -94,7 +94,7 @@ class PaymentTypeCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [
@@ -287,8 +287,8 @@ class PaymentTypeCrud extends CrudService
      */
     public function beforePost( $request )
     {
-        Cache::forget( 'possoft.pos.payments' );
-        Cache::forget( 'possoft.pos.payments-key' );
+        Cache::forget( 'nexopos.pos.payments' );
+        Cache::forget( 'nexopos.pos.payments-key' );
 
         return $request;
     }
@@ -327,8 +327,8 @@ class PaymentTypeCrud extends CrudService
      */
     public function beforePut( $request, $entry )
     {
-        Cache::forget( 'possoft.pos.payments' );
-        Cache::forget( 'possoft.pos.payments-key' );
+        Cache::forget( 'nexopos.pos.payments' );
+        Cache::forget( 'nexopos.pos.payments-key' );
 
         return $request;
     }
@@ -366,8 +366,8 @@ class PaymentTypeCrud extends CrudService
                 throw new NotAllowedException( __( 'Unable to delete a read-only payments type.' ) );
             }
 
-            Cache::forget( 'possoft.pos.payments' );
-            Cache::forget( 'possoft.pos.payments-key' );
+            Cache::forget( 'nexopos.pos.payments' );
+            Cache::forget( 'nexopos.pos.payments-key' );
         }
     }
 
@@ -480,8 +480,8 @@ class PaymentTypeCrud extends CrudService
                 }
 
                 if ( $entity instanceof PaymentType ) {
-                    Cache::forget( 'possoft.pos.payments' );
-                    Cache::forget( 'possoft.pos.payments-key' );
+                    Cache::forget( 'nexopos.pos.payments' );
+                    Cache::forget( 'nexopos.pos.payments-key' );
 
                     $entity->delete();
                     $status[ 'success' ]++;

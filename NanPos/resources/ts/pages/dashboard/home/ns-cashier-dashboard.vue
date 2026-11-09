@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <div class="flex -mx-4 flex-wrap">
             <div class="px-4 w-full mb-6" :class="showCommission ? 'md:w-1/2 lg:w-1/4' : 'md:w-1/3'">

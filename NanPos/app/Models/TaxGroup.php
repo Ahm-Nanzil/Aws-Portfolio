@@ -17,7 +17,7 @@ class TaxGroup extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'taxes_groups';
+    protected $table = 'nexopos_' . 'taxes_groups';
 
     public function setDependencies()
     {

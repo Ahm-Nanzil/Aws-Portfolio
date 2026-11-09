@@ -2,13 +2,13 @@
 applyTo: '**'
 ---
 
-# PosSOFT Color System Guide
+# NexoPOS Color System Guide
 
-This document explains the PosSOFT color system, which uses CSS custom properties for theming across dark, light, and phosphor themes. Understanding this system is essential for creating modules that integrate seamlessly with PosSOFT's visual design.
+This document explains the NexoPOS color system, which uses CSS custom properties for theming across dark, light, and phosphor themes. Understanding this system is essential for creating modules that integrate seamlessly with NexoPOS's visual design.
 
 ## Overview
 
-PosSOFT uses CSS custom properties (CSS variables) defined in theme-specific files:
+NexoPOS uses CSS custom properties (CSS variables) defined in theme-specific files:
 - `resources/css/dark/_colors.css` - Dark theme (default)
 - `resources/css/light/_colors.css` - Light theme
 - `resources/css/phosphor/_colors.css` - Phosphor theme
@@ -586,4 +586,4 @@ When developing modules, test your UI in all three themes:
 5. **Use component-specific colors** - tab colors for tabs, table colors for tables
 6. **Test across all themes** - Your module should work in dark, light, and phosphor
 
-By following these guidelines, your module will integrate seamlessly with PosSOFT's theming system and provide a consistent user experience across all themes.
+By following these guidelines, your module will integrate seamlessly with NexoPOS's theming system and provide a consistent user experience across all themes.

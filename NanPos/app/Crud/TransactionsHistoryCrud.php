@@ -31,7 +31,7 @@ class TransactionsHistoryCrud extends CrudService
      *
      * @param string
      */
-    protected $table = 'possoft_transactions_histories';
+    protected $table = 'nexopos_transactions_histories';
 
     /**
      * default slug
@@ -61,23 +61,23 @@ class TransactionsHistoryCrud extends CrudService
      */
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.transactions-history',
+        'read' => 'nexopos.read.transactions-history',
         'update' => false,
-        'delete' => 'possoft.delete.transactions-history',
+        'delete' => 'nexopos.delete.transactions-history',
     ];
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param array
      */
     public $relations = [
         'leftJoin' => [
-            [ 'possoft_transactions as transaction', 'transaction.id', '=', 'possoft_transactions_histories.transaction_id' ],
+            [ 'nexopos_transactions as transaction', 'transaction.id', '=', 'nexopos_transactions_histories.transaction_id' ],
         ],
-        [ 'possoft_users as users', 'users.id', '=', 'possoft_transactions_histories.author_id' ],
-        [ 'possoft_transactions_accounts as transactions_accounts', 'transactions_accounts.id', '=', 'possoft_transactions_histories.transaction_account_id' ],
+        [ 'nexopos_users as users', 'users.id', '=', 'nexopos_transactions_histories.author_id' ],
+        [ 'nexopos_transactions_accounts as transactions_accounts', 'transactions_accounts.id', '=', 'nexopos_transactions_histories.transaction_account_id' ],
     ];
 
     /**
@@ -100,7 +100,7 @@ class TransactionsHistoryCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

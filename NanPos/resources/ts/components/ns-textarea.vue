@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col mb-2 flex-auto ns-textarea" :class="hasError ? 'has-error' : 'is-pristine'">
         <label :for="field.name" class="block leading-5 font-medium">{{ field.label }}</label>
         <div class="mt-1 relative border overflow-hidden rounded-md focus:shadow-sm mb-1">

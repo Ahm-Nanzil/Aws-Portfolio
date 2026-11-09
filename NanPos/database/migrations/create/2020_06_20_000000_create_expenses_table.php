@@ -17,7 +17,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_transactions', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
             $table->string( 'name' );
             $table->integer( 'account_id' );
@@ -44,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_transactions' );
+        Schema::dropIfExists( 'nexopos_transactions' );
     }
 };

@@ -4,9 +4,9 @@ namespace App\Widgets;
 
 use App\Services\WidgetService;
 
-class MyPosSoftWidget extends WidgetService
+class MyNexoPosWidget extends WidgetService
 {
-    protected $vueComponent = 'nsMyPosSoftWidget';
+    protected $vueComponent = 'nsMyNexoPosWidget';
 
     protected string $layout = '1x3';
 
@@ -16,15 +16,15 @@ class MyPosSoftWidget extends WidgetService
 
     public function __construct()
     {
-        $this->name = __( 'My PosSOFT' );
-        $this->description = __( 'Invite users to connect this installation to My PosSOFT and unlock marketplace extensions.' );
+        $this->name = __( 'PosSoft Marketplace' );
+        $this->description = __( 'Invite users to connect this installation to PosSoft Marketplace and unlock marketplace extensions.' );
         $this->permission = 'manage.modules';
     }
 
     public function getData(): array
     {
         return [
-            'isConnected' => ! empty( ns()->option->get( 'mypossoft_access_token' ) ) && ! empty( ns()->option->get( 'mypossoft_refresh_token' ) ),
+            'isConnected' => ! empty( ns()->option->get( 'mynexopos_access_token' ) ) && ! empty( ns()->option->get( 'mynexopos_refresh_token' ) ),
         ];
     }
 }

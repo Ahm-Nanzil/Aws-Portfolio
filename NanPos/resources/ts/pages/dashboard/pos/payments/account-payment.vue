@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="h-full w-full py-2">
         <div class="px-2 pb-2" v-if="order">
             <div class="grid grid-cols-2 gap-2">

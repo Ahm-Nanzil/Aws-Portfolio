@@ -1,4 +1,4 @@
-import NumeralJS from "numeral";
+﻿import NumeralJS from "numeral";
 import Vue from 'vue';
 import currency from 'currency.js';
 

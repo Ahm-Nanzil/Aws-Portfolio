@@ -35,7 +35,7 @@ return new class extends Migration
 
         if ( $permissions->count() > 0 ) {
             Role::namespace( 'admin' )->addPermissions( $permissions );
-            Role::namespace( 'possoft.store.administrator' )->addPermissions( $permissions );
+            Role::namespace( 'nexopos.store.administrator' )->addPermissions( $permissions );
         }
     }
 

@@ -81,7 +81,7 @@ class Product extends NsModel
 
     const STATUS_UNAVAILABLE = 'unavailable';
 
-    protected $table = 'possoft_' . 'products';
+    protected $table = 'nexopos_' . 'products';
 
     protected $casts = [
         'accurate_tracking' => 'boolean',

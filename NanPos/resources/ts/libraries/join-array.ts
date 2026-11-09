@@ -1,4 +1,4 @@
-import { __ } from "./lang";
+﻿import { __ } from "./lang";
 
 export function joinArray(array, limit = 2 ) {
     // Check if the array is empty

@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_products_histories_combined' ) ) {
-            Schema::create( 'possoft_products_histories_combined', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_products_histories_combined' ) ) {
+            Schema::create( 'nexopos_products_histories_combined', function ( Blueprint $table ) {
                 $table->increments( 'id' );
                 $table->string( 'name' );
                 $table->date( 'date' );
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_products_histories_combined' );
+        Schema::dropIfExists( 'nexopos_products_histories_combined' );
     }
 };

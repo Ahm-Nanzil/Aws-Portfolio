@@ -27,7 +27,7 @@ class CustomerCouponCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_customers_coupons';
+    protected $table = 'nexopos_customers_coupons';
 
     /**
      * default slug
@@ -57,23 +57,23 @@ class CustomerCouponCrud extends CrudService
      */
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.coupons',
-        'update' => 'possoft.update.coupons',
-        'delete' => 'possoft.delete.coupons',
+        'read' => 'nexopos.read.coupons',
+        'update' => 'nexopos.update.coupons',
+        'delete' => 'nexopos.delete.coupons',
     ];
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
     public $relations = [
         'leftJoin' => [
-            [ 'possoft_users as user', 'user.id', '=', 'possoft_customers_coupons.author_id' ],
+            [ 'nexopos_users as user', 'user.id', '=', 'nexopos_customers_coupons.author_id' ],
         ],
-        [ 'possoft_users as customer', 'customer.id', '=', 'possoft_customers_coupons.customer_id' ],
-        [ 'possoft_coupons as coupon', 'coupon.id', '=', 'possoft_customers_coupons.coupon_id' ],
+        [ 'nexopos_users as customer', 'customer.id', '=', 'nexopos_customers_coupons.customer_id' ],
+        [ 'nexopos_coupons as coupon', 'coupon.id', '=', 'nexopos_customers_coupons.coupon_id' ],
     ];
 
     /**
@@ -90,7 +90,7 @@ class CustomerCouponCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

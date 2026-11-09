@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="tabs flex flex-col flex-auto ns-tab overflow-hidden" :selected-tab="activeComponent.identifier">
         <div class="header ml-4 flex justify-between" style="margin-bottom: -1px;">
             <div class="flex flex-auto">

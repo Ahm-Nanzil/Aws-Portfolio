@@ -13,7 +13,7 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsReadOnly]
 class SearchProductsTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.read.products' ];
+    protected array $permissions = [ 'nexopos.read.products' ];
 
     protected string $name = 'search_products';
 

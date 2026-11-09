@@ -21,7 +21,7 @@ class Register extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'registers';
+    protected $table = 'nexopos_' . 'registers';
 
     const STATUS_OPENED = 'opened';
 

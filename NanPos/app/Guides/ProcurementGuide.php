@@ -12,8 +12,8 @@ class ProcurementGuide
         $guideService->register( 'procurement.guide', Guide::experience(
             id: 'procurement.guide',
             title: __( 'Procurement Guide' ),
-            description: __( 'Take a quick tour of the procurement module and discover the main areas of PosSOFT.' ),
-            permissions: ['possoft.create.procurements'],
+            description: __( 'Take a quick tour of the procurement module and discover the main areas of PosSoft.' ),
+            permissions: ['nexopos.create.procurements'],
             required_routes: ['ns.procurement-create'],
             steps: Guide::steps(
                 Guide::step(

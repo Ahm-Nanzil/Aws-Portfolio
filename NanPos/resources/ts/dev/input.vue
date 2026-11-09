@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import moment from 'moment';
 import { nsDatepicker } from '~/components/components';
 

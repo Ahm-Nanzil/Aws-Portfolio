@@ -45,8 +45,8 @@
     <server name="SESSION_DRIVER" value="array"/>
     <server name="TELESCOPE_ENABLED" value="FALSE"/>
     <server name="BROADCAST_DRIVER" value="log"/>
-    <server name="SANCTUM_STATEFUL_DOMAINS" value="possoft-v4.std"/>
-    <server name="SESSION_DOMAIN" value="possoft-v4.std"/>
+    <server name="SANCTUM_STATEFUL_DOMAINS" value="nexopos-v4.std"/>
+    <server name="SESSION_DOMAIN" value="nexopos-v4.std"/>
     <server name="NS_VERSION" value="false"/>
   </php>
   <source>

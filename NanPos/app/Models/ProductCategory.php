@@ -21,7 +21,7 @@ class ProductCategory extends NsModel
 
     protected $guarded = [];
 
-    protected $table = 'possoft_' . 'products_categories';
+    protected $table = 'nexopos_' . 'products_categories';
 
     public function setDependencies()
     {

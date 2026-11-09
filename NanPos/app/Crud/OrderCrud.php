@@ -38,7 +38,7 @@ class OrderCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_orders';
+    protected $table = 'nexopos_orders';
 
     /**
      * base route name
@@ -100,10 +100,10 @@ class OrderCrud extends CrudService
     public $fillable = [];
 
     protected $permissions = [
-        'create' => 'possoft.create.orders',
-        'read' => 'possoft.read.orders',
-        'update' => 'possoft.update.orders',
-        'delete' => 'possoft.delete.orders',
+        'create' => 'nexopos.create.orders',
+        'read' => 'nexopos.read.orders',
+        'update' => 'nexopos.update.orders',
+        'delete' => 'nexopos.delete.orders',
     ];
 
     protected $casts = [
@@ -139,7 +139,7 @@ class OrderCrud extends CrudService
         $this->queryFilters = [
             [
                 'type' => 'daterangepicker',
-                'name' => 'possoft_orders.created_at',
+                'name' => 'nexopos_orders.created_at',
                 'description' => __( 'Restrict the orders by the creation date.' ),
                 'label' => __( 'Created Between' ),
             ], [
@@ -161,7 +161,7 @@ class OrderCrud extends CrudService
             ], [
                 'type' => 'select',
                 'label' => __( 'Author' ),
-                'name' => 'possoft_orders.author_id',
+                'name' => 'nexopos_orders.author_id',
                 'description' => __( 'Filter the orders by the author.' ),
                 'options' => Helper::toJsOptions( $UserClass::get(), [ 'id', 'username' ] ),
             ], [
@@ -378,7 +378,7 @@ class OrderCrud extends CrudService
          * We'll check if the order has refunds
          * to add a refund receipt for printing
          */
-        $refundCount = DB::table( Hook::filter( 'ns-model-table', 'possoft_orders_refunds' ) )
+        $refundCount = DB::table( Hook::filter( 'ns-model-table', 'nexopos_orders_refunds' ) )
             ->where( 'order_id', $entry->id )
             ->count();
 

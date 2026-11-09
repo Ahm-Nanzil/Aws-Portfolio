@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_orders_refunds', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_orders_refunds', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
             $table->integer( 'order_id' );
             $table->integer( 'author_id' );
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
         } );
 
-        Schema::createIfMissing( 'possoft_orders_products_refunds', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_orders_products_refunds', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
             $table->integer( 'order_id' );
             $table->integer( 'order_refund_id' );
@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_orders_products_refunds' );
-        Schema::dropIfExists( 'possoft_orders_refunds' );
+        Schema::dropIfExists( 'nexopos_orders_products_refunds' );
+        Schema::dropIfExists( 'nexopos_orders_refunds' );
     }
 };

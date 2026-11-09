@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class ProductCategoriesResource extends AuthorizedResource
 {
-    protected array $permissions = [ 'possoft.read.categories' ];
+    protected array $permissions = [ 'nexopos.read.categories' ];
 
     protected string $uri = 'pos://resources/product-categories';
 

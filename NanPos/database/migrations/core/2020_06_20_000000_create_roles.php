@@ -46,12 +46,12 @@ return new class extends Migration
      */
     public function down()
     {
-        $role = Role::where( 'namespace', 'possoft.store.administrator' )->first();
+        $role = Role::where( 'namespace', 'nexopos.store.administrator' )->first();
         if ( $role instanceof Role ) {
             $role->delete();
         }
 
-        $role = Role::where( 'namespace', 'possoft.store.cashier' )->first();
+        $role = Role::where( 'namespace', 'nexopos.store.cashier' )->first();
         if ( $role instanceof Role ) {
             $role->delete();
         }

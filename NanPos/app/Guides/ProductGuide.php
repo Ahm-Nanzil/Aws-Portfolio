@@ -12,7 +12,7 @@ class ProductGuide
         $guide->register(
             'products.creation', Guide::experience(
                 id: 'products.creation',
-                permissions: [ 'possoft.create.products' ],
+                permissions: [ 'nexopos.create.products' ],
                 required_routes: [ 'ns.dashboard.products.create' ],
                 title: __( 'Product Creation Guide' ),
                 description: __( 'Let us walk you through the product creation process, so you start with only the necessary fields.' ),
@@ -112,7 +112,7 @@ class ProductGuide
                         element: '[name="accurate_tracking"]',
                         popover: Guide::popover(
                             title: __( 'Accurate Tracking' ),
-                            description: __( 'By enabling this options, PosSOFT will be able to the product sold. This will be useful to determine on which purchase order the procurement was provided.' ),
+                            description: __( 'By enabling this options, PosSoft will be able to the product sold. This will be useful to determine on which purchase order the procurement was provided.' ),
                             side: 'bottom'
                         ),
                     ),

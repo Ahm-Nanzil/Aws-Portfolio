@@ -38,7 +38,7 @@ class User extends Authenticatable
         NsCustomerAddress,
         NsDependable;
 
-    protected $table = 'possoft_users';
+    protected $table = 'nexopos_users';
 
     protected $casts = [
         'active' => 'boolean',

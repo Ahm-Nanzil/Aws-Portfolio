@@ -1,4 +1,4 @@
-import nsAlertPopup         from  '~/popups/ns-alert-popup.vue';
+﻿import nsAlertPopup         from  '~/popups/ns-alert-popup.vue';
 import nsAvatar             from  './ns-avatar.vue';
 import nsAvatarImage        from  './ns-avatar-image.vue';
 import nsButton             from  './ns-button.vue';

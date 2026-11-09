@@ -1,4 +1,4 @@
-// import NsPosPermissionsPopup from "~/pages/dashboard/pos/ns-pos-permissions-popup.vue";
+﻿// import NsPosPermissionsPopup from "~/pages/dashboard/pos/ns-pos-permissions-popup.vue";
 import NsPosPermissionsPopup from "~/popups/ns-pos-permissions-popup.vue";
 NsPosPermissionsPopup
 

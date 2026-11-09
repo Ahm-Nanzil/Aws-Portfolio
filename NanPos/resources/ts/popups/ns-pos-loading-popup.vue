@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <ns-spinner></ns-spinner>
 </template>
 <script>

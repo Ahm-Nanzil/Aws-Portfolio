@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    private const TABLE = 'possoft_transactions_actions_rules';
+    private const TABLE = 'nexopos_transactions_actions_rules';
 
     /**
      * Add missing default rules without replacing configured rules.

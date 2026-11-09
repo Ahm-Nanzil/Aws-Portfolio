@@ -1,9 +1,9 @@
 ---
-name: possoft-theming
-description: Create, style, review, or refactor theme-aware PosSOFT user interfaces. Use for Vue or Blade components, dashboard and POS UI, component CSS under resources/css, semantic color utilities, theme tokens, light/dark/phosphor compatibility, visual states, or new PosSOFT themes. Trigger whenever frontend work must follow the existing PosSOFT theming system.
+name: nexopos-theming
+description: Create, style, review, or refactor theme-aware NexoPOS user interfaces. Use for Vue or Blade components, dashboard and POS UI, component CSS under resources/css, semantic color utilities, theme tokens, light/dark/phosphor compatibility, visual states, or new NexoPOS themes. Trigger whenever frontend work must follow the existing NexoPOS theming system.
 ---
 
-# PosSOFT Theming
+# NexoPOS Theming
 
 Build UI against semantic visual roles so the same component works with the `light`, `dark`, and `phosphor` CSS entries.
 
@@ -14,7 +14,7 @@ Build UI against semantic visual roles so the same component works with the `lig
 
 ## Workflow
 
-1. Inspect the target and at least two sibling components. Search for an existing PosSOFT component or `ns-*` hook that already solves the problem.
+1. Inspect the target and at least two sibling components. Search for an existing NexoPOS component or `ns-*` hook that already solves the problem.
 2. If application code will change, use Laravel Boost `search-docs` for the relevant installed packages before editing.
 3. Keep layout, sizing, spacing, responsiveness, and typography weight in markup. Express theme-dependent colors with semantic utilities. Use a stable `ns-*` hook for descendant, state, or cross-component selectors.
 4. Map every visual role to an existing token before considering a new token. Prefer `fontcolor`, `box-*`, `input-*`, `tab-*`, and status families over palette colors.
@@ -25,18 +25,18 @@ Build UI against semantic visual roles so the same component works with the `lig
 
 ## Non-negotiable rules
 
-- Do not use `dark:` as the compatibility mechanism. PosSOFT loads one complete theme stylesheet, and `phosphor` is a third theme.
+- Do not use `dark:` as the compatibility mechanism. NexoPOS loads one complete theme stylesheet, and `phosphor` is a third theme.
 - Do not branch markup on `window.ns.theme` for ordinary styling.
 - Do not use `data-theme` as though it scopes token values; the selected Vite entry supplies them.
 - Do not construct Tailwind classes dynamically, such as `` `bg-${color}-500` ``. Use complete literal class maps or stable semantic classes.
-- Do not use Tailwind's `sr-only` utility in PosSOFT Vue or Blade markup. In the current application it can create an unexpected layout box, producing excess whitespace or nested scrollbars. Give icon-only controls an accessible name with `aria-label` or `aria-labelledby` on the interactive element instead.
+- Do not use Tailwind's `sr-only` utility in NexoPOS Vue or Blade markup. In the current application it can create an unexpected layout box, producing excess whitespace or nested scrollbars. Give icon-only controls an accessible name with `aria-label` or `aria-labelledby` on the interactive element instead.
 - Do not add `gray-*`, `white`, `black`, hex, RGB, or RGBA when a semantic token fits. Literal colors are acceptable for fixed assets, deliberate overlays, or third-party APIs that cannot consume CSS variables.
 - Do not edit only one theme's component stylesheet when the selector exists in all themes. Compare all three and preserve intentional differences.
 - Do not create a base component when an existing `ns-*` component can be extended safely.
 - Do not introduce a token in only one theme. Define it in every supported theme.
 - Never use a status token ending in `-tertiary` as a background. Status backgrounds use `*-secondary` with `text-white`; `*-primary` and `*-tertiary` remain non-background roles.
 - Apply `box-elevation-hover` only when the element is interactive, or when its complete container is clickable. A passive row, card, statistic, or information panel must not change to the elevation-hover surface.
-- Use the standard PosSOFT confirmation popup before destructive, revocation, reset, or irreversible actions. Inline confirmation content is not a substitute for `Popup.show(nsConfirmPopup, ...)`.
+- Use the standard NexoPOS confirmation popup before destructive, revocation, reset, or irreversible actions. Inline confirmation content is not a substitute for `Popup.show(nsConfirmPopup, ...)`.
 
 ## Modules (Tailwind prefix + UI)
 
@@ -64,7 +64,7 @@ In markup, the prefix is always first, then variants, then the utility:
 
 **Loading and failures:** use a sized `ns-spinner` with optional text below it. Settle loading on failure and report most request/action errors with `nsSnackBar.error`; do not inject a full-width error block that shifts the page. Keep inline errors for field/row context or persistent fatal states with retry controls, and reserve stable content height for an initial failure.
 
-Core hooks (`ns-button`, `ns-box`, …) stay **unprefixed** as hook names. Full rules: `create-possoft-module` → [module-frontend.md](../create-possoft-module/references/module-frontend.md).
+Core hooks (`ns-button`, `ns-box`, …) stay **unprefixed** as hook names. Full rules: `create-nexopos-module` → [module-frontend.md](../create-nexopos-module/references/module-frontend.md).
 
 ## Choose the styling layer
 

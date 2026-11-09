@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div v-if="isLoading && ! unavailableType" class="h-half w-full flex items-center justify-center">
         <div class="flex flex-col">
             <ns-spinner></ns-spinner>
@@ -11,10 +11,10 @@
         <ns-notice color="warning">
             <template #title>{{ __( 'Unable to edit this transaction' ) }}</template>
             <template #description>
-                {{ __( 'This transaction was created with a type that is no longer available. This type is no longer available because PosSOFT is unable to perform background requests.' ) }}
+                {{ __( 'This transaction was created with a type that is no longer available. This type is no longer available because PosSoft is unable to perform background requests.' ) }}
             </template>
             <template #controls>
-                <ns-button target="_blank" href="https://my.possoft.com/en/documentation/troubleshooting/workers-or-async-requests-disabled?utm_source=possoft&utm_campaign=warning&utm_medium=app" type="warning">{{ __( 'Learn More' ) }}</ns-button>
+                <ns-button target="_blank" href="/" type="warning">{{ __( 'Learn More' ) }}</ns-button>
             </template>
         </ns-notice>
     </div>
@@ -262,7 +262,7 @@ export default {
 
                         return Popup.show( nsAlertPopup, {
                             title: __( 'Unable to load the transaction' ),
-                            message: __( 'You cannot edit this transaction if PosSOFT cannot perform background requests.' )
+                            message: __( 'You cannot edit this transaction if PosSoft cannot perform background requests.' )
                         });
                     }
 

@@ -40,7 +40,7 @@ class ProcurementProduct extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'procurements_products';
+    protected $table = 'nexopos_' . 'procurements_products';
 
     const STOCK_INCREASE = 'increase';
 

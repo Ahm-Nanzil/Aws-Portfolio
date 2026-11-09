@@ -32,7 +32,7 @@ class ReportServiceYearReportTest extends TestCase
 
         $reports = app( ReportService::class )->getYearReportFor( 2025 );
 
-        $monthLookups = array_filter( DB::getQueryLog(), fn( array $query ): bool => str_contains( $query['query'], 'possoft_dashboard_months' ) );
+        $monthLookups = array_filter( DB::getQueryLog(), fn( array $query ): bool => str_contains( $query['query'], 'nexopos_dashboard_months' ) );
 
         $this->assertCount( 1, $monthLookups );
         $this->assertCount( 12, $reports );

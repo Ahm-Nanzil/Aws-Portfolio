@@ -2,9 +2,9 @@
 applyTo: '**'
 ---
 
-# PosSOFT nsHttpClient Guide
+# NexoPOS nsHttpClient Guide
 
-The `nsHttpClient` is a powerful HTTP client wrapper built on top of Axios that provides a reactive, Observable-based interface for making HTTP requests in PosSOFT. It's globally available throughout the application and offers enhanced error handling, request tracking, and integration with the PosSOFT hook system.
+The `nsHttpClient` is a powerful HTTP client wrapper built on top of Axios that provides a reactive, Observable-based interface for making HTTP requests in NexoPOS. It's globally available throughout the application and offers enhanced error handling, request tracking, and integration with the NexoPOS hook system.
 
 ## Overview
 
@@ -413,7 +413,7 @@ ProductService.create({
 
 ## Hook System Integration
 
-The nsHttpClient integrates with PosSOFT's hook system:
+The nsHttpClient integrates with NexoPOS's hook system:
 
 ```typescript
 // URLs are filtered through the hook system
@@ -580,7 +580,7 @@ const uploadFile = (file) => {
 
 ### CSRF Protection
 
-The nsHttpClient automatically handles CSRF tokens when using the default Axios configuration from PosSOFT.
+The nsHttpClient automatically handles CSRF tokens when using the default Axios configuration from NexoPOS.
 
 ### Authentication Headers
 
@@ -623,4 +623,4 @@ nsHttpClient._request = function(...args) {
 };
 ```
 
-The nsHttpClient provides a powerful, reactive interface for handling HTTP requests in PosSOFT applications, with built-in error handling, request tracking, and seamless integration with the framework's architecture.
+The nsHttpClient provides a powerful, reactive interface for handling HTTP requests in NexoPOS applications, with built-in error handling, request tracking, and seamless integration with the framework's architecture.

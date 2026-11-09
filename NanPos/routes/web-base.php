@@ -48,7 +48,7 @@ Route::middleware( [
             Route::middleware( [
                 HandleCommonRoutesMiddleware::class,
             ] )->group( function () {
-                require dirname( __FILE__ ) . '/possoft.php';
+                require dirname( __FILE__ ) . '/nexopos.php';
             } );
 
             include dirname( __FILE__ ) . '/web/modules.php';

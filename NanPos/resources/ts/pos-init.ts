@@ -1,4 +1,4 @@
-import { ProductQuantityPromise } from "./pages/dashboard/pos/queues/products/product-quantity";
+﻿import { ProductQuantityPromise } from "./pages/dashboard/pos/queues/products/product-quantity";
 import { ProductUnitPromise } from "./pages/dashboard/pos/queues/products/product-unit";
 import { CustomerQueue } from "./pages/dashboard/pos/queues/order/customer-queue";
 import { PaymentQueue } from "./pages/dashboard/pos/queues/order/payment-queue";
@@ -335,7 +335,7 @@ export class POS {
                                                 label: __( 'Read More' ),
                                                 onClick: ( instance ) => {
                                                     instance.close();
-                                                    window.open( 'https://my.possoft.com/en/documentation/troubleshooting/no-default-customer', '_blank' );
+                                                    window.open( '/en/documentation/troubleshooting/no-default-customer', '_blank' );
                                                 }
                                             }, 
                                             close: {
@@ -453,7 +453,7 @@ export class POS {
                     }
                 }
 
-                request.setRequestHeader( 'Authorization', `Bearer ${  options.mypossoft_access_token }` );
+                request.setRequestHeader( 'Authorization', `Bearer ${  options.mynexopos_access_token }` );
                 request.setRequestHeader( 'Accept', 'application/json' );
 
                 request.onerror = (e) => {
@@ -506,7 +506,7 @@ export class POS {
                 reconnectionDelay: 1000,
                 reconnectionDelayMax: 5000,
                 auth: {
-                    access_token: options.mypossoft_access_token,
+                    access_token: options.mynexopos_access_token,
                     role: "host",
                     license_uuid: channel.license_uuid,
                 }
@@ -1816,7 +1816,7 @@ export class POS {
                 await new Promise((resolve, reject) => {
                     const popup = Popup.show( nsPosLoadingPopupVue );
                     nsHttpClient.post(`/api/users/check-permission/`, {
-                        permission: 'possoft.pos.delete-order-product'
+                        permission: 'nexopos.pos.delete-order-product'
                     }).subscribe({
                         next: (response: any) => {
                             popup.close();
@@ -1925,7 +1925,7 @@ export class POS {
              * then derive per-unit values for consistency
              */
             
-            // Calculate line subtotal (unit price × quantity)
+            // Calculate line subtotal (unit price Ã— quantity)
             const lineSubtotal = math.chain( price ).multiply( product.quantity ).done();
             
             // Calculate line total after discount
@@ -2047,7 +2047,7 @@ export class POS {
          * Once-per-line extra (not multiplied by quantity). Modules use this for
          * surcharges such as an appointment room fee attached to a service line.
          * The amount is stored on the product, included in the tax base, and
-         * added to total_price after unit × qty − discount.
+         * added to total_price after unit Ã— qty âˆ’ discount.
          */
         const rawLineExtra = nsHooks.applyFilters( 'ns-pos-product-line-extra', 0, product );
         const lineExtra = Number( rawLineExtra );
@@ -2110,7 +2110,7 @@ export class POS {
          * This is the standard real-world approach for tax computation
          */
         
-        // Calculate line subtotal (unit price × quantity)
+        // Calculate line subtotal (unit price Ã— quantity)
         const lineSubtotal = math.chain( unitPrice ).multiply( product.quantity ).done();
         
         // Calculate line total after discount

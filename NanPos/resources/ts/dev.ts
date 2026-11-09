@@ -1,4 +1,4 @@
-import * as components from "~/components/components";
+﻿import * as components from "~/components/components";
 
 import { createApp, defineComponent } from "vue";
 import { createRouter, createWebHashHistory } from "vue-router";

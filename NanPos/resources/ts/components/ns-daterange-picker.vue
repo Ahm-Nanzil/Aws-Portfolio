@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import moment from "moment";
 import { __ } from '~/libraries/lang';
 

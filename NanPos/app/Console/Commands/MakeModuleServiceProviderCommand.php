@@ -83,7 +83,7 @@ class MakeModuleServiceProviderCommand extends Command
                 }
             }
         } else {
-            $this->error( 'PosSOFT is not yet installed.' );
+            $this->error( 'NexoPOS is not yet installed.' );
         }
     }
 }

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div>
         <div class="shadow-lg w-[95vw] md:w-[60vw] ns-box" v-if="loaded">
             <div class="border-b ns-box-header p-2 text-fontcolor flex justify-between items-center">

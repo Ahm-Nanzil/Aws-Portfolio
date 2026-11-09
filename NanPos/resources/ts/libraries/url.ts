@@ -1,4 +1,4 @@
-declare const ns;
+﻿declare const ns;
 
 export default class Url {
     

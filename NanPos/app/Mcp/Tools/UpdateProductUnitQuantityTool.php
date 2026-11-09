@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class UpdateProductUnitQuantityTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.update.products' ];
+    protected array $permissions = [ 'nexopos.update.products' ];
 
     public string $name = 'update_product_unit_quantity';
 

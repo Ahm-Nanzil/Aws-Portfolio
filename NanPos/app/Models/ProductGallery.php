@@ -13,7 +13,7 @@ use Carbon\Carbon;
  */
 class ProductGallery extends NsModel
 {
-    protected $table = 'possoft_products_galleries';
+    protected $table = 'nexopos_products_galleries';
 
     protected $fillable = [
         'name',

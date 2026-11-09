@@ -31,7 +31,7 @@ class Customer extends UserScope
 {
     use HasFactory, NsCustomerAddress;
 
-    protected $table = 'possoft_' . 'users';
+    protected $table = 'nexopos_' . 'users';
 
     protected $hidden = [
         'password',
@@ -53,9 +53,9 @@ class Customer extends UserScope
     protected static function booted()
     {
         static::addGlobalScope( 'customers', function ( Builder $builder ) {
-            $role = DB::table( 'possoft_roles' )->where( 'namespace', Role::STORECUSTOMER )->first();
+            $role = DB::table( 'nexopos_roles' )->where( 'namespace', Role::STORECUSTOMER )->first();
 
-            $userRoleRelations = DB::table( 'possoft_users_roles_relations' )
+            $userRoleRelations = DB::table( 'nexopos_users_roles_relations' )
                 ->where( 'role_id', $role->id )
                 ->get( [ 'user_id', 'role_id' ] );
 

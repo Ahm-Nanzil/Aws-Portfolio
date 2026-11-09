@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div @click="holdOrder()" id="hold-button" class="flex-shrink-0 w-1/4 flex items-center font-bold cursor-pointer justify-center bg-blue-500 text-white border-r hover:bg-blue-600 border-blue-600 flex-auto">
         <i class="mr-2 text-2xl lg:text-xl las la-pause"></i> 
         <span class="text-lg hidden md:inline lg:text-2xl">{{ __( 'Hold' ) }}</span>
@@ -30,7 +30,7 @@ export default {
             /**
              * We'll check if the user has the right to hold an order.
              */
-            await  ActionPermissions.canProceed( 'possoft.cart.hold' );
+            await  ActionPermissions.canProceed( 'nexopos.cart.hold' );
 
             if ( this.order.payment_status !== 'hold' && this.order.payments.length > 0 ) {
                 return nsSnackBar.error( __( 'Unable to hold an order which payment status has been updated already.' ) );

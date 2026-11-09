@@ -1,10 +1,10 @@
-<template>
+﻿<template>
     <div class="-mx-2">
         <div class="px-2 w-full md:w-1/2">
             <div class="mb-4">
                 <ns-notice>
                     <template #title>{{ __( 'About Token' ) }}</template>
-                    <template #description>{{ __( `Token are used to provide a secure access to PosSOFT resources without having to share your personal username and password.
+                    <template #description>{{ __( `Token are used to provide a secure access to PosSoft resources without having to share your personal username and password.
                        Once generated, they won\'t expires until you explicitly revoke it.` ) }}
                     </template>
                 </ns-notice>

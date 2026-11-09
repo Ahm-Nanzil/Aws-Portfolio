@@ -1,4 +1,4 @@
-export class Payment {
+﻿export class Payment {
     label: string;
     identifier: string;
     selected: boolean;

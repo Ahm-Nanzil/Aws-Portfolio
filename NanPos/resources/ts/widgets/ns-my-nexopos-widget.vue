@@ -1,12 +1,12 @@
-<template>
-    <div id="ns-my-possoft-widget" class="ns-box flex flex-auto flex-col overflow-hidden rounded-lg border border-box-edge bg-box-background text-fontcolor shadow">
+﻿<template>
+    <div id="ns-my-nexopos-widget" class="ns-box flex flex-auto flex-col overflow-hidden rounded-lg border border-box-edge bg-box-background text-fontcolor shadow">
         <div class="ns-box-header flex items-center justify-between border-b border-box-edge p-2">
             <div class="flex min-w-0 items-center gap-2">
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-info-secondary bg-info-primary text-info-tertiary">
                     <i class="las" :class="isConnected ? 'la-check-circle' : 'la-plug'"></i>
                 </span>
                 <div class="min-w-0">
-                    <h5 class="truncate font-semibold">{{ __( 'My PosSOFT' ) }}</h5>
+                    <h5 class="truncate font-semibold">{{ __( 'PosSoft Marketplace' ) }}</h5>
                     <p class="truncate text-xs text-fontcolor-soft">{{ isConnected ? __( 'Connected and ready' ) : __( 'Extend your store' ) }}</p>
                 </div>
             </div>
@@ -30,17 +30,17 @@
                     <span class="text-xs font-semibold uppercase tracking-wider">{{ __( 'Connected features' ) }}</span>
                 </div>
                 <h3 class="text-lg font-bold leading-6 text-fontcolor-hard">
-                    {{ __( 'Connect PosSOFT to a larger toolbox.' ) }}
+                    {{ __( 'Connect PosSoft to a larger toolbox.' ) }}
                 </h3>
                 <p class="mt-2 text-sm leading-6 text-fontcolor-soft">
-                    {{ __( 'Link this installation to my.possoft.com to discover modules, install extensions faster, and keep your store ready for what comes next.' ) }}
+                    {{ __( 'Connect this installation to PosSoft to discover modules and install extensions faster.' ) }}
                 </p>
             </div>
 
             <div class="grid gap-2 text-sm">
                 <div class="flex items-start gap-2">
                     <i class="las la-check-circle mt-0.5 text-success-tertiary"></i>
-                    <span>{{ __( 'Browse the official PosSOFT marketplace from your dashboard.' ) }}</span>
+                    <span>{{ __( 'Browse the official PosSoft marketplace from your dashboard.' ) }}</span>
                 </div>
                 <div class="flex items-start gap-2">
                     <i class="las la-check-circle mt-0.5 text-success-tertiary"></i>
@@ -52,7 +52,7 @@
                 <ns-button href="/dashboard/modules/marketplace?action=authenticate" type="info">
                     <span class="flex items-center justify-center gap-2">
                         <i class="las la-external-link-alt"></i>
-                        <span>{{ __( 'Connect to My PosSOFT' ) }}</span>
+                        <span>{{ __( 'Connect to PosSoft Marketplace' ) }}</span>
                     </span>
                 </ns-button>
                 <ns-link href="/dashboard/modules/marketplace">
@@ -88,8 +88,8 @@
                         <span>{{ __( 'Browse Modules' ) }}</span>
                     </span>
                 </ns-button>
-                <ns-link class="text-center text-xs text-fontcolor-soft hover:text-fontcolor" href="https://my.possoft.com" target="_blank">
-                    {{ __( 'Open My PosSOFT' ) }}
+                <ns-link class="text-center text-xs text-fontcolor-soft hover:text-fontcolor" href="" target="_blank">
+                    {{ __( 'Open PosSoft Marketplace' ) }}
                 </ns-link>
             </div>
         </div>
@@ -99,7 +99,7 @@
 import { __ } from '~/libraries/lang';
 
 export default {
-    name: 'ns-my-possoft-widget',
+    name: 'ns-my-nexopos-widget',
     props: [ 'widget' ],
     data() {
         return {
@@ -115,14 +115,14 @@ export default {
                     title: __( 'Barcode Utility' ),
                     description: __( 'Barcode Utility turns your Android phone into a barcode reader that connects to a POS terminal.' ),
                     icon: 'la-mobile-alt',
-                    href: 'https://my.possoft.com/en/marketplace/item/barcode-utility-for-possoft?utm_source=widget&utm_medium=link&utm_campaign=my-possoft-widget',
+                    href: '#',
                     external: true,
                 },
                 {
                     title: __( 'Secure sensitive actions' ),
                     description: __( 'Explore extensions that help protect privileged operations and keep cashier permissions focused.' ),
                     icon: 'la-shield-alt',
-                    href: 'https://my.possoft.com/en/marketplace/item/possoft-authorizer?utm_source=widget&utm_medium=link&utm_campaign=my-possoft-widget',
+                    href: '#',
                     external: true,
                 },
             ],

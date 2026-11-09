@@ -49,7 +49,7 @@ class ComputeYearlyReportJob implements ShouldQueue
             url: route( ns()->routeName( 'ns.dashboard.reports-annual' ) ),
 
         )->dispatchForGroup(
-            [ 'admin', 'possoft.store.administrator' ]
+            [ 'admin', 'nexopos.store.administrator' ]
         );
     }
 }

@@ -34,7 +34,7 @@ class ProductHistory extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'products_histories';
+    protected $table = 'nexopos_' . 'products_histories';
 
     const ACTION_STOCKED = 'procured';
 

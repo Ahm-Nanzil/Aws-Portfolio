@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_users_attributes' ) ) {
-            Schema::create( 'possoft_users_attributes', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_users_attributes' ) ) {
+            Schema::create( 'nexopos_users_attributes', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'user_id' );
                 $table->string( 'avatar_link' )->nullable();
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_users_attributes' );
+        Schema::dropIfExists( 'nexopos_users_attributes' );
     }
 };

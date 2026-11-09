@@ -28,7 +28,7 @@ class GlobalProductHistoryCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_products_histories';
+    protected $table = 'nexopos_products_histories';
 
     /**
      * default slug
@@ -73,7 +73,7 @@ class GlobalProductHistoryCrud extends CrudService
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
@@ -81,11 +81,11 @@ class GlobalProductHistoryCrud extends CrudService
         'join' => [
             [ User::class, 'user' ],
         ],
-        [ 'possoft_products as product', 'product.id', '=', 'possoft_products_histories.product_id' ],
-        [ 'possoft_units as unit', 'unit.id', '=', 'possoft_products_histories.unit_id' ],
+        [ 'nexopos_products as product', 'product.id', '=', 'nexopos_products_histories.product_id' ],
+        [ 'nexopos_units as unit', 'unit.id', '=', 'nexopos_products_histories.unit_id' ],
         'leftJoin' => [
-            [ 'possoft_procurements as procurement', 'procurement.id', '=', 'possoft_products_histories.procurement_id' ],
-            [ 'possoft_orders as order', 'order.id', '=', 'possoft_products_histories.order_id' ],
+            [ 'nexopos_procurements as procurement', 'procurement.id', '=', 'nexopos_products_histories.procurement_id' ],
+            [ 'nexopos_orders as order', 'order.id', '=', 'nexopos_products_histories.order_id' ],
         ],
     ];
 
@@ -103,7 +103,7 @@ class GlobalProductHistoryCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [];

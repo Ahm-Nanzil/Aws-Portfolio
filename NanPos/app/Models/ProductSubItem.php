@@ -21,7 +21,7 @@ class ProductSubItem extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_products_subitems';
+    protected $table = 'nexopos_products_subitems';
 
     public function unit()
     {

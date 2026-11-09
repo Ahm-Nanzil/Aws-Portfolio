@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="numpad" class="grid grid-flow-row divide-x-1 divide-y-1 border-t border-l border-numpad-edge grid-cols-3 grid-rows-3">
         <div 
             @click="inputValue( key )"

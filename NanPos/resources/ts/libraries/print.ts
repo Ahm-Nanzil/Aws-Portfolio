@@ -1,4 +1,4 @@
-declare const nsHooks;
+﻿declare const nsHooks;
 declare const nsSnackBar;
 declare const __;
 

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_dashboard_months', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_dashboard_months', function ( Blueprint $table ) {
             $table->id();
             $table->decimal( 'month_taxes', 18, 5 )->default( 0 );
             $table->decimal( 'month_unpaid_orders', 18, 5 )->default( 0 );
@@ -53,6 +53,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_dashboard_months' );
+        Schema::dropIfExists( 'nexopos_dashboard_months' );
     }
 };

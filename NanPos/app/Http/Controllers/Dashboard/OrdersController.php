@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -193,7 +193,7 @@ class OrdersController extends DashboardController
 
         /**
          * if the barcode reader type is set to wireless, we'll check if the system is
-         * connected to my.possoft.com as the wireless barcode relies
+         * connected to my.nexopos.com as the wireless barcode relies
          * on the socket feature provided by the platform.
          */
         if ( ns()->option->get( 'ns_pos_barcode_reader_type' ) === 'wireless' ) {
@@ -211,7 +211,7 @@ class OrdersController extends DashboardController
         return View::make( 'pages.dashboard.orders.pos', [
             'title' => sprintf(
                 __( 'POS' ),
-                ns()->option->get( 'ns_store_name', 'PosSOFT' )
+                ns()->option->get( 'ns_store_name', 'NexoPOS' )
             ),
             'orderTypes' => collect( $this->ordersService->getTypeOptions() )
                 ->filter( function ( $type, $label ) {
@@ -250,7 +250,7 @@ class OrdersController extends DashboardController
                 'ns_pos_enable_pinned_products' => ns()->option->get( 'ns_pos_enable_pinned_products', 'no' ) === 'yes' ? true : false,
                 'ns_pos_barcode_reader_type' => ns()->option->get( 'ns_pos_barcode_reader_type' ),
                 'ns_pos_layout' => PosLayout::normalize( ns()->option->get( 'ns_pos_layout' ) ),
-                'mypossoft_access_token' => ns()->option->get( 'mypossoft_access_token' ),
+                'mynexopos_access_token' => ns()->option->get( 'mynexopos_access_token' ),
             ] ),
             'urls' => [
                 'sale_printing_url' => Hook::filter( 'ns-pos-printing-url', ns()->url( '/dashboard/orders/receipt/{id}?dash-visibility=disabled&autoprint=true' ) ),

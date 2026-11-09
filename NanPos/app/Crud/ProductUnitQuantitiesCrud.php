@@ -25,7 +25,7 @@ class ProductUnitQuantitiesCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_products_unit_quantities';
+    protected $table = 'nexopos_products_unit_quantities';
 
     /**
      * Define namespace
@@ -46,7 +46,7 @@ class ProductUnitQuantitiesCrud extends CrudService
      */
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.products',
+        'read' => 'nexopos.read.products',
         'update' => false,
         'delete' => false,
     ];
@@ -55,8 +55,8 @@ class ProductUnitQuantitiesCrud extends CrudService
      * Adding relation
      */
     public $relations = [
-        [ 'possoft_products as products', 'products.id', '=', 'possoft_products_unit_quantities.product_id' ],
-        [ 'possoft_units as units', 'units.id', '=', 'possoft_products_unit_quantities.unit_id' ],
+        [ 'nexopos_products as products', 'products.id', '=', 'nexopos_products_unit_quantities.product_id' ],
+        [ 'nexopos_units as units', 'units.id', '=', 'nexopos_products_unit_quantities.unit_id' ],
     ];
 
     /**
@@ -65,7 +65,7 @@ class ProductUnitQuantitiesCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [];

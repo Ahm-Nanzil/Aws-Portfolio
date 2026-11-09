@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import { nsHttpClient, nsSnackBar } from '~/bootstrap';
 import popupCloser from '~/libraries/popup-closer';
 import { __ } from '~/libraries/lang';

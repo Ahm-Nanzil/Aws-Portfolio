@@ -15,7 +15,7 @@ class AboutSettings extends SettingsPage
 
     /**
      * A unique identifier provided to the form,
-     * that helps PosSOFT distinguish it among other forms.
+     * that helps NexoPOS distinguish it among other forms.
      */
     const IDENTIFIER = 'about';
 
@@ -25,7 +25,7 @@ class AboutSettings extends SettingsPage
             'title' => __( 'About' ),
             'description' => __( 'Details about the environment.' ),
             'details' => [
-                __( 'Core Version' ) => config( 'possoft.version' ),
+                __( 'Core Version' ) => config( 'nexopos.version' ),
                 __( 'Laravel Version' ) => app()->version(),
                 __( 'PHP Version' ) => phpversion(),
             ],

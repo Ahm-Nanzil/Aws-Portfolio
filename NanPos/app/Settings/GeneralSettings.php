@@ -99,14 +99,14 @@ class GeneralSettings extends SettingsPage
                 FormInput::select(
                     name: 'ns_store_language',
                     value: ns()->option->get( 'ns_store_language' ),
-                    options: Helper::kvToJsOptions( config( 'possoft.languages' ) ),
+                    options: Helper::kvToJsOptions( config( 'nexopos.languages' ) ),
                     label: __( 'Language' ),
                     description: __( 'Define the default fallback language.' ),
                 ),
                 FormInput::select(
                     name: 'ns_default_theme',
                     value: ns()->option->get( 'ns_default_theme' ),
-                    options: Helper::kvToJsOptions( config( 'possoft.themes' ) ),
+                    options: Helper::kvToJsOptions( config( 'nexopos.themes' ) ),
                     label: __( 'Theme' ),
                     description: __( 'Define the default theme.' ),
                 ),
@@ -233,7 +233,7 @@ class GeneralSettings extends SettingsPage
                     name: 'ns_datetime_timezone',
                     value: ns()->option->get( 'ns_datetime_timezone' ),
                     type: 'search-select',
-                    options: Helper::kvToJsOptions( config( 'possoft.timezones' ) ),
+                    options: Helper::kvToJsOptions( config( 'nexopos.timezones' ) ),
                     description: sprintf( __( 'Determine the default timezone of the store. Current Time: %s' ), ns()->date->getNowFormatted() ),
                 ),
             )

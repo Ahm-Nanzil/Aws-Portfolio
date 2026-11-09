@@ -2,7 +2,7 @@
 applyTo: '**'
 ---
 
-# PosSOFT FormInput Class Usage Guide
+# NexoPOS FormInput Class Usage Guide
 
 The `FormInput` class is a utility class located at `app/Classes/FormInput.php` that provides static methods for creating standardized form input configurations. This class simplifies the creation of various form field types with consistent structure and validation.
 
@@ -439,13 +439,13 @@ public function getFormFields($userType = null)
 6. **Option Arrays**: For select fields, ensure options follow the `['label' => '', 'value' => '']` format
 7. **Default Values**: Set sensible default values where appropriate
 
-## Integration with PosSOFT
+## Integration with NexoPOS
 
-The FormInput class is designed to work seamlessly with PosSOFT's form rendering system. The returned arrays are typically used in:
+The FormInput class is designed to work seamlessly with NexoPOS's form rendering system. The returned arrays are typically used in:
 
 - CRUD class field definitions
 - Form configuration arrays
 - Dynamic form builders
 - Module form configurations
 
-The class ensures consistent form field structure across the entire PosSOFT application while providing flexibility for custom implementations.
+The class ensures consistent form field structure across the entire NexoPOS application while providing flexibility for custom implementations.

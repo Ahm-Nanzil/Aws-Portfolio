@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box w-95vw max-w-xl overflow-hidden rounded-lg border border-box-edge bg-box-background text-fontcolor shadow-xl">
         <div class="ns-box-header flex items-center justify-between border-b border-box-edge p-4">
             <div class="flex items-center gap-3">
@@ -38,7 +38,7 @@
                     <i class="las la-unlink text-xl" aria-hidden="true"></i>
                 </span>
                 <span class="min-w-0 flex-1">
-                    <span class="block text-sm font-semibold text-error-tertiary">{{ isDisconnecting ? __( 'Disconnecting...' ) : __( 'Disconnect from My PosSOFT' ) }}</span>
+                    <span class="block text-sm font-semibold text-error-tertiary">{{ isDisconnecting ? __( 'Disconnecting...' ) : __( 'Disconnect from PosSoft Marketplace' ) }}</span>
                     <span class="mt-1 block text-xs leading-5 text-fontcolor-soft">{{ __( 'Revoke this installation and remove its locally stored connection credentials.' ) }}</span>
                 </span>
             </button>
@@ -51,7 +51,7 @@
                     <i class="las la-link text-xl" aria-hidden="true"></i>
                 </span>
                 <span class="min-w-0 flex-1">
-                    <span class="block text-sm font-semibold">{{ __( 'Connect to My PosSOFT' ) }}</span>
+                    <span class="block text-sm font-semibold">{{ __( 'Connect to PosSoft Marketplace' ) }}</span>
                     <span class="mt-1 block text-xs leading-5 text-fontcolor-soft">{{ __( 'Connect this installation to access licenses, downloads, and your marketplace cart.' ) }}</span>
                 </span>
             </a>
@@ -110,20 +110,20 @@ export default {
         disconnect() {
             Popup.show( nsConfirmPopup, {
                 title: __( 'Confirm your action' ),
-                message: __( 'Disconnect this PosSOFT installation from My PosSOFT? You will need to connect again before accessing licenses, downloads, or your marketplace cart.' ),
+                message: __( 'Disconnect this PosSoft installation from the marketplace? You will need to connect again before accessing licenses, downloads, or your marketplace cart.' ),
                 onAction: ( action ) => {
                     if ( action ) {
                         this.isDisconnecting = true;
 
                         nsHttpClient.delete( '/api/marketplace/connection' ).subscribe( {
                             next: response => {
-                                nsSnackBar.success( response.message || __( 'This installation has been disconnected from My PosSOFT.' ) );
+                                nsSnackBar.success( response.message || __( 'This installation has been disconnected from My PosSoft.' ) );
                                 window.location.reload();
                                 this.isDisconnecting = false;
                             },
                             error: error => {
                                 this.isDisconnecting = false;
-                                nsSnackBar.error( error.message || __( 'Failed to disconnect this installation from My PosSOFT.' ) );
+                                nsSnackBar.error( error.message || __( 'Failed to disconnect this installation from My PosSoft.' ) );
                             },
                         } );
                     }

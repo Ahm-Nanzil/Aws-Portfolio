@@ -70,7 +70,7 @@ class Order extends NsModel
 
     public $timestamps = false;
 
-    protected $table = 'possoft_' . 'orders';
+    protected $table = 'nexopos_' . 'orders';
 
     const TYPE_DELIVERY = 'delivery';
 

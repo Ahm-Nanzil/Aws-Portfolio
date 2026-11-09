@@ -47,7 +47,7 @@ class SalesOverviewWidget extends WidgetService
     {
         $this->name = __( 'Sales Overview' );
         $this->description = __( 'Displays recent sales activity.' );
-        $this->permission = 'possoft.see.sales-overview-widget';
+        $this->permission = 'nexopos.see.sales-overview-widget';
     }
 }
 ```
@@ -179,7 +179,7 @@ export default {
 </script>
 ```
 
-For module-owned Tailwind utilities, follow the module prefix and semantic theme-token rules in the `create-possoft-module` skill. Core `ns-*` component hooks remain unprefixed.
+For module-owned Tailwind utilities, follow the module prefix and semantic theme-token rules in the `create-nexopos-module` skill. Core `ns-*` component hooks remain unprefixed.
 
 ## Fresh-install default order
 
@@ -190,7 +190,7 @@ For module-owned Tailwind utilities, follow the module prefix and semantic theme
 3. Orders Summary (`1x2`)
 4. Best Cashiers (`1x2`)
 5. Profile (`1x2`)
-6. My PosSOFT (`2x1`)
+6. My NexoPOS (`2x1`)
 7. Incomplete Sale (`1x1`)
 8. Expense (`1x1`)
 9. Sale (`1x1`)

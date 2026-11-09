@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow-lg w-95vw md:w-[60vw] lg:w-[40vw]">
         <div class="p-2 flex justify-between items-center border-b ns-box-header">
             <h3 class="text-blog">{{ __( 'Tax & Summary' ) }}</h3>
@@ -139,7 +139,7 @@ export default {
             const fields    =   this.validation.extractFields( this.group_fields );
 
             /**
-             * When we save tax, we should instruct PosSOFT to 
+             * When we save tax, we should instruct PosSoft to 
              * ignore previously cached tax and fetch new taxes. 
              * This will be done by overwriting the tax_group.
              */

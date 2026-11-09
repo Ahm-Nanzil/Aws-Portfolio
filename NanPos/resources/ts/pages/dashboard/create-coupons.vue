@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import FormValidation from '../../libraries/form-validation';
 import { nsSnackBar, nsHttpClient } from '../../bootstrap';
 import { __ } from '~/libraries/lang';

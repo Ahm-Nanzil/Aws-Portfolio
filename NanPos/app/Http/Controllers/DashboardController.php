@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -53,7 +53,7 @@ class DashboardController extends Controller
 
     public function dispatchTelemetry()
     {
-        $version = config( 'possoft.version' );
+        $version = config( 'nexopos.version' );
         $modules = app()->make( ModulesService::class )->get();
 
         $modulesData = [];
@@ -73,7 +73,7 @@ class DashboardController extends Controller
         ];
 
         try {
-            Http::post( 'https://my.possoft.com/api/nexoplatform/telemetry', $payload );
+            Http::post( 'https://my.nexopos.com/api/nexoplatform/telemetry', $payload );
             ns()->option->set( 'ns_telemetry_last_sent', now()->toDateTimeString() );
         } catch ( \Exception $e ) {
             Log::error( 'Telemetry failed: ' . $e->getMessage() );
@@ -91,7 +91,7 @@ class DashboardController extends Controller
 
     public function getBestCashiers()
     {
-        return Role::namespace( 'possoft.store.cashier' )
+        return Role::namespace( 'nexopos.store.cashier' )
             ->users()
             ->orderBy( 'total_sales', 'desc' )
             ->limit( 10 )

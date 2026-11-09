@@ -2,19 +2,19 @@
 applyTo: '**'
 ---
 
-# PosSOFT View Injection Guide
+# NexoPOS View Injection Guide
 
-This guide explains how to inject custom views into various parts of the PosSOFT dashboard using Laravel Events. This is the **official and only supported method** for injecting views in PosSOFT.
+This guide explains how to inject custom views into various parts of the NexoPOS dashboard using Laravel Events. This is the **official and only supported method** for injecting views in NexoPOS.
 
 ## Important Notice
 
-⚠️ **Deprecated Method**: The old `Hook::addAction()` method for injecting views has been completely removed from PosSOFT. Do not use it.
+⚠️ **Deprecated Method**: The old `Hook::addAction()` method for injecting views has been completely removed from NexoPOS. Do not use it.
 
 ✅ **Current Method**: Use Laravel Events with Event Listeners.
 
 ## Overview
 
-PosSOFT fires various `Render*Event` classes at different points in the application. Modules can listen to these events and inject custom views into the rendered output.
+NexoPOS fires various `Render*Event` classes at different points in the application. Modules can listen to these events and inject custom views into the rendered output.
 
 ## Available Render Events
 

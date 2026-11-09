@@ -19,7 +19,7 @@ class Provider extends NsModel
 {
     use HasFactory, NsDependable;
 
-    protected $table = 'possoft_' . 'providers';
+    protected $table = 'nexopos_' . 'providers';
 
     protected $guarded = [];
 

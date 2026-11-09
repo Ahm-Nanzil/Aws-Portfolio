@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="-mx-4 flex flex-wrap">
         <div class="flex-auto">
             <div class="w-full mb-2 flex-wrap flex">

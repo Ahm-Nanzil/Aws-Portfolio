@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`NsAppointments` is a PosSOFT module for service businesses such as spas, barbers, salons, clinics, and similar appointment-driven operations. The module should let a business sell bookable services through a public frontend while keeping appointments, customers, orders, payments, staff schedules, permissions, and reporting aligned with PosSOFT conventions.
+`NsAppointments` is a NexoPOS module for service businesses such as spas, barbers, salons, clinics, and similar appointment-driven operations. The module should let a business sell bookable services through a public frontend while keeping appointments, customers, orders, payments, staff schedules, permissions, and reporting aligned with NexoPOS conventions.
 
 This document is the working implementation tracker. Update the status tables as each slice is designed, built, tested, and reviewed.
 
@@ -16,7 +16,7 @@ This document is the working implementation tracker. Update the status tables as
 - Translation namespace: `NsAppointments`
 - Route name prefix: `ns-appointments`
 - Permission prefix: `ns.appointments`
-- Table prefix: `possoft_appointment_`
+- Table prefix: `nexopos_appointment_`
 
 ## Product Scope
 
@@ -29,7 +29,7 @@ The module should provide a complete appointment commerce flow:
 - Appointment confirmation.
 - Admin calendar and appointment management.
 - Staff, working hours, time off, and service assignment.
-- PosSOFT product, customer, order, permission, and payment integration.
+- NexoPOS product, customer, order, permission, and payment integration.
 
 ## Payment Modes
 
@@ -47,7 +47,7 @@ Suggested fields:
 - `required_payment`: decimal amount required now
 - `paid_amount`: decimal amount paid
 - `payment_status`: `unpaid`, `partially_paid`, `paid`, `refunded`
-- `order_id`: related PosSOFT order when checkout creates an order
+- `order_id`: related NexoPOS order when checkout creates an order
 
 ## Appointment Statuses
 
@@ -84,7 +84,7 @@ The public frontend should be a module-local Vue application loaded through `@mo
 Frontend requirements:
 
 - No raw `innerHTML` UI for core booking flows.
-- Use PosSOFT frontend globals and `nsHttpClient` conventions.
+- Use NexoPOS frontend globals and `nsHttpClient` conventions.
 - Use module localization for user-facing strings.
 - Provide loading, empty, validation, and error states.
 - Revalidate availability before checkout.
@@ -98,10 +98,10 @@ Frontend requirements:
 | Appointment list | Search, filter, and inspect bookings. | Implemented |
 | Manual booking | Admin creates appointments for walk-ins or phone calls. | Implemented |
 | Reschedule/cancel | Operational appointment changes. | In progress |
-| Staff management | Link staff to PosSOFT users and manage active/available/unavailable/busy state. | Tested |
+| Staff management | Link staff to NexoPOS users and manage active/available/unavailable/busy state. | Tested |
 | Working hours | Weekly staff availability. | Not started |
 | Time off | Vacations, breaks, holidays, and unavailable periods. | Not started |
-| Service settings | Make PosSOFT products bookable and define duration/payment rules. | Implemented |
+| Service settings | Make NexoPOS products bookable and define duration/payment rules. | Implemented |
 | Staff assignment | Assign configured staff roles to service categories; users inherit capability through their roles. | Tested |
 | Module settings | Booking window, slot size, confirmation behavior, and defaults. | Implemented |
 
@@ -111,15 +111,15 @@ Initial model set:
 
 | Model | Table | Purpose | Status |
 | --- | --- | --- | --- |
-| `Appointment` | `possoft_appointments` | Main booking record. | Tested |
-| `AppointmentItem` | `possoft_appointment_items` | Booked services/products inside an appointment. | Tested |
-| `AppointmentService` | `possoft_appointment_services` | Booking metadata for PosSOFT products. | Implemented |
-| `AppointmentWorker` | `possoft_appointment_workers` | Staff profile linked to a PosSOFT user. | Tested |
-| `AppointmentCategoryRole` | `possoft_appointment_category_roles` | Staff roles allowed to perform services in a category. | Tested |
-| `AppointmentWorkingHour` | `possoft_appointment_working_hours` | Weekly staff availability. | Not started |
-| `AppointmentTimeOff` | `possoft_appointment_time_off` | Staff unavailability periods. | Not started |
-| `AppointmentResource` | `possoft_appointment_resources` | Optional rooms, chairs, equipment, or stations. | Implemented |
-| `AppointmentPayment` | `possoft_appointment_payments` | Payment snapshots or linkage records if PosSOFT orders are not enough. | Needs decision |
+| `Appointment` | `nexopos_appointments` | Main booking record. | Tested |
+| `AppointmentItem` | `nexopos_appointment_items` | Booked services/products inside an appointment. | Tested |
+| `AppointmentService` | `nexopos_appointment_services` | Booking metadata for NexoPOS products. | Implemented |
+| `AppointmentWorker` | `nexopos_appointment_workers` | Staff profile linked to a NexoPOS user. | Tested |
+| `AppointmentCategoryRole` | `nexopos_appointment_category_roles` | Staff roles allowed to perform services in a category. | Tested |
+| `AppointmentWorkingHour` | `nexopos_appointment_working_hours` | Weekly staff availability. | Not started |
+| `AppointmentTimeOff` | `nexopos_appointment_time_off` | Staff unavailability periods. | Not started |
+| `AppointmentResource` | `nexopos_appointment_resources` | Optional rooms, chairs, equipment, or stations. | Implemented |
+| `AppointmentPayment` | `nexopos_appointment_payments` | Payment snapshots or linkage records if NexoPOS orders are not enough. | Needs decision |
 
 Relationships must use explicit return types, casts through `casts()`, descriptive fillable fields, and tests covering core behavior.
 
@@ -200,9 +200,9 @@ Suggested settings:
 Category classification is implemented as module settings:
 
 - Sellable product categories: regular products the SPA/salon can sell but that do not generate appointment slots.
-- Service categories: PosSOFT product categories considered bookable services.
-- Resource categories: PosSOFT product categories considered bookable rooms, chairs, equipment, or stations.
-- Staff roles: PosSOFT roles whose users become assignable appointment workers.
+- Service categories: NexoPOS product categories considered bookable services.
+- Resource categories: NexoPOS product categories considered bookable rooms, chairs, equipment, or stations.
+- Staff roles: NexoPOS roles whose users become assignable appointment workers.
 
 The current implementation prevents a category from being configured as more than one type at the same time.
 
@@ -222,7 +222,7 @@ Use these statuses:
 | Task | Status | Notes |
 | --- | --- | --- |
 | Confirm replacement strategy for old `NexoAppointments` module. | Implemented | Old module was removed and replaced with `NsAppointments`. |
-| Scaffold `NsAppointments` module with PosSOFT generator. | Implemented | Generated with `php artisan make:module --no-interaction`. |
+| Scaffold `NsAppointments` module with NexoPOS generator. | Implemented | Generated with `php artisan make:module --no-interaction`. |
 | Define `config.xml`, module class, provider, and namespaces. | Implemented | Namespace, routes, views, settings, and provider use `NsAppointments`. |
 | Add route files and base dashboard menu. | Implemented | Public booking route, dashboard calendar/list/create routes, staff API, POS reservation API, and settings menu entries exist. |
 | Add permissions migration. | Implemented | Module permissions are created and assigned to administrator/store administrator roles. |
@@ -248,9 +248,9 @@ Use these statuses:
 | Build service configuration UI/API. | Implemented | Product CRUD now exposes appointment service and resource metadata fields. |
 | Build staff management UI/API. | Tested | Native CRUD lists role-backed workers and manages enabled, available, unavailable, and busy states. |
 | Build working hours/time off UI/API. | Not started | Operational scheduling. |
-| Build appointment list. | Implemented | Native PosSOFT CRUD table is registered at dashboard/ns-appointments/appointments. |
+| Build appointment list. | Implemented | Native NexoPOS CRUD table is registered at dashboard/ns-appointments/appointments. |
 | Build calendar endpoint and view. | Implemented | Dashboard calendar view and protected admin calendar API exist. |
-| Build manual appointment creation. | Implemented | Native PosSOFT CRUD create/edit form exists with availability validation. |
+| Build manual appointment creation. | Implemented | Native NexoPOS CRUD create/edit form exists with availability validation. |
 | Integrate reservation order type with the POS. | Tested | POS initial and add-to-cart queues load resources and server-authoritative service context through `nsHttpClient`. |
 | Collect reservation details before payment. | Tested | POS popup selects date, optional room, and category-assigned staff, then revalidates the canonical schedule. |
 | Persist POS reservations. | Tested | Order precheck and creation listeners are auto-discovered; appointment items preserve merged quantities and per-unit staff. |
@@ -264,7 +264,7 @@ Use these statuses:
 | Build services listing. | Implemented | Category filtering and service cards are implemented. |
 | Build single service page. | Implemented | Selected service detail, payment requirement, and add-to-cart are implemented. |
 | Build cart state and API. | Implemented | Frontend cart is local and server availability is revalidated before checkout. |
-| Build checkout without payment. | Implemented | Guest checkout creates a manual-due/unpaid PosSOFT reservation order and appointment. |
+| Build checkout without payment. | Implemented | Guest checkout creates a manual-due/unpaid NexoPOS reservation order and appointment. |
 | Build confirmation page. | Implemented | Checkout confirmation displays reference, schedule, status, and payment instructions. |
 | Add frontend build verification. | Tested | Module-local Vite production build passes for booking and POS entrypoints. |
 | Add public flow feature tests. | In progress | Catalog, service validation, and slot generation tests exist; full checkout tests are pending. |
@@ -273,11 +273,11 @@ Use these statuses:
 
 | Task | Status | Notes |
 | --- | --- | --- |
-| Decide exact PosSOFT order/payment integration point. | Implemented | Public checkout creates a PosSOFT reservation order and records required payment as due. |
+| Decide exact NexoPOS order/payment integration point. | Implemented | Public checkout creates a NexoPOS reservation order and records required payment as due. |
 | Implement no-payment checkout. | Implemented | Appointments enter `pending_confirmation` when no payment is required. |
 | Implement partial-payment checkout. | Implemented | Required deposit amount is calculated and appointment enters `pending_payment`. |
 | Implement full-payment checkout. | Implemented | Full service price is required and appointment enters `pending_payment`. |
-| Handle payment success callback/return. | Implemented | Appointment payment status syncs when the related PosSOFT order payment status changes. |
+| Handle payment success callback/return. | Implemented | Appointment payment status syncs when the related NexoPOS order payment status changes. |
 | Handle payment failure/expiration. | Not started | Release slot after hold expires. |
 | Add payment mode tests. | Not started | No payment, partial, full, failure. |
 
@@ -300,7 +300,7 @@ Use these statuses:
 | Old module handling | Delete, archive, migrate data, or keep disabled. | Needs decision |
 | Guest checkout | Allow guests or require account. | Allow guests |
 | Confirmation mode | Automatic, manual, or per-service. | Manual confirmation |
-| Payment provider path | Existing PosSOFT order payment, external gateway, or both. | Existing PosSOFT order, manual due for MVP |
+| Payment provider path | Existing NexoPOS order payment, external gateway, or both. | Existing NexoPOS order, manual due for MVP |
 | Cart persistence | Session, database, or local frontend state plus server validation. | Local frontend state plus server validation |
 | Multiple services per appointment | Allow or one service per booking. | Allow, unless operationally risky |
 | Resources | Rooms/chairs optional or required per service. | Optional |
@@ -311,7 +311,7 @@ Use these statuses:
 Before a phase is considered complete:
 
 - Relevant Laravel docs were checked with Boost `search-docs` before code changes.
-- Code follows PosSOFT module conventions and sibling module patterns.
+- Code follows NexoPOS module conventions and sibling module patterns.
 - Controllers are thin and validation lives in Form Requests.
 - Authorization is enforced server-side.
 - Migrations are repeat-safe and rollback-safe.

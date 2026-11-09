@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * Application controller
  *
  * @since  1.0
  **/
@@ -40,14 +40,14 @@ class AuthController extends Controller
     public function signIn()
     {
         return view( Hook::filter( 'ns-views:pages.sign-in', 'pages.auth.sign-in' ), [
-            'title' => __( 'Sign In — PosSOFT' ),
+            'title' => __( 'Sign In — PosSoft' ),
         ] );
     }
 
     public function signUp()
     {
         return view( Hook::filter( 'ns-views:pages.sign-up', 'pages.auth.sign-up' ), [
-            'title' => __( 'Sign Up — PosSOFT' ),
+            'title' => __( 'Sign Up — PosSoft' ),
         ] );
     }
 
@@ -126,7 +126,7 @@ class AuthController extends Controller
         Auth::logout();
 
         $request->session()->flush();
-        $request->cookie( 'possoft_session', null, 0 );
+        $request->cookie( 'nexopos_session', null, 0 );
 
         return redirect( ns()->route( 'ns.dashboard.home' ) );
     }

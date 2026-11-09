@@ -1,4 +1,4 @@
-import { OrderType } from "~/interfaces/order-type";
+﻿import { OrderType } from "~/interfaces/order-type";
 import { Popup } from "~/libraries/popup";
 import NsPosShippingPopup from "~/popups/ns-pos-shipping-popup.vue";
 import { StatusResponse } from "~/status-response";

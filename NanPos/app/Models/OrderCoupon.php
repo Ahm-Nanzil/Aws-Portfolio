@@ -18,7 +18,7 @@ class OrderCoupon extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_coupons';
+    protected $table = 'nexopos_' . 'orders_coupons';
 
     public $dispatchesEvents = [
         'created' => OrderCouponAfterCreatedEvent::class,

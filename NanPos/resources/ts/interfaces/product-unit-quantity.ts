@@ -1,4 +1,4 @@
-export interface ProductUnitQuantity {
+﻿export interface ProductUnitQuantity {
     quantity: number;
     sale_price_tax: number;
     wholesale_price_tax: number;

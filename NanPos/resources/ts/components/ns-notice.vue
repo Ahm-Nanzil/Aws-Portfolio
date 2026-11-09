@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div :class="actualColor" class="p-4 border-l-4 text-fontcolor ns-notice" role="alert">
         <h2 class="font-bold"><slot name="title"></slot></h2>
         <p class="my-2"><slot name="description"></slot><slot></slot></p>

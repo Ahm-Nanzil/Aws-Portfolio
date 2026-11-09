@@ -19,7 +19,7 @@ class DashboardMonth extends NsModel
 
     public $timestamps = false;
 
-    protected $table = 'possoft_' . 'dashboard_months';
+    protected $table = 'nexopos_' . 'dashboard_months';
 
     protected $dispatchEvents = [
         'created' => DashboardMonthAfterCreatedEvent::class,

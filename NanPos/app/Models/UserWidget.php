@@ -17,7 +17,7 @@ class UserWidget extends NsModel
 
     protected $fillable = [ 'column', 'identifier', 'class_name', 'position', 'user_id', 'layout' ];
 
-    protected $table = 'possoft_users_widgets';
+    protected $table = 'nexopos_users_widgets';
 
     /**
      * Get the attributes that should be cast.

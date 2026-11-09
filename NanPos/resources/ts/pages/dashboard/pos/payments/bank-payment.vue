@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <sample-payment :identifier="identifier" :label="label"></sample-payment>
 </template>
 <script>

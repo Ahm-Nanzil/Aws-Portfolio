@@ -2,13 +2,13 @@
 applyTo: '**'
 ---
 
-# PosSOFT Module Development Guide
+# NexoPOS Module Development Guide
 
-This comprehensive guide explains how to create, structure, and develop modules for PosSOFT. Modules extend the functionality of PosSOFT and follow a specific architecture pattern similar to Laravel applications.
+This comprehensive guide explains how to create, structure, and develop modules for NexoPOS. Modules extend the functionality of NexoPOS and follow a specific architecture pattern similar to Laravel applications.
 
 ## Module Overview
 
-PosSOFT modules are self-contained packages that extend the core functionality of the application. Each module is stored in the `/modules` directory and follows a standardized structure that allows for seamless integration with the main application.
+NexoPOS modules are self-contained packages that extend the core functionality of the application. Each module is stored in the `/modules` directory and follows a standardized structure that allows for seamless integration with the main application.
 
 ## Module Directory Structure
 
@@ -51,7 +51,7 @@ Modules are located in the `/modules` directory, where each module has its own f
 
 ### config.xml
 
-Every module must include a `config.xml` file that describes the module's metadata and signature. This is how PosSOFT recognizes and loads the module.
+Every module must include a `config.xml` file that describes the module's metadata and signature. This is how NexoPOS recognizes and loads the module.
 
 **Structure:**
 
@@ -62,7 +62,7 @@ Every module must include a `config.xml` file that describes the module's metada
     <version>1.0.0</version>
     <author>Your Name</author>
     <name>Foo Bar Module</name>
-    <description>A sample module that demonstrates PosSOFT module structure</description>
+    <description>A sample module that demonstrates NexoPOS module structure</description>
 </module>
 ```
 
@@ -114,14 +114,14 @@ The `manifest.json` file controls which files are included or excluded when the 
 Both properties support glob patterns for flexible file matching.
 
 ## Vite Configuration
-PosSOFT is built on top of Vite, Vue and Tailwind. Modules should stick to this stack. Core already ships a **shared Vue runtime** (`resources/ts/vue-runtime.ts` → `window.ns.vue` / `window.NexoPOSVue`). Module builds must not bundle a second copy of Vue.
+NexoPOS is built on top of Vite, Vue and Tailwind. Modules should stick to this stack. Core already ships a **shared Vue runtime** (`resources/ts/vue-runtime.ts` → `window.ns.vue` / `window.NexoPOSVue`). Module builds must not bundle a second copy of Vue.
 
 Use the shared factory so `import … from 'vue'` is rewritten to that runtime (and real `.vue` SFCs work):
 
 ```js
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineNexoPOSModuleConfig } from '../../resources/vite-possoft-module.js';
+import { defineNexoPOSModuleConfig } from '../../resources/vite-nexopos-module.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -135,7 +135,7 @@ export default defineNexoPOSModuleConfig({
 });
 ```
 
-The factory enables `possoftVueRuntime()`, `@vitejs/plugin-vue`, Tailwind v4, mkcert HTTPS, and Laravel Vite (`Public/build` + manifest).
+The factory enables `nexoposVueRuntime()`, `@vitejs/plugin-vue`, Tailwind v4, mkcert HTTPS, and Laravel Vite (`Public/build` + manifest).
 
 ### Module Tailwind prefix (required)
 
@@ -182,7 +182,7 @@ nsCreateApp(Page).mount('#example-module-app');
 ```
 
 Reference modules: `modules/CloudDeployer` (prefix `cd`), `modules/NsGastro` (prefix `go`), `modules/NsAppointments` (dashboard `nsExtraComponents` registration + shared Vue).  
-Agent docs: `.agents/skills/create-possoft-module/references/dashboard-vue-mounting.md`, `module-frontend.md`.
+Agent docs: `.agents/skills/create-nexopos-module/references/dashboard-vue-mounting.md`, `module-frontend.md`.
 ```
 
 Required Vue+Vite pattern (use this even if no reference module exists):
@@ -273,7 +273,7 @@ class MoneyCast implements CastsAttributes
 
 ### Crud/
 
-Generated CRUD classes following PosSOFT CRUD patterns:
+Generated CRUD classes following NexoPOS CRUD patterns:
 
 ```php
 <?php
@@ -530,7 +530,7 @@ class FooBarServiceProvider extends ServiceProvider
 }
 ```
 
-There is no need to manually register the service provider as PosSOFT automatically discovers it.
+There is no need to manually register the service provider as NexoPOS automatically discovers it.
 
 ### Public/
 
@@ -709,18 +709,18 @@ export class ProductManager {
 
 **Vue Component Injection (Recommended Approach):**
 
-PosSOFT already creates a Vue app instance for the dashboard. Instead of creating a separate Vue app, modules should **inject components** into the existing PosSOFT Vue instance. This approach offers several benefits:
+NexoPOS already creates a Vue app instance for the dashboard. Instead of creating a separate Vue app, modules should **inject components** into the existing NexoPOS Vue instance. This approach offers several benefits:
 
-- ✅ Access to all PosSOFT built-in components (ns-button, ns-input, ns-crud, etc.)
+- ✅ Access to all NexoPOS built-in components (ns-button, ns-input, ns-crud, etc.)
 - ✅ Access to global state and services (nsHttpClient, nsSnackBar, etc.)
-- ✅ Consistent styling with PosSOFT dashboard
+- ✅ Consistent styling with NexoPOS dashboard
 - ✅ Smaller bundle size (Vue is not duplicated)
 
 The trade-off is that custom components must be defined as TypeScript files (not `.vue` files) for proper injection.
 
 **IMPORTANT: Use Options API, Not Composition API**
 
-PosSOFT components should use the **Options API** (data, methods, mounted) rather than the Composition API (setup, ref, onMounted). This aligns with PosSOFT's architecture where `defineComponent` is globally available and Vue's reactivity is handled by the framework.
+NexoPOS components should use the **Options API** (data, methods, mounted) rather than the Composition API (setup, ref, onMounted). This aligns with NexoPOS's architecture where `defineComponent` is globally available and Vue's reactivity is handled by the framework.
 
 **Step 1: Create Component as TypeScript File**
 
@@ -785,24 +785,24 @@ export default defineComponent({
 
 **Step 2: Register Component in Entry File**
 
-In your main TypeScript entry file, register the component with the PosSOFT Vue instance:
+In your main TypeScript entry file, register the component with the NexoPOS Vue instance:
 
 ```typescript
 // Resources/ts/main.ts
 import NsMyComponent from './components/NsMyComponent';
 
-// Register component with PosSOFT Vue instance
+// Register component with NexoPOS Vue instance
 // The component will be available as <ns-my-component> in templates
 if (typeof nsExtraComponents !== 'undefined') {
     nsExtraComponents['ns-my-component'] = NsMyComponent;
 }
 ```
 
-**Step 3: Load Assets BEFORE PosSOFT in Blade Template**
+**Step 3: Load Assets BEFORE NexoPOS in Blade Template**
 
-**CRITICAL:** Module assets must be loaded **before** the `@parent` directive in the footer section. This ensures your components are registered before PosSOFT initializes its Vue app.
+**CRITICAL:** Module assets must be loaded **before** the `@parent` directive in the footer section. This ensures your components are registered before NexoPOS initializes its Vue app.
 
-**IMPORTANT:** Vue components in modules **MUST** be placed inside a container with `id="dashboard-content"` to work properly. This is the mounting point where PosSOFT initializes the Vue app for dashboard pages.
+**IMPORTANT:** Vue components in modules **MUST** be placed inside a container with `id="dashboard-content"` to work properly. This is the mounting point where NexoPOS initializes the Vue app for dashboard pages.
 
 ```blade
 @extends('layout.dashboard')
@@ -827,18 +827,18 @@ if (typeof nsExtraComponents !== 'undefined') {
 ```
 
 **Important Notes:**
-- Use `@section('layout.dashboard.footer.inject')` instead of `@push('footer-scripts')`. This section is specifically designed for injecting module components before PosSOFT initializes.
-- **Always** wrap Vue components in a container with `id="dashboard-content"` - this is where PosSOFT mounts its Vue app instance for dashboard pages.
+- Use `@section('layout.dashboard.footer.inject')` instead of `@push('footer-scripts')`. This section is specifically designed for injecting module components before NexoPOS initializes.
+- **Always** wrap Vue components in a container with `id="dashboard-content"` - this is where NexoPOS mounts its Vue app instance for dashboard pages.
 - Without the `dashboard-content` ID, your components will not be rendered or will throw errors.
 
-**Step 4: TypeScript Declarations for PosSOFT Globals**
+**Step 4: TypeScript Declarations for NexoPOS Globals**
 
-Create type declarations for PosSOFT global variables:
+Create type declarations for NexoPOS global variables:
 
 ```typescript
 // Resources/ts/types.d.ts
 
-// PosSOFT component registry
+// NexoPOS component registry
 declare const nsExtraComponents: Record<string, any>;
 
 // Vue defineComponent (globally available)
@@ -1017,10 +1017,10 @@ Do not use `.vue` single-file components in modules. Use TypeScript component fi
 
 #### CSS with Tailwind CSS v4
 
-**IMPORTANT:** PosSOFT modules use Tailwind CSS v4 which has significant changes from v3:
+**IMPORTANT:** NexoPOS modules use Tailwind CSS v4 which has significant changes from v3:
 
 1. **No `tailwind.config.js` file** - Configuration is done directly in CSS
-2. **Prefix required for modules** - Use a unique prefix to avoid class name collisions with core PosSOFT
+2. **Prefix required for modules** - Use a unique prefix to avoid class name collisions with core NexoPOS
 3. **New `@import` syntax** - Import Tailwind with the `prefix()` function
 
 **Module CSS Structure:**
@@ -1125,7 +1125,7 @@ If you see errors like "Cannot apply unknown utility class `border-gray-300`":
 
 ### Routes/
 
-Both web.php and api.php routes file doesn't need to be manually registered. PosSOFT discovers it automatically.
+Both web.php and api.php routes file doesn't need to be manually registered. NexoPOS discovers it automatically.
 
 #### api.php
 
@@ -1301,7 +1301,7 @@ class ProcessDataCommand extends Command
 ```
 
 **Command Discovery:**
-- PosSOFT automatically discovers and registers commands from enabled modules
+- NexoPOS automatically discovers and registers commands from enabled modules
 - Do NOT manually register commands in your module's ServiceProvider
 - Do NOT define schedules in your module's ServiceProvider
 - Commands are available once the module is enabled
@@ -1441,7 +1441,7 @@ None.
 - Related to #456
 ```
 
-**Note:** Module changelogs are separate from core PosSOFT changelogs (which go in `/changelogs/` at the project root). Only document changes specific to your module in the module's CHANGELOG directory.
+**Note:** Module changelogs are separate from core NexoPOS changelogs (which go in `/changelogs/` at the project root). Only document changes specific to your module in the module's CHANGELOG directory.
 
 ### 3. Namespace Organization
 
@@ -1455,7 +1455,7 @@ Examples:
 - `Modules\FooBar\Models\Product`
 - `Modules\FooBar\Services\ProductService`
 
-### 3. Integration with PosSOFT
+### 3. Integration with NexoPOS
 
 #### Permissions
 
@@ -1494,7 +1494,7 @@ Do not suggest assigning new module permissions to the `user` role by default. A
 
 #### Hooks and Events
 
-Utilize PosSOFT hooks for integration:
+Utilize NexoPOS hooks for integration:
 
 ```php
 use App\Classes\AsideMenu;
@@ -1539,7 +1539,7 @@ Hook::addFilter('ns-dashboard-menus', function($menus) {
 
 #### CRUD Integration
 
-Extend PosSOFT CRUD system:
+Extend NexoPOS CRUD system:
 
 ```php
 use App\Services\CrudService;
@@ -1549,7 +1549,7 @@ use App\Classes\FormInput;
 class ProductCrud extends CrudService
 {
     // Implement getTable(), getForm(), getActions() methods
-    // Follow PosSOFT CRUD patterns
+    // Follow NexoPOS CRUD patterns
 }
 ```
 
@@ -1576,7 +1576,7 @@ export default {
 
 #### Tailwind CSS Classes
 
-Use existing PosSOFT/Tailwind classes for consistency:
+Use existing NexoPOS/Tailwind classes for consistency:
 
 ```blade
 <div class="bg-white rounded-lg shadow-md p-4">
@@ -1589,13 +1589,13 @@ Use existing PosSOFT/Tailwind classes for consistency:
 
 ### 5. Module Installation and Activation
 
-Modules are automatically discovered by PosSOFT when placed in the `/modules` directory. The system reads the `config.xml` file to register the module.
+Modules are automatically discovered by NexoPOS when placed in the `/modules` directory. The system reads the `config.xml` file to register the module.
 
 #### Activation Process
 
 1. Upload module to `/modules/{ModuleName}/`
 2. Ensure `config.xml` is properly configured
-3. PosSOFT automatically discovers and loads the module
+3. NexoPOS automatically discovers and loads the module
 4. Run migrations if needed
 5. Configure permissions and settings
 
@@ -1660,7 +1660,7 @@ php artisan make:module -n \
 
 **Exit codes:**
 - `0` — Module generated successfully
-- `1` — Error (missing options, module already exists without `--force`, or PosSOFT not installed)
+- `1` — Error (missing options, module already exists without `--force`, or NexoPOS not installed)
 
 **Important:** In non-interactive mode, all four required options must be provided or the command will exit with an error and display usage instructions.
 
@@ -1784,7 +1784,7 @@ After generation, you should add additional directories as needed (e.g., `Listen
 
 2. **Check tsconfig.json** has correct paths configuration
 
-3. **Create types.d.ts** for PosSOFT API declarations
+3. **Create types.d.ts** for NexoPOS API declarations
 
 4. **Restart IDE/editor** to reload TypeScript language server
 
@@ -1792,13 +1792,13 @@ After generation, you should add additional directories as needed (e.g., `Listen
 
 Use Laravel Pint for PHP formatting.
 
-1. **Default (recommended):** Use the core PosSOFT Pint binary with the root `pint.json`.
+1. **Default (recommended):** Use the core NexoPOS Pint binary with the root `pint.json`.
     ```bash
     vendor/bin/pint --dirty --format agent
     ```
 2. If working from inside `modules/YourModule`, run Pint from the project root or explicitly target the root binary/config.
 3. Install `laravel/pint` inside a module only when that module is intentionally maintained as a standalone/distributed package.
-4. Do not introduce a conflicting module-local formatting style when the module is part of the main PosSOFT repository.
+4. Do not introduce a conflicting module-local formatting style when the module is part of the main NexoPOS repository.
 
 ### Debugging Tips
 
@@ -1819,7 +1819,7 @@ Use Laravel Pint for PHP formatting.
 4. **Clear caches often:** After any configuration changes
 5. **Use version control:** Commit working states frequently
 6. **Document changes:** Keep README.md updated with features
-7. **Follow conventions:** Match PosSOFT coding standards
+7. **Follow conventions:** Match NexoPOS coding standards
 8. **Check examples:** Reference existing modules like `NsPageBuilder`, `CloudDeployer`
 
-This comprehensive guide provides the foundation for creating robust, well-structured modules that integrate seamlessly with the PosSOFT ecosystem.
+This comprehensive guide provides the foundation for creating robust, well-structured modules that integrate seamlessly with the NexoPOS ecosystem.

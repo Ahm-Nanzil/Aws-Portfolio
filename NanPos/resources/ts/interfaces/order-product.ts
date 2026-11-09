@@ -1,4 +1,4 @@
-import { Product } from "./product";
+﻿import { Product } from "./product";
 import { ProductUnitQuantity } from "./product-unit-quantity";
 
 export interface OrderProduct extends Product {

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_coupons', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_coupons', function ( Blueprint $table ) {
             $table->id();
             $table->string( 'name' );
             $table->string( 'code' );
@@ -31,25 +31,25 @@ return new class extends Migration
             $table->timestamps();
         } );
 
-        Schema::createIfMissing( 'possoft_coupons_products', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_coupons_products', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'coupon_id' );
             $table->integer( 'product_id' );
         } );
 
-        Schema::createIfMissing( 'possoft_coupons_categories', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_coupons_categories', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'coupon_id' );
             $table->integer( 'category_id' );
         } );
 
-        Schema::createIfMissing( 'possoft_coupons_customers', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_coupons_customers', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'coupon_id' );
             $table->integer( 'customer_id' );
         } );
 
-        Schema::createIfMissing( 'possoft_coupons_customers_groups', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_coupons_customers_groups', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'coupon_id' );
             $table->integer( 'group_id' );
@@ -63,10 +63,10 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_coupons' );
-        Schema::dropIfExists( 'possoft_coupons_products' );
-        Schema::dropIfExists( 'possoft_coupons_categories' );
-        Schema::dropIfExists( 'possoft_coupons_customers' );
-        Schema::dropIfExists( 'possoft_coupons_customers_groups' );
+        Schema::dropIfExists( 'nexopos_coupons' );
+        Schema::dropIfExists( 'nexopos_coupons_products' );
+        Schema::dropIfExists( 'nexopos_coupons_categories' );
+        Schema::dropIfExists( 'nexopos_coupons_customers' );
+        Schema::dropIfExists( 'nexopos_coupons_customers_groups' );
     }
 };

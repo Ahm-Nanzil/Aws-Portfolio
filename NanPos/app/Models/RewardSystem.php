@@ -17,7 +17,7 @@ class RewardSystem extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'rewards_system';
+    protected $table = 'nexopos_' . 'rewards_system';
 
     public function rules()
     {

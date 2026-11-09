@@ -1,6 +1,6 @@
 # Dashboard Vue mounting (modules)
 
-**Mandatory for any module Vue UI that lives under the PosSOFT dashboard layout.**
+**Mandatory for any module Vue UI that lives under the NexoPOS dashboard layout.**
 
 If you only read one frontend rule for dashboard modules, read this file.
 

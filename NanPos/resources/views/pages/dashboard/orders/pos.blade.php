@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use Illuminate\Support\Facades\Gate;
 
 ?>
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Gate;
         @if ( ns()->option->get( 'ns_store_square_logo', false ) )
         <img src="{{ ns()->option->get( 'ns_store_square_logo' ) }}" alt="POS">
         @else
-        <img src="{{ asset( 'svg/possoft-variant-1.svg' ) }}" class="w-32" alt="POS">
+        <img src="{{ asset( 'svg/possoft-variant-1.svg' ) }}" class="w-32" alt="PosSoft POS">
         @endif
         <p class="font-semibold py-2">{{ __( 'Loading...' ) }}</p>
     </div>
@@ -48,17 +48,17 @@ use Illuminate\Support\Facades\Gate;
         POS.defineSettings({
             barcode_search          :   true,
             text_search             :   false,
-            edit_purchase_price     :   <?php echo Gate::allows( 'possoft.pos.edit-purchase-price' ) ? 'true' : 'false';?>,
-            edit_settings           :   <?php echo Gate::allows( 'possoft.pos.edit-settings' ) ? 'true' : 'false';?>,
-            products_discount       :   <?php echo Gate::allows( 'possoft.pos.products-discount' ) ? 'true' : 'false';?>,
-            cart_discount           :   <?php echo Gate::allows( 'possoft.pos.cart-discount' ) ? 'true' : 'false';?>,
+            edit_purchase_price     :   <?php echo Gate::allows( 'nexopos.pos.edit-purchase-price' ) ? 'true' : 'false';?>,
+            edit_settings           :   <?php echo Gate::allows( 'nexopos.pos.edit-settings' ) ? 'true' : 'false';?>,
+            products_discount       :   <?php echo Gate::allows( 'nexopos.pos.products-discount' ) ? 'true' : 'false';?>,
+            cart_discount           :   <?php echo Gate::allows( 'nexopos.pos.cart-discount' ) ? 'true' : 'false';?>,
             breadcrumb              :   [],
             products_queue          :   [],
             ns_pos_items_merge      :   <?php echo ns()->option->get( 'ns_pos_items_merge', 'no' ) === 'yes' ? 'true' : 'false';?>,
             unit_price_editable     :   <?php echo ns()->option->get( 'ns_pos_unit_price_ediable', 'yes' ) === 'yes' ? 'true' : 'false';?>,
             marketplace_connected   :  <?php echo $marketplaceConnected ? 'true' : 'false';?>,
             urls                    :   <?php echo json_encode( $urls );?>,
-            wireless_socket_domain  :   '<?php echo env( 'MARKETPLACE_SOCKET_DOMAIN', 'socket.possoft.com' );?>'
+            wireless_socket_domain  :   '<?php echo env( 'MARKETPLACE_SOCKET_DOMAIN', 'socket.nexopos.com' );?>'
         });
 
         POS.definedPaymentsType( <?php echo json_encode( $paymentTypes );?> );

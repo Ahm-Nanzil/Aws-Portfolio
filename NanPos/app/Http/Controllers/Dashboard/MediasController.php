@@ -64,7 +64,7 @@ class MediasController extends DashboardController
 
     public function bulkDeleteMedias( Request $request )
     {
-        ns()->restrict( 'possoft.delete.medias' );
+        ns()->restrict( 'nexopos.delete.medias' );
 
         $result = [];
 

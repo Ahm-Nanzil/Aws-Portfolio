@@ -1,4 +1,4 @@
-import * as rxjs from 'rxjs';
+﻿import * as rxjs from 'rxjs';
 
 declare const nsHooks;
 

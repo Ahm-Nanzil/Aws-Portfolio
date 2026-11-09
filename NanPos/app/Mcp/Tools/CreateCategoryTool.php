@@ -9,11 +9,11 @@ use Laravel\Mcp\Response;
 
 class CreateCategoryTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.create.categories' ];
+    protected array $permissions = [ 'nexopos.create.categories' ];
 
     public string $name = 'create_product_category';
 
-    public string $description = 'Create a new product category in PosSOFT.';
+    public string $description = 'Create a new product category in NexoPOS.';
 
     public function schema( JsonSchema $schema ): array
     {

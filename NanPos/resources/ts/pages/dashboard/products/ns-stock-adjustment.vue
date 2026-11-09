@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { nsHttpClient, nsSnackBar } from '~/bootstrap';
 import { Popup } from '~/libraries/popup';
 import nsProcurementQuantityVue from '~/popups/ns-procurement-quantity.vue';

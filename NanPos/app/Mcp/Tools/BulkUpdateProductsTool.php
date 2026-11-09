@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class BulkUpdateProductsTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.update.products' ];
+    protected array $permissions = [ 'nexopos.update.products' ];
 
     public string $name = 'bulk_update_products';
 

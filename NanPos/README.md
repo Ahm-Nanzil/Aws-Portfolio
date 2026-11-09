@@ -1,24 +1,24 @@
-[![Latest Stable Version](https://poser.pugx.org/blair2004/possoft/v)](https://packagist.org/packages/blair2004/possoft) [![Total Downloads](https://poser.pugx.org/blair2004/possoft/downloads)](https://packagist.org/packages/blair2004/possoft) [![Latest GitHub Release](https://img.shields.io/github/v/release/Blair2004/PosSOFT)](https://github.com/Blair2004/PosSOFT/releases) [![License](https://img.shields.io/github/license/Blair2004/PosSOFT)](LICENSE)
+[![Latest Stable Version](https://poser.pugx.org/blair2004/nexopos/v)](https://packagist.org/packages/blair2004/nexopos) [![Total Downloads](https://poser.pugx.org/blair2004/nexopos/downloads)](https://packagist.org/packages/blair2004/nexopos) [![Latest GitHub Release](https://img.shields.io/github/v/release/Blair2004/NexoPOS)](https://github.com/Blair2004/NexoPOS/releases) [![License](https://img.shields.io/github/license/Blair2004/NexoPOS)](LICENSE)
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/5265663/162700085-40ed00ca-9154-42cb-850a-ccf1c2db2d5d.png" alt="PosSOFT"/>
+  <img src="https://user-images.githubusercontent.com/5265663/162700085-40ed00ca-9154-42cb-850a-ccf1c2db2d5d.png" alt="NexoPOS"/>
 </p>
 
-# PosSOFT
+# NexoPOS
 
-PosSOFT is a modern, extensible point-of-sale platform for retail stores, restaurants, cafés, warehouses, and other product- or service-based businesses. It brings sales, inventory, customers, purchasing, accounting, reporting, and staff operations together in one application.
+NexoPOS is a modern, extensible point-of-sale platform for retail stores, restaurants, cafés, warehouses, and other product- or service-based businesses. It brings sales, inventory, customers, purchasing, accounting, reporting, and staff operations together in one application.
 
-The current ecosystem is built around the PosSOFT 6.2.x core and includes first-party modules, Windows applications, cloud hosting, developer tools, and the [My PosSOFT](https://my.possoft.com/en) marketplace.
+The current ecosystem is built around the NexoPOS 6.2.x core and includes first-party modules, Windows applications, cloud hosting, developer tools, and the [My NexoPOS](https://my.nexopos.com/en) marketplace.
 
 ### Deployment
-PosSOFT is partnering with InstaPods to offer you a smooth deployment experience with PosSOFT.
+NexoPOS is partnering with InstaPods to offer you a smooth deployment experience with NexoPOS.
 
-[![Deploy On Nexo Cloud](https://my.possoft.com/deploy-on-nexo-cloud-button-light.svg)](https://possoft.cloud?utm_channel=github.com&utm_campaign=readme)
-[![Deploy On InstaPods](https://instapods.com/deploy-button.svg)](https://app.instapods.com/dashboard/pods/create?app=possoft&ref=possoft)
+[![Deploy On Nexo Cloud](https://my.nexopos.com/deploy-on-nexo-cloud-button-light.svg)](https://nexopos.cloud?utm_channel=github.com&utm_campaign=readme)
+[![Deploy On InstaPods](https://instapods.com/deploy-button.svg)](https://app.instapods.com/dashboard/pods/create?app=nexopos&ref=nexopos)
 
 ## What the core provides
 
-The PosSOFT core includes:
+The NexoPOS core includes:
 
 - Product, category, unit, tax, and customer management
 - POS sales, orders, payments, receipts, refunds, and registers
@@ -30,46 +30,46 @@ The PosSOFT core includes:
 - Media management, dashboard widgets, and extensibility APIs
 - A module system for adding business-specific features without changing the core
 
-PosSOFT is designed to start as a single-store POS and grow with the business. Multi-store, restaurant, service, workforce, rental, AI, printing, and other workflows are delivered through modules.
+NexoPOS is designed to start as a single-store POS and grow with the business. Multi-store, restaurant, service, workforce, rental, AI, printing, and other workflows are delivered through modules.
 
 ## Marketplace modules and ecosystem
 
-The modules below are distributed separately from the PosSOFT core through the [PosSOFT Marketplace](https://my.possoft.com/en/marketplace). They are not included in this repository; install them from the marketplace when they match your PosSOFT version.
+The modules below are distributed separately from the NexoPOS core through the [NexoPOS Marketplace](https://my.nexopos.com/en/marketplace). They are not included in this repository; install them from the marketplace when they match your NexoPOS version.
 
 <p align="center">
-<img src="https://my.possoft.com/storage/2026/09/neoxpos-marketplace.jpg">
+<img src="https://my.nexopos.com/storage/2026/09/neoxpos-marketplace.jpg">
 </p>
 
 | Module | Adds |
 | --- | --- |
-| [**BellSera**](https://my.possoft.com/en/marketplace/item/bellsera-spa-salon-booking-management-for-possoft) | Service appointments, public booking, staff and room availability, walk-in and booking POS order types, service queues, and reporting |
-| [**Bulk Editor**](https://my.possoft.com/en/marketplace/item/bulk-editor-for-possoft) | Bulk editing tools for supported PosSOFT resources |
-| [**Gastro**](https://my.possoft.com/en/marketplace/item/gastro-restaurant-extension-for-possoft) | Restaurant tables, waiter and chef workflows, kitchen screens, order routing, and product modifiers |
-| [**Google Authenticator**](https://my.possoft.com/en/marketplace/item/google-authenticator) | Time-based two-factor authentication for user accounts |
-| [**MultiStore**](https://my.possoft.com/en/marketplace/item/multistore-for-possoft) | Multiple isolated stores managed from one PosSOFT installation and database |
-| [**Options Export/Import**](https://my.possoft.com/en/marketplace/item/options-importexport) | Exporting and importing module settings between installations |
-| [**Oxen**](https://my.possoft.com/en/marketplace/item/oxen-ai-agent-for-possoft) | Permission-aware AI assistance, approved store-management actions, reports, and MCP access |
-| [**PIN Login**](https://my.possoft.com/en/marketplace/item/pin-login-module-for-possoft) | Fast POS PIN login and inactivity security locking |
-| [**NPS Adapter**](https://my.possoft.com/en/marketplace/item/nps-adapter-for-possoft) | PosSOFT-side integration for local and network printing workflows |
-| [**QR Menu**](https://my.possoft.com/en/marketplace/item/qr-menu-digital-restaurant-menu-for-gastro) | Branded, mobile-friendly digital menus generated from the PosSOFT catalog |
-| [**Quick Store Configuration**](https://my.possoft.com/en/marketplace) | Guided setup for essential store settings |
-| [**Rental**](https://my.possoft.com/en/marketplace/item/possoft-rental) | Rental reservations, agreements, inventory movements, returns, maintenance, and notifications |
-| [**Sales Commissions**](https://my.possoft.com/en/marketplace/item/sales-commissions) | Commission rules and sales-staff commission tracking |
-| [**WorkForce**](https://my.possoft.com/en/marketplace) | Kiosk attendance, breaks, schedules, timesheets, corrections, and private reports |
+| [**BellSera**](https://my.nexopos.com/en/marketplace/item/bellsera-spa-salon-booking-management-for-nexopos) | Service appointments, public booking, staff and room availability, walk-in and booking POS order types, service queues, and reporting |
+| [**Bulk Editor**](https://my.nexopos.com/en/marketplace/item/bulk-editor-for-nexopos) | Bulk editing tools for supported NexoPOS resources |
+| [**Gastro**](https://my.nexopos.com/en/marketplace/item/gastro-restaurant-extension-for-nexopos) | Restaurant tables, waiter and chef workflows, kitchen screens, order routing, and product modifiers |
+| [**Google Authenticator**](https://my.nexopos.com/en/marketplace/item/google-authenticator) | Time-based two-factor authentication for user accounts |
+| [**MultiStore**](https://my.nexopos.com/en/marketplace/item/multistore-for-nexopos) | Multiple isolated stores managed from one NexoPOS installation and database |
+| [**Options Export/Import**](https://my.nexopos.com/en/marketplace/item/options-importexport) | Exporting and importing module settings between installations |
+| [**Oxen**](https://my.nexopos.com/en/marketplace/item/oxen-ai-agent-for-nexopos) | Permission-aware AI assistance, approved store-management actions, reports, and MCP access |
+| [**PIN Login**](https://my.nexopos.com/en/marketplace/item/pin-login-module-for-nexopos) | Fast POS PIN login and inactivity security locking |
+| [**NPS Adapter**](https://my.nexopos.com/en/marketplace/item/nps-adapter-for-nexopos) | NexoPOS-side integration for local and network printing workflows |
+| [**QR Menu**](https://my.nexopos.com/en/marketplace/item/qr-menu-digital-restaurant-menu-for-gastro) | Branded, mobile-friendly digital menus generated from the NexoPOS catalog |
+| [**Quick Store Configuration**](https://my.nexopos.com/en/marketplace) | Guided setup for essential store settings |
+| [**Rental**](https://my.nexopos.com/en/marketplace/item/nexopos-rental) | Rental reservations, agreements, inventory movements, returns, maintenance, and notifications |
+| [**Sales Commissions**](https://my.nexopos.com/en/marketplace/item/sales-commissions) | Commission rules and sales-staff commission tracking |
+| [**WorkForce**](https://my.nexopos.com/en/marketplace) | Kiosk attendance, breaks, schedules, timesheets, corrections, and private reports |
 
-Some modules have optional integrations, such as SMS, email, Nexo Print Server, or PIN Login. Check the marketplace listing for each module's supported PosSOFT core range and dependencies.
+Some modules have optional integrations, such as SMS, email, Nexo Print Server, or PIN Login. Check the marketplace listing for each module's supported NexoPOS core range and dependencies.
 
-The [PosSOFT Marketplace](https://my.possoft.com/en/marketplace) is the authoritative catalog for compatible extensions, native applications, bundles, releases, and licenses. Alongside the modules above, examples of currently available ecosystem products include:
+The [NexoPOS Marketplace](https://my.nexopos.com/en/marketplace) is the authoritative catalog for compatible extensions, native applications, bundles, releases, and licenses. Alongside the modules above, examples of currently available ecosystem products include:
 
-- **[Raw Material Tracker](https://my.possoft.com/en/marketplace/item/raw-material-tracker)** — recipes, ingredient stock deduction, unit conversion, cost tracking, and consumption history.
-- **[Racks Manager](https://my.possoft.com/en/marketplace/item/racks-manager)** — structured warehouse storage with racks, shelves, and stock movement controls.
-- **[Hotel Booking](https://my.possoft.com/en/marketplace/item/hotel-booking)** — reservations, rooms, pricing, invoices, POS payments, and calendar synchronization.
-- **[PosSOFT Rental](https://my.possoft.com/en/marketplace/item/possoft-rental)** — rental operations for businesses that need reservations and returns.
-- **[QR Menu](https://my.possoft.com/en/marketplace/item/qr-menu-digital-restaurant-menu-for-gastro)** — customer-facing digital menus for restaurants, cafés, bars, hotels, and bakeries.
-- **[Oxen](https://my.possoft.com/en/marketplace/item/oxen-ai-agent-for-possoft)** — AI assistance grounded in store data with permission checks and approval-controlled mutations.
-- **[Options Import/Export](https://my.possoft.com/en/marketplace/item/options-importexport)** — portable module configuration.
+- **[Raw Material Tracker](https://my.nexopos.com/en/marketplace/item/raw-material-tracker)** — recipes, ingredient stock deduction, unit conversion, cost tracking, and consumption history.
+- **[Racks Manager](https://my.nexopos.com/en/marketplace/item/racks-manager)** — structured warehouse storage with racks, shelves, and stock movement controls.
+- **[Hotel Booking](https://my.nexopos.com/en/marketplace/item/hotel-booking)** — reservations, rooms, pricing, invoices, POS payments, and calendar synchronization.
+- **[NexoPOS Rental](https://my.nexopos.com/en/marketplace/item/nexopos-rental)** — rental operations for businesses that need reservations and returns.
+- **[QR Menu](https://my.nexopos.com/en/marketplace/item/qr-menu-digital-restaurant-menu-for-gastro)** — customer-facing digital menus for restaurants, cafés, bars, hotels, and bakeries.
+- **[Oxen](https://my.nexopos.com/en/marketplace/item/oxen-ai-agent-for-nexopos)** — AI assistance grounded in store data with permission checks and approval-controlled mutations.
+- **[Options Import/Export](https://my.nexopos.com/en/marketplace/item/options-importexport)** — portable module configuration.
 
-For installation and updates, use **Modules → Upload Module** in PosSOFT and confirm that the module supports your core version. Download modules from trusted sources such as [My PosSOFT](https://my.possoft.com/en/marketplace).
+For installation and updates, use **Modules → Upload Module** in NexoPOS and confirm that the module supports your core version. Download modules from trusted sources such as [My NexoPOS](https://my.nexopos.com/en/marketplace).
 
 ## Cloud, self-hosted, and Windows deployments
 
@@ -77,18 +77,18 @@ For installation and updates, use **Modules → Upload Module** in PosSOFT and c
 
 Choose the operating model that fits your business:
 
-- **[PosSOFT Cloud](https://possoft.cloud)** — managed hosting with the infrastructure handled for you.
-- **Self-hosted PosSOFT** — deploy on your own server or hosting provider for full control. The supported environment includes PHP 8.2+, MariaDB 10.11 or MySQL 8.4, Nginx or Apache, Composer, scheduled tasks, and a queue worker such as Supervisor.
-- **[PosSOFT for Windows](https://my.possoft.com/en/marketplace/item/possoft-for-windows)** — an all-in-one local Windows environment with PosSOFT, Nginx, HTTPS, SQLite, and printing tools preconfigured.
-- **[PosSOFT Client for Windows](https://my.possoft.com/en/marketplace/item/possoft-client-for-windows)** — securely connects additional computers on the same local network to a PosSOFT for Windows server.
-- **[Nexo Print Server](https://my.possoft.com/en/marketplace/item/nexo-print-server)** — direct Windows printing for ESC/POS-compatible thermal printers, used with the NPS Adapter module.
-- **[Nexo SaaS](https://my.possoft.com/en/marketplace/item/nexo-saas-build-and-manage-a-possoft-hosting-business/details)** — deploy and manage multiple PosSOFT installations, subscriptions, domains, backups, and module bundles as a hosted service.
+- **[NexoPOS Cloud](https://nexopos.cloud)** — managed hosting with the infrastructure handled for you.
+- **Self-hosted NexoPOS** — deploy on your own server or hosting provider for full control. The supported environment includes PHP 8.2+, MariaDB 10.11 or MySQL 8.4, Nginx or Apache, Composer, scheduled tasks, and a queue worker such as Supervisor.
+- **[NexoPOS for Windows](https://my.nexopos.com/en/marketplace/item/nexopos-for-windows)** — an all-in-one local Windows environment with NexoPOS, Nginx, HTTPS, SQLite, and printing tools preconfigured.
+- **[NexoPOS Client for Windows](https://my.nexopos.com/en/marketplace/item/nexopos-client-for-windows)** — securely connects additional computers on the same local network to a NexoPOS for Windows server.
+- **[Nexo Print Server](https://my.nexopos.com/en/marketplace/item/nexo-print-server)** — direct Windows printing for ESC/POS-compatible thermal printers, used with the NPS Adapter module.
+- **[Nexo SaaS](https://my.nexopos.com/en/marketplace/item/nexo-saas-build-and-manage-a-nexopos-hosting-business/details)** — deploy and manage multiple NexoPOS installations, subscriptions, domains, backups, and module bundles as a hosted service.
 
-See the [official documentation](https://my.possoft.com/en/documentation) for environment, installation, Windows, cloud, and local-network guides.
+See the [official documentation](https://my.nexopos.com/en/documentation) for environment, installation, Windows, cloud, and local-network guides.
 
 ## Quick start for developers
 
-PosSOFT is a Laravel application using Vue, Vite, Tailwind CSS, and a first-class module architecture. The root project currently targets PHP 8.2+ and Node.js 24.
+NexoPOS is a Laravel application using Vue, Vite, Tailwind CSS, and a first-class module architecture. The root project currently targets PHP 8.2+ and Node.js 24.
 
 ```bash
 composer install
@@ -107,19 +107,19 @@ Create a new module with the built-in generator:
 php artisan make:module
 ```
 
-Custom module source normally lives under `modules/` and contains its own routes, providers, migrations, resources, assets, settings, and tests. Start with the [module creation guide](https://my.possoft.com/en/documentation/developers-guide/module-creation/creating-module), then see the [module config guide](https://my.possoft.com/en/documentation/developers-guide/module-creation/module-config-file), [dashboard menu guide](https://my.possoft.com/en/documentation/developers-guide/module-creation/dashboard-menus), and [PosSOFT API documentation](https://docs.api.possoft.com).
+Custom module source normally lives under `modules/` and contains its own routes, providers, migrations, resources, assets, settings, and tests. Start with the [module creation guide](https://my.nexopos.com/en/documentation/developers-guide/module-creation/creating-module), then see the [module config guide](https://my.nexopos.com/en/documentation/developers-guide/module-creation/module-config-file), [dashboard menu guide](https://my.nexopos.com/en/documentation/developers-guide/module-creation/dashboard-menus), and [NexoPOS API documentation](https://docs.api.nexopos.com).
 
-PosSOFT also documents extension points for dashboard menus and widgets, Vue components, POS cart buttons and product mutation, receipts and invoices, settings, events, and MCP integrations.
+NexoPOS also documents extension points for dashboard menus and widgets, Vue components, POS cart buttons and product mutation, receipts and invoices, settings, events, and MCP integrations.
 
 ## Demo and resources
 
-- [Try PosSOFT](https://demo.possoft.com)
-- [My PosSOFT](https://my.possoft.com/en)
-- [Official documentation](https://my.possoft.com/en/documentation)
-- [Marketplace](https://my.possoft.com/en/marketplace)
-- [PosSOFT REST API](https://docs.api.possoft.com)
-- [GitHub releases](https://github.com/Blair2004/PosSOFT/releases)
+- [Try NexoPOS](https://demo.nexopos.com)
+- [My NexoPOS](https://my.nexopos.com/en)
+- [Official documentation](https://my.nexopos.com/en/documentation)
+- [Marketplace](https://my.nexopos.com/en/marketplace)
+- [NexoPOS REST API](https://docs.api.nexopos.com)
+- [GitHub releases](https://github.com/Blair2004/NexoPOS/releases)
 
 ## License
 
-PosSOFT is open source software licensed under the [GNU General Public License v3.0](LICENSE).
+NexoPOS is open source software licensed under the [GNU General Public License v3.0](LICENSE).

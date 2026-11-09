@@ -18,9 +18,9 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( Schema::hasTable( 'possoft_products' ) ) {
-            if ( ! Schema::hasColumn( 'possoft_products', 'pinned' ) ) {
-                Schema::table( 'possoft_products', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_products' ) ) {
+            if ( ! Schema::hasColumn( 'nexopos_products', 'pinned' ) ) {
+                Schema::table( 'nexopos_products', function ( Blueprint $table ) {
                     $table->boolean( 'pinned' )->default( false )->after( 'position' );
                 } );
             }
@@ -34,9 +34,9 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_products' ) ) {
-            if ( Schema::hasColumn( 'possoft_products', 'pinned' ) ) {
-                Schema::table( 'possoft_products', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_products' ) ) {
+            if ( Schema::hasColumn( 'nexopos_products', 'pinned' ) ) {
+                Schema::table( 'nexopos_products', function ( Blueprint $table ) {
                     $table->dropColumn( 'pinned' );
                 } );
             }

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow-lg w-[85.71vw] md:w-[42.86vw] lg:w-[33.33vw]">
         <div class="p-2 flex ns-box-header justify-between border-b items-center">
             <h3 class="font-semibold">{{ __( 'Hold Order' ) }}</h3>

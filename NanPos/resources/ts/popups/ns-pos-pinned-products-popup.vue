@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section class="ns-box shadow-lg w-95vw md:w-[75vw] lg:w-[60vw] max-h-[85vh] flex flex-col">
     <header class="ns-box-header border-b p-3 flex items-center justify-between">
       <h2 class="font-bold text-fontcolor">{{ __('Pinned Products') }}</h2>

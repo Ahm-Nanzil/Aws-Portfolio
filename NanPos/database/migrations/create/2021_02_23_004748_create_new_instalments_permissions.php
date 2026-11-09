@@ -24,26 +24,26 @@ return new class extends Migration
      */
     public function up()
     {
-        $createInstalment = Permission::firstOrNew( [ 'namespace' => 'possoft.create.orders-instalments' ] );
-        $createInstalment->namespace = 'possoft.create.orders-instalments';
+        $createInstalment = Permission::firstOrNew( [ 'namespace' => 'nexopos.create.orders-instalments' ] );
+        $createInstalment->namespace = 'nexopos.create.orders-instalments';
         $createInstalment->name = __( 'Create Instalment' );
         $createInstalment->description = __( 'Allow the user to create instalments.' );
         $createInstalment->save();
 
-        $updateInstalment = Permission::firstOrNew( [ 'namespace' => 'possoft.update.orders-instalments' ] );
-        $updateInstalment->namespace = 'possoft.update.orders-instalments';
+        $updateInstalment = Permission::firstOrNew( [ 'namespace' => 'nexopos.update.orders-instalments' ] );
+        $updateInstalment->namespace = 'nexopos.update.orders-instalments';
         $updateInstalment->name = __( 'Update Instalment' );
         $updateInstalment->description = __( 'Allow the user to update instalments.' );
         $updateInstalment->save();
 
-        $readInstalment = Permission::firstOrNew( [ 'namespace' => 'possoft.read.orders-instalments' ] );
-        $readInstalment->namespace = 'possoft.read.orders-instalments';
+        $readInstalment = Permission::firstOrNew( [ 'namespace' => 'nexopos.read.orders-instalments' ] );
+        $readInstalment->namespace = 'nexopos.read.orders-instalments';
         $readInstalment->name = __( 'Read Instalment' );
         $readInstalment->description = __( 'Allow the user to read instalments.' );
         $readInstalment->save();
 
-        $deleteInstalments = Permission::firstOrNew( [ 'namespace' => 'possoft.delete.orders-instalments' ] );
-        $deleteInstalments->namespace = 'possoft.delete.orders-instalments';
+        $deleteInstalments = Permission::firstOrNew( [ 'namespace' => 'nexopos.delete.orders-instalments' ] );
+        $deleteInstalments->namespace = 'nexopos.delete.orders-instalments';
         $deleteInstalments->name = __( 'Delete Instalment' );
         $deleteInstalments->description = __( 'Allow the user to delete instalments.' );
         $deleteInstalments->save();
@@ -55,7 +55,7 @@ return new class extends Migration
             $deleteInstalments,
         ] );
 
-        Role::namespace( 'possoft.store.administrator' )->addPermissions( [
+        Role::namespace( 'nexopos.store.administrator' )->addPermissions( [
             $createInstalment,
             $updateInstalment,
             $readInstalment,
@@ -70,12 +70,12 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_permissions' ) && Schema::hasTable( 'possoft_roles' ) ) {
+        if ( Schema::hasTable( 'nexopos_permissions' ) && Schema::hasTable( 'nexopos_roles' ) ) {
             collect( [
-                'possoft.create.orders-instalments',
-                'possoft.update.orders-instalments',
-                'possoft.read.orders-instalments',
-                'possoft.delete.orders-instalments',
+                'nexopos.create.orders-instalments',
+                'nexopos.update.orders-instalments',
+                'nexopos.read.orders-instalments',
+                'nexopos.delete.orders-instalments',
             ] )->each( function ( $identifier ) {
                 $permission = Permission::where( 'namespace', $identifier
                 )->first();

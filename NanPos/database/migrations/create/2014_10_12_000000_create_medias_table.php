@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_medias', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_medias', function ( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name' )->unique();
             $table->string( 'extension' );
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_medias' );
+        Schema::dropIfExists( 'nexopos_medias' );
     }
 };

@@ -9,7 +9,7 @@ use Laravel\Mcp\Response;
 
 class PaymentTypesResource extends AuthorizedResource
 {
-    protected array $permissions = [ 'possoft.reports.payment-types' ];
+    protected array $permissions = [ 'nexopos.reports.payment-types' ];
 
     protected string $uri = 'pos://resources/payment-types';
 

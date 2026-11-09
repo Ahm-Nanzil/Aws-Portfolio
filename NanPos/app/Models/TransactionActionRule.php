@@ -57,7 +57,7 @@ class TransactionActionRule extends NsModel
         self::RULE_ORDER_UNPAID_VOIDED,
     ];
 
-    protected $table = 'possoft_transactions_actions_rules';
+    protected $table = 'nexopos_transactions_actions_rules';
 
     protected $fillable = [
         'on',

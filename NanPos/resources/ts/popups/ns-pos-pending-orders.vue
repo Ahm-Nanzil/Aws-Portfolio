@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-auto flex-col overflow-hidden">
         <div class="p-1">
             <div class="flex rounded border-2 input-group info">

@@ -9,7 +9,7 @@ class TransactionActionRuleLine extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_transactions_actions_rule_lines';
+    protected $table = 'nexopos_transactions_actions_rule_lines';
 
     protected $fillable = [
         'rule_id',

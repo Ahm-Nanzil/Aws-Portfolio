@@ -22,8 +22,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_notifications' ) ) {
-            Schema::createIfMissing( 'possoft_notifications', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_notifications' ) ) {
+            Schema::createIfMissing( 'nexopos_notifications', function ( Blueprint $table ) {
                 $table->id();
                 $table->integer( 'user_id' );
                 $table->string( 'identifier' );
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_notifications' );
+        Schema::dropIfExists( 'nexopos_notifications' );
     }
 };

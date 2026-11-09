@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="-m-4 flex-auto flex flex-wrap relative">
         <div v-if="isSubmitting" class="bg-overlay h-full w-full flex items-center justify-center absolute z-30">
             <ns-spinner></ns-spinner>

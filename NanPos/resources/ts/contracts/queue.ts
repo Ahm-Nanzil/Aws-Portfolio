@@ -1,3 +1,3 @@
-export interface Queue {
+﻿export interface Queue {
     run() : Promise<any> 
 }

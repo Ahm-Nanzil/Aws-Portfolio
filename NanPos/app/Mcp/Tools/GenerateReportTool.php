@@ -17,15 +17,15 @@ use Laravel\Mcp\Response;
 class GenerateReportTool extends AuthorizedTool
 {
     protected array $permissions = [
-        'possoft.reports.sales',
-        'possoft.reports.transactions',
-        'possoft.reports.yearly',
-        'possoft.reports.payment-types',
-        'possoft.reports.products-report',
-        'possoft.reports.low-stock',
-        'possoft.reports.inventory',
-        'possoft.reports.stock-history',
-        'possoft.reports.customers-statement',
+        'nexopos.reports.sales',
+        'nexopos.reports.transactions',
+        'nexopos.reports.yearly',
+        'nexopos.reports.payment-types',
+        'nexopos.reports.products-report',
+        'nexopos.reports.low-stock',
+        'nexopos.reports.inventory',
+        'nexopos.reports.stock-history',
+        'nexopos.reports.customers-statement',
     ];
 
     protected string $name = 'generate_report';
@@ -404,14 +404,14 @@ class GenerateReportTool extends AuthorizedTool
 
     private function storeDetails(): array
     {
-        $storeName = (string) ns()->option->get( 'ns_store_name', 'PosSOFT' );
+        $storeName = (string) ns()->option->get( 'ns_store_name', 'NexoPOS' );
         $address = (string) ns()->option->get( 'ns_store_address', '' );
         $phone = (string) ns()->option->get( 'ns_store_phone', '' );
         $email = (string) ns()->option->get( 'ns_store_email', '' );
         $contact = collect( [$phone, $email] )->filter()->implode( ' | ' );
 
         return [
-            'name' => $storeName ?: 'PosSOFT',
+            'name' => $storeName ?: 'NexoPOS',
             'address' => $address ?: 'Store address not configured',
             'contact' => $contact ?: 'Store contact not configured',
         ];

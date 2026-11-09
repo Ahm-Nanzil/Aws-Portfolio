@@ -27,7 +27,7 @@ class CustomerGroupCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_customers_groups';
+    protected $table = 'nexopos_customers_groups';
 
     /**
      * base route name
@@ -50,14 +50,14 @@ class CustomerGroupCrud extends CrudService
      * Adding relation
      */
     public $relations = [
-        [ 'possoft_users', 'possoft_customers_groups.author_id', '=', 'possoft_users.id' ],
+        [ 'nexopos_users', 'nexopos_customers_groups.author_id', '=', 'nexopos_users.id' ],
         'leftJoin' => [
-            [ 'possoft_rewards_system as reward', 'reward.id', '=', 'possoft_customers_groups.reward_system_id' ],
+            [ 'nexopos_rewards_system as reward', 'reward.id', '=', 'nexopos_customers_groups.reward_system_id' ],
         ],
     ];
 
     public $pick = [
-        'possoft_users' => [ 'username' ],
+        'nexopos_users' => [ 'username' ],
         'reward' => [ 'name' ],
     ];
 
@@ -89,10 +89,10 @@ class CustomerGroupCrud extends CrudService
     }
 
     protected $permissions = [
-        'create' => 'possoft.create.customers-groups',
-        'read' => 'possoft.read.customers-groups',
-        'update' => 'possoft.update.customers-groups',
-        'delete' => 'possoft.delete.customers-groups',
+        'create' => 'nexopos.create.customers-groups',
+        'read' => 'nexopos.read.customers-groups',
+        'update' => 'nexopos.update.customers-groups',
+        'delete' => 'nexopos.delete.customers-groups',
     ];
 
     /**
@@ -283,7 +283,7 @@ class CustomerGroupCrud extends CrudService
         return CrudTable::columns(
             CrudTable::column( __( 'Name' ), 'name' ),
             CrudTable::column( __( 'Reward System' ), 'reward_name' ),
-            CrudTable::column( __( 'Author' ), 'possoft_users_username' ),
+            CrudTable::column( __( 'Author' ), 'nexopos_users_username' ),
             CrudTable::column( __( 'Created On' ), 'created_at' )
         );
     }

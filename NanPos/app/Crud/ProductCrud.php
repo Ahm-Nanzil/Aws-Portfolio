@@ -37,7 +37,7 @@ class ProductCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_products';
+    protected $table = 'nexopos_products';
 
     /**
      * base route name
@@ -69,9 +69,9 @@ class ProductCrud extends CrudService
             [ User::class, 'user' ],
         ],
         'leftJoin' => [
-            [ 'possoft_products_categories as category', 'possoft_products.category_id', '=', 'category.id' ],
-            [ 'possoft_products as parent', 'possoft_products.parent_id', '=', 'parent.id' ],
-            [ 'possoft_taxes_groups as taxes_groups', 'possoft_products.tax_group_id', '=', 'taxes_groups.id' ],
+            [ 'nexopos_products_categories as category', 'nexopos_products.category_id', '=', 'category.id' ],
+            [ 'nexopos_products as parent', 'nexopos_products.parent_id', '=', 'parent.id' ],
+            [ 'nexopos_taxes_groups as taxes_groups', 'nexopos_products.tax_group_id', '=', 'taxes_groups.id' ],
         ],
     ];
 
@@ -87,10 +87,10 @@ class ProductCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.create.products',
-        'read' => 'possoft.read.products',
-        'update' => 'possoft.update.products',
-        'delete' => 'possoft.delete.products',
+        'create' => 'nexopos.create.products',
+        'read' => 'nexopos.read.products',
+        'update' => 'nexopos.update.products',
+        'delete' => 'nexopos.delete.products',
     ];
 
     /**
@@ -461,7 +461,7 @@ class ProductCrud extends CrudService
                                     'name' => 'default_purchase_unit_id',
                                     'description' => __( 'Select the unit used for scheduled procurement lines.' ),
                                     'label' => __( 'Default Purchase Unit' ),
-                                    'validation' => 'nullable|integer|exists:possoft_units,id',
+                                    'validation' => 'nullable|integer|exists:nexopos_units,id',
                                     'value' => $entry->default_purchase_unit_id ?? '',
                                 ], [
                                     'type' => 'number',

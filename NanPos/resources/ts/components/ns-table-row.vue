@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <tr class="ns-table-row border text-sm" :class="row.$cssClass ? row.$cssClass : ''">
         <td v-if="showCheckboxes" class="font-sans text-center align-middle p-1">
             <ns-checkbox class="inline-block" @change="handleChanged( $event )" :checked="row.$checked"> </ns-checkbox>

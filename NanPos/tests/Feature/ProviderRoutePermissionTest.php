@@ -9,7 +9,7 @@ use Tests\Traits\WithProviderRouteTest;
 /**
  * Proves that provider API routes are not currently protected by
  * NsRestrictMiddleware and should return 403 for users who lack the
- * relevant permissions (possoft.{create|read|update|delete}.providers).
+ * relevant permissions (nexopos.{create|read|update|delete}.providers).
  *
  * Run order:
  *   1. Run this test BEFORE applying NsRestrictMiddleware — every assertion

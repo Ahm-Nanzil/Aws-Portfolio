@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_roles' ) ) {
-            Schema::create( 'possoft_roles', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_roles' ) ) {
+            Schema::create( 'nexopos_roles', function ( Blueprint $table ) {
                 $table->increments( 'id' );
                 $table->string( 'name' )->unique();
                 $table->string( 'namespace' )->unique();
@@ -38,8 +38,8 @@ return new class extends Migration
         }
 
         // Permissions Relation with Roles
-        if ( ! Schema::hasTable( 'possoft_role_permission' ) ) {
-            Schema::create( 'possoft_role_permission', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_role_permission' ) ) {
+            Schema::create( 'nexopos_role_permission', function ( Blueprint $table ) {
                 $table->integer( 'permission_id' );
                 $table->integer( 'role_id' );
                 $table->primary( [ 'permission_id', 'role_id' ] );
@@ -54,7 +54,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_roles' );
-        Schema::dropIfExists( 'possoft_role_permission' );
+        Schema::dropIfExists( 'nexopos_roles' );
+        Schema::dropIfExists( 'nexopos_role_permission' );
     }
 };

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <label
         v-if="canResize"
         class="relative inline-flex items-center rounded-full border border-box-edge text-fontcolor shadow-sm hover:bg-box-elevation-hover focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20"
@@ -14,7 +14,7 @@
                 v-for="layout in widget.supportedLayouts"
                 :key="layout.name"
                 :value="layout.name">
-                {{ layout.columns }} × {{ layout.rows }}
+                {{ layout.columns }} Ã— {{ layout.rows }}
             </option>
         </select>
         <i class="las la-angle-down pointer-events-none absolute right-2 text-xs text-fontcolor-soft" aria-hidden="true"></i>

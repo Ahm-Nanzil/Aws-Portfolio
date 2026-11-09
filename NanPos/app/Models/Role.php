@@ -18,7 +18,7 @@ class Role extends NsRootModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_roles';
+    protected $table = 'nexopos_roles';
 
     protected $fillable = [ 'namespace', 'name', 'description', 'reward_system_id', 'minimal_credit_payment' ];
 
@@ -30,17 +30,17 @@ class Role extends NsRootModel
     /**
      * @var string STOREADMIN store manager
      */
-    const STOREADMIN = 'possoft.store.administrator';
+    const STOREADMIN = 'nexopos.store.administrator';
 
     /**
      * @var string STORECASHIER store role with sales capacity
      */
-    const STORECASHIER = 'possoft.store.cashier';
+    const STORECASHIER = 'nexopos.store.cashier';
 
     /**
      * @var string STORECUSTOMER store role with purchasing capacity
      */
-    const STORECUSTOMER = 'possoft.store.customer';
+    const STORECUSTOMER = 'nexopos.store.customer';
 
     /**
      * @var string USER base role with no or less permissions

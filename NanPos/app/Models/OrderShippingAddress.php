@@ -16,7 +16,7 @@ class OrderShippingAddress extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_addresses';
+    protected $table = 'nexopos_' . 'orders_addresses';
 
     protected static function booted()
     {

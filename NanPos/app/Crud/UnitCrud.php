@@ -30,7 +30,7 @@ class UnitCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_units';
+    protected $table = 'nexopos_units';
 
     /**
      * base route name
@@ -56,7 +56,7 @@ class UnitCrud extends CrudService
         'join' => [
             [ User::class, 'user' ],
         ],
-        [ 'possoft_units_groups as group', 'possoft_units.group_id', '=', 'group.id' ],
+        [ 'nexopos_units_groups as group', 'nexopos_units.group_id', '=', 'group.id' ],
     ];
 
     /**
@@ -79,10 +79,10 @@ class UnitCrud extends CrudService
     public $fillable = [];
 
     protected $permissions = [
-        'create' => 'possoft.create.products-units',
-        'read' => 'possoft.read.products-units',
-        'update' => 'possoft.update.products-units',
-        'delete' => 'possoft.delete.products-units',
+        'create' => 'nexopos.create.products-units',
+        'read' => 'nexopos.read.products-units',
+        'update' => 'nexopos.update.products-units',
+        'delete' => 'nexopos.delete.products-units',
     ];
 
     /**
@@ -128,8 +128,8 @@ class UnitCrud extends CrudService
         $query->addSelect( [
             'assigned_products' => function ( $query ) {
                 $query->selectRaw( 'COUNT(*)' )
-                    ->from( 'possoft_products_unit_quantities' )
-                    ->whereColumn( 'possoft_products_unit_quantities.unit_id', '=', 'possoft_units.id' );
+                    ->from( 'nexopos_products_unit_quantities' )
+                    ->whereColumn( 'nexopos_products_unit_quantities.unit_id', '=', 'nexopos_units.id' );
             },
         ] );
     }
@@ -159,7 +159,7 @@ class UnitCrud extends CrudService
                             label: __( 'Identifier' ),
                             name: 'identifier',
                             description: __( 'Provide a unique value for this unit. Might be composed from a name but shouldn\'t include space or special characters.' ),
-                            validation: 'unique:' . Hook::filter( 'ns-table-name', 'possoft_units' ) . ',identifier' . ( $entry !== null ? ',' . $entry->id : '' ),
+                            validation: 'unique:' . Hook::filter( 'ns-table-name', 'nexopos_units' ) . ',identifier' . ( $entry !== null ? ',' . $entry->id : '' ),
                             value: $entry->identifier ?? '',
                         ),
                         FormInput::media(

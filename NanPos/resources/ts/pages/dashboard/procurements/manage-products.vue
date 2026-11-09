@@ -1,4 +1,4 @@
-
+﻿
 <template>
     <div class="form flex-auto" id="product-form">
         <div v-if="Object.values( form ).length === 0 && hasLoaded" class="flex items-center h-full justify-center flex-auto">

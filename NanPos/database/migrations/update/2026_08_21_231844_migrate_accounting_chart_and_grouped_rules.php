@@ -9,9 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         if (
-            Schema::hasTable( 'possoft_transactions_accounts' )
-            && Schema::hasTable( 'possoft_transactions_actions_rules' )
-            && Schema::hasTable( 'possoft_transactions_actions_rule_lines' )
+            Schema::hasTable( 'nexopos_transactions_accounts' )
+            && Schema::hasTable( 'nexopos_transactions_actions_rules' )
+            && Schema::hasTable( 'nexopos_transactions_actions_rule_lines' )
         ) {
             app( TransactionService::class )->upgradeAccountingFoundation();
         }

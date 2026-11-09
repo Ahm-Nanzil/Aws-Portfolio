@@ -34,31 +34,31 @@ class MenuService
                 label: __( 'POS' ),
                 icon: 'la-cash-register',
                 identifier: 'pos',
-                permissions: [ 'possoft.pos.access' ],
+                permissions: [ 'nexopos.pos.access' ],
                 href: ns()->url( '/dashboard/pos' ),
             ),
             AsideMenu::menu(
                 label: __( 'Orders' ),
                 icon: 'la-list-ol',
                 identifier: 'orders',
-                permissions: [ 'possoft.read.orders', 'possoft.deliver.orders' ],
+                permissions: [ 'nexopos.read.orders', 'nexopos.deliver.orders' ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Orders List' ),
                         identifier: 'order-list',
-                        permissions: [ 'possoft.read.orders' ],
+                        permissions: [ 'nexopos.read.orders' ],
                         href: ns()->url( '/dashboard/orders' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Payment Types' ),
                         identifier: 'payment-type',
-                        permissions: [ 'possoft.manage-payments-types' ],
+                        permissions: [ 'nexopos.manage-payments-types' ],
                         href: ns()->url( '/dashboard/orders/payments-types' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Assigned Orders' ),
                         identifier: 'assignated-orders',
-                        permissions: [ 'possoft.deliver.orders' ],
+                        permissions: [ 'nexopos.deliver.orders' ],
                         href: ns()->url( '/dashboard/orders/assignated' )
                     )
                 ),
@@ -67,7 +67,7 @@ class MenuService
                 label: __( 'Medias' ),
                 icon: 'la-photo-video',
                 identifier: 'medias',
-                permissions: [ 'possoft.upload.medias', 'possoft.see.medias' ],
+                permissions: [ 'nexopos.upload.medias', 'nexopos.see.medias' ],
                 href: ns()->url( '/dashboard/medias' ),
             ),
             AsideMenu::menu(
@@ -75,63 +75,63 @@ class MenuService
                 icon: 'la-user-friends',
                 identifier: 'customers',
                 permissions: [
-                    'possoft.read.customers',
-                    'possoft.create.customers',
-                    'possoft.read.customers-groups',
-                    'possoft.create.customers-groups',
-                    'possoft.import.customers',
-                    'possoft.read.rewards',
-                    'possoft.create.rewards',
-                    'possoft.read.coupons',
-                    'possoft.create.coupons',
+                    'nexopos.read.customers',
+                    'nexopos.create.customers',
+                    'nexopos.read.customers-groups',
+                    'nexopos.create.customers-groups',
+                    'nexopos.import.customers',
+                    'nexopos.read.rewards',
+                    'nexopos.create.rewards',
+                    'nexopos.read.coupons',
+                    'nexopos.create.coupons',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'List' ),
                         identifier: 'customers',
-                        permissions: [ 'possoft.read.customers' ],
+                        permissions: [ 'nexopos.read.customers' ],
                         href: ns()->url( '/dashboard/customers' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Customer' ),
                         identifier: 'create-customer',
-                        permissions: [ 'possoft.create.customers' ],
+                        permissions: [ 'nexopos.create.customers' ],
                         href: ns()->url( '/dashboard/customers/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Customers Groups' ),
                         identifier: 'customers-groups',
-                        permissions: [ 'possoft.read.customers-groups' ],
+                        permissions: [ 'nexopos.read.customers-groups' ],
                         href: ns()->url( '/dashboard/customers/groups' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Group' ),
                         identifier: 'create-customers-group',
-                        permissions: [ 'possoft.create.customers-groups' ],
+                        permissions: [ 'nexopos.create.customers-groups' ],
                         href: ns()->url( '/dashboard/customers/groups/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Reward Systems' ),
                         identifier: 'list-reward-system',
-                        permissions: [ 'possoft.read.rewards' ],
+                        permissions: [ 'nexopos.read.rewards' ],
                         href: ns()->url( '/dashboard/customers/rewards-system' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Reward' ),
                         identifier: 'create-reward-system',
-                        permissions: [ 'possoft.create.rewards' ],
+                        permissions: [ 'nexopos.create.rewards' ],
                         href: ns()->url( '/dashboard/customers/rewards-system/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'List Coupons' ),
                         identifier: 'list-coupons',
-                        permissions: [ 'possoft.read.coupons' ],
+                        permissions: [ 'nexopos.read.coupons' ],
                         href: ns()->url( '/dashboard/customers/coupons' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Coupon' ),
                         identifier: 'create-coupons',
-                        permissions: [ 'possoft.create.coupons' ],
+                        permissions: [ 'nexopos.create.coupons' ],
                         href: ns()->url( '/dashboard/customers/coupons/create' )
                     ),
                 ),
@@ -141,20 +141,20 @@ class MenuService
                 icon: 'la-user-tie',
                 identifier: 'providers',
                 permissions: [
-                    'possoft.read.providers',
-                    'possoft.create.providers',
+                    'nexopos.read.providers',
+                    'nexopos.create.providers',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'List' ),
                         identifier: 'providers',
-                        permissions: [ 'possoft.read.providers' ],
+                        permissions: [ 'nexopos.read.providers' ],
                         href: ns()->url( '/dashboard/providers' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create A Provider' ),
                         identifier: 'create-provider',
-                        permissions: [ 'possoft.create.providers' ],
+                        permissions: [ 'nexopos.create.providers' ],
                         href: ns()->url( '/dashboard/providers/create' )
                     ),
                 ),
@@ -164,46 +164,46 @@ class MenuService
                 icon: 'la-stream',
                 identifier: 'accounting',
                 permissions: [
-                    'possoft.read.transactions',
-                    'possoft.create.transactions',
-                    'possoft.read.transactions-account',
-                    'possoft.create.transactions-account',
+                    'nexopos.read.transactions',
+                    'nexopos.create.transactions',
+                    'nexopos.read.transactions-account',
+                    'nexopos.create.transactions-account',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Expenses' ),
                         identifier: 'transactions',
-                        permissions: [ 'possoft.read.transactions' ],
+                        permissions: [ 'nexopos.read.transactions' ],
                         href: ns()->url( '/dashboard/accounting/transactions' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Expense' ),
                         identifier: 'create-transaction',
-                        permissions: [ 'possoft.create.transactions' ],
+                        permissions: [ 'nexopos.create.transactions' ],
                         href: ns()->url( '/dashboard/accounting/transactions/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Transaction History' ),
                         identifier: 'transactions-history',
-                        permissions: [ 'possoft.read.transactions-history' ],
+                        permissions: [ 'nexopos.read.transactions-history' ],
                         href: ns()->url( '/dashboard/accounting/transactions/history' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Rules' ),
                         identifier: 'transacations-rules',
-                        permissions: [ 'possoft.create.transactions' ],
+                        permissions: [ 'nexopos.create.transactions' ],
                         href: ns()->url( '/dashboard/accounting/rules' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Accounts' ),
                         identifier: 'transactions-account',
-                        permissions: [ 'possoft.read.transactions-account' ],
+                        permissions: [ 'nexopos.read.transactions-account' ],
                         href: ns()->url( '/dashboard/accounting/accounts' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Account' ),
                         identifier: 'create-transactions-account',
-                        permissions: [ 'possoft.create.transactions-account' ],
+                        permissions: [ 'nexopos.create.transactions-account' ],
                         href: ns()->url( '/dashboard/accounting/accounts/create' )
                     ),
                 ),
@@ -213,93 +213,93 @@ class MenuService
                 icon: 'la-boxes',
                 identifier: 'inventory',
                 permissions: [
-                    'possoft.read.products',
-                    'possoft.create.products',
-                    'possoft.read.categories',
-                    'possoft.create.categories',
-                    'possoft.read.products-units',
-                    'possoft.create.products-units',
-                    'possoft.read.products-units',
-                    'possoft.create.products-units',
-                    'possoft.make.products-adjustments',
+                    'nexopos.read.products',
+                    'nexopos.create.products',
+                    'nexopos.read.categories',
+                    'nexopos.create.categories',
+                    'nexopos.read.products-units',
+                    'nexopos.create.products-units',
+                    'nexopos.read.products-units',
+                    'nexopos.create.products-units',
+                    'nexopos.make.products-adjustments',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Products' ),
                         identifier: 'products',
-                        permissions: [ 'possoft.read.products' ],
+                        permissions: [ 'nexopos.read.products' ],
                         href: ns()->url( '/dashboard/products' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Product' ),
                         identifier: 'create-products',
-                        permissions: [ 'possoft.create.products' ],
+                        permissions: [ 'nexopos.create.products' ],
                         href: ns()->url( '/dashboard/products/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Print Labels' ),
                         identifier: 'labels-printing',
                         href: ns()->url( '/dashboard/products/print-labels' ),
-                        permissions: [ 'possoft.create.products-labels' ]
+                        permissions: [ 'nexopos.create.products-labels' ]
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Categories' ),
                         identifier: 'categories',
-                        permissions: [ 'possoft.read.categories' ],
+                        permissions: [ 'nexopos.read.categories' ],
                         href: ns()->url( '/dashboard/products/categories' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Category' ),
                         identifier: 'create-categories',
-                        permissions: [ 'possoft.create.categories' ],
+                        permissions: [ 'nexopos.create.categories' ],
                         href: ns()->url( '/dashboard/products/categories/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Units' ),
                         identifier: 'units',
-                        permissions: [ 'possoft.read.products-units' ],
+                        permissions: [ 'nexopos.read.products-units' ],
                         href: ns()->url( '/dashboard/units' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Unit' ),
                         identifier: 'create-units',
-                        permissions: [ 'possoft.create.products-units' ],
+                        permissions: [ 'nexopos.create.products-units' ],
                         href: ns()->url( '/dashboard/units/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Unit Groups' ),
                         identifier: 'unit-groups',
-                        permissions: [ 'possoft.read.products-units' ],
+                        permissions: [ 'nexopos.read.products-units' ],
                         href: ns()->url( '/dashboard/units/groups' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Unit Groups' ),
                         identifier: 'create-unit-groups',
-                        permissions: [ 'possoft.create.products-units' ],
+                        permissions: [ 'nexopos.create.products-units' ],
                         href: ns()->url( '/dashboard/units/groups/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Stock Adjustment' ),
                         identifier: 'stock-adjustment',
-                        permissions: [ 'possoft.make.products-adjustments' ],
+                        permissions: [ 'nexopos.make.products-adjustments' ],
                         href: ns()->url( '/dashboard/products/stock-adjustment' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Adjustment History' ),
                         identifier: 'products-adjustments-history',
-                        permissions: [ 'possoft.make.products-adjustments' ],
+                        permissions: [ 'nexopos.make.products-adjustments' ],
                         href: ns()->url( '/dashboard/products/adjustment-history' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Scale Range' ),
                         identifier: 'scale-range',
-                        permissions: [ 'possoft.make.products-adjustments' ],
+                        permissions: [ 'nexopos.make.products-adjustments' ],
                         href: ns()->url( '/dashboard/products/scale-range' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Stock Flow Records' ),
                         identifier: 'product-history',
-                        permissions: [ 'possoft.read.products' ],
+                        permissions: [ 'nexopos.read.products' ],
                         href: ns()->url( '/dashboard/products/stock-flow-records' )
                     ),
                 ),
@@ -309,34 +309,34 @@ class MenuService
                 icon: 'la-balance-scale-left',
                 identifier: 'taxes',
                 permissions: [
-                    'possoft.create.taxes',
-                    'possoft.read.taxes',
-                    'possoft.update.taxes',
-                    'possoft.delete.taxes',
+                    'nexopos.create.taxes',
+                    'nexopos.read.taxes',
+                    'nexopos.update.taxes',
+                    'nexopos.delete.taxes',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Taxes Groups' ),
                         identifier: 'taxes-groups',
-                        permissions: [ 'possoft.read.taxes' ],
+                        permissions: [ 'nexopos.read.taxes' ],
                         href: ns()->url( '/dashboard/taxes/groups' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Tax Groups' ),
                         identifier: 'create-taxes-group',
-                        permissions: [ 'possoft.create.taxes' ],
+                        permissions: [ 'nexopos.create.taxes' ],
                         href: ns()->url( '/dashboard/taxes/groups/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Taxes' ),
                         identifier: 'taxes',
-                        permissions: [ 'possoft.read.taxes' ],
+                        permissions: [ 'nexopos.read.taxes' ],
                         href: ns()->url( '/dashboard/taxes' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Create Tax' ),
                         identifier: 'create-tax',
-                        permissions: [ 'possoft.create.taxes' ],
+                        permissions: [ 'nexopos.create.taxes' ],
                         href: ns()->url( '/dashboard/taxes/create' )
                     ),
                 ),
@@ -420,24 +420,24 @@ class MenuService
                 label: __( 'Procurements' ),
                 icon: 'la-truck-loading',
                 identifier: 'procurements',
-                permissions: [ 'possoft.read.procurements', 'possoft.create.procurements' ],
+                permissions: [ 'nexopos.read.procurements', 'nexopos.create.procurements' ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Procurements List' ),
                         identifier: 'procurements',
-                        permissions: [ 'possoft.read.procurements' ],
+                        permissions: [ 'nexopos.read.procurements' ],
                         href: ns()->url( '/dashboard/procurements' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'New Procurement' ),
                         identifier: 'procurements-create',
-                        permissions: [ 'possoft.create.procurements' ],
+                        permissions: [ 'nexopos.create.procurements' ],
                         href: ns()->url( '/dashboard/procurements/create' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Products' ),
                         identifier: 'procurements-products',
-                        permissions: [ 'possoft.update.procurements' ],
+                        permissions: [ 'nexopos.update.procurements' ],
                         href: ns()->url( '/dashboard/procurements/products' )
                     ),
                 ),
@@ -447,43 +447,43 @@ class MenuService
                 icon: 'la-chart-pie',
                 identifier: 'reports',
                 permissions: [
-                    'possoft.reports.sales',
-                    'possoft.reports.best_sales',
-                    'possoft.reports.transactions',
-                    'possoft.reports.yearly',
-                    'possoft.reports.customers',
-                    'possoft.reports.inventory',
-                    'possoft.reports.payment-types',
+                    'nexopos.reports.sales',
+                    'nexopos.reports.best_sales',
+                    'nexopos.reports.transactions',
+                    'nexopos.reports.yearly',
+                    'nexopos.reports.customers',
+                    'nexopos.reports.inventory',
+                    'nexopos.reports.payment-types',
                 ],
                 childrens: AsideMenu::childrens(
                     AsideMenu::subMenu(
                         label: __( 'Sale Report' ),
                         identifier: 'sales',
-                        permissions: [ 'possoft.reports.sales' ],
+                        permissions: [ 'nexopos.reports.sales' ],
                         href: ns()->url( '/dashboard/reports/sales' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Sales Progress' ),
                         identifier: 'products-report',
-                        permissions: [ 'possoft.reports.products-report' ],
+                        permissions: [ 'nexopos.reports.products-report' ],
                         href: ns()->url( '/dashboard/reports/sales-progress' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Customers Statement' ),
                         identifier: 'customers-statement',
-                        permissions: [ 'possoft.reports.customers-statement' ],
+                        permissions: [ 'nexopos.reports.customers-statement' ],
                         href: ns()->url( '/dashboard/reports/customers-statement' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Stock Report' ),
                         identifier: 'low-stock',
-                        permissions: [ 'possoft.reports.low-stock' ],
+                        permissions: [ 'nexopos.reports.low-stock' ],
                         href: ns()->url( '/dashboard/reports/low-stock' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Stock History' ),
                         identifier: 'stock-history',
-                        permissions: [ 'possoft.reports.stock-history' ],
+                        permissions: [ 'nexopos.reports.stock-history' ],
                         href: ns()->url( '/dashboard/reports/stock-history' )
                     ),
                     AsideMenu::subMenu(
@@ -499,19 +499,19 @@ class MenuService
                     AsideMenu::subMenu(
                         label: __( 'Transactions' ),
                         identifier: 'transactions',
-                        permissions: [ 'possoft.reports.transactions' ],
+                        permissions: [ 'nexopos.reports.transactions' ],
                         href: ns()->url( '/dashboard/reports/transactions' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Annual Report' ),
                         identifier: 'annulal-sales',
-                        permissions: [ 'possoft.reports.yearly' ],
+                        permissions: [ 'nexopos.reports.yearly' ],
                         href: ns()->url( '/dashboard/reports/annual-report' )
                     ),
                     AsideMenu::subMenu(
                         label: __( 'Sales By Payments' ),
                         identifier: 'payment-types',
-                        permissions: [ 'possoft.reports.payment-types' ],
+                        permissions: [ 'nexopos.reports.payment-types' ],
                         href: ns()->url( '/dashboard/reports/payment-types' )
                     ),
                 ),

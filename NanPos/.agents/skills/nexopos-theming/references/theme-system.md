@@ -1,8 +1,8 @@
-# PosSOFT theme system
+# NexoPOS theme system
 
 ## Architecture
 
-PosSOFT uses Tailwind CSS v4 with CSS-first configuration. Each supported theme is a separate Vite entry:
+NexoPOS uses Tailwind CSS v4 with CSS-first configuration. Each supported theme is a separate Vite entry:
 
 - `resources/css/light.css`
 - `resources/css/dark.css`
@@ -16,7 +16,7 @@ The root `tailwind.config.js` reflects an older CSS-variable model and is not au
 
 ## Runtime selection
 
-`config/possoft.php` registers `dark`, `light`, and `phosphor`. General settings store `ns_default_theme`; authenticated users can have an attribute override. Layouts load `resources/css/<theme>.css` through `@vite`.
+`config/nexopos.php` registers `dark`, `light`, and `phosphor`. General settings store `ns_default_theme`; authenticated users can have an attribute override. Layouts load `resources/css/<theme>.css` through `@vite`.
 
 Most layouts output `data-theme="<theme>"`; `dashboard-blank.blade.php` currently outputs a theme class. Do not depend on either selector for normal colors: the selected stylesheet is the compatibility mechanism.
 
@@ -58,7 +58,7 @@ Theme component files apply semantic tokens to those hooks. The hook/state vocab
 
 ## Adding a theme
 
-1. Register the name in `config/possoft.php`.
+1. Register the name in `config/nexopos.php`.
 2. Add `resources/css/<theme>.css` as a Vite input.
 3. Define every semantic token in the new `_colors.css`.
 4. Supply every imported component stylesheet with the same selector contract.

@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import { shallowRef } from 'vue';
 import { default as nsDateTimePicker } from './ns-date-time-picker.vue';
 import { default as nsSwitch } from './ns-switch.vue';

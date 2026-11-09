@@ -14,7 +14,7 @@ $dateService    =   app()->make( DateService::class );
         window.nsExtraComponents     =   new Object;
 
         /**
-         * describe a global PosSOFT object
+         * describe a global application object
          * @param {object} ns
          */
         window.ns   =   { nsExtraComponents };
@@ -41,7 +41,7 @@ $dateService    =   app()->make( DateService::class );
          */
         window.ns.language      =   '{{ app()->getLocale() }}';
         window.ns.langFiles     =   <?php echo json_encode( Hook::filter( 'ns.langFiles', [
-            'PosSOFT'   =>  asset( "/lang/" . app()->getLocale() . ".json" ),
+            'NexoPOS'   =>  asset( "/lang/" . app()->getLocale() . ".json" ),
         ]));?>
 
         @auth

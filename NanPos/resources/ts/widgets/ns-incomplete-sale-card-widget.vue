@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex h-full card-widget flex-auto flex-col rounded-lg shadow-lg bg-gradient-to-br from-green-400 to-green-600 px-3 py-5">
         <div class="flex justify-between flex-row md:flex-col flex-auto">
             <div class="w-1/2 md:w-full flex md:flex-col md:items-start items-center justify-center">

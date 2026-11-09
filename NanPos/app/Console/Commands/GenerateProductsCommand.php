@@ -31,7 +31,7 @@ class GenerateProductsCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate varied sample PosSOFT products with generic images';
+    protected $description = 'Generate varied sample NexoPOS products with generic images';
 
     /**
      * Execute the console command.

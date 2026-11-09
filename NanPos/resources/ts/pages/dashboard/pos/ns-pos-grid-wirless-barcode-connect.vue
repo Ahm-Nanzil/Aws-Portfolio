@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg w-[75.71vw] md:w-[51.43vw] lg:w-[40.14vw] ns-box flex flex-col">
         <div class="p-2 border-b ns-box-header flex justify-between items-center">
             <h3 class="text-fontcolor">{{ __('Connect Wireless Barcode Scanner') }}</h3>

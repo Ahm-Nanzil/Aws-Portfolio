@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_permissions_access' ) ) {
-            Schema::create( 'possoft_permissions_access', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_permissions_access' ) ) {
+            Schema::create( 'nexopos_permissions_access', function ( Blueprint $table ) {
                 $table->id();
                 $table->integer( 'requester_id' )->unsigned()->index();
                 $table->integer( 'granter_id' )->unsigned()->index();
@@ -57,6 +57,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_permissions_access' );
+        Schema::dropIfExists( 'nexopos_permissions_access' );
     }
 };

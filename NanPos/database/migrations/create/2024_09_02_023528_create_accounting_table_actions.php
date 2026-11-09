@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::createIfMissing( 'possoft_transactions_actions_rules', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions_actions_rules', function ( Blueprint $table ) {
             $table->id();
             $table->string( 'on' );
             $table->enum( 'action', [ 'increase', 'decrease' ] );
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
         } );
 
-        Schema::createIfMissing( 'possoft_transactions_actions_rule_lines', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions_actions_rule_lines', function ( Blueprint $table ) {
             $table->id();
             $table->unsignedBigInteger( 'rule_id' );
             $table->unsignedBigInteger( 'account_id' )->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->index( [ 'rule_id', 'display_order' ], 'transaction_rule_lines_order_index' );
         } );
 
-        Schema::createIfMissing( 'possoft_accounting_journals', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_accounting_journals', function ( Blueprint $table ) {
             $table->id();
             $table->string( 'source_type' );
             $table->string( 'source_id' );
@@ -55,8 +55,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_transactions_actions_rules' );
-        Schema::dropIfExists( 'possoft_transactions_actions_rule_lines' );
-        Schema::dropIfExists( 'possoft_accounting_journals' );
+        Schema::dropIfExists( 'nexopos_transactions_actions_rules' );
+        Schema::dropIfExists( 'nexopos_transactions_actions_rule_lines' );
+        Schema::dropIfExists( 'nexopos_accounting_journals' );
     }
 };

@@ -1,4 +1,4 @@
-import * as math from 'mathjs';
+﻿import * as math from 'mathjs';
 export default class Tax {
     static compute( type, value, rate ) {
         switch ( type ) {

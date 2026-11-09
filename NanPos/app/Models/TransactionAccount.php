@@ -9,7 +9,7 @@ class TransactionAccount extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_transactions_accounts';
+    protected $table = 'nexopos_transactions_accounts';
 
     public function transactions(): HasMany
     {

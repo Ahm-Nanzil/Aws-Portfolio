@@ -18,6 +18,6 @@ class BestCashiersWidget extends WidgetService
     {
         $this->name = __( 'Best Cashiers' );
         $this->description = __( 'Will display all cashiers who performs well.' );
-        $this->permission = 'possoft.see.best-cashier-widget';
+        $this->permission = 'nexopos.see.best-cashier-widget';
     }
 }

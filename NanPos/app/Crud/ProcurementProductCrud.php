@@ -26,7 +26,7 @@ class ProcurementProductCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_procurements_products';
+    protected $table = 'nexopos_procurements_products';
 
     /**
      * default slug
@@ -56,21 +56,21 @@ class ProcurementProductCrud extends CrudService
      */
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.procurements',
+        'read' => 'nexopos.read.procurements',
         'update' => false,
         'delete' => false, // cannot be deleted
     ];
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
     public $relations = [
-        [ 'possoft_procurements as procurement', 'procurement.id', '=', 'possoft_procurements_products.procurement_id' ],
-        [ 'possoft_units as unit', 'unit.id', '=', 'possoft_procurements_products.unit_id' ],
-        [ 'possoft_users as user', 'user.id', '=', 'possoft_procurements_products.author_id' ],
+        [ 'nexopos_procurements as procurement', 'procurement.id', '=', 'nexopos_procurements_products.procurement_id' ],
+        [ 'nexopos_units as unit', 'unit.id', '=', 'nexopos_procurements_products.unit_id' ],
+        [ 'nexopos_users as user', 'user.id', '=', 'nexopos_procurements_products.author_id' ],
     ];
 
     /**
@@ -87,7 +87,7 @@ class ProcurementProductCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <p v-if="! field.errors || field.errors.length === 0" class="text-xs ns-description">{{ field.description }}</p>
     
     <template v-else>

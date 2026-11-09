@@ -84,7 +84,7 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Valid Email Check', () => {
         let fields  =   [{
             label: 'Test',
-            value: 'contact@possoft.com',
+            value: 'contact@nexopos.com',
             name: 'field_name',
             validation: 'email'
         }];
@@ -97,7 +97,7 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Invalid Email Check', () => {
         let fields  =   [{
             label: 'Test',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'field_name',
             validation: 'email'
         }];
@@ -110,12 +110,12 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Valid Same Check', () => {
         let fields  =   [{
             label: 'First Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'first_field',
             validation: 'required'
         }, {
             label: 'Second Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'second_field',
             validation: 'same:first_field'
         }];
@@ -128,7 +128,7 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Invalid Same Check', () => {
         let fields  =   [{
             label: 'First Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'first_field',
             validation: 'required'
         }, {
@@ -146,7 +146,7 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Valid Different Check', () => {
         let fields  =   [{
             label: 'First Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'first_field',
             validation: 'required'
         }, {
@@ -164,12 +164,12 @@ describe( 'Tests Form Validation Class', () => {
     test( 'Invalid Different Check', () => {
         let fields  =   [{
             label: 'First Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'first_field',
             validation: 'required'
         }, {
             label: 'Second Field',
-            value: 'contactpossoft.com',
+            value: 'contactnexopos.com',
             name: 'second_field',
             validation: 'different:first_field'
         }];

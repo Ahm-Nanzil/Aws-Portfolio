@@ -1,4 +1,4 @@
-interface Config {
+﻿interface Config {
     visible: string[];
     hidden: string[];
     callbacks: {

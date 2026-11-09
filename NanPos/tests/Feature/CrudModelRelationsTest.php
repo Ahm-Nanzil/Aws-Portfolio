@@ -30,7 +30,7 @@ use Tests\Traits\WithAuthentication;
  *    the SELECT, preventing fields like password / remember_token from being
  *    returned to the client.
  *
- * Old raw-array syntax (['possoft_users as author', 'fk', '=', 'pk']) is
+ * Old raw-array syntax (['nexopos_users as author', 'fk', '=', 'pk']) is
  * preserved for backward compatibility.
  */
 class CrudModelRelationsTest extends TestCase
@@ -114,7 +114,7 @@ class CrudModelRelationsTest extends TestCase
         {
             const IDENTIFIER = 'test.legacy-numeric';
 
-            protected $table = 'possoft_providers';
+            protected $table = 'nexopos_providers';
 
             protected $model = Provider::class;
 
@@ -122,7 +122,7 @@ class CrudModelRelationsTest extends TestCase
              * Old style: numeric key, raw 4-element array with explicit alias.
              */
             public $relations = [
-                [ 'possoft_users as author', 'possoft_providers.author_id', '=', 'author.id' ],
+                [ 'nexopos_users as author', 'nexopos_providers.author_id', '=', 'author.id' ],
             ];
 
             public $pick = [
@@ -164,7 +164,7 @@ class CrudModelRelationsTest extends TestCase
         {
             const IDENTIFIER = 'test.explicit-alias';
 
-            protected $table = 'possoft_providers';
+            protected $table = 'nexopos_providers';
 
             protected $model = Provider::class;
 
@@ -231,7 +231,7 @@ class CrudModelRelationsTest extends TestCase
         {
             const IDENTIFIER = 'test.at-alias';
 
-            protected $table = 'possoft_providers';
+            protected $table = 'nexopos_providers';
 
             protected $model = Provider::class;
 
@@ -278,7 +278,7 @@ class CrudModelRelationsTest extends TestCase
         {
             const IDENTIFIER = 'test.legacy-grouped';
 
-            protected $table = 'possoft_providers';
+            protected $table = 'nexopos_providers';
 
             protected $model = Provider::class;
 
@@ -287,7 +287,7 @@ class CrudModelRelationsTest extends TestCase
              */
             public $relations = [
                 'leftJoin' => [
-                    [ 'possoft_users as author', 'possoft_providers.author_id', '=', 'author.id' ],
+                    [ 'nexopos_users as author', 'nexopos_providers.author_id', '=', 'author.id' ],
                 ],
             ];
 

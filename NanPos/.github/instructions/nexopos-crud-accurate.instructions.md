@@ -2,9 +2,9 @@
 applyTo: '**'
 ---
 
-# PosSOFT CRUD System Guide (Accurate)
+# NexoPOS CRUD System Guide (Accurate)
 
-The PosSOFT CRUD (Create, Read, Update, Delete) system provides a powerful framework for managing data entities. This guide is based on actual CRUD implementations in the codebase.
+The NexoPOS CRUD (Create, Read, Update, Delete) system provides a powerful framework for managing data entities. This guide is based on actual CRUD implementations in the codebase.
 
 ## Architecture Overview
 
@@ -44,7 +44,7 @@ class ExampleCrud extends CrudService
     /**
      * Database table name
      */
-    protected $table = 'possoft_examples';
+    protected $table = 'nexopos_examples';
 
     /**
      * Route slug for dashboard URLs
@@ -65,10 +65,10 @@ class ExampleCrud extends CrudService
      * Permissions configuration
      */
     protected $permissions = [
-        'create' => 'possoft.create.examples',
-        'read' => 'possoft.read.examples',
-        'update' => 'possoft.update.examples',
-        'delete' => 'possoft.delete.examples',
+        'create' => 'nexopos.create.examples',
+        'read' => 'nexopos.read.examples',
+        'update' => 'nexopos.update.examples',
+        'delete' => 'nexopos.delete.examples',
     ];
 
     /**
@@ -92,11 +92,11 @@ Relations are defined in the `$relations` property:
 ```php
 public $relations = [
     // Simple join
-    ['possoft_users as author', 'possoft_examples.author_id', '=', 'author.id'],
+    ['nexopos_users as author', 'nexopos_examples.author_id', '=', 'author.id'],
     
     // Left join
     'leftJoin' => [
-        ['possoft_categories as category', 'possoft_examples.category_id', '=', 'category.id'],
+        ['nexopos_categories as category', 'nexopos_examples.category_id', '=', 'category.id'],
     ],
 ];
 ```
@@ -573,15 +573,15 @@ class OrderCrud extends CrudService
     const AUTOLOAD = true;
     const IDENTIFIER = 'ns.orders';
 
-    protected $table = 'possoft_orders';
+    protected $table = 'nexopos_orders';
     protected $mainRoute = 'ns.orders';
     protected $namespace = 'ns.orders';
     protected $model = Order::class;
     protected $prependOptions = true;
 
     public $relations = [
-        ['possoft_users as author', 'possoft_orders.author', '=', 'author.id'],
-        ['possoft_users as customer', 'possoft_orders.customer_id', '=', 'customer.id'],
+        ['nexopos_users as author', 'nexopos_orders.author', '=', 'author.id'],
+        ['nexopos_users as customer', 'nexopos_orders.customer_id', '=', 'customer.id'],
     ];
 
     public $pick = [
@@ -590,10 +590,10 @@ class OrderCrud extends CrudService
     ];
 
     protected $permissions = [
-        'create' => 'possoft.create.orders',
-        'read' => 'possoft.read.orders',
-        'update' => 'possoft.update.orders',
-        'delete' => 'possoft.delete.orders',
+        'create' => 'nexopos.create.orders',
+        'read' => 'nexopos.read.orders',
+        'update' => 'nexopos.update.orders',
+        'delete' => 'nexopos.delete.orders',
     ];
 
     protected $casts = [
@@ -1027,4 +1027,4 @@ watch: {
 }
 ```
 
-This guide is based on actual CRUD implementations in PosSOFT and reflects the true patterns used in production code.
+This guide is based on actual CRUD implementations in NexoPOS and reflects the true patterns used in production code.

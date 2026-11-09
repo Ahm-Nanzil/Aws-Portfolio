@@ -12,7 +12,7 @@ class RewardGuide
         $guide->register( 'reward.guide', Guide::experience(
             id: 'reward.guide',
             title: __( 'Reward System Guide' ),
-            permissions: [ 'possoft.create.rewards' ],
+            permissions: [ 'nexopos.create.rewards' ],
             required_routes: [ 'ns.dashboard.rewards-create' ],
             description: __( 'This interactive guide will explain everything you need to know before creating a reward system.' ),
             steps: Guide::steps(

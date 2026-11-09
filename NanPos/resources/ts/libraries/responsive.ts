@@ -1,4 +1,4 @@
-
+﻿
 export class Responsive {
     private screenIs: string;
 

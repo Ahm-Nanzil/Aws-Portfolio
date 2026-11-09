@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="h-full w-full flex items-center justify-center" id="ns-units-selector">
         <div class="ns-box w-[80vw] lg:w-[33.33vw] overflow-hidden flex flex-col" v-if="unitsQuantities.length > 0">
             <div id="header" class="h-16 flex justify-center items-center flex-shrink-0">

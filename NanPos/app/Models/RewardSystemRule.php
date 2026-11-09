@@ -16,7 +16,7 @@ class RewardSystemRule extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'rewards_system_rules';
+    protected $table = 'nexopos_' . 'rewards_system_rules';
 
     public function scopeAttachedTo( $query, $id )
     {

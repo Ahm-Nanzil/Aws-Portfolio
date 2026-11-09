@@ -17,7 +17,7 @@ class Tax extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'taxes';
+    protected $table = 'nexopos_' . 'taxes';
 
     public function group()
     {

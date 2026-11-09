@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="permission-wrapper">
         <div class="my-2">
             <input ref="search" v-model="searchText" type="text" :placeholder="__( 'Press &quot;/&quot; to search permissions' )" class="border-2 p-2 w-full outline-hidden bg-input-background border-secondary text-fontcolor">

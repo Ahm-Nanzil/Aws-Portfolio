@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col flex-auto ns-select" :class="hasError ? 'has-error' : 'is-pristine'" >
         <label :for="field.name" class="block leading-5 font-medium"><slot></slot></label>
         <div class="border mt-1 relative rounded-md mb-1 overflow-hidden">
@@ -78,10 +78,10 @@ export default {
                 for (let i = 0; i < level; i++) {
                     if (i === level - 1) {
                         // Current level: use corner or T-junction
-                        prefix += isLastItem ? '└─ ' : '├─ ';
+                        prefix += isLastItem ? 'â””â”€ ' : 'â”œâ”€ ';
                     } else {
                         // Parent levels: show vertical line if not last
-                        prefix += isLast[i] ? '\u00A0\u00A0\u00A0\u00A0' : '│\u00A0\u00A0';
+                        prefix += isLast[i] ? '\u00A0\u00A0\u00A0\u00A0' : 'â”‚\u00A0\u00A0';
                     }
                 }
                 

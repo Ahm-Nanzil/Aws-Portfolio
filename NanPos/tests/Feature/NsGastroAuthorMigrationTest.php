@@ -18,12 +18,12 @@ class NsGastroAuthorMigrationTest extends TestCase
         $this->assertTrue( $reflection->hasMethod( 'up' ) );
         $this->assertTrue( $reflection->hasMethod( 'down' ) );
         $this->assertSame( [
-            'possoft_gastro_areas',
-            'possoft_gastro_kitchens',
-            'possoft_gastro_modifiers_groups',
-            'possoft_gastro_tables',
-            'possoft_gastro_tables_history',
-            'possoft_gastro_tables_booking_history',
+            'nexopos_gastro_areas',
+            'nexopos_gastro_kitchens',
+            'nexopos_gastro_modifiers_groups',
+            'nexopos_gastro_tables',
+            'nexopos_gastro_tables_history',
+            'nexopos_gastro_tables_booking_history',
         ], $tables );
     }
 }

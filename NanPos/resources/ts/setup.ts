@@ -1,4 +1,4 @@
-import * as components from './components/components';
+﻿import * as components from './components/components';
 
 import { createRouter, createWebHashHistory } from 'vue-router';
 
@@ -28,6 +28,6 @@ for( let name in components ) {
     nsRouterApp.component( name, components[ name ] );
 }
 
-nsRouterApp.mount( '#possoft-setup' );
+nsRouterApp.mount( '#nexopos-setup' );
 
 (window as any).nsRouter     =   nsRouter;

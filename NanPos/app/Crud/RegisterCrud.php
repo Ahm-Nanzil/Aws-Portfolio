@@ -28,7 +28,7 @@ class RegisterCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_registers';
+    protected $table = 'nexopos_registers';
 
     /**
      * default slug
@@ -57,10 +57,10 @@ class RegisterCrud extends CrudService
      * @param  array
      */
     protected $permissions = [
-        'create' => 'possoft.create.registers',
-        'read' => 'possoft.read.registers',
-        'update' => 'possoft.update.registers',
-        'delete' => 'possoft.delete.registers',
+        'create' => 'nexopos.create.registers',
+        'read' => 'nexopos.read.registers',
+        'update' => 'nexopos.update.registers',
+        'delete' => 'nexopos.delete.registers',
     ];
 
     /**
@@ -91,7 +91,7 @@ class RegisterCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

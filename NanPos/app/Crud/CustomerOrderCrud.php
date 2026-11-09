@@ -36,9 +36,9 @@ class CustomerOrderCrud extends OrderCrud
 
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.orders',
+        'read' => 'nexopos.read.orders',
         'update' => false,
-        'delete' => 'possoft.delete.orders',
+        'delete' => 'nexopos.delete.orders',
     ];
 
     /**

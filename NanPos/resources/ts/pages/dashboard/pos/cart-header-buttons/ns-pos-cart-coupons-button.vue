@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-button">
         <button @click="selectCoupon()" class="w-full h-10 px-3 outline-hidden flex items-center">
             <i class="las la-tags"></i>
@@ -32,7 +32,7 @@ export default {
             /**
              * We'll check if the user has the right to manage coupons.
              */
-            await ActionPermissions.canProceed( 'possoft.cart.coupons' );
+            await ActionPermissions.canProceed( 'nexopos.cart.coupons' );
 
             try {
                 const response  =   await new Promise( ( resolve, reject ) => {

@@ -1,4 +1,4 @@
-import { ReplaySubject } from 'rxjs';
+﻿import { ReplaySubject } from 'rxjs';
 
 export class EventEmitter {
     _subject: ReplaySubject<any>

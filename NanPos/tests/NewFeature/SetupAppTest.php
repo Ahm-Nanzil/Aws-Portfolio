@@ -53,20 +53,20 @@ class SetupAppTest extends TestCase
             'language' => 'en',
             'admin_username' => 'admin',
             'password' => '123456',
-            'admin_email' => 'contact@possoft.com',
-            'store_name' => 'PosSOFT',
+            'admin_email' => 'contact@nexopos.com',
+            'store_name' => 'NexoPOS',
         ] );
 
         /**
          * We need to test if a user having the email we provided above was created
          * we need to check if that user role is admin
-         * we need to test if the store name is "PosSOFT"
+         * we need to test if the store name is "NexoPOS"
          */
-        $user = User::where( 'email', 'contact@possoft.com' )->first();
+        $user = User::where( 'email', 'contact@nexopos.com' )->first();
         $options = new Options;
 
         $this->assertTrue( $user instanceof User );
-        $this->assertTrue( $options->get( 'ns_store_name' ) === 'PosSOFT', 'The store name wasn\'t loaded on the app options' );
+        $this->assertTrue( $options->get( 'ns_store_name' ) === 'NexoPOS', 'The store name wasn\'t loaded on the app options' );
 
         $user->roles->each( function ( Role $role ) {
             $this->assertTrue( $role->namespace === 'admin' );

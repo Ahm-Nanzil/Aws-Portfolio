@@ -18,6 +18,6 @@ class OrdersChartWidget extends WidgetService
     {
         $this->name = __( 'Orders Chart' );
         $this->description = __( 'Will display a chart of weekly sales.' );
-        $this->permission = 'possoft.see.orders-chart-widget';
+        $this->permission = 'nexopos.see.orders-chart-widget';
     }
 }

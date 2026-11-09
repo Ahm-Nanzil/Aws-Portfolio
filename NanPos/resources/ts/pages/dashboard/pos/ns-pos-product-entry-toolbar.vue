@@ -1,4 +1,4 @@
-<template>
+﻿<template>
 	<div :class="embedded ? 'flex-auto min-w-64 border-0 rounded-none' : 'border rounded'"
 		class="flex overflow-hidden bg-input-background border-input-edge text-fontcolor">
 		<div class="ns-button">
@@ -17,7 +17,7 @@
 		<template v-if="options.ns_pos_barcode_reader_type === 'wireless'">
 			<div v-if="!settings.marketplace_connected" class="ns-button border-r border-input-edge text-error-secondary">
 				<button :title="__('Connect/Disconnect wireless barcode reader.')"
-					@click="inviteToMyPosSoftConnexion()"
+					@click="inviteToMyNexoPOSConnexion()"
 					class="outline-hidden">
 					<span class="px-2 h-10 flex items-center justify-center"><i
 							class="las la-exclamation-triangle text-lg"></i></span>
@@ -190,10 +190,10 @@ export default {
 				}
 			});
 		},
-		inviteToMyPosSoftConnexion() {
+		inviteToMyNexoPOSConnexion() {
 			nsNotice.info(
 				__('Authentication Required'),
-				__('You need to connect your installation to My PosSOFT for using websocket features.'),
+				__('You need to connect your installation to My PosSoft for using websocket features.'),
 				{
 					actions: {
 						close: { type: 'info', label: __('No thanks') },

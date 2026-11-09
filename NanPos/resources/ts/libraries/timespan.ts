@@ -1,4 +1,4 @@
-import { __ } from "./lang";
+﻿import { __ } from "./lang";
 import countdown from "~/libraries/countdown";
 import moment from "moment";
 

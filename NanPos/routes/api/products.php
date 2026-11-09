@@ -4,7 +4,7 @@ use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Middleware\NsRestrictMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware( NsRestrictMiddleware::arguments( 'possoft.read.products' ) )->group( function () {
+Route::middleware( NsRestrictMiddleware::arguments( 'nexopos.read.products' ) )->group( function () {
     Route::get( 'products/pos/pinned', [ ProductsController::class, 'getPinnedProducts' ] );
     Route::get( 'products', [ ProductsController::class, 'getProduts' ] );
     Route::get( 'products/all/variations', [ ProductsController::class, 'getAllVariations' ] );
@@ -27,7 +27,7 @@ Route::middleware( NsRestrictMiddleware::arguments( 'possoft.read.products' ) )-
 } );
 
 Route::middleware( [
-    NsRestrictMiddleware::arguments( 'possoft.delete.products' ),
+    NsRestrictMiddleware::arguments( 'nexopos.delete.products' ),
 ] )->group( function () {
     Route::delete( 'products/{identifier}', [ ProductsController::class, 'deleteProduct' ] );
     Route::delete( 'products/units/quantity/{unitQuantity}', [ ProductsController::class, 'deleteUnitQuantity' ] );
@@ -36,17 +36,17 @@ Route::middleware( [
     Route::delete( 'products', [ ProductsController::class, 'deleteAllProducts' ] );
 } );
 
-Route::post( 'products', [ ProductsController::class, 'saveProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.create.products' ) );
-Route::post( 'products/search', [ ProductsController::class, 'searchProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.read.products' ) );
-Route::post( 'products/adjustments', [ ProductsController::class, 'createAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::post( 'products/adjustments/draft', [ ProductsController::class, 'saveDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::get( 'products/adjustments/{adjustment}', [ ProductsController::class, 'getAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::put( 'products/adjustments/{adjustment}', [ ProductsController::class, 'updateDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::get( 'products/adjustments/{adjustment}/execute', [ ProductsController::class, 'executeAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::delete( 'products/adjustments/{adjustment}', [ ProductsController::class, 'deleteDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::post( 'products/{identifier}/variations/{variation_id}', [ ProductsController::class, 'createSingleVariation' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.create.products' ) );
-Route::post( 'products/{product}/units/conversion', [ ProductsController::class, 'convertUnits' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::post( 'products/reorder', [ ProductsController::class, 'reorderProducts' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
+Route::post( 'products', [ ProductsController::class, 'saveProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.create.products' ) );
+Route::post( 'products/search', [ ProductsController::class, 'searchProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.read.products' ) );
+Route::post( 'products/adjustments', [ ProductsController::class, 'createAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::post( 'products/adjustments/draft', [ ProductsController::class, 'saveDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::get( 'products/adjustments/{adjustment}', [ ProductsController::class, 'getAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::put( 'products/adjustments/{adjustment}', [ ProductsController::class, 'updateDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::get( 'products/adjustments/{adjustment}/execute', [ ProductsController::class, 'executeAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::delete( 'products/adjustments/{adjustment}', [ ProductsController::class, 'deleteDraftAdjustment' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::post( 'products/{identifier}/variations/{variation_id}', [ ProductsController::class, 'createSingleVariation' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.create.products' ) );
+Route::post( 'products/{product}/units/conversion', [ ProductsController::class, 'convertUnits' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::post( 'products/reorder', [ ProductsController::class, 'reorderProducts' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
 
-Route::put( 'products/{identifier}/variations/{variation_id}', [ ProductsController::class, 'editSingleVariation' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
-Route::put( 'products/{product}', [ ProductsController::class, 'updateProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'possoft.update.products' ) );
+Route::put( 'products/{identifier}/variations/{variation_id}', [ ProductsController::class, 'editSingleVariation' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );
+Route::put( 'products/{product}', [ ProductsController::class, 'updateProduct' ] )->middleware( NsRestrictMiddleware::arguments( 'nexopos.update.products' ) );

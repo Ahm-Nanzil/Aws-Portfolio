@@ -27,7 +27,7 @@ class ProductAdjustmentCrud extends CrudService
     /**
      * Define the base table
      */
-    protected $table = 'possoft_products_adjustments';
+    protected $table = 'nexopos_products_adjustments';
 
     /**
      * Define namespace
@@ -48,7 +48,7 @@ class ProductAdjustmentCrud extends CrudService
      * Adding relation
      */
     public $relations = [
-        [ 'possoft_users as author', 'possoft_products_adjustments.author_id', '=', 'author.id' ],
+        [ 'nexopos_users as author', 'nexopos_products_adjustments.author_id', '=', 'author.id' ],
     ];
 
     public $pick = [
@@ -56,10 +56,10 @@ class ProductAdjustmentCrud extends CrudService
     ];
 
     protected $permissions = [
-        'create' => 'possoft.update.products',
-        'read' => 'possoft.update.products',
-        'update' => 'possoft.update.products',
-        'delete' => 'possoft.update.products',
+        'create' => 'nexopos.update.products',
+        'read' => 'nexopos.update.products',
+        'update' => 'nexopos.update.products',
+        'delete' => 'nexopos.update.products',
     ];
 
     protected $casts = [

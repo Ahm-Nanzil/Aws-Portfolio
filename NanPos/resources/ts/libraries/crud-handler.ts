@@ -1,4 +1,4 @@
-export default class CrudHandler {
+﻿export default class CrudHandler {
     instances: {[ key: string] : any };
 
     constructor() {

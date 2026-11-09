@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-auto overflow-hidden">
         <div class="flex-auto overflow-y-scroll ns-scrollbar bg-gray-900 p-10">
             <div class="shadow-lg bg-white" id="label-printing-paper" :style="{ width: ( form.document_size + 'px' ) || 'auto' }">
@@ -444,7 +444,7 @@ export default defineComponent({
 
         getPresetsFromStorage(): any[] {
             try {
-                const raw = localStorage.getItem( 'possoft_print_label_presets' );
+                const raw = localStorage.getItem( 'nexopos_print_label_presets' );
                 return raw ? JSON.parse( raw ) : [];
             } catch ( e ) {
                 return [];
@@ -452,7 +452,7 @@ export default defineComponent({
         },
 
         savePresetsToStorage( presets: any[] ) {
-            localStorage.setItem( 'possoft_print_label_presets', JSON.stringify( presets ) );
+            localStorage.setItem( 'nexopos_print_label_presets', JSON.stringify( presets ) );
         },
 
         applySettingsFromSnapshot( snapshot: any ) {

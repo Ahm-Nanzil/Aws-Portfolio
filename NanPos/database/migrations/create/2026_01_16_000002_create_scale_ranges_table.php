@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_scale_ranges' ) ) {
-            Schema::create( 'possoft_scale_ranges', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_scale_ranges' ) ) {
+            Schema::create( 'nexopos_scale_ranges', function ( Blueprint $table ) {
                 $table->id();
                 $table->string( 'name' );
                 $table->unsignedInteger( 'range_start' );
@@ -34,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_scale_ranges' );
+        Schema::dropIfExists( 'nexopos_scale_ranges' );
     }
 
     /**

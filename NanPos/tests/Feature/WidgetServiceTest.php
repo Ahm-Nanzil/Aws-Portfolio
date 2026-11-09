@@ -9,7 +9,7 @@ use App\Widgets\BestCashiersWidget;
 use App\Widgets\BestCustomersWidget;
 use App\Widgets\ExpenseCardWidget;
 use App\Widgets\IncompleteSaleCardWidget;
-use App\Widgets\MyPosSoftWidget;
+use App\Widgets\MyNexoPosWidget;
 use App\Widgets\OrdersChartWidget;
 use App\Widgets\OrdersSummaryWidget;
 use App\Widgets\ProfileWidget;
@@ -40,7 +40,7 @@ class WidgetServiceTest extends TestCase
                     'nsOrdersSummary',
                     'nsBestCashiers',
                     'nsProfileWidget',
-                    'nsMyPosSoftWidget',
+                    'nsMyNexoPosWidget',
                     'nsIncompleteSaleCardWidget',
                     'nsExpenseCardWidget',
                     'nsSaleCardWidget',
@@ -70,7 +70,7 @@ class WidgetServiceTest extends TestCase
             ExpenseCardWidget::class,
             SaleCardWidget::class,
             $moduleWidget,
-            MyPosSoftWidget::class,
+            MyNexoPosWidget::class,
             BestCustomersWidget::class,
             ProfileWidget::class,
             OrdersChartWidget::class,
@@ -84,7 +84,7 @@ class WidgetServiceTest extends TestCase
             OrdersSummaryWidget::class,
             BestCashiersWidget::class,
             ProfileWidget::class,
-            MyPosSoftWidget::class,
+            MyNexoPosWidget::class,
             IncompleteSaleCardWidget::class,
             ExpenseCardWidget::class,
             SaleCardWidget::class,
@@ -142,7 +142,7 @@ class WidgetServiceTest extends TestCase
     }
 
     /**
-     * The dashboard exposes the My PosSOFT invite widget to eligible users.
+     * The dashboard exposes the My NexoPOS invite widget to eligible users.
      */
     public function test_widget_layouts_are_normalized(): void
     {
@@ -189,15 +189,15 @@ class WidgetServiceTest extends TestCase
         $this->assertTrue( $widget->supportsLayout( '3x5' ) );
     }
 
-    public function test_my_possoft_widget_is_registered(): void
+    public function test_my_nexopos_widget_is_registered(): void
     {
         $widgets = app( WidgetService::class )->getAllWidgets();
 
-        $widget = $widgets->firstWhere( 'class-name', MyPosSoftWidget::class );
+        $widget = $widgets->firstWhere( 'class-name', MyNexoPosWidget::class );
 
         $this->assertNotNull( $widget );
-        $this->assertSame( 'My PosSOFT', $widget->name );
-        $this->assertSame( 'nsMyPosSoftWidget', $widget->{'component-name'} );
+        $this->assertSame( 'My NexoPOS', $widget->name );
+        $this->assertSame( 'nsMyNexoPosWidget', $widget->{'component-name'} );
         $this->assertSame( 'manage.modules', $widget->instance->getPermission() );
         $this->assertIsArray( $widget->data );
         $this->assertArrayHasKey( 'isConnected', $widget->data );

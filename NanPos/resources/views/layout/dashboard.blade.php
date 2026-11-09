@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 use App\Services\DateService;
 use App\Services\MenuService;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +24,6 @@ if ( Auth::check() ) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="{{ asset( 'svg/possoft-variant-1.svg' ) }}">
     <title>{{ App\Services\Helper::pageTitle( $title ?? __( 'Unnamed Page' ) ) }}</title>
     @include( 'layout._header-injection')
     @vite([
@@ -38,7 +37,7 @@ if ( Auth::check() ) {
     @vite([ 'resources/ts/vue-runtime.ts' ])
     @vite([ 'resources/ts/lang-loader.ts' ])
 </head>
-<body <?php echo in_array( app()->getLocale(), config( 'possoft.rtl-languages' ) ) ? 'dir="rtl"' : "";?>>
+<body <?php echo in_array( app()->getLocale(), config( 'nexopos.rtl-languages' ) ) ? 'dir="rtl"' : "";?>>
     <div class="h-full w-full flex flex-col">
         <div class="overflow-hidden flex flex-auto">
             <div id="dashboard-aside">
@@ -48,7 +47,7 @@ if ( Auth::check() ) {
                             @if ( ns()->option->get( 'ns_store_rectangle_logo' ) )
                             <img src="{{ ns()->option->get( 'ns_store_rectangle_logo' ) }}" class="w-11/12" alt="logo"/>
                             @else
-                            <h1 class="font-black text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-indigo-400 text-3xl">PosSOFT</h1>
+                            <h1 class="font-black text-transparent bg-clip-text bg-gradient-to-b from-blue-200 to-indigo-400 text-3xl">PosSoft</h1>
                             @endif
                         </div>
                         <ul id="aside-menu" class="mr-2">
@@ -95,11 +94,11 @@ if ( Auth::check() ) {
                 </div>
                 <div class="p-2 text-xs flex justify-end text-gray-500">
                     @if( $latestVersion = ns()->option->get( 'ns_latest_version' ) )
-                    <a href="https://my.possoft.com/redirect/latest" target="_blank" class="hover:text-blue-400 ml-2 inline-block">
-                        {{ sprintf( __( 'Download PosSOFT %s' ), $latestVersion ) }}
-                    </a>
+                    <span class="ml-2 inline-block">
+                        {{ sprintf( __( 'PosSoft %s' ), $latestVersion ) }}
+                    </span>
                     @else
-                    {!! Hook::filter( 'ns-footer-signature', sprintf( __( 'You\'re using <a tager="_blank" href="%s" class="hover:text-blue-400 mx-1 inline-block">PosSOFT %s</a>' ), 'https://my.possoft.com/en', config( 'possoft.version' ) ) ) !!}
+                    {!! Hook::filter( 'ns-footer-signature', sprintf( __( 'You\'re using PosSoft %s' ), config( 'nexopos.version' ) ) ) !!}
                     @endif
                 </div>
             </div>

@@ -476,9 +476,9 @@ class CashRegistersService
             ->get();
 
         $payments = OrderPayment::whereIn( 'order_id', $orders->pluck( 'id' ) )
-            ->select( 'possoft_payments_types.identifier', DB::raw( 'SUM(value) as total_amount' ), 'label' )
+            ->select( 'nexopos_payments_types.identifier', DB::raw( 'SUM(value) as total_amount' ), 'label' )
             ->groupBy( [ 'identifier', 'label' ] )
-            ->join( 'possoft_payments_types', 'possoft_payments_types.identifier', '=', 'possoft_orders_payments.identifier' )
+            ->join( 'nexopos_payments_types', 'nexopos_payments_types.identifier', '=', 'nexopos_orders_payments.identifier' )
             ->get();
 
         $totalCashPayment = OrderPayment::whereIn( 'order_id', $orders->pluck( 'id' ) )

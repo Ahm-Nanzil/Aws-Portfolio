@@ -8,25 +8,25 @@ return new class extends Migration
 {
     public function up(): void
     {
-        if ( Schema::hasTable( 'possoft_transactions_accounts' ) && ! Schema::hasColumn( 'possoft_transactions_accounts', 'system_identifier' ) ) {
-            Schema::table( 'possoft_transactions_accounts', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_accounts' ) && ! Schema::hasColumn( 'nexopos_transactions_accounts', 'system_identifier' ) ) {
+            Schema::table( 'nexopos_transactions_accounts', function ( Blueprint $table ) {
                 $table->string( 'system_identifier' )->nullable()->after( 'uuid' );
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_transactions_accounts' ) && ! Schema::hasIndex( 'possoft_transactions_accounts', 'transactions_accounts_system_identifier_unique' ) ) {
-            Schema::table( 'possoft_transactions_accounts', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_accounts' ) && ! Schema::hasIndex( 'nexopos_transactions_accounts', 'transactions_accounts_system_identifier_unique' ) ) {
+            Schema::table( 'nexopos_transactions_accounts', function ( Blueprint $table ) {
                 $table->unique( 'system_identifier', 'transactions_accounts_system_identifier_unique' );
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_transactions_actions_rules' ) && ! Schema::hasColumn( 'possoft_transactions_actions_rules', 'active' ) ) {
-            Schema::table( 'possoft_transactions_actions_rules', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_actions_rules' ) && ! Schema::hasColumn( 'nexopos_transactions_actions_rules', 'active' ) ) {
+            Schema::table( 'nexopos_transactions_actions_rules', function ( Blueprint $table ) {
                 $table->boolean( 'active' )->default( true )->after( 'locked' );
             } );
         }
 
-        Schema::createIfMissing( 'possoft_transactions_actions_rule_lines', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions_actions_rule_lines', function ( Blueprint $table ) {
             $table->id();
             $table->unsignedBigInteger( 'rule_id' );
             $table->unsignedBigInteger( 'account_id' )->nullable();
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->index( [ 'rule_id', 'display_order' ], 'transaction_rule_lines_order_index' );
         } );
 
-        Schema::createIfMissing( 'possoft_accounting_journals', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_accounting_journals', function ( Blueprint $table ) {
             $table->id();
             $table->string( 'source_type' );
             $table->string( 'source_id' );
@@ -52,21 +52,21 @@ return new class extends Migration
             $table->unique( [ 'source_type', 'source_id', 'event' ], 'accounting_journals_source_event_unique' );
         } );
 
-        if ( Schema::hasTable( 'possoft_transactions_histories' ) && ! Schema::hasColumn( 'possoft_transactions_histories', 'journal_id' ) ) {
-            Schema::table( 'possoft_transactions_histories', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_histories' ) && ! Schema::hasColumn( 'nexopos_transactions_histories', 'journal_id' ) ) {
+            Schema::table( 'nexopos_transactions_histories', function ( Blueprint $table ) {
                 $table->unsignedBigInteger( 'journal_id' )->nullable()->after( 'rule_id' );
                 $table->index( 'journal_id', 'transactions_histories_journal_index' );
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_payments_types' ) && ! Schema::hasColumn( 'possoft_payments_types', 'accounting_account_id' ) ) {
-            Schema::table( 'possoft_payments_types', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_payments_types' ) && ! Schema::hasColumn( 'nexopos_payments_types', 'accounting_account_id' ) ) {
+            Schema::table( 'nexopos_payments_types', function ( Blueprint $table ) {
                 $table->unsignedBigInteger( 'accounting_account_id' )->nullable()->after( 'readonly' );
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_payments_types' ) && ! Schema::hasColumn( 'possoft_payments_types', 'accounting_incoming_effect' ) ) {
-            Schema::table( 'possoft_payments_types', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_payments_types' ) && ! Schema::hasColumn( 'nexopos_payments_types', 'accounting_incoming_effect' ) ) {
+            Schema::table( 'nexopos_payments_types', function ( Blueprint $table ) {
                 $table->enum( 'accounting_incoming_effect', [ 'increase', 'decrease' ] )->nullable()->after( 'accounting_account_id' );
             } );
         }
@@ -74,16 +74,16 @@ return new class extends Migration
 
     public function down(): void
     {
-        if ( Schema::hasTable( 'possoft_transactions_histories' ) && Schema::hasIndex( 'possoft_transactions_histories', 'transactions_histories_journal_index' ) ) {
-            Schema::table( 'possoft_transactions_histories', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_histories' ) && Schema::hasIndex( 'nexopos_transactions_histories', 'transactions_histories_journal_index' ) ) {
+            Schema::table( 'nexopos_transactions_histories', function ( Blueprint $table ) {
                 $table->dropIndex( 'transactions_histories_journal_index' );
             } );
         }
 
         foreach ( [
-            'possoft_transactions_histories' => [ 'journal_id' ],
-            'possoft_payments_types' => [ 'accounting_incoming_effect', 'accounting_account_id' ],
-            'possoft_transactions_actions_rules' => [ 'active' ],
+            'nexopos_transactions_histories' => [ 'journal_id' ],
+            'nexopos_payments_types' => [ 'accounting_incoming_effect', 'accounting_account_id' ],
+            'nexopos_transactions_actions_rules' => [ 'active' ],
         ] as $tableName => $columns ) {
             foreach ( $columns as $column ) {
                 if ( Schema::hasTable( $tableName ) && Schema::hasColumn( $tableName, $column ) ) {
@@ -94,17 +94,17 @@ return new class extends Migration
             }
         }
 
-        Schema::dropIfExists( 'possoft_accounting_journals' );
-        Schema::dropIfExists( 'possoft_transactions_actions_rule_lines' );
+        Schema::dropIfExists( 'nexopos_accounting_journals' );
+        Schema::dropIfExists( 'nexopos_transactions_actions_rule_lines' );
 
-        if ( Schema::hasTable( 'possoft_transactions_accounts' ) && Schema::hasIndex( 'possoft_transactions_accounts', 'transactions_accounts_system_identifier_unique' ) ) {
-            Schema::table( 'possoft_transactions_accounts', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_accounts' ) && Schema::hasIndex( 'nexopos_transactions_accounts', 'transactions_accounts_system_identifier_unique' ) ) {
+            Schema::table( 'nexopos_transactions_accounts', function ( Blueprint $table ) {
                 $table->dropUnique( 'transactions_accounts_system_identifier_unique' );
             } );
         }
 
-        if ( Schema::hasTable( 'possoft_transactions_accounts' ) && Schema::hasColumn( 'possoft_transactions_accounts', 'system_identifier' ) ) {
-            Schema::table( 'possoft_transactions_accounts', function ( Blueprint $table ) {
+        if ( Schema::hasTable( 'nexopos_transactions_accounts' ) && Schema::hasColumn( 'nexopos_transactions_accounts', 'system_identifier' ) ) {
+            Schema::table( 'nexopos_transactions_accounts', function ( Blueprint $table ) {
                 $table->dropColumn( 'system_identifier' );
             } );
         }

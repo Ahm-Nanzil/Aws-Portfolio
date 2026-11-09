@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { nsHttpClient, nsSnackBar } from '../bootstrap';
 import FormValidation from '~/libraries/form-validation';
 import nsPosCashRegistersActionPopupVue from './ns-pos-cash-registers-action-popup.vue';

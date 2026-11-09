@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div :class="selectedTab.identifier !== identifier ? 'hidden' : ''" :closable="closable" :label="label" :identifier="identifier" class="ns-tab-item flex flex-auto overflow-hidden">
         <div v-if="selectedTab.identifier === identifier" class="border rounded flex-auto overflow-y-auto" :class="( padding || 'p-4' )">
             <slot></slot>

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table( 'possoft_dashboard_days', function ( Blueprint $table ) {
-            if ( Schema::hasColumn( 'possoft_dashboard_days', 'total_cashin' ) ) {
+        Schema::table( 'nexopos_dashboard_days', function ( Blueprint $table ) {
+            if ( Schema::hasColumn( 'nexopos_dashboard_days', 'total_cashin' ) ) {
                 $table->float( 'total_other_cashin' )->default( 0 );
             }
 
-            if ( Schema::hasColumn( 'possoft_dashboard_days', 'day_cashin' ) ) {
+            if ( Schema::hasColumn( 'nexopos_dashboard_days', 'day_cashin' ) ) {
                 $table->float( 'day_other_cashin' )->default( 0 );
             }
         } );

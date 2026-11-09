@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use App\Classes\Output;
 use App\Classes\Hook;
@@ -13,11 +13,9 @@ use App\Events\RenderSignUpFooterEvent;
             <div id="sign-in-box" class="w-full md:w-3/5 lg:w-2/5">
                 <div class="flex justify-center items-center py-6">
                     @if ( ! ns()->option->get( 'ns_store_square_logo', false ) )
-                    <a href="https://my.possoft.com" target="_blank">
-                        <img class="w-32" src="{{ asset( 'svg/possoft-variant-1.svg' ) }}" alt="PosSOFT">
-                    </a>
+                    <img class="w-32" src="{{ asset( 'svg/possoft-variant-1.svg' ) }}" alt="PosSoft">
                     @else
-                    <img src="{{ ns()->option->get( 'ns_store_square_logo' ) }}" alt="PosSOFT">
+                    <img src="{{ ns()->option->get( 'ns_store_square_logo' ) }}" alt="PosSoft">
                     @endif
                 </div>
                 <ns-register></ns-register>

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * icon taken from: https://icons8.com/line-awesome
  */
 export const fileIcons  =   {

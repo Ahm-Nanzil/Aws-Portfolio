@@ -4,7 +4,7 @@ Use this pattern when administrators register external fonts once and module bui
 
 ## Choose storage deliberately
 
-- Use a module-prefixed PosSOFT option for a small global registry that needs no querying, relationships, audit history, or pagination.
+- Use a module-prefixed NexoPOS option for a small global registry that needs no querying, relationships, audit history, or pagination.
 - Use a table, model, migration, and CRUD only when fonts need ownership, relational integrity, filtering, large collections, or lifecycle events.
 - Store registry entries as `{ id, family, stylesheet_url }`. Generate a stable UUID for `id`; do not use the family name as identity.
 - Store role-to-font-ID assignments in consumer settings. Resolve the current registry at render time so an administrator can correct a font URL globally.

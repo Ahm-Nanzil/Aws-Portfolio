@@ -39,7 +39,7 @@ class Guide
      *
      * Most properties intentionally follow Driver.js DriveStep.
      *
-     * PosSOFT additions:
+     * NexoPOS additions:
      * - id
      * - route
      * - nextAction
@@ -84,7 +84,7 @@ class Guide
             'data' => $data,
 
             /**
-             * PosSOFT declarative action that should run
+             * NexoPOS declarative action that should run
              * when the Driver.js Next button is clicked.
              */
             'nextAction' => $nextAction,
@@ -246,7 +246,7 @@ class Guide
     }
 
     /**
-     * Validate a declarative PosSOFT guide action.
+     * Validate a declarative NexoPOS guide action.
      */
     protected static function validateAction(
         ?array $action

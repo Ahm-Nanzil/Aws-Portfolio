@@ -490,7 +490,7 @@ class ModulesService
                 isset( $module[ 'core' ] ) &&
                 ! empty( $module[ 'core' ][ 'min-version' ] ) &&
                 version_compare(
-                    config( 'possoft.version' ),
+                    config( 'nexopos.version' ),
                     $module[ 'core' ][ 'min-version' ],
                     '<'
                 )
@@ -499,9 +499,9 @@ class ModulesService
 
                 throw new ModuleVersionMismatchException( __(
                     sprintf(
-                        __( 'The module "%s" has been disabled as it\'s not compatible with the current version of PosSOFT %s, but requires %s. ' ),
+                        __( 'The module "%s" has been disabled as it\'s not compatible with the current version of NexoPOS %s, but requires %s. ' ),
                         $module[ 'name' ],
-                        config( 'possoft.version' ),
+                        config( 'nexopos.version' ),
                         $module[ 'core' ][ 'min-version' ]
                     )
                 ) );
@@ -1507,14 +1507,14 @@ class ModulesService
             }
 
             /**
-             * Check if the current PosSOFT version meets
+             * Check if the current NexoPOS version meets
              * the minimum version required by the module
              */
             if (
                 isset( $module[ 'core' ] ) &&
                 ! empty( $module[ 'core' ][ 'min-version' ] ) &&
                 version_compare(
-                    config( 'possoft.version' ),
+                    config( 'nexopos.version' ),
                     $module[ 'core' ][ 'min-version' ],
                     '<'
                 )
@@ -1523,10 +1523,10 @@ class ModulesService
                     'status' => 'error',
                     'code' => 'version_mismatch',
                     'message' => sprintf(
-                        __( 'The module "%s" cannot be enabled as it requires PosSOFT version %s or higher, but you are running version %s.' ),
+                        __( 'The module "%s" cannot be enabled as it requires NexoPOS version %s or higher, but you are running version %s.' ),
                         $module[ 'name' ],
                         $module[ 'core' ][ 'min-version' ],
-                        config( 'possoft.version' )
+                        config( 'nexopos.version' )
                     ),
                 ], 403 );
             }

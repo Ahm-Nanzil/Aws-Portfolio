@@ -1,4 +1,4 @@
-type CouponProductRestriction = {
+﻿type CouponProductRestriction = {
     product_id?: number | string;
 };
 

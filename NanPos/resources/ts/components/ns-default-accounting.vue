@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <ns-button @click="resetDefault()" type="warning">{{ __( 'Reset Default' ) }}</ns-button>
 </template>
 <script lang="ts">

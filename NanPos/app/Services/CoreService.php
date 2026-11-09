@@ -358,7 +358,7 @@ class CoreService
                         title: sprintf( __( '%s: Symbolic Link Missing' ), $module[ 'name' ] ),
                         identifier: 'symlink-' . $tolowercase,
                         source: 'system',
-                        url: 'https://my.possoft.com/en/documentation/troubleshooting/broken-media-images?utm_source=possoft&utm_campaign=warning&utm_medium=app',
+                        url: 'https://my.nexopos.com/en/documentation/troubleshooting/broken-media-images?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
                         description: sprintf(
                             __( 'The symbolic link for the module %s is missing. Your medias might be broken and not display.' ),
                             $module[ 'name' ]
@@ -385,7 +385,7 @@ class CoreService
                         title: sprintf( __( '%s: Symbolic Link Broken' ), $module[ 'name' ] ),
                         identifier: 'symlink-' . $tolowercase,
                         source: 'system',
-                        url: 'https://my.possoft.com/en/documentation/troubleshooting/broken-media-images?utm_source=possoft&utm_campaign=warning&utm_medium=app',
+                        url: 'https://my.nexopos.com/en/documentation/troubleshooting/broken-media-images?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
                         description: sprintf(
                             __( 'The symbolic link for the module %s is broken. The module assets might not load correctly.' ),
                             $module[ 'name' ]
@@ -418,7 +418,7 @@ class CoreService
                     title: __( 'Symbolic Links Missing' ),
                     identifier: NotificationsEnum::NSSYMBOLICLINKSMISSING,
                     source: 'system',
-                    url: 'https://my.possoft.com/en/documentation/troubleshooting/broken-media-images?utm_source=possoft&utm_campaign=warning&utm_medium=app',
+                    url: 'https://my.nexopos.com/en/documentation/troubleshooting/broken-media-images?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
                     description: __( 'The Symbolic Links to the public directory is missing. Your medias might be broken and not display.' ),
                     actions: [
                         [
@@ -451,8 +451,8 @@ class CoreService
             title: __( 'Cron Disabled' ),
             identifier: NotificationsEnum::NSCRONDISABLED,
             source: 'system',
-            url: 'https://my.possoft.com/en/documentation/troubleshooting/workers-or-async-requests-disabled?utm_source=possoft&utm_campaign=warning&utm_medium=app',
-            description: __( "Cron jobs aren't configured correctly on PosSOFT. This might restrict necessary features. Click here to learn how to fix it." ),
+            url: 'https://my.nexopos.com/en/documentation/troubleshooting/workers-or-async-requests-disabled?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
+            description: __( "Cron jobs aren't configured correctly on NexoPOS. This might restrict necessary features. Click here to learn how to fix it." ),
         )->dispatchForGroup( Role::namespace( Role::ADMIN ) );
     }
 
@@ -467,8 +467,8 @@ class CoreService
             title: __( 'Task Scheduling Disabled' ),
             identifier: NotificationsEnum::NSWORKERDISABLED,
             source: 'system',
-            url: 'https://my.possoft.com/en/documentation/troubleshooting/workers-or-async-requests-disabled?utm_source=possoft&utm_campaign=warning&utm_medium=app',
-            description: __( 'PosSOFT is unable to schedule background tasks. This might restrict necessary features. Click here to learn how to fix it.' ),
+            url: 'https://my.nexopos.com/en/documentation/troubleshooting/workers-or-async-requests-disabled?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
+            description: __( 'NexoPOS is unable to schedule background tasks. This might restrict necessary features. Click here to learn how to fix it.' ),
         )->dispatchForGroup( Role::namespace( Role::ADMIN ) );
     }
 
@@ -681,7 +681,7 @@ class CoreService
                     title: __( 'Public Modules Directory: Incorrect Permissions' ),
                     identifier: 'public-modules-permissions',
                     source: 'system',
-                    url: 'https://my.possoft.com/en/documentation/troubleshooting/module-permissions?utm_source=possoft&utm_campaign=warning&utm_medium=app',
+                    url: 'https://my.nexopos.com/en/documentation/troubleshooting/module-permissions?utm_source=nexopos&utm_campaign=warning&utm_medium=app',
                     description: sprintf(
                         __( 'The public/modules directory has incorrect permissions (%s instead of 0755). This may cause issues with module assets loading.' ),
                         $octalPermissions
@@ -709,7 +709,7 @@ class CoreService
     {
         return 'ins_' . hash_hmac(
             'sha256',
-            'possoft-app-id',
+            'nexopos-app-id',
             config( 'app.key' )
         );
     }
@@ -734,11 +734,11 @@ class CoreService
      */
     public function getIdentity(): array
     {
-        if ( ! Storage::disk( 'local' )->exists( 'mypossoft/identity.json' ) ) {
+        if ( ! Storage::disk( 'local' )->exists( 'mynexopos/identity.json' ) ) {
             return $this->createIdentity();
         }
 
-        return json_decode( Storage::disk( 'local' )->get( 'mypossoft/identity.json' ), true );
+        return json_decode( Storage::disk( 'local' )->get( 'mynexopos/identity.json' ), true );
     }
 
     /**
@@ -756,7 +756,7 @@ class CoreService
             'created_at' => now()->toDateTimeString(),
         ];
 
-        Storage::disk( 'local' )->put( 'mypossoft/identity.json', json_encode( $identity, JSON_PRETTY_PRINT ) );
+        Storage::disk( 'local' )->put( 'mynexopos/identity.json', json_encode( $identity, JSON_PRETTY_PRINT ) );
 
         return $identity;
     }

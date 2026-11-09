@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="w-95vw h-95vh flex flex-col shadow-lg md:w-[80vw] md:h-[80vh] ns-box">
         <div class="header ns-box-header border-b border-box-edge flex justify-between p-2 items-center">
             <h3>{{ __( 'Reorder Categories & Products' ) }}</h3>

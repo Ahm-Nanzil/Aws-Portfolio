@@ -2,7 +2,7 @@
 @inject( 'Str', 'Illuminate\Support\Str' )
 /**
  * Table Migration
- * @package {{ config( 'possoft.version' ) }}
+ * @package {{ config( 'nexopos.version' ) }}
 **/
 
 namespace Modules\{{ $module[ 'namespace' ] }}\Migrations;

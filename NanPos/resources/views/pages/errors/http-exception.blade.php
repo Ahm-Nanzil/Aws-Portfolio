@@ -1,4 +1,4 @@
-@extends( 'layout.default' )
+﻿@extends( 'layout.default' )
 
 @section( 'layout.default.body' )
     <div class="h-full w-full overflow-y-auto pb-10 bg-gradient-to-bl from-teal-500 to-blue-500 flex items-center justify-center">
@@ -23,7 +23,6 @@
                 </div>
                 <div class="px-4 mb-4">
                     <div class="ns-button hover-info">
-                        <a class="shadow px-2 py-1 rounded block w-full lg:w-auto" href="https://my.possoft.com/en/documentation"><i class="las la-cog"></i> {{ __( 'Documentation' ) }}</a>
                     </div>
                 </div>
             </div>

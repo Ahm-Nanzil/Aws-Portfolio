@@ -1,4 +1,4 @@
-export interface HttpCrudResponse {
+﻿export interface HttpCrudResponse {
     current_page?: number;
     data?: any[],
     last_page_url?: string;

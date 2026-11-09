@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_transactions_histories', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_transactions_histories', function ( Blueprint $table ) {
             $table->id();
             $table->integer( 'transaction_id' )->nullable();
             $table->string( 'operation' ); // credit or debit
@@ -49,6 +49,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_transactions_histories' );
+        Schema::dropIfExists( 'nexopos_transactions_histories' );
     }
 };

@@ -15,7 +15,7 @@ class CouponCustomer extends NsModel
 
     public $timestamps = false;
 
-    protected $table = 'possoft_' . 'coupons_customers';
+    protected $table = 'nexopos_' . 'coupons_customers';
 
     public function coupon()
     {

@@ -1,4 +1,4 @@
-import { Popup } from '~/libraries/popup';
+﻿import { Popup } from '~/libraries/popup';
 import { __ } from '~/libraries/lang';
 import nsPosQuantityPopup from '~/popups/ns-pos-quantity-popup.vue';
 import { nsSnackBar } from '~/bootstrap';

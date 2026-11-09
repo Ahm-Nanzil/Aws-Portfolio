@@ -1,4 +1,4 @@
-import { EventEmitter } from "./event-emitter";
+﻿import { EventEmitter } from "./event-emitter";
 import { FloatingNotice } from "./floating-notice";
 import { HttpClient } from "./http-client";
 import { SnackBar } from "./snackbar";

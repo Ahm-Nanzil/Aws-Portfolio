@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="h-full flex-auto flex flex-col" id="pos-container">
         <div class="flex overflow-hidden flex-shrink-0 px-2 pt-2">
             <div class="-mx-2 flex overflow-x-auto pb-1">

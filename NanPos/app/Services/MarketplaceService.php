@@ -45,7 +45,7 @@ class MarketplaceService
             'page' => $data[ 'page' ] ?? 1,
             'type' => 'zip',
         ];
-        $cacheVersion = ns()->option->get( 'mypossoft_marketplace_cache_version' );
+        $cacheVersion = ns()->option->get( 'mynexopos_marketplace_cache_version' );
 
         if ( $cacheVersion ) {
             $queryParams['cache_version'] = $cacheVersion;
@@ -69,7 +69,7 @@ class MarketplaceService
 
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
-            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . '/api/nexoplatform/marketplace/items?' . http_build_query( $queryParams ) );
+            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . '/api/nexoplatform/marketplace/items?' . http_build_query( $queryParams ) );
 
         if ( $response->failed() ) {
             throw new CoreException( $response->json( 'message' ) ?: __( 'Failed to retrieve modules from marketplace.' ) );
@@ -108,9 +108,9 @@ class MarketplaceService
         array $body = [],
         bool $requireAuthentication = false
     ): void {
-        $accessToken = ns()->option->get( 'mypossoft_access_token' );
-        $refreshToken = ns()->option->get( 'mypossoft_refresh_token' );
-        $tokenExpiresAt = ns()->option->get( 'mypossoft_token_expires_in' );
+        $accessToken = ns()->option->get( 'mynexopos_access_token' );
+        $refreshToken = ns()->option->get( 'mynexopos_refresh_token' );
+        $tokenExpiresAt = ns()->option->get( 'mynexopos_token_expires_in' );
 
         $identity = ns()->getIdentity();
 
@@ -155,13 +155,13 @@ class MarketplaceService
             sodium_crypto_sign_detached( $message, $privateKey )
         );
 
-        $request->withHeader( 'X-POSSOFT-DOMAIN', $identity['domain'] ?? request()->getHost() );
-        $request->withHeader( 'X-POSSOFT-INSTALLATION-ID', $installationId );
-        $request->withHeader( 'X-POSSOFT-FINGERPRINT', $identity['fingerprint'] ?? '' );
-        $request->withHeader( 'X-POSSOFT-TIMESTAMP', $timestamp );
-        $request->withHeader( 'X-POSSOFT-NONCE', $nonce );
-        $request->withHeader( 'X-POSSOFT-BODY-SHA256', $bodyHash );
-        $request->withHeader( 'X-POSSOFT-SIGNATURE', $signature );
+        $request->withHeader( 'X-NEXOPOS-DOMAIN', $identity['domain'] ?? request()->getHost() );
+        $request->withHeader( 'X-NEXOPOS-INSTALLATION-ID', $installationId );
+        $request->withHeader( 'X-NEXOPOS-FINGERPRINT', $identity['fingerprint'] ?? '' );
+        $request->withHeader( 'X-NEXOPOS-TIMESTAMP', $timestamp );
+        $request->withHeader( 'X-NEXOPOS-NONCE', $nonce );
+        $request->withHeader( 'X-NEXOPOS-BODY-SHA256', $bodyHash );
+        $request->withHeader( 'X-NEXOPOS-SIGNATURE', $signature );
 
         if ( env( 'APP_ENV' ) === 'local' ) {
             $request->withoutVerifying();
@@ -195,7 +195,7 @@ class MarketplaceService
     {
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
-            ->post( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . '/oauth/token', [
+            ->post( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . '/oauth/token', [
                 'grant_type' => 'refresh_token',
                 'client_id' => env( 'MARKETPLACE_CLIENT_ID', '019eac04-114e-711d-8433-2cde59066bad' ),
                 'refresh_token' => $refreshToken,
@@ -212,10 +212,10 @@ class MarketplaceService
             throw new CoreException( __( 'Failed to refresh access token.' ) );
         }
 
-        ns()->option->set( 'mypossoft_access_token', $response->json( 'access_token' ) );
-        ns()->option->set( 'mypossoft_refresh_token', $response->json( 'refresh_token' ) );
-        ns()->option->set( 'mypossoft_token_type', $response->json( 'token_type' ) );
-        ns()->option->set( 'mypossoft_token_expires_in', Carbon::now()->addSeconds( $response->json( 'expires_in' ) ) );
+        ns()->option->set( 'mynexopos_access_token', $response->json( 'access_token' ) );
+        ns()->option->set( 'mynexopos_refresh_token', $response->json( 'refresh_token' ) );
+        ns()->option->set( 'mynexopos_token_type', $response->json( 'token_type' ) );
+        ns()->option->set( 'mynexopos_token_expires_in', Carbon::now()->addSeconds( $response->json( 'expires_in' ) ) );
 
         $request->withToken( $response->json( 'access_token' ) );
     }
@@ -239,10 +239,10 @@ class MarketplaceService
 
         $state = Str::random( 64 );
 
-        Session::put( 'mypossoft_oauth_state', $state );
-        Session::put( 'mypossoft_code_verifier', $codeVerifier );
+        Session::put( 'mynexopos_oauth_state', $state );
+        Session::put( 'mynexopos_code_verifier', $codeVerifier );
 
-        return redirect()->away( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . '/oauth/possoft/enroll?' . http_build_query( [
+        return redirect()->away( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . '/oauth/nexopos/enroll?' . http_build_query( [
             'domain' => request()->getHost(),
             'client_id' => env( 'MARKETPLACE_CLIENT_ID', '019eac04-114e-711d-8433-2cde59066bad' ),
             'scope' => 'read-profile read-licenses update-licenses manage-cart download-products',
@@ -255,7 +255,7 @@ class MarketplaceService
             'fingerprint' => $identity[ 'fingerprint' ],
 
             'state' => $state,
-            'callback_url' => route( ns()->routeName( 'ns.oauth.mypossoft.callback' ) ),
+            'callback_url' => route( ns()->routeName( 'ns.oauth.mynexopos.callback' ) ),
         ] ) );
     }
 
@@ -269,11 +269,11 @@ class MarketplaceService
         /**
          * we now need to request the access token using the provided code and code_verification
          */
-        if ( $data[ 'state' ] !== Session::get( 'mypossoft_oauth_state' ) ) {
+        if ( $data[ 'state' ] !== Session::get( 'mynexopos_oauth_state' ) ) {
             throw new NotAllowedException( __( 'Invalid state parameter.' ) );
         }
 
-        $request = Http::withHeader( 'X-POSSOFT-DOMAIN', request()->getHost() );
+        $request = Http::withHeader( 'X-NEXOPOS-DOMAIN', request()->getHost() );
 
         if ( env( 'APP_ENV' ) === 'local' ) {
             $request->withoutVerifying();
@@ -281,12 +281,12 @@ class MarketplaceService
 
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
-            ->post( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . '/oauth/token', [
+            ->post( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . '/oauth/token', [
                 'grant_type' => 'authorization_code',
                 'client_id' => env( 'MARKETPLACE_CLIENT_ID', '019eac04-114e-711d-8433-2cde59066bad' ),
                 'code' => $data[ 'code' ],
-                'code_verifier' => Session::get( 'mypossoft_code_verifier' ),
-                'redirect_uri' => Str::chopEnd( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ), '/' ) . '/oauth/possoft/callback',
+                'code_verifier' => Session::get( 'mynexopos_code_verifier' ),
+                'redirect_uri' => Str::chopEnd( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ), '/' ) . '/oauth/nexopos/callback',
             ] );
 
         if ( $response->failed() ) {
@@ -296,17 +296,17 @@ class MarketplaceService
         /**
          * We now need to store the access token and refresh token in the options table
          */
-        ns()->option->set( 'mypossoft_access_token', $response->json( 'access_token' ) );
-        ns()->option->set( 'mypossoft_refresh_token', $response->json( 'refresh_token' ) );
-        ns()->option->set( 'mypossoft_token_type', $response->json( 'token_type' ) );
-        ns()->option->set( 'mypossoft_token_expires_in', Carbon::now()->addSeconds( $response->json( 'expires_in' ) ) );
+        ns()->option->set( 'mynexopos_access_token', $response->json( 'access_token' ) );
+        ns()->option->set( 'mynexopos_refresh_token', $response->json( 'refresh_token' ) );
+        ns()->option->set( 'mynexopos_token_type', $response->json( 'token_type' ) );
+        ns()->option->set( 'mynexopos_token_expires_in', Carbon::now()->addSeconds( $response->json( 'expires_in' ) ) );
 
         /**
-         * Make one signed request immediately so My PosSOFT can bind the
+         * Make one signed request immediately so My NexoPOS can bind the
          * newly-issued OAuth token to this installation.
          */
         if ( ! $this->testConnection() ) {
-            throw new CoreException( __( 'My PosSOFT rejected this installation connection.' ) );
+            throw new CoreException( __( 'My NexoPOS rejected this installation connection.' ) );
         }
 
         /**
@@ -316,10 +316,10 @@ class MarketplaceService
         if ( session()->has( 'marketplace_auth_redirect_url' ) ) {
             $redirectUrl = session()->pull( 'marketplace_auth_redirect_url' );
 
-            return redirect( $redirectUrl )->with( 'success', __( 'Successfully connected to My PosSOFT.' ) );
+            return redirect( $redirectUrl )->with( 'success', __( 'Successfully connected to My NexoPOS.' ) );
         }
 
-        return redirect( route( ns()->routeName( 'ns.dashboard.modules-marketplace' ) ) )->with( 'success', __( 'Successfully connected to My PosSOFT.' ) );
+        return redirect( route( ns()->routeName( 'ns.dashboard.modules-marketplace' ) ) )->with( 'success', __( 'Successfully connected to My NexoPOS.' ) );
     }
 
     public function addToCart( int|string $productId )
@@ -361,7 +361,7 @@ class MarketplaceService
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
             ->withBody( json_encode( $payload, JSON_UNESCAPED_SLASHES ), 'application/json' )
-            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
         if ( $response->failed() ) {
             $this->handleProtectedResponse( $response );
@@ -401,7 +401,7 @@ class MarketplaceService
         );
 
         $response = $request->withBody( json_encode( $payload, JSON_UNESCAPED_SLASHES ), 'application/json' )
-            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
         if ( $response->failed() ) {
             $this->handleProtectedResponse( $response );
@@ -426,7 +426,7 @@ class MarketplaceService
 
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
-            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
         if ( $response->failed() ) {
             $this->handleProtectedResponse( $response );
@@ -462,7 +462,7 @@ class MarketplaceService
 
         $response = $request->accept( 'application/json' )
             ->withBody( json_encode( $payload, JSON_UNESCAPED_SLASHES ), 'application/json' )
-            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+            ->send( 'POST', env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
         if ( $response->failed() ) {
             $this->handleProtectedResponse( $response );
@@ -490,8 +490,8 @@ class MarketplaceService
     public function testConnection()
     {
         if (
-            ! ns()->option->get( 'mypossoft_access_token' )
-            && ! ns()->option->get( 'mypossoft_refresh_token' )
+            ! ns()->option->get( 'mynexopos_access_token' )
+            && ! ns()->option->get( 'mynexopos_refresh_token' )
         ) {
             return false;
         }
@@ -507,7 +507,7 @@ class MarketplaceService
                 endpoint: $endpoint
             );
 
-            $accessToken = ns()->option->get( 'mypossoft_access_token' );
+            $accessToken = ns()->option->get( 'mynexopos_access_token' );
 
             if ( ! $accessToken ) {
                 return false;
@@ -515,7 +515,7 @@ class MarketplaceService
 
             $response = $request->accept( 'application/json' )
                 ->withToken( $accessToken )
-                ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+                ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
             /**
              * The request failed. We need to inform the user of what might have
@@ -527,8 +527,8 @@ class MarketplaceService
                 $this->handleProtectedResponse( $response );
 
                 ns()->notification->create(
-                    title: __( 'My PosSOFT: Authentication Failed' ),
-                    description: sprintf( __( 'We\'re unable to retrieve the user details from my.possoft.com. %s.' ), $parsedResponse ),
+                    title: __( 'My NexoPOS: Authentication Failed' ),
+                    description: sprintf( __( 'We\'re unable to retrieve the user details from my.nexopos.com. %s.' ), $parsedResponse ),
                     url: route( 'ns.dashboard.modules-list' ),
                     identifier: 'marketplace.authentication.feedback'
                 )->dispatchForGroup( Role::ADMIN );
@@ -539,7 +539,7 @@ class MarketplaceService
             return true;
         } catch ( Exception $exception ) {
             ns()->notification->create(
-                title: __( 'My PosSOFT: Authentication Failed' ),
+                title: __( 'My NexoPOS: Authentication Failed' ),
                 description: sprintf( __( 'An unexpected error occured: %s.' ), $exception->getMessage() ),
                 url: route( 'ns.dashboard.modules-list' ),
                 identifier: 'marketplace.authentication.feedback'
@@ -550,16 +550,16 @@ class MarketplaceService
     }
 
     /**
-     * Revoke this installation on My PosSOFT, then remove the local connection.
+     * Revoke this installation on My NexoPOS, then remove the local connection.
      */
     public function disconnect(): array
     {
-        if ( ! ns()->option->get( 'mypossoft_access_token' ) && ! ns()->option->get( 'mypossoft_refresh_token' ) ) {
+        if ( ! ns()->option->get( 'mynexopos_access_token' ) && ! ns()->option->get( 'mynexopos_refresh_token' ) ) {
             $this->clearConnection();
 
             return [
                 'status' => 'success',
-                'message' => __( 'This installation is already disconnected from My PosSOFT.' ),
+                'message' => __( 'This installation is already disconnected from My NexoPOS.' ),
             ];
         }
 
@@ -575,29 +575,29 @@ class MarketplaceService
 
         $response = $request
             ->withoutVerifying()
-            ->send( 'DELETE', env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . $endpoint );
+            ->send( 'DELETE', env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . $endpoint );
 
         if ( $response->successful() || $this->isConnectionAuthenticationFailure( $response ) ) {
             $this->clearConnection();
 
             return [
                 'status' => 'success',
-                'message' => __( 'This installation has been disconnected from My PosSOFT.' ),
+                'message' => __( 'This installation has been disconnected from My NexoPOS.' ),
             ];
         }
 
         throw new CoreException(
-            $response->json( 'message' ) ?: __( 'Failed to disconnect this installation from My PosSOFT.' )
+            $response->json( 'message' ) ?: __( 'Failed to disconnect this installation from My NexoPOS.' )
         );
     }
 
     public function clearConnection(): void
     {
         foreach ([
-            'mypossoft_access_token',
-            'mypossoft_refresh_token',
-            'mypossoft_token_type',
-            'mypossoft_token_expires_in',
+            'mynexopos_access_token',
+            'mynexopos_refresh_token',
+            'mynexopos_token_type',
+            'mynexopos_token_expires_in',
         ] as $option ) {
             ns()->option->delete( $option );
         }
@@ -608,7 +608,7 @@ class MarketplaceService
      */
     public function clearCache(): array
     {
-        ns()->option->set( 'mypossoft_marketplace_cache_version', (string) Str::uuid() );
+        ns()->option->set( 'mynexopos_marketplace_cache_version', (string) Str::uuid() );
 
         return [
             'status' => 'success',
@@ -657,7 +657,7 @@ class MarketplaceService
     public function getCategories()
     {
         $request = Http::accept( 'application/json' );
-        $cacheVersion = ns()->option->get( 'mypossoft_marketplace_cache_version' );
+        $cacheVersion = ns()->option->get( 'mynexopos_marketplace_cache_version' );
         $query = $cacheVersion
             ? '?' . http_build_query( [ 'cache_version' => $cacheVersion ] )
             : '';
@@ -666,7 +666,7 @@ class MarketplaceService
 
         $response = $request->accept( 'application/json' )
             ->withoutVerifying()
-            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.possoft.com' ) . '/api/nexoplatform/marketplace/categories' . $query );
+            ->get( env( 'MARKETPLACE_DOMAIN', 'https://my.nexopos.com' ) . '/api/nexoplatform/marketplace/categories' . $query );
 
         if ( $response->failed() ) {
             throw new CoreException( $response->json( 'message' ) ?: __( 'Failed to retrieve categories from marketplace.' ) );

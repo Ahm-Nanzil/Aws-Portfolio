@@ -28,7 +28,7 @@ class RewardSystemCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_rewards_system';
+    protected $table = 'nexopos_rewards_system';
 
     /**
      * base route name
@@ -56,7 +56,7 @@ class RewardSystemCrud extends CrudService
         'join' => [
             [ User::class, 'user' ],
         ],
-        [ 'possoft_coupons as coupon', 'coupon.id', '=', 'possoft_rewards_system.coupon_id' ],
+        [ 'nexopos_coupons as coupon', 'coupon.id', '=', 'nexopos_rewards_system.coupon_id' ],
     ];
 
     public $pick = [
@@ -86,10 +86,10 @@ class RewardSystemCrud extends CrudService
     public $skippable = [ 'rules' ];
 
     protected $permissions = [
-        'create' => 'possoft.create.rewards',
-        'read' => 'possoft.read.rewards',
-        'update' => 'possoft.update.rewards',
-        'delete' => 'possoft.delete.rewards',
+        'create' => 'nexopos.create.rewards',
+        'read' => 'nexopos.read.rewards',
+        'update' => 'nexopos.update.rewards',
+        'delete' => 'nexopos.delete.rewards',
     ];
 
     /**

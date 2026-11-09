@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex -mx-4 flex-wrap">
         <div class="px-2 w-full md:w-1/2">
             <div class="my-1 h-12 py-1 px-2 flex justify-between items-center elevation-surface info border text-xl font-bold">

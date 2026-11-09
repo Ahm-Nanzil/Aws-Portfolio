@@ -1,4 +1,4 @@
-import { __ } from "./lang";
+﻿import { __ } from "./lang";
 declare const typeLabels;
 declare const deliveryStatuses;
 declare const processingStatuses;

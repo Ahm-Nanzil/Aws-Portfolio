@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="pagination" class="flex -mx-1">
         <template v-if="pagination.current_page">
             <a href="javascript:void(0)" @click="gotoPage( pagination.first_page )" class="mx-1 flex items-center justify-center h-8 w-8 rounded-full ns-inset-button info shadow">

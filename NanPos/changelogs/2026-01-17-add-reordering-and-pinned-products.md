@@ -7,7 +7,7 @@
 
 ## Summary
 
-Added two new features to PosSOFT:
+Added two new features to NexoPOS:
 1. **Category & Product Reordering**: Drag-and-drop interface for customizing the order of categories and products
 2. **Pinned Products**: Ability to pin important products to display at the top of the POS grid
 
@@ -16,12 +16,12 @@ Added two new features to PosSOFT:
 ### Database Migrations
 
 1. **Add Position Column** (`2026_01_17_120000_add_position_to_categories_and_products.php`)
-   - Added `position` (integer, default 0) to `possoft_products_categories` table
-   - Added `position` (integer, default 0) to `possoft_products` table
+   - Added `position` (integer, default 0) to `nexopos_products_categories` table
+   - Added `position` (integer, default 0) to `nexopos_products` table
    - Automatically sets initial positions based on `created_at` timestamps for existing records
 
 2. **Add Pinned Column** (`2026_01_17_120001_add_pinned_to_products.php`)
-   - Added `pinned` (boolean, default false) to `possoft_products` table
+   - Added `pinned` (boolean, default false) to `nexopos_products` table
 
 ### Backend Changes
 
@@ -34,12 +34,12 @@ Added two new features to PosSOFT:
 #### API Endpoints
 Added two new endpoints with permission checks:
 - `POST /api/categories/reorder`
-  - Requires permission: `possoft.update.categories`
+  - Requires permission: `nexopos.update.categories`
   - Accepts: `{ items: [{ id, position }] }`
   - Updates category positions in bulk
 
 - `POST /api/products/reorder`
-  - Requires permission: `possoft.update.products`
+  - Requires permission: `nexopos.update.products`
   - Accepts: `{ items: [{ id, position }] }`
   - Updates product positions in bulk
 
@@ -142,8 +142,8 @@ None. Feature is opt-in via settings toggle. When disabled, the system behaves e
 ## Security
 
 - Reorder endpoints protected by `NsRestrictMiddleware`
-- Categories require `possoft.update.categories` permission
-- Products require `possoft.update.products` permission
+- Categories require `nexopos.update.categories` permission
+- Products require `nexopos.update.products` permission
 - No SQL injection vulnerabilities (uses Eloquent ORM)
 
 ## Performance Notes

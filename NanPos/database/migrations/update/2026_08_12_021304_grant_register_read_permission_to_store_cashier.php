@@ -6,11 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    private const PERMISSION = 'possoft.read.registers';
+    private const PERMISSION = 'nexopos.read.registers';
 
-    private const USE_PERMISSION = 'possoft.use.registers';
+    private const USE_PERMISSION = 'nexopos.use.registers';
 
-    private const READ_PRODUCT_PERMISSION = 'possoft.read.products';
+    private const READ_PRODUCT_PERMISSION = 'nexopos.read.products';
 
     /**
      * Run the migrations.

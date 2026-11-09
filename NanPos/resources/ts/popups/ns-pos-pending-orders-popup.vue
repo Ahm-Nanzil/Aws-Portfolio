@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg ns-box w-[85.71vw] md:w-[60vw] lg:w-[40vw] h-[75vh] flex flex-col overflow-hidden">
         <div class="p-2 flex justify-between text-fontcolor items-center ns-box-header border-b">
             <h3 class="font-semibold">{{ __( 'Orders' ) }}</h3>

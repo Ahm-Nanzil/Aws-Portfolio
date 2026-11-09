@@ -1,16 +1,16 @@
  ---
 applyTo: '**'
 ---
-PosSOFT is a point of sale system built on top of Laravel. it uses Vue.js (3) and Tailwind CSS. This document describes how the applications is structured and works.
+NexoPOS is a point of sale system built on top of Laravel. it uses Vue.js (3) and Tailwind CSS. This document describes how the applications is structured and works.
 
 ## Application Structure
-PosSOFT is structured into several key directories:
+NexoPOS is structured into several key directories:
 - `app/`: Contains the core application logic, including controllers, models, and services.
 - `bootstrap/`: Contains the application bootstrap files, including the autoloader and application initialization.
 - `config/`: Contains configuration files for the application.
 - `database/`: Contains database migrations, seeders, and factories.
 - `lang/`: Contains language files for localization.
-- `modules/`: Contains the modules that extend the functionality of PosSOFT.
+- `modules/`: Contains the modules that extend the functionality of NexoPOS.
 - `resources/`: Contains the frontend assets, including Vue components, Tailwind CSS styles, and language files.
 - `routes/`: Contains the route definitions for the application.
 - `database/`: Contains the database migrations, seeders, and factories.
@@ -21,7 +21,7 @@ PosSOFT is structured into several key directories:
 - `vendor/`: Contains the third-party packages and dependencies managed by Composer.
 
 ### "app" Directory
-The app directory is where the core logic of PosSOFT resides. It includes:
+The app directory is where the core logic of NexoPOS resides. It includes:
 - **BulkEditor**: Which keeps configuration for the Bulk Editor module.
 - **Casts**: Contains custom Eloquent casts used throughout the application.
 - **Console**: Contains Artisan commands for the application.
@@ -71,7 +71,7 @@ classes automatically using PSR-4 autoloading. Each module can have its own stru
 - **Widgets**: Contains widget classes used in the module.
 
 ## "database" directory
-The database directory contains the database-related files for PosSOFT. It includes:
+The database directory contains the database-related files for NexoPOS. It includes:
 
 - **migrations**: Contains database migration files that define the structure of the database tables.
 - **seeders**: Contains database seeders that populate the database with initial data.
@@ -82,7 +82,7 @@ The database directory contains the database-related files for PosSOFT. It inclu
 ### Regarding "migrations" directory
 That folder has 3 subfolders:
  
-- **core**: Contains the core migrations that define the basic structure of the PosSOFT database.
+- **core**: Contains the core migrations that define the basic structure of the NexoPOS database.
 - **create**: Contains migrations that create new tables in the database.
 - **update**: Contains migrations that update existing tables in the database.
 
@@ -162,7 +162,7 @@ Create a changelog for:
 
 ## Summary
 
-Added a multi-step configuration wizard that appears on first login to help users quickly set up their PosSOFT store with essential settings.
+Added a multi-step configuration wizard that appears on first login to help users quickly set up their NexoPOS store with essential settings.
 
 ## Changes Made
 
@@ -180,22 +180,22 @@ None. Module is optional and auto-activates on first dashboard visit.
 None.
 
 ## Additional Instructions
-.github/instructions/possoft-modules.instructions.md
-.github/instructions/possoft-module-quick-reference.instructions.md
-.github/instructions/possoft-asidemenu.instructions.md
-.github/instructions/possoft-blade-layouts.instructions.md
-.github/instructions/possoft-colors.instructions.md
-.github/instructions/possoft-crud.instructions.md
-.github/instructions/possoft-forminput.instructions.md
-.github/instructions/possoft-frontend-api.instructions.md
-.github/instructions/possoft-httpclient.instructions.md
-.github/instructions/possoft-localization.instructions.md
-.github/instructions/possoft-middleware.instructions.md
-.github/instructions/possoft-migrations.instructions.md
-.github/instructions/possoft-permissions.instructions.md
-.github/instructions/possoft-popup.instructions.md
-.github/instructions/possoft-roles-permissions.instructions.md
-.github/instructions/possoft-tabs.instructions.md
-.github/instructions/possoft-widgets.instructions.md
-.gituhb/instructions/possoft-models.instructions.md
-.github/instructions/possoft-view-injection.instructions.md
+.github/instructions/nexopos-modules.instructions.md
+.github/instructions/nexopos-module-quick-reference.instructions.md
+.github/instructions/nexopos-asidemenu.instructions.md
+.github/instructions/nexopos-blade-layouts.instructions.md
+.github/instructions/nexopos-colors.instructions.md
+.github/instructions/nexopos-crud.instructions.md
+.github/instructions/nexopos-forminput.instructions.md
+.github/instructions/nexopos-frontend-api.instructions.md
+.github/instructions/nexopos-httpclient.instructions.md
+.github/instructions/nexopos-localization.instructions.md
+.github/instructions/nexopos-middleware.instructions.md
+.github/instructions/nexopos-migrations.instructions.md
+.github/instructions/nexopos-permissions.instructions.md
+.github/instructions/nexopos-popup.instructions.md
+.github/instructions/nexopos-roles-permissions.instructions.md
+.github/instructions/nexopos-tabs.instructions.md
+.github/instructions/nexopos-widgets.instructions.md
+.gituhb/instructions/nexopos-models.instructions.md
+.github/instructions/nexopos-view-injection.instructions.md

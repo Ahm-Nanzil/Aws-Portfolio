@@ -17,7 +17,7 @@ class OrderRefund extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'orders_refunds';
+    protected $table = 'nexopos_' . 'orders_refunds';
 
     public function refunded_products()
     {

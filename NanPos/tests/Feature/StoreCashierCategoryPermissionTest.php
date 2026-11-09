@@ -12,7 +12,7 @@ final class StoreCashierCategoryPermissionTest extends TestCase
 {
     use DatabaseTransactions;
 
-    private const PERMISSION = 'possoft.read.categories';
+    private const PERMISSION = 'nexopos.read.categories';
 
     protected function setUp(): void
     {
@@ -35,9 +35,9 @@ final class StoreCashierCategoryPermissionTest extends TestCase
         );
 
         foreach ( [
-            'possoft.create.categories',
-            'possoft.update.categories',
-            'possoft.delete.categories',
+            'nexopos.create.categories',
+            'nexopos.update.categories',
+            'nexopos.delete.categories',
         ] as $namespace ) {
             Permission::query()->firstOrCreate(
                 [ 'namespace' => $namespace ],
@@ -98,9 +98,9 @@ final class StoreCashierCategoryPermissionTest extends TestCase
 
         $this->assertFalse( $cashier->permissions()
             ->whereIn( 'namespace', [
-                'possoft.create.categories',
-                'possoft.update.categories',
-                'possoft.delete.categories',
+                'nexopos.create.categories',
+                'nexopos.update.categories',
+                'nexopos.delete.categories',
             ] )
             ->exists() );
     }

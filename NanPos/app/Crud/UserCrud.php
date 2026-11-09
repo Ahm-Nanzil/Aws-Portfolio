@@ -42,7 +42,7 @@ class UserCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_users';
+    protected $table = 'nexopos_users';
 
     /**
      * base route name
@@ -72,8 +72,8 @@ class UserCrud extends CrudService
      */
     public $relations = [
         'leftJoin' => [
-            [ 'possoft_customers_groups as group', 'possoft_users.group_id', '=', 'group.id' ],
-            [ 'possoft_users as author', 'possoft_users.author_id', '=', 'author.id' ],
+            [ 'nexopos_customers_groups as group', 'nexopos_users.group_id', '=', 'group.id' ],
+            [ 'nexopos_users as author', 'nexopos_users.author_id', '=', 'author.id' ],
         ],
     ];
 
@@ -196,9 +196,9 @@ class UserCrud extends CrudService
                 'label' => __( 'Username' ),
                 'name' => 'username',
                 'value' => $entry->username ?? '',
-                'validation' => $entry === null ? 'required|unique:possoft_users,username' : [
+                'validation' => $entry === null ? 'required|unique:nexopos_users,username' : [
                     'required',
-                    Rule::unique( 'possoft_users', 'username' )->ignore( $entry->id ),
+                    Rule::unique( 'nexopos_users', 'username' )->ignore( $entry->id ),
                 ],
                 'description' => __( 'Provide a name to the resource.' ),
             ],
@@ -210,10 +210,10 @@ class UserCrud extends CrudService
                             'type' => 'text',
                             'name' => 'email',
                             'label' => __( 'Email' ),
-                            'validation' => $entry === null ? 'required|email|unique:possoft_users,email' : [
+                            'validation' => $entry === null ? 'required|email|unique:nexopos_users,email' : [
                                 'required',
                                 'email',
-                                Rule::unique( 'possoft_users', 'email' )->ignore( $entry->id ),
+                                Rule::unique( 'nexopos_users', 'email' )->ignore( $entry->id ),
                             ],
                             'description' => __( 'Will be used for various purposes such as email recovery.' ),
                             'value' => $entry->email ?? '',
@@ -292,7 +292,7 @@ class UserCrud extends CrudService
                             'label' => __( 'Phone' ),
                             'validation' => collect( [
                                 ns()->option->get( 'ns_customers_force_unique_phone', 'no' ) === 'yes' ? (
-                                    $entry instanceof User && ! empty( $entry->phone ) ? Rule::unique( 'possoft_users', 'phone' )->ignore( $entry->id ) : Rule::unique( 'possoft_users', 'phone' )
+                                    $entry instanceof User && ! empty( $entry->phone ) ? Rule::unique( 'nexopos_users', 'phone' )->ignore( $entry->id ) : Rule::unique( 'nexopos_users', 'phone' )
                                 ) : '',
                             ] )->toArray(),
                             'description' => __( 'Set the user phone number.' ),

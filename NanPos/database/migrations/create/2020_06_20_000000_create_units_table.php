@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_units' ) ) {
-            Schema::createIfMissing( 'possoft_units', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_units' ) ) {
+            Schema::createIfMissing( 'nexopos_units', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->string( 'name' );
                 $table->string( 'identifier' )->unique();
@@ -41,8 +41,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_units' ) ) {
-            Schema::dropIfExists( 'possoft_units' );
+        if ( Schema::hasTable( 'nexopos_units' ) ) {
+            Schema::dropIfExists( 'nexopos_units' );
         }
     }
 };

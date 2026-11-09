@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex">
         <template v-if="href">
             <a  :target="target" :href="href" :class="buttonclass" class="rounded cursor-pointer py-2 px-3 font-semibold"><slot></slot></a>

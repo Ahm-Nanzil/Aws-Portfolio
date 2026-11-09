@@ -2,9 +2,9 @@
 applyTo: '**'
 ---
 
-# PosSOFT Middleware Guide
+# NexoPOS Middleware Guide
 
-This document describes the custom middleware used in PosSOFT for controlling access and managing requests, with a focus on permission-based route protection.
+This document describes the custom middleware used in NexoPOS for controlling access and managing requests, with a focus on permission-based route protection.
 
 ## NsRestrictMiddleware
 
@@ -93,13 +93,13 @@ Protect a route with a single permission requirement:
 use App\Http\Middleware\NsRestrictMiddleware;
 
 Route::get('/products', [ProductsController::class, 'index'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.read.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.read.products'));
 
 Route::post('/customers', [CustomersController::class, 'post'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.create.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.create.customers'));
 
 Route::delete('/orders/{id}', [OrdersController::class, 'delete'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.delete.orders'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.delete.orders'));
 ```
 
 ### 2. Multiple Permissions (Any)
@@ -109,14 +109,14 @@ Require that the user has **at least one** of multiple permissions:
 ```php
 Route::get('/customers-groups/{id}/customers', [CustomersGroupsController::class, 'getCustomers'])
     ->middleware(NsRestrictMiddleware::arguments([
-        'possoft.read.customers-groups',
-        'possoft.read.customers',
+        'nexopos.read.customers-groups',
+        'nexopos.read.customers',
     ]));
 
 Route::post('/customers-groups/transfer-customers', [CustomersGroupsController::class, 'transferOwnership'])
     ->middleware(NsRestrictMiddleware::arguments([
-        'possoft.update.customers-groups',
-        'possoft.update.customers',
+        'nexopos.update.customers-groups',
+        'nexopos.update.customers',
     ]));
 ```
 
@@ -125,7 +125,7 @@ Route::post('/customers-groups/transfer-customers', [CustomersGroupsController::
 Apply middleware to route groups to protect multiple routes with the same permission:
 
 ```php
-Route::middleware(NsRestrictMiddleware::arguments('possoft.read.customers'))->group(function () {
+Route::middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'))->group(function () {
     Route::get('customers/{customer?}', [CustomersController::class, 'get']);
     Route::get('customers/recently-active', [CustomersController::class, 'getRecentlyActive']);
     Route::get('customers/{customer}/orders', [CustomersController::class, 'getOrders']);
@@ -145,21 +145,21 @@ use Illuminate\Support\Facades\Route;
 
 // Delete routes
 Route::delete('customers/{id}', [CustomersController::class, 'delete'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.delete.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.delete.customers'));
 
 // Read routes grouped together
-Route::middleware(NsRestrictMiddleware::arguments('possoft.read.customers'))->group(function () {
+Route::middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'))->group(function () {
     Route::get('customers/{customer?}', [CustomersController::class, 'get']);
     Route::get('customers/recently-active', [CustomersController::class, 'getRecentlyActive']);
 });
 
 // Create routes
 Route::post('customers', [CustomersController::class, 'post'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.create.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.create.customers'));
 
 // Update routes
 Route::put('customers/{customer}', [CustomersController::class, 'put'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.update.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.update.customers'));
 ```
 
 ## Real-World Examples
@@ -172,19 +172,19 @@ use App\Http\Middleware\NsRestrictMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::post('products', [ProductsController::class, 'saveProduct'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.create.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.create.products'));
 
 Route::post('products/search', [ProductsController::class, 'searchProduct'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.read.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.read.products'));
 
 Route::post('products/adjustments', [ProductsController::class, 'createAdjustment'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.update.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.update.products'));
 
 Route::put('products/{product}', [ProductsController::class, 'updateProduct'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.update.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.update.products'));
 
 Route::delete('products/{product}', [ProductsController::class, 'deleteProduct'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.delete.products'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.delete.products'));
 ```
 
 ### Example 2: Orders API with Complex Permissions
@@ -194,16 +194,16 @@ use App\Http\Controllers\Dashboard\OrdersController;
 use App\Http\Middleware\NsRestrictMiddleware;
 
 Route::post('orders/{order}/void', [OrdersController::class, 'voidOrder'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.void.orders'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.void.orders'));
 
 Route::post('orders/{order}/processing', [OrdersController::class, 'changeOrderProcessingStatus'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.update.orders'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.update.orders'));
 
 Route::post('orders/{order}/payments', [OrdersController::class, 'addPayment'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.make-payment.orders'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.make-payment.orders'));
 
 Route::post('orders/{order}/refund', [OrdersController::class, 'refundOrder'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.refund.orders'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.refund.orders'));
 ```
 
 ### Example 3: Media Management
@@ -213,19 +213,19 @@ use App\Http\Controllers\Dashboard\MediasController;
 use App\Http\Middleware\NsRestrictMiddleware;
 
 Route::get('medias', [MediasController::class, 'getMedias'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.see.medias'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.see.medias'));
 
 Route::post('medias', [MediasController::class, 'uploadMedias'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.upload.medias'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.upload.medias'));
 
 Route::put('medias/{media}', [MediasController::class, 'updateMedia'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.update.medias'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.update.medias'));
 
 Route::delete('medias/{id}', [MediasController::class, 'deleteMedia'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.see.medias'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.see.medias'));
 
 Route::post('medias/bulk-delete/', [MediasController::class, 'bulkDeleteMedias'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.delete.medias'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.delete.medias'));
 ```
 
 ## Module Usage
@@ -330,19 +330,19 @@ Follow consistent naming patterns:
 
 **Standard CRUD Pattern:**
 ```php
-'possoft.create.{resource}'  // Creating resources
-'possoft.read.{resource}'    // Reading/viewing resources
-'possoft.update.{resource}'  // Updating resources
-'possoft.delete.{resource}'  // Deleting resources
+'nexopos.create.{resource}'  // Creating resources
+'nexopos.read.{resource}'    // Reading/viewing resources
+'nexopos.update.{resource}'  // Updating resources
+'nexopos.delete.{resource}'  // Deleting resources
 ```
 
 **Action-Specific Pattern:**
 ```php
-'possoft.void.orders'              // Voiding orders
-'possoft.make-payment.orders'      // Making payments
-'possoft.refund.orders'            // Refunding orders
-'possoft.see.medias'               // Viewing media
-'possoft.upload.medias'            // Uploading media
+'nexopos.void.orders'              // Voiding orders
+'nexopos.make-payment.orders'      // Making payments
+'nexopos.refund.orders'            // Refunding orders
+'nexopos.see.medias'               // Viewing media
+'nexopos.upload.medias'            // Uploading media
 ```
 
 **Module-Specific Pattern:**
@@ -358,7 +358,7 @@ When multiple routes share the same permission, use route groups:
 
 ```php
 // ✅ Good - DRY principle
-Route::middleware(NsRestrictMiddleware::arguments('possoft.read.customers'))->group(function () {
+Route::middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'))->group(function () {
     Route::get('customers/{customer}', [CustomersController::class, 'get']);
     Route::get('customers/recently-active', [CustomersController::class, 'getRecentlyActive']);
     Route::get('customers/{customer}/orders', [CustomersController::class, 'getOrders']);
@@ -366,11 +366,11 @@ Route::middleware(NsRestrictMiddleware::arguments('possoft.read.customers'))->gr
 
 // ❌ Bad - Repetitive
 Route::get('customers/{customer}', [CustomersController::class, 'get'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.read.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'));
 Route::get('customers/recently-active', [CustomersController::class, 'getRecentlyActive'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.read.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'));
 Route::get('customers/{customer}/orders', [CustomersController::class, 'getOrders'])
-    ->middleware(NsRestrictMiddleware::arguments('possoft.read.customers'));
+    ->middleware(NsRestrictMiddleware::arguments('nexopos.read.customers'));
 ```
 
 ### 5. Ensure Permissions Exist
@@ -379,9 +379,9 @@ Before using permissions in middleware, ensure they are created in the database:
 
 ```php
 // In migration or permission file
-$permission = Permission::firstOrNew(['namespace' => 'possoft.create.products']);
+$permission = Permission::firstOrNew(['namespace' => 'nexopos.create.products']);
 $permission->name = 'Create Products';
-$permission->namespace = 'possoft.create.products';
+$permission->namespace = 'nexopos.create.products';
 $permission->description = 'Allow creating new products';
 $permission->save();
 ```
@@ -405,7 +405,7 @@ public function test_user_can_access_with_permission()
 {
     $user = User::factory()->create();
     $role = Role::factory()->create();
-    $role->addPermissions('possoft.read.products');
+    $role->addPermissions('nexopos.read.products');
     $user->assignRole($role->namespace);
     
     $this->actingAs($user)
@@ -492,8 +492,8 @@ Route::get('/feature', [FeatureController::class, 'index'])
 ## Related Documentation
 
 For more information about permissions and roles:
-- `.github/instructions/possoft-permissions.instructions.md` - Permission system details
-- `.github/instructions/possoft-roles-permissions.instructions.md` - Role and permission management
+- `.github/instructions/nexopos-permissions.instructions.md` - Permission system details
+- `.github/instructions/nexopos-roles-permissions.instructions.md` - Role and permission management
 
 For route organization:
-- `.github/instructions/possoft-modules.instructions.md` - Module route structure
+- `.github/instructions/nexopos-modules.instructions.md` - Module route structure

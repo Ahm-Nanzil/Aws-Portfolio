@@ -17,7 +17,7 @@ class ScaleRange extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_scale_ranges';
+    protected $table = 'nexopos_scale_ranges';
 
     protected $fillable = [
         'name',

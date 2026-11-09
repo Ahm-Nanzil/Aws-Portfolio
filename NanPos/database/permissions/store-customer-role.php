@@ -4,9 +4,9 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Widgets\ProfileWidget;
 
-$storeCustomer = Role::firstOrNew( [ 'namespace' => 'possoft.store.customer' ] );
+$storeCustomer = Role::firstOrNew( [ 'namespace' => 'nexopos.store.customer' ] );
 $storeCustomer->name = __( 'Store Customer' );
-$storeCustomer->namespace = 'possoft.store.customer';
+$storeCustomer->namespace = 'nexopos.store.customer';
 $storeCustomer->locked = true;
 $storeCustomer->description = __( 'Can purchase orders and manage his profile.' );
 $storeCustomer->save();

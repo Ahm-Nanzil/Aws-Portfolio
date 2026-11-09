@@ -15,7 +15,7 @@ class Media extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_medias';
+    protected $table = 'nexopos_medias';
 
     protected $casts = [
         'created_at' => DateCast::class,

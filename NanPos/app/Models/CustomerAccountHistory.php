@@ -28,7 +28,7 @@ class CustomerAccountHistory extends NsModel
 
     const OPERATION_PAYMENT = 'payment';
 
-    protected $table = 'possoft_' . 'customers_account_history';
+    protected $table = 'nexopos_' . 'customers_account_history';
 
     public $dispatchesEvents = [
         'created' => CustomerAccountHistoryAfterCreatedEvent::class,

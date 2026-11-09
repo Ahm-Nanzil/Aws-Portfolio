@@ -12,6 +12,6 @@ class SaleCardWidget extends WidgetService
     {
         $this->name = __( 'Sale Card Widget' );
         $this->description = __( 'Will display current and overall sales.' );
-        $this->permission = 'possoft.see.sale-card-widget';
+        $this->permission = 'nexopos.see.sale-card-widget';
     }
 }

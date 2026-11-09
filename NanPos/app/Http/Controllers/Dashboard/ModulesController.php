@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -116,7 +116,7 @@ class ModulesController extends DashboardController
     {
         return View::make( 'pages.dashboard.modules.upload', [
             'title' => __( 'Upload A Module' ),
-            'description' => __( 'Extends PosSOFT features with some new modules.' ),
+            'description' => __( 'Extends NexoPOS features with some new modules.' ),
         ] );
     }
 
@@ -198,8 +198,8 @@ class ModulesController extends DashboardController
     {
         $this->marketplaceService->testConnection();
 
-        $accessToken = ns()->option->get( 'mypossoft_access_token' );
-        $refreshToken = ns()->option->get( 'mypossoft_refresh_token' );
+        $accessToken = ns()->option->get( 'mynexopos_access_token' );
+        $refreshToken = ns()->option->get( 'mynexopos_refresh_token' );
 
         /**
          * if the user is authenticated from a specific page, we should redirect him back to this page after authentication.
@@ -216,9 +216,9 @@ class ModulesController extends DashboardController
 
         return View::make( 'pages.dashboard.modules.marketplace', [
             'title' => __( 'Module Marketplace' ),
-            'description' => __( 'Connect your PosSOFT account to access the module marketplace.' ),
+            'description' => __( 'Connect your NexoPOS account to access the module marketplace.' ),
             'isConnected' => $isConnected,
-            'authorizationUrl' => route( ns()->routeName( 'ns.oauth.mypossoft.authorize' ) ),
+            'authorizationUrl' => route( ns()->routeName( 'ns.oauth.mynexopos.authorize' ) ),
         ] );
     }
 }

@@ -56,7 +56,7 @@ class NexoposVueRuntimePluginTest extends TestCase
     {
         $plugin = file_get_contents( resource_path( 'vite-plugin-nexopos-vue.js' ) );
 
-        $this->assertNotFalse( $plnexopos
+        $this->assertNotFalse( $plugin );
         $this->assertStringContainsString( 'export function nexoposVueRuntime', $plugin );
         $this->assertStringContainsString( 'source === "vue"', $plugin );
         $this->assertStringContainsString( 'globalThis.ns?.vue ?? globalThis.NexoPOSVue', $plugin );
@@ -70,7 +70,7 @@ class NexoposVueRuntimePluginTest extends TestCase
         $factory = file_get_contents( resource_path( 'vite-nexopos-module.js' ) );
 
         $this->assertNotFalse( $factory );
- nexopos$this->assertStringContainsString( 'export function defineNexoPOSModuleConfig', $factory );
+        $this->assertStringContainsString( 'export function defineNexoPOSModuleConfig', $factory );
         $this->assertStringContainsString( 'nexoposVueRuntime()', $factory );
         $this->assertStringContainsString( 'outDir: "Public/build"', $factory );
     }

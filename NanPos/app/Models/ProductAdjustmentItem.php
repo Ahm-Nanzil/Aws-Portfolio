@@ -21,7 +21,7 @@ use Carbon\Carbon;
  */
 class ProductAdjustmentItem extends NsModel
 {
-    protected $table = 'possoft_' . 'products_adjustment_items';
+    protected $table = 'nexopos_' . 'products_adjustment_items';
 
     protected $fillable = [
         'adjustment_id',

@@ -105,7 +105,7 @@ class CrudPermissionsTest extends TestCase
         $response->assertJson( [ 'status' => 'error' ] );
 
         // The category must still exist: the deletion must have been blocked.
-        $this->assertDatabaseHas( 'possoft_products_categories', [ 'id' => $category->id ] );
+        $this->assertDatabaseHas( 'nexopos_products_categories', [ 'id' => $category->id ] );
 
         $user->delete();
     }
@@ -140,7 +140,7 @@ class CrudPermissionsTest extends TestCase
 
         $result = $service->setUser( [
             'username' => 'crud_perm_user_' . Str::random( 8 ),
-            'email' => 'crud_perm_' . Str::random( 8 ) . '@possoft-test.invalid',
+            'email' => 'crud_perm_' . Str::random( 8 ) . '@nexopos-test.invalid',
             'password' => Str::random( 16 ),
             'active' => true,
         ] );

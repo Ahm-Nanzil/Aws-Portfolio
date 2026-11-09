@@ -1,4 +1,4 @@
-<script lang="ts">
+﻿<script lang="ts">
 import { nsSnackBar } from '~/bootstrap';
 import resolveIfQueued from "~/libraries/popup-resolver";
 import { Popup } from '~/libraries/popup';

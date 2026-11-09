@@ -29,7 +29,7 @@ class TransactionAccountCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_transactions_accounts';
+    protected $table = 'nexopos_transactions_accounts';
 
     /**
      * base route name
@@ -52,9 +52,9 @@ class TransactionAccountCrud extends CrudService
      * Adding relation
      */
     public $relations = [
-        [ 'possoft_users', 'possoft_transactions_accounts.author_id', '=', 'possoft_users.id' ],
+        [ 'nexopos_users', 'nexopos_transactions_accounts.author_id', '=', 'nexopos_users.id' ],
         'leftJoin' => [
-            [ 'possoft_transactions_accounts as subaccount', 'subaccount.id', '=', 'possoft_transactions_accounts.sub_category_id' ],
+            [ 'nexopos_transactions_accounts as subaccount', 'subaccount.id', '=', 'nexopos_transactions_accounts.sub_category_id' ],
         ],
     ];
 
@@ -65,7 +65,7 @@ class TransactionAccountCrud extends CrudService
         'subaccount' => [
             'name',
         ],
-        'possoft_users' => [
+        'nexopos_users' => [
             'username',
         ],
     ];
@@ -90,10 +90,10 @@ class TransactionAccountCrud extends CrudService
     public $fillable = [];
 
     protected $permissions = [
-        'create' => 'possoft.create.transactions-account',
-        'read' => 'possoft.read.transactions-account',
-        'update' => 'possoft.update.transactions-account',
-        'delete' => 'possoft.delete.transactions-account',
+        'create' => 'nexopos.create.transactions-account',
+        'read' => 'nexopos.read.transactions-account',
+        'update' => 'nexopos.update.transactions-account',
+        'delete' => 'nexopos.delete.transactions-account',
     ];
 
     public $casts = [
@@ -345,7 +345,7 @@ class TransactionAccountCrud extends CrudService
             ),
             CrudTable::column(
                 label: __( 'Author' ),
-                identifier: 'possoft_users_username',
+                identifier: 'nexopos_users_username',
             ),
             CrudTable::column(
                 label: __( 'Created At' ),

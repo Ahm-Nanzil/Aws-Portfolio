@@ -25,7 +25,7 @@ class TaxesGroupCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_taxes_groups';
+    protected $table = 'nexopos_taxes_groups';
 
     /**
      * base route name
@@ -81,10 +81,10 @@ class TaxesGroupCrud extends CrudService
     }
 
     protected $permissions = [
-        'create' => 'possoft.create.taxes',
-        'read' => 'possoft.read.taxes',
-        'update' => 'possoft.update.taxes',
-        'delete' => 'possoft.delete.taxes',
+        'create' => 'nexopos.create.taxes',
+        'read' => 'nexopos.read.taxes',
+        'update' => 'nexopos.update.taxes',
+        'delete' => 'nexopos.delete.taxes',
     ];
 
     /**

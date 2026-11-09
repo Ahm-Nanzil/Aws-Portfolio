@@ -11,7 +11,7 @@ class RolePermission extends NsRootModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_role_permission';
+    protected $table = 'nexopos_role_permission';
 
     public $timestamps = false;
 

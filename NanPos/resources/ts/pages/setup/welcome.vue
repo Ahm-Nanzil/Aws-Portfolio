@@ -1,8 +1,8 @@
-<template>
+﻿<template>
     <div class="w-full md:w-3/5 lg:w-3/5 self-center">
         <div class="bg-white rounded shadow my-2 overflow-hidden">
             <div class="welcome-box p-3 text-gray-700">
-                <p class="text-gray-600 text-sm">{{ __( 'Thank you for using PosSOFT to manage your store. This installation wizard will help you running PosSOFT in no time.' ) }}</p>
+                <p class="text-gray-600 text-sm">{{ __( 'Thank you for using PosSoft to manage your store. This installation wizard will help you get started in no time.' ) }}</p>
                 <br>
                 <p class="text-gray-600 text-sm">{{ __( 'Choose your language to get started.' ) }}</p>
                 <ns-select @change="updateSelectedLanguage()" :field="field"></ns-select>
@@ -35,7 +35,7 @@ export default {
         return {
             field: {
                 label: __( 'Language Selection' ),
-                description: __( 'Select what will be the default language of PosSOFT.' ),
+                description: __( 'Select what will be the default language of PosSoft.' ),
                 name: 'language',
                 value: nsLang || 'en', // default language
                 options: Object.values( nsLanguages ).map( (value, index) => {

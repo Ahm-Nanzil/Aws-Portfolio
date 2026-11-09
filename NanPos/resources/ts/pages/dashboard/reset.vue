@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="reset-app" class="ns-tab">
         <div id="card-header" class="flex flex-wrap">
             <div class="tab active cursor-pointer px-4 py-2 rounded-tl-lg rounded-tr-lg">

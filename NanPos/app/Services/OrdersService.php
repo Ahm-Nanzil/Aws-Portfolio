@@ -79,7 +79,7 @@ class OrdersService
     }
 
     /**
-     * Create an order on PosSOFT.
+     * Create an order on NexoPOS.
      *
      * @param  array      $fields
      * @param  Order|null $order  (optional)
@@ -718,21 +718,21 @@ class OrdersService
                 };
 
                 if ( $mode === 'custom' || ! $this->pricesMatch( $product['unit_price'] ?? null, $canonicalPrice ) ) {
-                    $this->__restrictPosAction( 'possoft.cart.product-price' );
+                    $this->__restrictPosAction( 'nexopos.cart.product-price' );
                 }
 
                 if ( $mode === 'wholesale' ) {
-                    $this->__restrictPosAction( 'possoft.cart.product-wholesale-price' );
+                    $this->__restrictPosAction( 'nexopos.cart.product-wholesale-price' );
                 }
             }
 
             if ( $this->hasAmount( $product['discount'] ?? 0 ) || $this->hasAmount( $product['discount_percentage'] ?? 0 ) ) {
-                $this->__restrictPosAction( 'possoft.cart.product-discount' );
+                $this->__restrictPosAction( 'nexopos.cart.product-discount' );
             }
         } );
 
         if ( $this->hasAmount( $fields['discount'] ?? 0 ) || $this->hasAmount( $fields['discount_percentage'] ?? 0 ) ) {
-            $this->__restrictPosAction( 'possoft.cart.discount' );
+            $this->__restrictPosAction( 'nexopos.cart.discount' );
         }
     }
 
@@ -1077,7 +1077,7 @@ class OrdersService
          * the logged user must have the rights to perform a payment
          */
         if ( $totalPayments > 0 ) {
-            ns()->restrict( 'possoft.make-payment.orders', __( 'You\'re not allowed to make payments.' ) );
+            ns()->restrict( 'nexopos.make-payment.orders', __( 'You\'re not allowed to make payments.' ) );
         }
 
         return [
@@ -1591,20 +1591,20 @@ class OrdersService
     {
         $now = Carbon::parse( $order->created_at );
         $today = $now->toDateString();
-        $count = DB::table( Hook::filter( 'ns-model-table', 'possoft_orders_count' ) )
+        $count = DB::table( Hook::filter( 'ns-model-table', 'nexopos_orders_count' ) )
             ->where( 'date', $today )
             ->value( 'count' );
 
         if ( $count === null ) {
             $count = 1;
-            DB::table( Hook::filter( 'ns-model-table', 'possoft_orders_count' ) )
+            DB::table( Hook::filter( 'ns-model-table', 'nexopos_orders_count' ) )
                 ->insert( [
                     'date' => $today,
                     'count' => $count,
                 ] );
         }
 
-        DB::table( Hook::filter( 'ns-model-table', 'possoft_orders_count' ) )
+        DB::table( Hook::filter( 'ns-model-table', 'nexopos_orders_count' ) )
             ->where( 'date', $today )
             ->increment( 'count' );
 
@@ -2511,7 +2511,7 @@ class OrdersService
      */
     public function getPaymentLabel( string $type ): string
     {
-        $payments = config( 'possoft.orders.statuses' );
+        $payments = config( 'nexopos.orders.statuses' );
 
         return $payments[ $type ] ?? sprintf( __( 'Unknown Status (%s)' ), $type );
     }
@@ -2521,7 +2521,7 @@ class OrdersService
      */
     public function getPaymentLabels(): array
     {
-        return config( 'possoft.orders.statuses' );
+        return config( 'nexopos.orders.statuses' );
     }
 
     /**
@@ -2529,7 +2529,7 @@ class OrdersService
      */
     public function getRefundedOrderProductLabel( string $label ): string
     {
-        return config( 'possoft.orders.products.refunds' )[ $label ] ?? __( 'Unknown Product Status' );
+        return config( 'nexopos.orders.products.refunds' )[ $label ] ?? __( 'Unknown Product Status' );
     }
 
     /**
@@ -2733,7 +2733,7 @@ class OrdersService
                 )
             )->dispatchForGroup( [
                 Role::namespace( 'admin' ),
-                Role::namespace( 'possoft.store.administrator' ),
+                Role::namespace( 'nexopos.store.administrator' ),
             ] );
 
             DueOrdersEvent::dispatch( $orders );

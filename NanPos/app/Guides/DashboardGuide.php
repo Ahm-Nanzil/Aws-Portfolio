@@ -12,9 +12,9 @@ class DashboardGuide
             'dashboard.guide',
             Guide::experience(
                 id: 'dashboard.guide',
-                title: __( 'Welcome to PosSOFT' ),
+                title: __( 'Welcome to PosSoft' ),
                 description: __(
-                    'Take a quick tour of your dashboard and discover the main areas of PosSOFT.'
+                    'Take a quick tour of your dashboard and discover the main areas of PosSoft.'
                 ),
                 permissions: ['manage.options'],
                 required_routes: ['ns.dashboard.home'],
@@ -27,7 +27,7 @@ class DashboardGuide
                             title: __( 'Your Menu' ),
 
                             description: __(
-                                'Use this side menu to access various areas within PosSOFT including settings, inventory, orders, customers and users.'
+                                'Use this side menu to access various areas within PosSoft including settings, inventory, orders, customers and users.'
                             ),
 
                             side: 'bottom',
@@ -110,7 +110,7 @@ class DashboardGuide
                             title: __( 'Orders' ),
 
                             description: __(
-                                'Every sale created with PosSOFT is recorded as an order. You can review previous transactions from here.'
+                                'Every sale created with PosSoft is recorded as an order. You can review previous transactions from here.'
                             ),
 
                             side: 'right',

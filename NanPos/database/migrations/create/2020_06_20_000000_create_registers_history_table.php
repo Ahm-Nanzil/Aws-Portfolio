@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_registers_history' ) ) {
-            Schema::createIfMissing( 'possoft_registers_history', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_registers_history' ) ) {
+            Schema::createIfMissing( 'nexopos_registers_history', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'register_id' );
                 $table->integer( 'payment_id' )->nullable();
@@ -44,8 +44,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_registers_history' ) ) {
-            Schema::dropIfExists( 'possoft_registers_history' );
+        if ( Schema::hasTable( 'nexopos_registers_history' ) ) {
+            Schema::dropIfExists( 'nexopos_registers_history' );
         }
     }
 };

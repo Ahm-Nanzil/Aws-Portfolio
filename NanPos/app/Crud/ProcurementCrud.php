@@ -26,7 +26,7 @@ class ProcurementCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_procurements';
+    protected $table = 'nexopos_procurements';
 
     /**
      * Define namespace
@@ -47,7 +47,7 @@ class ProcurementCrud extends CrudService
         'join' => [
             [ User::class, 'user' ],
         ],
-        [ 'possoft_providers as providers', 'possoft_procurements.provider_id', '=', 'providers.id' ],
+        [ 'nexopos_providers as providers', 'nexopos_procurements.provider_id', '=', 'providers.id' ],
     ];
 
     /**
@@ -73,10 +73,10 @@ class ProcurementCrud extends CrudService
      * define permission
      */
     public $permissions = [
-        'create' => 'possoft.create.procurements',
-        'read' => 'possoft.read.procurements',
+        'create' => 'nexopos.create.procurements',
+        'read' => 'nexopos.read.procurements',
         'update' => false,
-        'delete' => 'possoft.delete.procurements',
+        'delete' => 'nexopos.delete.procurements',
     ];
 
     /**

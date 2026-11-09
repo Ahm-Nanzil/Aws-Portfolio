@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_users_widgets' ) ) {
+        if ( ! Schema::hasTable( 'nexopos_users_widgets' ) ) {
             return;
         }
 
@@ -56,7 +56,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        if ( ! Schema::hasTable( 'possoft_users_widgets' ) ) {
+        if ( ! Schema::hasTable( 'nexopos_users_widgets' ) ) {
             return;
         }
 

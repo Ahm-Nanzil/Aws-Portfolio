@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Gate;
 
 class OrderAccessService
 {
-    public const READ_ALL = 'possoft.read.orders';
+    public const READ_ALL = 'nexopos.read.orders';
 
-    public const POS_READ_ALL = 'possoft.pos.read-all-orders';
+    public const POS_READ_ALL = 'nexopos.pos.read-all-orders';
 
-    public const POS_READ_OWN = 'possoft.pos.read-own-orders';
+    public const POS_READ_OWN = 'nexopos.pos.read-own-orders';
 
     public function canAccess( User $user, Order $order ): bool
     {

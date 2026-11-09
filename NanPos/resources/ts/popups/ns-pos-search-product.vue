@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="product-search" class="ns-box shadow-lg w-95vw h-95vh md:h-[60vh] md:w-half flex flex-col overflow-hidden">
         <div class="p-2 border-b ns-box-header flex justify-between items-center">
             <h3 class="text-fontcolor">{{ __( 'Search Product' ) }}</h3>
@@ -88,7 +88,7 @@ export default {
                     message: __( 'The product "{product}" can\'t be added from a search field, as "Accurate Tracking" is enabled. Would you like to learn more ?' ).replace( '{product}', product.name ),
                     onAction: ( action ) => {
                         if ( action ) {
-                            window.open( 'https://my.possoft.com/en/documentation/troubleshooting/accurate-tracking', '_blank' );
+                            window.open( '/en/documentation/troubleshooting/accurate-tracking', '_blank' );
                         }
                     }
                 });

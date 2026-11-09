@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="shadow-lg ns-box w-95vw md:w-[66.67vw] lg:w-[33.33vw]">
         <div class="p-2 flex justify-between border-b items-center">
             <h3>{{ __( 'Payment Method' ) }}</h3>

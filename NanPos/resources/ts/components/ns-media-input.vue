@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex flex-col mb-2 flex-auto ns-media" :class="hasError ? 'has-error' : 'is-pristine'">
         <label :for="field.name" class="block leading-5 font-medium"><slot></slot></label>
         <div :name="field.name" class="mt-1 relative border rounded-md focus:shadow-sm">

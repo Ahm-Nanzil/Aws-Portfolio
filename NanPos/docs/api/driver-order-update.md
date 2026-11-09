@@ -100,7 +100,7 @@ When an order transitions from `ongoing` to `delivered` status and is paid:
 
 ### OrderDeliveryProof Table
 
-Records are created/updated in the `possoft_orders_delivery_proof` table with:
+Records are created/updated in the `nexopos_orders_delivery_proof` table with:
 - `is_delivered`: boolean delivery status
 - `delivery_proof`: proof document URL
 - `note`: delivery notes

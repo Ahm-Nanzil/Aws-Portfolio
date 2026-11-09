@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -157,7 +157,7 @@ class CashRegistersController extends DashboardController
         if ( $register->status === Register::STATUS_OPENED ) {
             $lastOpening = $register->history()
                 ->where( 'action', RegisterHistory::ACTION_OPENING )
-                ->orderBy( Hook::filter( 'ns-table-name', 'possoft_registers_history' ) . '.id', 'desc' )
+                ->orderBy( Hook::filter( 'ns-table-name', 'nexopos_registers_history' ) . '.id', 'desc' )
                 ->first();
 
             if ( $lastOpening instanceof RegisterHistory ) {
@@ -166,13 +166,13 @@ class CashRegistersController extends DashboardController
                  */
                 $historyRequest = $register->history()
                     ->select( [
-                        'possoft_registers_history.*',
-                        'possoft_registers_history.description as description',
-                        'possoft_payments_types.label as payment_label',
+                        'nexopos_registers_history.*',
+                        'nexopos_registers_history.description as description',
+                        'nexopos_payments_types.label as payment_label',
                     ] )
                     ->with( 'order' )
-                    ->leftJoin( 'possoft_payments_types', 'possoft_registers_history.payment_type_id', '=', 'possoft_payments_types.id' )
-                    ->where( 'possoft_registers_history.id', '>=', $lastOpening->id );
+                    ->leftJoin( 'nexopos_payments_types', 'nexopos_registers_history.payment_type_id', '=', 'nexopos_payments_types.id' )
+                    ->where( 'nexopos_registers_history.id', '>=', $lastOpening->id );
 
                 $history = $historyRequest->get();
 
@@ -221,11 +221,11 @@ class CashRegistersController extends DashboardController
                     ] )
                     ->select( [
                         DB::raw( 'SUM(value) as value' ),
-                        'possoft_payments_types.label as label',
+                        'nexopos_payments_types.label as label',
                         'action',
-                        'possoft_registers_history.description as description',
+                        'nexopos_registers_history.description as description',
                     ] )
-                    ->groupBy( [ 'action', 'possoft_payments_types.label', 'description' ] )
+                    ->groupBy( [ 'action', 'nexopos_payments_types.label', 'description' ] )
                     ->get()
                     ->map( function ( $group ) {
                         $color = 'info';

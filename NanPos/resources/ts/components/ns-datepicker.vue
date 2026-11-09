@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="picker">
         <div class="ns-button">
             <button @click="visible = !visible" class="rounded cursor-pointer border shadow w-full px-1 py-1 flex items-center text-font">

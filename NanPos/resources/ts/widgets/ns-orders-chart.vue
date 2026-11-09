@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <article id="ns-orders-chart" class="ns-box flex h-full min-h-0 flex-auto flex-col overflow-hidden rounded-lg shadow">
         <header class="ns-box-header flex shrink-0 items-center justify-between gap-3 border-b border-box-edge p-2">
             <div class="min-w-0">

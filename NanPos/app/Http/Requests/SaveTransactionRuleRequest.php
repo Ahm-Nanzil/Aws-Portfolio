@@ -42,7 +42,7 @@ class SaveTransactionRuleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'rule.id' => [ 'nullable', 'integer', 'exists:possoft_transactions_actions_rules,id' ],
+            'rule.id' => [ 'nullable', 'integer', 'exists:nexopos_transactions_actions_rules,id' ],
             'rule.on' => [ 'required', 'string', 'max:255' ],
             'rule.active' => [ 'sometimes', 'boolean' ],
             'rule.lines' => [ 'required', 'array', 'min:2' ],

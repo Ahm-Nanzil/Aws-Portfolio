@@ -129,7 +129,7 @@ class TransactionService
                 identifier: 'accounting-reflection-transaction-misconfiguration',
                 url: ns()->route( 'ns.dashboard.transactions-rules' ),
                 description: __( 'Unable to reflect the transaction as the account type is not found.' )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
     }
 
@@ -144,7 +144,7 @@ class TransactionService
             $reflection->delete();
 
             /**
-             * We'll instruct PosSOFT to perform
+             * We'll instruct NexoPOS to perform
              * a backend jobs to update the report.
              */
             ShouldRefreshReportEvent::dispatch( $transactionHistory->created_at );
@@ -759,14 +759,14 @@ class TransactionService
                     identifier: 'accounting-procurement-misconfiguration',
                     url: ns()->route( 'ns.dashboard.transactions-rules' ),
                     description: __( 'Unable to record accounting transactions for paid procurement. Until the accounts rules are set, records are skipped.' )
-                )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+                )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
             } else {
                 return ns()->notification->create(
                     title: __( 'Accounting Misconfiguration' ),
                     identifier: 'accounting-procurement-misconfiguration',
                     url: ns()->route( 'ns.dashboard.transactions-rules' ),
                     description: __( 'Unable to record accounting transactions for unpaid procurement. Until the accounts rules are set, records are skipped.' )
-                )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+                )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
             }
         }
 
@@ -779,7 +779,7 @@ class TransactionService
                 identifier: 'accounting-procurement-misconfiguration',
                 url: ns()->route( 'ns.dashboard.transactions-rules' ),
                 description: sprintf( __( 'Unable to record accounting transactions as the account set to the rule assigned to the action "%s" can\'t be found.' ), $this->getActionLabel( $rule->on ) )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         if ( ! $offset instanceof TransactionAccount ) {
@@ -788,7 +788,7 @@ class TransactionService
                 identifier: 'accounting-procurement-misconfiguration',
                 url: ns()->route( 'ns.dashboard.transactions-rules' ),
                 description: sprintf( __( 'Unable to record accounting transactions as the offset account set to the rule assigned to the action "%s" can\'t be found.' ), $this->getActionLabel( $rule->on ) )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $operation = $accounts[ $account->category_identifier ][ $rule->action ];
@@ -823,7 +823,7 @@ class TransactionService
                     __( 'Unable to record accounting transactions for the order %s which was initially unpaid and then paid. No rule was set for this.' ),
                     $order->code
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $accounts = config( 'accounting' )[ 'accounts' ];
@@ -839,7 +839,7 @@ class TransactionService
                     $order->code,
                     $this->getActionLabel( $rule->on )
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $operation = $accounts[ $account->category_identifier ][ $rule->action ];
@@ -870,7 +870,7 @@ class TransactionService
                     __( 'Unable to record accounting transactions for the order %s which was initially unpaid and then voided. No rule was set for this.' ),
                     $order->code
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $accounts = config( 'accounting' )[ 'accounts' ];
@@ -886,7 +886,7 @@ class TransactionService
                     $order->code,
                     $this->getActionLabel( $rule->on )
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $operation = $accounts[ $account->category_identifier ][ $rule->action ];
@@ -927,7 +927,7 @@ class TransactionService
                     __( 'Unable to record accounting transactions for the order %s which was initially paid and then voided. No rule was set for this.' ),
                     $order->code
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $accounts = config( 'accounting' )[ 'accounts' ];
@@ -943,7 +943,7 @@ class TransactionService
                     $order->code,
                     $this->getActionLabel( $rule->on )
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         $operation = $accounts[ $account->category_identifier ][ $rule->action ];
@@ -1021,7 +1021,7 @@ class TransactionService
                     __( 'Unable to record accounting transactions for the order %s. No rule was set for this.' ),
                     $order->code
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
 
             return [
                 'status' => 'error',
@@ -1042,7 +1042,7 @@ class TransactionService
                     $order->code,
                     $this->getActionLabel( $rule->on )
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
 
             return [
                 'status' => 'error',
@@ -1090,7 +1090,7 @@ class TransactionService
                     __( 'Unable to record COGS transactions for order %s. Until the accounts rules are set, records are skipped.' ),
                     $order->code
                 )
-            )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+            )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
         }
 
         /**
@@ -1111,7 +1111,7 @@ class TransactionService
                         $order->code,
                         $this->getActionLabel( $rule->on )
                     )
-                )->dispatchForPermissions( [ 'possoft.create.transactions-account' ] );
+                )->dispatchForPermissions( [ 'nexopos.create.transactions-account' ] );
             }
 
             $operation = $accounts[ $account->category_identifier ][ $rule->action ];
@@ -1176,8 +1176,8 @@ class TransactionService
             ];
         } else {
             $warningMessage = sprintf(
-                __( 'Some expense type are disabled as PosSOFT is not able to <a target="_blank" href="%s">perform asynchronous requests</a>.' ),
-                'https://my.possoft.com/en/documentation/troubleshooting/workers-or-async-requests-disabled'
+                __( 'Some expense type are disabled as NexoPOS is not able to <a target="_blank" href="%s">perform asynchronous requests</a>.' ),
+                'https://my.nexopos.com/en/documentation/troubleshooting/workers-or-async-requests-disabled'
             );
         }
 

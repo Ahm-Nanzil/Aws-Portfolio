@@ -1,4 +1,4 @@
 interface:
-  display_name: "PosSOFT Theming"
-  short_description: "Build theme-aware PosSOFT UI components"
-  default_prompt: "Use $possoft-theming to build a PosSOFT component that follows every supported theme."
+  display_name: "NexoPOS Theming"
+  short_description: "Build theme-aware NexoPOS UI components"
+  default_prompt: "Use $nexopos-theming to build a NexoPOS component that follows every supported theme."

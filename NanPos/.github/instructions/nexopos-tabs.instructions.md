@@ -1,6 +1,6 @@
-# PosSOFT ns-tabs and ns-tabs-item Usage Guide
+# NexoPOS ns-tabs and ns-tabs-item Usage Guide
 
-The `ns-tabs` and `ns-tabs-item` components work together to create a tabbed interface in PosSOFT. The `ns-tabs` component acts as the container that manages tab state and navigation, while `ns-tabs-item` components represent individual tab content.
+The `ns-tabs` and `ns-tabs-item` components work together to create a tabbed interface in NexoPOS. The `ns-tabs` component acts as the container that manages tab state and navigation, while `ns-tabs-item` components represent individual tab content.
 
 ## Component Overview
 
@@ -273,7 +273,7 @@ export default {
 </script>
 ```
 
-## Real-World Examples from PosSOFT
+## Real-World Examples from NexoPOS
 
 ### Product Preview Popup
 ```vue
@@ -398,4 +398,4 @@ methods: {
 </script>
 ```
 
-This guide covers the comprehensive usage of `ns-tabs` and `ns-tabs-item` components in PosSOFT, from basic implementation to advanced patterns and real-world examples.
+This guide covers the comprehensive usage of `ns-tabs` and `ns-tabs-item` components in NexoPOS, from basic implementation to advanced patterns and real-world examples.

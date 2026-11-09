@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div ref="dropZone" class="ns-drop-zone mb-4" @dragover.prevent>
         <slot></slot> <!-- To display anything inside the drop zone -->
     </div>

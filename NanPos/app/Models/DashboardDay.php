@@ -22,7 +22,7 @@ class DashboardDay extends NsModel
 
     protected $fillable = [ 'range_starts', 'range_ends', 'day_of_year' ];
 
-    protected $table = 'possoft_' . 'dashboard_days';
+    protected $table = 'nexopos_' . 'dashboard_days';
 
     protected $dispatchEvents = [
         'created' => DashboardDayAfterCreatedEvent::class,

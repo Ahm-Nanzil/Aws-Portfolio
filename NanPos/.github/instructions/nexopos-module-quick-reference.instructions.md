@@ -1,4 +1,4 @@
-# PosSOFT Module Quick Reference
+# NexoPOS Module Quick Reference
 
 ## Asset Loading (Critical!)
 
@@ -87,7 +87,7 @@ class YourModuleServiceProvider extends ServiceProvider
 }
 ```
 
-Do not manually register module event listeners in the service provider. PosSOFT discovers listener classes under `Listeners/` when `handle()` type-hints the event; verify with `php artisan event:list`.
+Do not manually register module event listeners in the service provider. NexoPOS discovers listener classes under `Listeners/` when `handle()` type-hints the event; verify with `php artisan event:list`.
 
 ## Blade View Template
 
@@ -151,12 +151,12 @@ declare const nsPromptPopup: any;
 
 ## vite.config.js Template
 
-Always use the shared PosSOFT Vue runtime so the module does not ship a second Vue copy. Prefer real `.vue` SFCs and `import { ref } from 'vue'`.
+Always use the shared NexoPOS Vue runtime so the module does not ship a second Vue copy. Prefer real `.vue` SFCs and `import { ref } from 'vue'`.
 
 ```javascript
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineNexoPOSModuleConfig } from '../../resources/vite-possoft-module.js';
+import { defineNexoPOSModuleConfig } from '../../resources/vite-nexopos-module.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -224,7 +224,7 @@ Do not prefix core hooks (`ns-button`, `ns-box`). Prefer semantic tokens (`foo:b
 
 **Active fills:** `bg-*-secondary` + `text-white` — never `bg-*-primary` as a solid active background.
 
-Agent detail: `.agents/skills/create-possoft-module/references/dashboard-vue-mounting.md`
+Agent detail: `.agents/skills/create-nexopos-module/references/dashboard-vue-mounting.md`
 
 ## API Controller Template
 
@@ -249,7 +249,7 @@ class YourController extends Controller
 
 ## API Routes Template
 
-Route should not be prefixed with "api" as PosSOFT already prefix all api.php files routes with "api".
+Route should not be prefixed with "api" as NexoPOS already prefix all api.php files routes with "api".
 
 ```php
 <?php
@@ -281,7 +281,7 @@ class RenderFooterListener
 }
 ```
 
-## Common PosSOFT APIs
+## Common NexoPOS APIs
 
 ### HTTP Client
 ```typescript

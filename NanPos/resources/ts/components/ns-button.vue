@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="flex ns-button" :class="type ? type : 'default'">
         <button :disabled="isDisabled" v-if="!link && !href" class="flex items-center justify-center py-2 px-3 font-semibold"><slot></slot></button>
         <a v-if="href" :target="target" :href="href" class="flex items-center justify-center py-2 px-3 font-semibold"><slot></slot></a>

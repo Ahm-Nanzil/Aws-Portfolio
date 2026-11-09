@@ -14,17 +14,17 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( Schema::hasTable( 'possoft_transacations' ) ) {
-            Schema::table( 'possoft_transactions', function ( Blueprint $table ) {
-                if ( ! Schema::hasColumn( 'possoft_transactions', 'type' ) ) {
+        if ( Schema::hasTable( 'nexopos_transacations' ) ) {
+            Schema::table( 'nexopos_transactions', function ( Blueprint $table ) {
+                if ( ! Schema::hasColumn( 'nexopos_transactions', 'type' ) ) {
                     $table->string( 'type' )->nullable();
                 }
 
-                if ( ! Schema::hasColumn( 'possoft_transactions', 'scheduled_date' ) ) {
+                if ( ! Schema::hasColumn( 'nexopos_transactions', 'scheduled_date' ) ) {
                     $table->dateTime( 'scheduled_date' )->nullable();
                 }
 
-                if ( ! Schema::hasColumn( 'possoft_transactions', 'account_id' ) ) {
+                if ( ! Schema::hasColumn( 'nexopos_transactions', 'account_id' ) ) {
                     $table->integer( 'account_id' )->nullable();
                 }
             } );
@@ -50,8 +50,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table( 'possoft_transactions', function ( Blueprint $table ) {
-            if ( Schema::hasColumn( 'possoft_transactions', 'type' ) ) {
+        Schema::table( 'nexopos_transactions', function ( Blueprint $table ) {
+            if ( Schema::hasColumn( 'nexopos_transactions', 'type' ) ) {
                 $table->dropColumn( 'type' );
             }
         } );

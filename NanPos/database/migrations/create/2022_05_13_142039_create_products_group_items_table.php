@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_products_subitems' ) ) {
-            Schema::create( 'possoft_products_subitems', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_products_subitems' ) ) {
+            Schema::create( 'nexopos_products_subitems', function ( Blueprint $table ) {
                 $table->id();
                 $table->integer( 'parent_id' );
                 $table->integer( 'product_id' );
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_products_subitems' );
+        Schema::dropIfExists( 'nexopos_products_subitems' );
     }
 };

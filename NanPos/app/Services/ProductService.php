@@ -850,8 +850,8 @@ class ProductService
                             ] ),
                             description: sprintf( __( 'Unable to generate a scale PLU for %s: %s' ), $product->name, $e->getMessage() ),
                         )->dispatchForPermissions( [
-                            'possoft.create.products',
-                            'possoft.update.products',
+                            'nexopos.create.products',
+                            'nexopos.update.products',
                         ] );
                     }
                 }

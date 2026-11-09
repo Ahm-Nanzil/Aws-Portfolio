@@ -1,4 +1,4 @@
-declare const ns;
+﻿declare const ns;
 declare const nsHttpClient;
 declare const RxJS;
 class NsLanguage {
@@ -14,13 +14,13 @@ class NsLanguage {
         const promises  =   [];
 
         /**
-         * the language for PosSOFT is
+         * the language for PosSoft is
          * fetched in priority
          */
-        promises.push( this.fetchLang( 'PosSOFT', ns.langFiles ) );
+        promises.push( this.fetchLang( 'NexoPOS', ns.langFiles ) );
         
         for( let namespace in ns.langFiles ) {
-            if ( namespace !== 'PosSOFT' ) {
+            if ( namespace !== 'NexoPOS' ) {
                 promises.push( this.fetchLang( namespace, ns.langFiles ) );
             }
         }

@@ -20,7 +20,7 @@ class HoldOrderCrud extends CrudService
      *
      * @param string $table
      */
-    protected $table = 'possoft_orders';
+    protected $table = 'nexopos_orders';
 
     /**
      * default identifier
@@ -50,7 +50,7 @@ class HoldOrderCrud extends CrudService
      */
     protected $permissions = [
         'create' => false,
-        'read' => 'possoft.read.orders',
+        'read' => 'nexopos.read.orders',
         'update' => false,
         'delete' => false,
     ];
@@ -61,8 +61,8 @@ class HoldOrderCrud extends CrudService
      * @param  array
      */
     public $relations = [
-        [ 'possoft_users as customer', 'customer.id', '=', 'possoft_orders.customer_id' ],
-        [ 'possoft_users as user', 'possoft_orders.author_id', '=', 'user.id' ],
+        [ 'nexopos_users as customer', 'customer.id', '=', 'nexopos_orders.customer_id' ],
+        [ 'nexopos_users as user', 'nexopos_orders.author_id', '=', 'user.id' ],
     ];
 
     /**
@@ -79,7 +79,7 @@ class HoldOrderCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [
@@ -448,7 +448,7 @@ class HoldOrderCrud extends CrudService
                 'width' => '120px',
                 '$sort' => false,
             ],
-            'possoft_customers_name' => [
+            'nexopos_customers_name' => [
                 'label' => __( 'Customer' ),
                 '$direction' => '',
                 '$sort' => false,

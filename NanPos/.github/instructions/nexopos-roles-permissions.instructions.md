@@ -2,13 +2,13 @@
 applyTo: '**'
 ---
 
-# PosSOFT Permission and Role System Guide
+# NexoPOS Permission and Role System Guide
 
-This comprehensive guide covers the Permission and Role system in PosSOFT, including all models, methods, and best practices for implementing access control.
+This comprehensive guide covers the Permission and Role system in NexoPOS, including all models, methods, and best practices for implementing access control.
 
 ## Overview
 
-PosSOFT implements a robust Role-Based Access Control (RBAC) system that provides fine-grained permission management through several interconnected models:
+NexoPOS implements a robust Role-Based Access Control (RBAC) system that provides fine-grained permission management through several interconnected models:
 
 - **Permission**: Defines specific actions or capabilities
 - **Role**: Groups of permissions assigned to users
@@ -22,7 +22,7 @@ PosSOFT implements a robust Role-Based Access Control (RBAC) system that provide
 ### Permission Model
 
 **Location**: `app/Models/Permission.php`  
-**Table**: `possoft_permissions`
+**Table**: `nexopos_permissions`
 
 #### Properties
 ```php
@@ -90,14 +90,14 @@ $permission->removeFromRoles();
 ### Role Model
 
 **Location**: `app/Models/Role.php`  
-**Table**: `possoft_roles`
+**Table**: `nexopos_roles`
 
 #### Constants
 ```php
 const ADMIN = 'admin';                      // Main admin role
-const STOREADMIN = 'possoft.store.administrator';  // Store manager
-const STORECASHIER = 'possoft.store.cashier';      // Store cashier
-const STORECUSTOMER = 'possoft.store.customer';    // Store customer
+const STOREADMIN = 'nexopos.store.administrator';  // Store manager
+const STORECASHIER = 'nexopos.store.cashier';      // Store cashier
+const STORECUSTOMER = 'nexopos.store.customer';    // Store customer
 const USER = 'user';                        // Base user role (do not auto-grant new permissions by default)
 ```
 
@@ -186,7 +186,7 @@ $permissions = $admin->permissions()->get();
 ### User Model
 
 **Location**: `app/Models/User.php`  
-**Table**: `possoft_users`
+**Table**: `nexopos_users`
 
 #### Key Methods
 
@@ -227,7 +227,7 @@ $canCreate = $user->allowedTo('create.products');
 ### PermissionAccess Model
 
 **Location**: `app/Models/PermissionAccess.php`  
-**Table**: `possoft_permissions_access`
+**Table**: `nexopos_permissions_access`
 
 Used for temporary permission access requests in POS systems.
 
@@ -330,7 +330,7 @@ Handles temporary permission approval system for POS actions.
 #### Usage
 ```php
 Route::post('/pos/action', [PosController::class, 'action'])
-    ->middleware('admin.approval:possoft.cart.product-price');
+    ->middleware('admin.approval:nexopos.cart.product-price');
 ```
 
 ## Permission Management Patterns
@@ -359,9 +359,9 @@ foreach ($resources as $resource) {
 For complex features, use namespaced permissions:
 
 ```php
-$permission = Permission::firstOrNew(['namespace' => 'possoft.pos.edit-purchase-price']);
+$permission = Permission::firstOrNew(['namespace' => 'nexopos.pos.edit-purchase-price']);
 $permission->name = 'Edit Purchase Price';
-$permission->namespace = 'possoft.pos.edit-purchase-price';
+$permission->namespace = 'nexopos.pos.edit-purchase-price';
 $permission->description = 'Allow editing purchase price in POS';
 $permission->save();
 ```
@@ -385,7 +385,7 @@ if ( $role instanceof Role ) {
 $role = Role::namespace( 'cashier' );
 
 if ( $role instanceof Role ) {
-    $posPermissions = Permission::includes( 'possoft.pos.' )->get();
+    $posPermissions = Permission::includes( 'nexopos.pos.' )->get();
     $role->addPermissions( $posPermissions->pluck( 'namespace' ) );
 }
 ```
@@ -411,14 +411,14 @@ delete.{resource}
 
 **Module-Specific Pattern:**
 ```
-possoft.{module}.{action}
+nexopos.{module}.{action}
 {module}.{feature}.{action}
 ```
 
 **Examples:**
 ```
 create.products
-possoft.pos.edit-purchase-price
+nexopos.pos.edit-purchase-price
 multistore.settings.manage
 ```
 
@@ -583,7 +583,7 @@ $widgets->each(function ($widget) {
 // Create temporary access request
 $access = new PermissionAccess();
 $access->requester_id = auth()->id();
-$access->permission = 'possoft.cart.product-price';
+$access->permission = 'nexopos.cart.product-price';
 $access->status = PermissionAccess::PENDING;
 $access->expired_at = now()->addMinutes(5);
 $access->save();
@@ -613,4 +613,4 @@ $users->each(function ($user) {
 });
 ```
 
-This comprehensive guide covers all aspects of the PosSOFT Permission and Role system, providing developers with the knowledge needed to implement robust access control in their applications.
+This comprehensive guide covers all aspects of the NexoPOS Permission and Role system, providing developers with the knowledge needed to implement robust access control in their applications.

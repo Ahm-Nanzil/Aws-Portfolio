@@ -1,4 +1,4 @@
-export interface Customer {
+﻿export interface Customer {
     first_name: string;
     id: number;
     owed_amount?: number;

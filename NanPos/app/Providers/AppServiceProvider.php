@@ -326,7 +326,7 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function loadConfiguration()
     {
-        config( [ 'possoft.orders.statuses' => [
+        config( [ 'nexopos.orders.statuses' => [
             Order::PAYMENT_HOLD => __( 'Hold' ),
             Order::PAYMENT_UNPAID => __( 'Unpaid' ),
             Order::PAYMENT_PARTIALLY => __( 'Partially Paid' ),
@@ -338,7 +338,7 @@ class AppServiceProvider extends ServiceProvider
             Order::PAYMENT_PARTIALLY_DUE => __( 'Partially Due' ),
         ]] );
 
-        config( [ 'possoft.orders.types' => Hook::filter( 'ns-orders-types', [
+        config( [ 'nexopos.orders.types' => Hook::filter( 'ns-orders-types', [
             'takeaway' => [
                 'identifier' => 'takeaway',
                 'label' => __( 'Take Away' ),
@@ -354,13 +354,13 @@ class AppServiceProvider extends ServiceProvider
         ] )] );
 
         config( [
-            'possoft.orders.types-labels' => collect( config( 'possoft.orders.types' ) )
+            'nexopos.orders.types-labels' => collect( config( 'nexopos.orders.types' ) )
                 ->mapWithKeys( fn( $type ) => [ $type[ 'identifier' ] => $type[ 'label' ] ] )
                 ->toArray(),
         ] );
 
         config( [
-            'possoft.orders.products.refunds' => [
+            'nexopos.orders.products.refunds' => [
                 OrderProductRefund::CONDITION_DAMAGED => __( 'Damaged' ),
                 OrderProductRefund::CONDITION_UNSPOILED => __( 'Good Condition' ),
             ],

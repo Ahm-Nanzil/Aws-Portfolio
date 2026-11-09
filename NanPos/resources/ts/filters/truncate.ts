@@ -1,4 +1,4 @@
-export const nsTruncate   =   (value, length) => {
+﻿export const nsTruncate   =   (value, length) => {
     if ( !value ) {
         return '';
     } 

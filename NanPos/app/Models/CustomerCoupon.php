@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * This class is made to ensure that PosSOFT can count coupon usage
+ * This class is made to ensure that NexoPOS can count coupon usage
  * for a specific customer. Additionnaly when a reward system issue a coupon for a customer, it creates an instance
  * of this class which can there after be used by the customer.
  */
@@ -23,7 +23,7 @@ class CustomerCoupon extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'customers_coupons';
+    protected $table = 'nexopos_' . 'customers_coupons';
 
     public $casts = [
         'active' => 'boolean',

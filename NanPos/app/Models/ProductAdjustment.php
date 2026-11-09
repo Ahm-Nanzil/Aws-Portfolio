@@ -15,7 +15,7 @@ use Carbon\Carbon;
  */
 class ProductAdjustment extends NsModel
 {
-    protected $table = 'possoft_' . 'products_adjustments';
+    protected $table = 'nexopos_' . 'products_adjustments';
 
     const STATUS_DRAFT = 'draft';
 

@@ -69,7 +69,7 @@ trait WithProviderRouteTest
 
         /**
          * GET /api/providers — list all providers
-         * Requires: possoft.read.providers
+         * Requires: nexopos.read.providers
          */
         $this->withSession( $this->app['session']->all() )
             ->json( 'GET', 'api/providers' )
@@ -77,7 +77,7 @@ trait WithProviderRouteTest
 
         /**
          * GET /api/providers/{id}/procurements — list procurements for a provider
-         * Requires: possoft.read.providers
+         * Requires: nexopos.read.providers
          */
         $this->withSession( $this->app['session']->all() )
             ->json( 'GET', 'api/providers/' . $providerId . '/procurements' )
@@ -85,7 +85,7 @@ trait WithProviderRouteTest
 
         /**
          * DELETE /api/providers/{id} — delete a provider
-         * Requires: possoft.delete.providers
+         * Requires: nexopos.delete.providers
          */
         $this->withSession( $this->app['session']->all() )
             ->json( 'DELETE', 'api/providers/' . $providerId )

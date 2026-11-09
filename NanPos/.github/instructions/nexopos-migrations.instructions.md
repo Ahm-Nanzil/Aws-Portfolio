@@ -2,9 +2,9 @@
 applyTo: '**'
 ---
 
-# PosSOFT Module Migration Guide
+# NexoPOS Module Migration Guide
 
-This document provides comprehensive guidelines for creating database migrations in PosSOFT modules, following Laravel 11+ conventions while adhering to PosSOFT best practices.
+This document provides comprehensive guidelines for creating database migrations in NexoPOS modules, following Laravel 11+ conventions while adhering to NexoPOS best practices.
 
 ## Migration File Naming Convention
 
@@ -94,9 +94,9 @@ return new class extends Migration
 - ✅ **SHOULD** use `return new class extends Migration` pattern
 - ✅ Both methods should have proper type hints (`: void`)
 
-### How PosSOFT Discovers Migrations
+### How NexoPOS Discovers Migrations
 
-PosSOFT automatically discovers and runs module migrations using this process:
+NexoPOS automatically discovers and runs module migrations using this process:
 
 1. **File Discovery**: Scans the `Migrations/` directory in your module
 2. **Anonymous Class Detection**: Requires the migration file to check if it returns an object
@@ -110,7 +110,7 @@ PosSOFT automatically discovers and runs module migrations using this process:
 
 ### Legacy Named Class Support
 
-For backward compatibility, PosSOFT still supports old-style named migration classes:
+For backward compatibility, NexoPOS still supports old-style named migration classes:
 
 ```php
 <?php
@@ -197,7 +197,7 @@ public function up(): void
 ```php
 $table->foreign('user_id')
     ->references('id')
-    ->on('possoft_users')
+    ->on('nexopos_users')
     ->onDelete('cascade'); // AVOID THIS
 ```
 
@@ -205,7 +205,7 @@ $table->foreign('user_id')
 ```php
 $table->foreign('user_id')
     ->references('id')
-    ->on('possoft_users');
+    ->on('nexopos_users');
 
 // Handle deletion in model observer or service layer
 ```
@@ -314,7 +314,7 @@ return new class extends Migration
                 // Foreign key without cascade
                 $table->foreign('author_id')
                     ->references('id')
-                    ->on('possoft_users');
+                    ->on('nexopos_users');
 
                 // Indexes
                 $table->index('slug');
@@ -632,7 +632,7 @@ Schema::create('mymodule_settings', function (Blueprint $table) {
 });
 
 // ❌ Bad: Modifying core tables directly
-Schema::table('possoft_users', function (Blueprint $table) {
+Schema::table('nexopos_users', function (Blueprint $table) {
     // Avoid modifying core tables when possible
 });
 ```
@@ -788,4 +788,4 @@ When creating a migration, ensure you:
 - ✅ Use module-prefixed table names
 - ✅ Document complex migrations with comments
 
-Following these guidelines ensures your migrations are safe, maintainable, and compatible with PosSOFT architecture.
+Following these guidelines ensures your migrations are safe, maintainable, and compatible with NexoPOS architecture.

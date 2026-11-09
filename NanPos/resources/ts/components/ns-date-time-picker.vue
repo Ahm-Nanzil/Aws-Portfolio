@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="picker mb-2">
         <label v-if="field && field.label && field.label.length > 0" class="block leading-5 font-medium text-font">{{ field.label }}</label>
         <div class="ns-button">

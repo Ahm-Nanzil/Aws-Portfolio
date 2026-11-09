@@ -1,4 +1,4 @@
-/*global window module */
+﻿/*global window module */
 /**
  * @license countdown.js v2.6.1 http://countdownjs.org
  * Copyright (c)2006-2014 Stephen M. McKamey.

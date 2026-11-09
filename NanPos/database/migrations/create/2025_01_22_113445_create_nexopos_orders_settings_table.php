@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if ( ! Schema::hasTable( 'possoft_orders_settings' ) ) {
-            Schema::create( 'possoft_orders_settings', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_orders_settings' ) ) {
+            Schema::create( 'nexopos_orders_settings', function ( Blueprint $table ) {
                 $table->id();
                 $table->integer( 'order_id' );
                 $table->string( 'key' );
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists( 'possoft_orders_settings' );
+        Schema::dropIfExists( 'nexopos_orders_settings' );
     }
 };

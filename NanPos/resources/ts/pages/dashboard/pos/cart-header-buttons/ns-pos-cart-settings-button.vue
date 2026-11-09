@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-button">
         <button @click="defineOrderSettings()" class="w-full h-10 px-3 outline-hidden flex items-center">
             <i class="las la-tools"></i>

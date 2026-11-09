@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box rounded shadow overflow-hidden transition-all duration-100">
         <div class="flex items-center justify-center py-10" v-if="fields.length === 0">
             <ns-spinner border="4" size="16"></ns-spinner>

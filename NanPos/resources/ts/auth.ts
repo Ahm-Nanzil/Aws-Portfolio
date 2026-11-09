@@ -1,4 +1,4 @@
-import * as components from './components/components';
+﻿import * as components from './components/components';
 
 import { NsHotPress }       from './libraries/ns-hotpress';
 import { createApp } from 'vue/dist/vue.esm-bundler';

@@ -28,7 +28,7 @@ class RolesCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_roles';
+    protected $table = 'nexopos_roles';
 
     /**
      * base route name
@@ -59,7 +59,7 @@ class RolesCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [];
@@ -152,8 +152,8 @@ class RolesCrud extends CrudService
                             'type' => 'text',
                             'name' => 'namespace',
                             'label' => __( 'Namespace' ),
-                            'validation' => $entry === null ? 'unique:possoft_roles,namespace' : [
-                                Rule::unique( 'possoft_roles', 'namespace' )->ignore( $entry->id ),
+                            'validation' => $entry === null ? 'unique:nexopos_roles,namespace' : [
+                                Rule::unique( 'nexopos_roles', 'namespace' )->ignore( $entry->id ),
                             ],
                             'description' => __( 'Should be a unique value with no spaces or special character' ),
                             'value' => $entry->namespace ?? '',

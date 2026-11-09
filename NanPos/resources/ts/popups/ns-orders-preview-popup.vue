@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { nsHttpClient, nsSnackBar } from "~/bootstrap";
 import { nsCurrency } from "~/filters/currency";
 import { forkJoin } from "rxjs";

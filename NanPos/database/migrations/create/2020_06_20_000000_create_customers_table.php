@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_customers_addresses' ) ) {
-            Schema::createIfMissing( 'possoft_customers_addresses', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_customers_addresses' ) ) {
+            Schema::createIfMissing( 'nexopos_customers_addresses', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'customer_id' );
                 $table->string( 'type' ); // either "billing" | "shipping"
@@ -38,8 +38,8 @@ return new class extends Migration
             } );
         }
 
-        if ( ! Schema::hasTable( 'possoft_customers_account_history' ) ) {
-            Schema::createIfMissing( 'possoft_customers_account_history', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_customers_account_history' ) ) {
+            Schema::createIfMissing( 'nexopos_customers_account_history', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'customer_id' );
                 $table->integer( 'order_id' )->nullable();
@@ -61,7 +61,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_customers_addresses' );
-        Schema::dropIfExists( 'possoft_customers_account_history' );
+        Schema::dropIfExists( 'nexopos_customers_addresses' );
+        Schema::dropIfExists( 'nexopos_customers_account_history' );
     }
 };

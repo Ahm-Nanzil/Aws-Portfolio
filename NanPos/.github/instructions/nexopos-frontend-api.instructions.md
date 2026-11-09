@@ -2,17 +2,17 @@
 applyTo: '**'
 ---
 
-# PosSOFT Frontend API and Global Objects Guide
+# NexoPOS Frontend API and Global Objects Guide
 
-This document describes the global JavaScript/TypeScript objects and APIs available in PosSOFT frontend code, particularly in Vue components and TypeScript files.
+This document describes the global JavaScript/TypeScript objects and APIs available in NexoPOS frontend code, particularly in Vue components and TypeScript files.
 
 ## Global Window Object Structure
 
-PosSOFT exposes several objects on the `window` global scope that are accessible throughout the application.
+NexoPOS exposes several objects on the `window` global scope that are accessible throughout the application.
 
 ### window.ns
 
-The main PosSOFT namespace object containing core system information.
+The main NexoPOS namespace object containing core system information.
 
 ```typescript
 interface Window {
@@ -26,7 +26,7 @@ interface Window {
 #### window.ns.language
 
 **Type**: `string`  
-**Description**: The current language code being used by the PosSOFT system.  
+**Description**: The current language code being used by the NexoPOS system.  
 **Common Values**: `'en'`, `'fr'`, `'es'`, `'de'`, `'ar'`, `'pt'`, `'tr'`, `'km'`, `'it'`, `'nl'`, `'sq'`, `'vi'`
 
 **Usage**:
@@ -57,7 +57,7 @@ function getLocalizedDescription(module: Module): string {
 
 **Type**: Observable-based HTTP client  
 **Description**: RxJS-based HTTP client for making API requests  
-**See**: `.github/instructions/possoft-httpclient.instructions.md`
+**See**: `.github/instructions/nexopos-httpclient.instructions.md`
 
 ```typescript
 declare const nsHttpClient: {
@@ -104,7 +104,7 @@ nsSnackBar.info('Processing your request...');
 
 **Type**: Popup management service  
 **Description**: Show modal popups and dialogs  
-**See**: `.github/instructions/possoft-popup.instructions.md`
+**See**: `.github/instructions/nexopos-popup.instructions.md`
 
 ```typescript
 declare const Popup: {
@@ -137,11 +137,11 @@ nsExtraComponents['my-module-page'] = MyPage;
 <my-module-page></my-module-page>
 ```
 
-Do **not** `createApp(MyPage).mount('#child-of-dashboard-content')`. Core remounts `#dashboard-content` with an empty root that recompiles innerHTML as a static template — UI shows, reactivity dies. See `.agents/skills/create-possoft-module/references/dashboard-vue-mounting.md`.
+Do **not** `createApp(MyPage).mount('#child-of-dashboard-content')`. Core remounts `#dashboard-content` with an empty root that recompiles innerHTML as a static template — UI shows, reactivity dies. See `.agents/skills/create-nexopos-module/references/dashboard-vue-mounting.md`.
 
 ### Global Component Declarations
 
-PosSOFT provides several globally available components that don't need to be imported:
+NexoPOS provides several globally available components that don't need to be imported:
 
 ```typescript
 // Built-in popup components (globally available)
@@ -166,8 +166,8 @@ declare const popupResolver: any;
 ### __() - Core Localization
 
 **Type**: `(key: string) => string`  
-**Description**: Translate keys from core PosSOFT language files  
-**See**: `.github/instructions/possoft-localization.instructions.md`
+**Description**: Translate keys from core NexoPOS language files  
+**See**: `.github/instructions/nexopos-localization.instructions.md`
 
 ```typescript
 declare const __: (key: string) => string;
@@ -192,7 +192,7 @@ const message = __m('Backup Name', 'OpusBackup');
 
 ### Localized Content Pattern
 
-Many objects in PosSOFT, particularly module configurations, use localized content objects instead of plain strings.
+Many objects in NexoPOS, particularly module configurations, use localized content objects instead of plain strings.
 
 **Pattern**:
 ```typescript
@@ -376,7 +376,7 @@ function getLocalizedValue(
 
 ## Module Integration
 
-When creating modules that interact with PosSOFT data:
+When creating modules that interact with NexoPOS data:
 
 1. **Always check for localized content** in descriptions, names, or any user-facing text
 2. **Use `window.ns.language`** to determine the current system language
@@ -418,10 +418,10 @@ export default defineComponent({
 
 ## Related Documentation
 
-- **HTTP Client**: `.github/instructions/possoft-httpclient.instructions.md`
-- **Popup System**: `.github/instructions/possoft-popup.instructions.md`
-- **Localization**: `.github/instructions/possoft-localization.instructions.md`
-- **Module Development**: `.github/instructions/possoft-modules.instructions.md`
+- **HTTP Client**: `.github/instructions/nexopos-httpclient.instructions.md`
+- **Popup System**: `.github/instructions/nexopos-popup.instructions.md`
+- **Localization**: `.github/instructions/nexopos-localization.instructions.md`
+- **Module Development**: `.github/instructions/nexopos-modules.instructions.md`
 
 ## Summary
 

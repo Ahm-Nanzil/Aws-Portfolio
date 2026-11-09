@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-scale-settings-preview">
         <div class="border border-box-edge rounded p-4 bg-box-background">
             <h3 class="font-semibold mb-2 text-fontcolor">{{ __('Configuration Example') }}</h3>

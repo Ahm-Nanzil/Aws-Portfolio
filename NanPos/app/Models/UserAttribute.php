@@ -17,7 +17,7 @@ class UserAttribute extends NsRootModel
 
     public $timestamps = false;
 
-    protected $table = 'possoft_users_attributes';
+    protected $table = 'nexopos_users_attributes';
 
     protected $fillable = [ 'language' ];
 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow-xl rounded overflow-hidden w-[95vw] md:w-[72vw] lg:w-[54vw] xl:w-[42vw] max-h-[92vh] flex flex-col border border-box-edge bg-box-background text-fontcolor">
         <div class="relative border-b border-box-edge bg-box-elevation-background">
             <div v-if="productThumbnail" class="absolute inset-0 opacity-10">

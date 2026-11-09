@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_rewards_system' ) ) {
-            Schema::createIfMissing( 'possoft_rewards_system', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_rewards_system' ) ) {
+            Schema::createIfMissing( 'nexopos_rewards_system', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->integer( 'author_id' );
                 $table->string( 'name' );
@@ -38,8 +38,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_rewards_system' ) ) {
-            Schema::dropIfExists( 'possoft_rewards_system' );
+        if ( Schema::hasTable( 'nexopos_rewards_system' ) ) {
+            Schema::dropIfExists( 'nexopos_rewards_system' );
         }
     }
 };

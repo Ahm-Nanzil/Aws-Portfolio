@@ -1,17 +1,17 @@
 ---
-name: create-possoft-module
+name: create-nexopos-module
 description: >
-  Create, extend, or repair modules for the PosSOFT Laravel application.
+  Create, extend, or repair modules for the NexoPOS Laravel application.
   Use when a request involves scaffolding a module under modules/, module routes,
   controllers, models, migrations, permissions, settings, CRUD, menus, widgets,
   events, view injections, Blade/Vue, module Vite assets, dashboard Vue mounting
   (nsExtraComponents vs createApp), Tailwind module prefixes, POS cart
   (product-row meta, line-extra, unit price, order types, pay queue, cart buttons),
-  or tests while following PosSOFT module conventions.
+  or tests while following NexoPOS module conventions.
   Also use whenever the task is about mastering or extending the live POS cart.
 ---
 
-# Create PosSOFT Modules
+# Create NexoPOS Modules
 
 Build modules that match the current repository rather than relying on generic Laravel package patterns.
 
@@ -21,8 +21,8 @@ Build modules that match the current repository rather than relying on generic L
 2. Identify the module namespace, display name, author, description, version, and required capabilities. Infer low-risk values from the request or existing module; ask only when a choice materially changes the result.
 3. Determine whether to create a module or extend an existing one. Never overwrite an existing module unless the user explicitly requests it.
 4. Search version-specific Laravel documentation before changing Laravel code, as required by the repository instructions.
-5. Read [references/possoft-module-conventions.md](references/possoft-module-conventions.md). Load only the linked `.github/instructions` files relevant to the feature.
-6. **Widget work (mandatory):** read `.github/instructions/possoft-widgets.instructions.md` completely before reading or editing widget PHP, Vue, registration, layout policy, default order, or tests. Inspect `WidgetService`, `ns-dragzone.vue`, and one current widget.
+5. Read [references/nexopos-module-conventions.md](references/nexopos-module-conventions.md). Load only the linked `.github/instructions` files relevant to the feature.
+6. **Widget work (mandatory):** read `.github/instructions/nexopos-widgets.instructions.md` completely before reading or editing widget PHP, Vue, registration, layout policy, default order, or tests. Inspect `WidgetService`, `ns-dragzone.vue`, and one current widget.
 7. **POS work (mandatory):** if the feature touches cart, products on POS, order types, payments, product-row UI, unit price, or once-per-line fees, read the full POS mastery guide: [references/pos-lifecycle.md](references/pos-lifecycle.md).
 8. For `nsHttpClient`, frontend globals, notifications, localization, or module TypeScript declarations, read [references/frontend-apis.md](references/frontend-apis.md).
 9. For module Vue + Tailwind (shared runtime, Tailwind prefix, UI conventions), read [references/module-frontend.md](references/module-frontend.md).
@@ -88,7 +88,7 @@ Full detail, complete examples, and debugging: [references/pos-lifecycle.md](ref
 Use this priority when examples conflict:
 
 1. Working code in a maintained, comparable module
-2. Current framework and PosSOFT APIs in `app/` / `resources/ts/pos-init.ts`
+2. Current framework and NexoPOS APIs in `app/` / `resources/ts/pos-init.ts`
 3. Relevant `.github/instructions/*.instructions.md` guidance
 4. Generic Laravel conventions
 
@@ -109,11 +109,11 @@ php artisan make:module --no-interaction \
 
 Do not pass `--force` without explicit overwrite authorization. Add only directories and files required by the feature; the generator supplies the baseline structure.
 
-For PHP classes not supplied by a PosSOFT generator, use the appropriate `php artisan make:* --no-interaction` command when it supports the target location. Otherwise, follow a sibling module exactly.
+For PHP classes not supplied by a NexoPOS generator, use the appropriate `php artisan make:* --no-interaction` command when it supports the target location. Otherwise, follow a sibling module exactly.
 
 ### Scheduled jobs and the module console kernel
 
-Modules register scheduled work through `Console/Kernel.php`, not `Routes/console.php`. Laravel's application bootstrap calls `withSchedule()` in `bootstrap/app.php`; PosSOFT then includes `bootstrap/modules-schedule.php`, which scans enabled/autoloaded modules and invokes `schedule(Schedule $schedule)` on `Modules\{Namespace}\Console\Kernel`.
+Modules register scheduled work through `Console/Kernel.php`, not `Routes/console.php`. Laravel's application bootstrap calls `withSchedule()` in `bootstrap/app.php`; NexoPOS then includes `bootstrap/modules-schedule.php`, which scans enabled/autoloaded modules and invokes `schedule(Schedule $schedule)` on `Modules\{Namespace}\Console\Kernel`.
 
 Use the generator when adding the kernel:
 
@@ -121,7 +121,7 @@ Use the generator when adding the kernel:
 php artisan modules:kernel ExampleModule --no-interaction
 ```
 
-Define the schedule in the module kernel and keep the method public because PosSOFT calls it from the bootstrap bridge:
+Define the schedule in the module kernel and keep the method public because NexoPOS calls it from the bootstrap bridge:
 
 ```php
 namespace Modules\ExampleModule\Console;
@@ -152,12 +152,12 @@ Build the smallest complete path through the module:
 
 1. Define storage and domain behavior with module-prefixed tables, models, services, and migrations where needed.
 2. Add authorization before exposing operations. Define module permissions, protect server routes or controllers, and keep UI permission checks as a convenience rather than the security boundary. When creating permissions, grant them to `admin` by default (or another explicitly required operational role). Never suggest assigning new permissions to the `user` role by default.
-3. Add request validation, controllers, and routes. Always add `Illuminate\Routing\Middleware\SubstituteBindings` explicitly to module route groups because PosSOFT does not add it automatically. Module `Routes/api.php` is already mounted under `/api`; do not add an `api` prefix inside it.
-4. Integrate through current PosSOFT events, listeners, menus, settings, CRUD APIs, or widgets. Prefer event-based view injection; do not restore removed hook patterns.
-5. Add Blade or Vue UI only when required. Reuse existing PosSOFT components, semantic theme classes, localization helpers, and frontend globals.
+3. Add request validation, controllers, and routes. Always add `Illuminate\Routing\Middleware\SubstituteBindings` explicitly to module route groups because NexoPOS does not add it automatically. Module `Routes/api.php` is already mounted under `/api`; do not add an `api` prefix inside it.
+4. Integrate through current NexoPOS events, listeners, menus, settings, CRUD APIs, or widgets. Prefer event-based view injection; do not restore removed hook patterns.
+5. Add Blade or Vue UI only when required. Reuse existing NexoPOS components, semantic theme classes, localization helpers, and frontend globals.
 6. Add focused PHPUnit coverage for happy paths, authorization or validation failures, and relevant edge cases.
 
-Every visible field created through a PosSOFT form descriptor, `FormInput`, settings page, or CRUD form must include a concise localized `description`. Explain the field's operational effect, units, scope, or consequences instead of merely repeating its label. Use the module localization helper for module-owned descriptions.
+Every visible field created through a NexoPOS form descriptor, `FormInput`, settings page, or CRUD form must include a concise localized `description`. Explain the field's operational effect, units, scope, or consequences instead of merely repeating its label. Use the module localization helper for module-owned descriptions.
 
 Keep business logic out of controllers and listeners when it warrants a service. Use explicit PHP types, Laravel 12 conventions, factories in tests, and existing module namespaces: `Modules\{Namespace}\...`.
 
@@ -165,7 +165,7 @@ Keep business logic out of controllers and listeners when it warrants a service.
 
 - Keep `config.xml`, the module directory, the main module class, PHP namespaces, view namespace, translation namespace, and asset namespace consistent.
 - Use PascalCase for the module namespace and a module-specific lowercase prefix for tables, routes, option keys, and permissions.
-- Always wrap module routes with `SubstituteBindings::class`; PosSOFT route discovery does not apply this middleware automatically. Import `Illuminate\Routing\Middleware\SubstituteBindings` and include it in the route group middleware array for both `Routes/api.php` and `Routes/web.php`:
+- Always wrap module routes with `SubstituteBindings::class`; NexoPOS route discovery does not apply this middleware automatically. Import `Illuminate\Routing\Middleware\SubstituteBindings` and include it in the route group middleware array for both `Routes/api.php` and `Routes/web.php`:
 
 ```php
 use Illuminate\Routing\Middleware\SubstituteBindings;
@@ -183,17 +183,17 @@ Route::middleware([
 - For `SettingsPage::validateForm()` rules, tab fields are posted under their tab identifier. If a field named `ns_example_enabled` lives in a tab with identifier `general`, validate it as `general.ns_example_enabled`; array children use `general.ns_example_ids.*`. Keep field `name` as the option key so `getPlainData()` can flatten it for storage.
 - Use named routes for generated links.
 - **Blade JSON serialization:** never pass an inline multiline array directly to `@json`, such as `@json([ ... ])`; Blade may parse it incorrectly. Assign the array to a PHP variable in an `@php` block, then render `@json($config)`.
-- Use **`__m('Text', 'ModuleNamespace')` for all module-owned strings** (PHP and Vue/TS). Do not wrap copy in `t()` / `translate()` — PosSOFT scans `__m(...)` for translations. Frontend: global `__m` / `window.__m` on dashboard and POS.
+- Use **`__m('Text', 'ModuleNamespace')` for all module-owned strings** (PHP and Vue/TS). Do not wrap copy in `t()` / `translate()` — NexoPOS scans `__m(...)` for translations. Frontend: global `__m` / `window.__m` on dashboard and POS.
 - Treat the live POS `order.type` value as an order-type object. Compare `order.type.identifier`, not `order.type` itself, with an identifier string.
 - **POS product-row meta:** `ns-pos-product-row-components` + `markRaw()` + gate on product flags + `POS.updateProduct`. Prefer Options API string templates for POS-injected components. Reference: `modules/NsAppointments` (`AppointmentsCartMeta.ts` + `pos.ts`).
 - **POS once-per-line fees:** `ns-pos-product-line-extra` (e.g. room). Unit price stays service-only. See [pos-lifecycle.md](references/pos-lifecycle.md#unit-price-vs-once-per-line-extra).
 - **POS cart fields that must reload:** name cart keys like **order product DB columns**; migrate columns; copy from `getData()` in BeforeCreated/BeforeUpdated. Flash `getData()` alone is not durable. See [pos-lifecycle.md § Persist cart fields](references/pos-lifecycle.md#persist-cart-fields-on-order-products-round-trip).
 - **POS add-to-cart:** queue results merge via `productData`; always merge `$quantities` from `productData` when reading sale price.
-- Let PosSOFT discover module routes, migrations, listeners, commands, and providers where current code does so. Do not duplicate registration.
+- Let NexoPOS discover module routes, migrations, listeners, commands, and providers where current code does so. Do not duplicate registration.
 - Do not register console commands or schedules from a module service provider.
 - Make migrations repeat-safe and rollback-safe. Inspect the live schema and comparable migrations before choosing columns or constraints.
 - **Before every migration schema operation, check existence:** use `Schema::hasTable()` before altering or dropping a table, `Schema::hasColumn()` before adding or dropping each column, and `Schema::hasIndex()` before adding or dropping each index. Use `Schema::createIfMissing()` for module tables. Guard columns individually so a migration can recover safely after a previous partial DDL failure; never assume that because one new column exists, the remaining columns or indexes also exist.
-- Avoid cascade deletion where PosSOFT conventions require application-managed cleanup.
+- Avoid cascade deletion where NexoPOS conventions require application-managed cleanup.
 - Use model events only for model-local state. Put broader side effects in listeners, services, or jobs.
 - Do not introduce dependencies or new top-level directories without approval.
 - **Dashboard Vue:** never `createApp()` / `nsCreateApp().mount()` inside `#dashboard-content`. Register on `nsExtraComponents` and use a component tag so the UI is a child of `nsDashboardContent`. See [references/dashboard-vue-mounting.md](references/dashboard-vue-mounting.md).
@@ -229,7 +229,7 @@ Full detail: [references/module-frontend.md](references/module-frontend.md).
    - **Inside `#dashboard-content`:** only `nsExtraComponents['my-page'] = MyPage` + `<my-page>` in Blade. Script in footer inject before `app-init`. **No** nested `createApp`.
    - **Standalone** (no dashboard content root): `nsCreateApp(Page).mount('#root')` is OK.
    - Symptom of the wrong approach: UI visible, clicks/`ref` dead after page load.
-2. **Shared Vue** — `defineNexoPOSModuleConfig` (or `possoftVueRuntime()`). Prefer `.vue` SFCs for dashboard; for **POS cart injection**, prefer Options API + string `template` (see pos-lifecycle dual-Vue note). Never bundle a second Vue.
+2. **Shared Vue** — `defineNexoPOSModuleConfig` (or `nexoposVueRuntime()`). Prefer `.vue` SFCs for dashboard; for **POS cart injection**, prefer Options API + string `template` (see pos-lifecycle dual-Vue note). Never bundle a second Vue.
 3. **Tailwind prefix** — every module CSS entry that imports Tailwind **must** use a short module prefix:
 
 ```css
@@ -238,7 +238,7 @@ Full detail: [references/module-frontend.md](references/module-frontend.md).
 
 Every module-owned utility in markup uses that prefix first: `foo:flex`, `foo:md:grid-cols-2`, `foo:hover:underline`. With theme + breakpoint variants: **`foo:dark:sm:utility`** (prefix → theme/state → breakpoint → utility). Incomplete stacks like `foo:dark:sm` are invalid; always end with the utility.
 
-Do **not** prefix core hooks (`ns-button`, `ns-box`, …). Prefer semantic colors (`foo:bg-box-background`, `foo:text-fontcolor`) over palette/`dark:` for PosSOFT theme compatibility. Bridge semantic roles in module `@theme` so they compile under the prefix.
+Do **not** prefix core hooks (`ns-button`, `ns-box`, …). Prefer semantic colors (`foo:bg-box-background`, `foo:text-fontcolor`) over palette/`dark:` for NexoPOS theme compatibility. Bridge semantic roles in module `@theme` so they compile under the prefix.
 
 **UI polish (required for native look):**
 
@@ -268,7 +268,7 @@ nsExtraComponents['example-module-page'] = Page;
 // modules/ExampleModule/vite.config.js
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineNexoPOSModuleConfig } from '../../resources/vite-possoft-module.js';
+import { defineNexoPOSModuleConfig } from '../../resources/vite-nexopos-module.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

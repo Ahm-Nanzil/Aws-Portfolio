@@ -6,7 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
-    private const PERMISSION = 'possoft.read.categories';
+    private const PERMISSION = 'nexopos.read.categories';
 
     /**
      * Run the migrations.

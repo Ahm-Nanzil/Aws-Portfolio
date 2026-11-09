@@ -118,6 +118,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Permission::where( 'namespace', 'like', '%possoft.%' )->delete();
+        Permission::where( 'namespace', 'like', '%nexopos.%' )->delete();
     }
 };

@@ -24,7 +24,7 @@ class ScaleRangeCrud extends CrudService
     /**
      * Define the base table
      */
-    protected $table = 'possoft_scale_ranges';
+    protected $table = 'nexopos_scale_ranges';
 
     /**
      * Define namespace
@@ -40,10 +40,10 @@ class ScaleRangeCrud extends CrudService
      * Define permissions
      */
     protected $permissions = [
-        'create' => 'possoft.create.products',
-        'read' => 'possoft.read.products',
-        'update' => 'possoft.update.products',
-        'delete' => 'possoft.delete.products',
+        'create' => 'nexopos.create.products',
+        'read' => 'nexopos.read.products',
+        'update' => 'nexopos.update.products',
+        'delete' => 'nexopos.delete.products',
     ];
 
     /**
@@ -100,7 +100,7 @@ class ScaleRangeCrud extends CrudService
             identifier: 'edit',
             type: 'GOTO',
             url: ns()->url( '/dashboard/products/scale-range/edit/' . $entry->id ),
-            permissions: [ 'possoft.update.products' ]
+            permissions: [ 'nexopos.update.products' ]
         );
 
         $entry->action(
@@ -108,7 +108,7 @@ class ScaleRangeCrud extends CrudService
             identifier: 'delete',
             type: 'DELETE',
             url: ns()->url( '/api/crud/ns.scale-range/' . $entry->id ),
-            permissions: [ 'possoft.delete.products' ],
+            permissions: [ 'nexopos.delete.products' ],
             confirm: [
                 'message' => __( 'Would you like to delete this scale range?' ),
             ]

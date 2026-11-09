@@ -32,7 +32,7 @@ class TransactionHistory extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'transactions_histories';
+    protected $table = 'nexopos_' . 'transactions_histories';
 
     const STATUS_ACTIVE = 'active';
 

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box shadow-lg w-95vw md:w-[66.67vw] lg:w-half overflow-hidden">
         <div id="header" class="p-2 flex justify-between items-center ns-box-header">
             <h3 class="font-bold">{{ __( 'Register History' ) }}</h3>

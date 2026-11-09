@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="bg-white rounded-lg shadow-xl w-[95vw] md:w-[60vw] lg:w-[40vw] w-full max-w-md mx-auto md:max-w-sm lg:max-w-md">
         <!-- Header -->
         <div class="flex items-center justify-between p-4 border-b border-gray-200">

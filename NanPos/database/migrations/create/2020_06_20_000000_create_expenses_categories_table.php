@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_transactions_accounts' ) ) {
-            Schema::createIfMissing( 'possoft_transactions_accounts', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_transactions_accounts' ) ) {
+            Schema::createIfMissing( 'nexopos_transactions_accounts', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->string( 'name' );
                 $table->string( 'account' )->default( 0 );
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_transactions_accounts' );
+        Schema::dropIfExists( 'nexopos_transactions_accounts' );
     }
 };

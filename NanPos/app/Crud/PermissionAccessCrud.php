@@ -23,7 +23,7 @@ class PermissionAccessCrud extends CrudService
      *
      * @param string
      */
-    protected $table = 'possoft_permissions_access';
+    protected $table = 'nexopos_permissions_access';
 
     /**
      * default slug
@@ -59,13 +59,13 @@ class PermissionAccessCrud extends CrudService
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      * Other possible combinatsion includes "leftJoin", "rightJoin", "innerJoin"
      *
      * Left Join Example
      * public $relations = [
      *  'leftJoin' => [
-     *      [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     *      [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *  ]
      * ];
      *
@@ -73,8 +73,8 @@ class PermissionAccessCrud extends CrudService
      */
     public $relations = [
         'leftJoin' => [
-            [ 'possoft_users as requester', 'requester.id', '=', 'possoft_permissions_access.requester_id' ],
-            [ 'possoft_users as granter', 'granter.id', '=', 'possoft_permissions_access.granter_id' ],
+            [ 'nexopos_users as requester', 'requester.id', '=', 'nexopos_permissions_access.requester_id' ],
+            [ 'nexopos_users as granter', 'granter.id', '=', 'nexopos_permissions_access.granter_id' ],
         ],
     ];
 
@@ -98,7 +98,7 @@ class PermissionAccessCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

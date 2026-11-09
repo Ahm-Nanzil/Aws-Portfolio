@@ -13,7 +13,7 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsReadOnly]
 class GetCustomerTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.read.customers' ];
+    protected array $permissions = [ 'nexopos.read.customers' ];
 
     protected string $name = 'get_customer';
 

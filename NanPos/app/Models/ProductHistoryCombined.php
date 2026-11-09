@@ -24,7 +24,7 @@ class ProductHistoryCombined extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'products_histories_combined';
+    protected $table = 'nexopos_' . 'products_histories_combined';
 
     public function scopeFor( $query, $for )
     {

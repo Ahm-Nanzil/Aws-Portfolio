@@ -19,7 +19,7 @@ class Unit extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_units';
+    protected $table = 'nexopos_units';
 
     protected $casts = [
         'base_unit' => 'boolean',

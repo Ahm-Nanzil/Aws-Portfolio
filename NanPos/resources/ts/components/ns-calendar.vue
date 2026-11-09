@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div @click="handleCalendarClick()" class="flex bg-box-background flex-col rounded-lg overflow-hidden">
         <div class="flex-auto" v-if="currentView === 'years'">
             <div class="p-2 flex items-center">

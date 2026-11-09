@@ -19,7 +19,7 @@ class UnitGroup extends NsModel
 
     protected $guarded = [];
 
-    protected $table = 'possoft_units_groups';
+    protected $table = 'nexopos_units_groups';
 
     public function setDependencies()
     {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * PosSOFT Controller
+ * NexoPOS Controller
  *
  * @since  1.0
  **/
@@ -124,21 +124,21 @@ class UnitsController extends DashboardController
 
     public function listUnitsGroups()
     {
-        ns()->restrict( [ 'possoft.read.products-units' ] );
+        ns()->restrict( [ 'nexopos.read.products-units' ] );
 
         return UnitGroupCrud::table();
     }
 
     public function listUnits()
     {
-        ns()->restrict( [ 'possoft.read.products-units' ] );
+        ns()->restrict( [ 'nexopos.read.products-units' ] );
 
         return UnitCrud::table();
     }
 
     public function createUnitGroup()
     {
-        ns()->restrict( [ 'possoft.create.products-units' ] );
+        ns()->restrict( [ 'nexopos.create.products-units' ] );
 
         return UnitGroupCrud::form();
     }
@@ -150,21 +150,21 @@ class UnitsController extends DashboardController
      */
     public function editUnitGroup( UnitGroup $group )
     {
-        ns()->restrict( [ 'possoft.update.products-units' ] );
+        ns()->restrict( [ 'nexopos.update.products-units' ] );
 
         return UnitGroupCrud::form( $group );
     }
 
     public function createUnit()
     {
-        ns()->restrict( [ 'possoft.create.products-units' ] );
+        ns()->restrict( [ 'nexopos.create.products-units' ] );
 
         return UnitCrud::form();
     }
 
     public function editUnit( Unit $unit )
     {
-        ns()->restrict( [ 'possoft.update.products-units' ] );
+        ns()->restrict( [ 'nexopos.update.products-units' ] );
 
         return UnitCrud::form( $unit );
     }

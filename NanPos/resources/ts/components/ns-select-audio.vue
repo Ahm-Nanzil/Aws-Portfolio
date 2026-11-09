@@ -1,4 +1,4 @@
-
+﻿
 <script>
 import { __ } from '~/libraries/lang';
 export default {

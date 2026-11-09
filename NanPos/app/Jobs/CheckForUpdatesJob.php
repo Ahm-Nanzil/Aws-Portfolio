@@ -30,12 +30,12 @@ class CheckForUpdatesJob implements ShouldQueue
         try {
             $response = Http::withHeaders( [
                 'Accept' => 'application/vnd.github.v3+json',
-                'User-Agent' => 'PosSOFT',
-            ] )->get( 'https://api.github.com/repos/blair2004/PosSOFT/releases/latest' );
+                'User-Agent' => 'NexoPOS',
+            ] )->get( 'https://api.github.com/repos/blair2004/NexoPOS/releases/latest' );
 
             if ( $response->successful() ) {
                 $latestVersion = ltrim( $response->json( 'tag_name' ), 'vV' );
-                $currentVersion = config( 'possoft.version' );
+                $currentVersion = config( 'nexopos.version' );
 
                 if ( version_compare( $latestVersion, $currentVersion, '>' ) ) {
                     ns()->option->set( 'ns_latest_version', $latestVersion );

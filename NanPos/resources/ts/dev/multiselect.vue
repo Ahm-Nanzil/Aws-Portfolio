@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <ns-page-title>
         <template #title>Labels</template>
         <template #description>creates a label selector fields.</template>

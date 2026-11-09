@@ -4,10 +4,10 @@ use App\Models\Permission;
 use App\Models\Role;
 
 $posReadPermissions = [
-    'possoft.pos.access' => [ __( 'POS: Access' ), __( 'Access the point of sale workspace.' ) ],
-    'possoft.pos.read-products' => [ __( 'POS: Read Products' ), __( 'Browse the sale catalog through POS workflows.' ) ],
-    'possoft.pos.read-own-orders' => [ __( 'POS: Read Own Orders' ), __( 'Read orders created by the current user through POS workflows.' ) ],
-    'possoft.pos.read-all-orders' => [ __( 'POS: Read All Orders' ), __( 'Read every order through POS workflows.' ) ],
+    'nexopos.pos.access' => [ __( 'POS: Access' ), __( 'Access the point of sale workspace.' ) ],
+    'nexopos.pos.read-products' => [ __( 'POS: Read Products' ), __( 'Browse the sale catalog through POS workflows.' ) ],
+    'nexopos.pos.read-own-orders' => [ __( 'POS: Read Own Orders' ), __( 'Read orders created by the current user through POS workflows.' ) ],
+    'nexopos.pos.read-all-orders' => [ __( 'POS: Read All Orders' ), __( 'Read every order through POS workflows.' ) ],
 ];
 
 foreach ( $posReadPermissions as $namespace => [$name, $description] ) {
@@ -22,61 +22,61 @@ foreach ( $posReadPermissions as $namespace => [$name, $description] ) {
     $permission->save();
 }
 
-if ( ! Permission::namespace( 'possoft.pos.edit-purchase-price' ) instanceof Permission ) {
-    $pos = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.edit-purchase-price' ] );
+if ( ! Permission::namespace( 'nexopos.pos.edit-purchase-price' ) instanceof Permission ) {
+    $pos = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.edit-purchase-price' ] );
     $pos->name = __( 'Edit Purchase Price' );
-    $pos->namespace = 'possoft.pos.edit-purchase-price';
+    $pos->namespace = 'nexopos.pos.edit-purchase-price';
     $pos->description = __( 'Let the user edit the purchase price of products.' );
     $pos->save();
 }
 
-if ( ! Permission::namespace( 'possoft.pos.edit-settings' ) instanceof Permission ) {
-    $pos = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.edit-settings' ] );
+if ( ! Permission::namespace( 'nexopos.pos.edit-settings' ) instanceof Permission ) {
+    $pos = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.edit-settings' ] );
     $pos->name = __( 'Edit Order Settings' );
-    $pos->namespace = 'possoft.pos.edit-settings';
+    $pos->namespace = 'nexopos.pos.edit-settings';
     $pos->description = __( 'Let the user edit the order settings.' );
     $pos->save();
 }
 
-if ( ! Permission::namespace( 'possoft.pos.products-discount' ) instanceof Permission ) {
-    $pos = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.products-discount' ] );
+if ( ! Permission::namespace( 'nexopos.pos.products-discount' ) instanceof Permission ) {
+    $pos = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.products-discount' ] );
     $pos->name = __( 'Edit Product Discounts' );
-    $pos->namespace = 'possoft.pos.products-discount';
+    $pos->namespace = 'nexopos.pos.products-discount';
     $pos->description = __( 'Let the user add discount on products.' );
     $pos->save();
 }
 
-if ( ! Permission::namespace( 'possoft.pos.cart-discount' ) instanceof Permission ) {
-    $pos = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.cart-discount' ] );
+if ( ! Permission::namespace( 'nexopos.pos.cart-discount' ) instanceof Permission ) {
+    $pos = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.cart-discount' ] );
     $pos->name = __( 'Edit Cart Discounts' );
-    $pos->namespace = 'possoft.pos.cart-discount';
+    $pos->namespace = 'nexopos.pos.cart-discount';
     $pos->description = __( 'Let the user add discount on cart.' );
     $pos->save();
 }
 
-if ( ! Permission::namespace( 'possoft.pos.delete-order-product' ) instanceof Permission ) {
-    $pos = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.delete-order-product' ] );
+if ( ! Permission::namespace( 'nexopos.pos.delete-order-product' ) instanceof Permission ) {
+    $pos = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.delete-order-product' ] );
     $pos->name = __( 'POS: Delete Order Products' );
-    $pos->namespace = 'possoft.pos.delete-order-product';
+    $pos->namespace = 'nexopos.pos.delete-order-product';
     $pos->description = __( 'Let the user delete order products on POS.' );
     $pos->save();
 }
 
 // Create POS cart action permissions
 $posCartPermissions = [
-    'possoft.cart.product-discount' => __( 'Cart: Change Product Discount' ),
-    'possoft.cart.product-price' => __( 'Cart: Edit Product Price' ),
-    'possoft.cart.product-wholesale-price' => __( 'Cart: Use Wholesale Price' ),
-    'possoft.cart.product-delete' => __( 'Cart: Product Delete' ),
-    'possoft.cart.settings' => __( 'Cart: Change Settings' ),
-    'possoft.cart.taxes' => __( 'Cart: Set Taxes' ),
-    'possoft.cart.comments' => __( 'Cart: Add Comments' ),
-    'possoft.cart.order-type' => __( 'Cart: Change Order Type' ),
-    'possoft.cart.coupons' => __( 'Cart: Apply Coupons' ),
-    'possoft.cart.products' => __( 'Cart: Create Quick Product' ),
-    'possoft.cart.void' => __( 'Cart: Void Order' ),
-    'possoft.cart.discount' => __( 'Cart: Apply Discount' ),
-    'possoft.cart.hold' => __( 'Cart: Hold Order' ),
+    'nexopos.cart.product-discount' => __( 'Cart: Change Product Discount' ),
+    'nexopos.cart.product-price' => __( 'Cart: Edit Product Price' ),
+    'nexopos.cart.product-wholesale-price' => __( 'Cart: Use Wholesale Price' ),
+    'nexopos.cart.product-delete' => __( 'Cart: Product Delete' ),
+    'nexopos.cart.settings' => __( 'Cart: Change Settings' ),
+    'nexopos.cart.taxes' => __( 'Cart: Set Taxes' ),
+    'nexopos.cart.comments' => __( 'Cart: Add Comments' ),
+    'nexopos.cart.order-type' => __( 'Cart: Change Order Type' ),
+    'nexopos.cart.coupons' => __( 'Cart: Apply Coupons' ),
+    'nexopos.cart.products' => __( 'Cart: Create Quick Product' ),
+    'nexopos.cart.void' => __( 'Cart: Void Order' ),
+    'nexopos.cart.discount' => __( 'Cart: Apply Discount' ),
+    'nexopos.cart.hold' => __( 'Cart: Hold Order' ),
 ];
 
 foreach ( $posCartPermissions as $namespace => $name ) {

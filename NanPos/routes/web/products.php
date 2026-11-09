@@ -5,7 +5,7 @@ use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Middleware\NsRestrictMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware( NsRestrictMiddleware::arguments( 'possoft.read.products' ) )->group( function (): void {
+Route::middleware( NsRestrictMiddleware::arguments( 'nexopos.read.products' ) )->group( function (): void {
     Route::get( '/products', [ ProductsController::class, 'listProducts' ] )->name( ns()->routeName( 'ns.dashboard.products' ) );
     Route::get( '/products/create', [ ProductsController::class, 'createProduct' ] )->name( ns()->routeName( 'ns.dashboard.products.create' ) );
     Route::get( '/products/stock-adjustment', [ ProductsController::class, 'showStockAdjustment' ] )->name( ns()->routeName( 'ns.dashboard.products.stock-adjustment' ) );

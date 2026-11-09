@@ -18,8 +18,8 @@ return new class extends Migration
             '--purge-orphan-migrations' => true,
         ] );
 
-        Schema::table( 'possoft_notifications', function ( Blueprint $table ) {
-            if ( ! Schema::hasColumn( 'possoft_notifications', 'actions' ) ) {
+        Schema::table( 'nexopos_notifications', function ( Blueprint $table ) {
+            if ( ! Schema::hasColumn( 'nexopos_notifications', 'actions' ) ) {
                 $table->json( 'actions' )->nullable();
             }
         } );
@@ -33,19 +33,19 @@ return new class extends Migration
 
         // Create POS cart action permissions
         $posCartPermissions = [
-            'possoft.cart.product-discount' => __( 'Cart: Change Product Discount' ),
-            'possoft.cart.product-price' => __( 'Cart: Edit Product Price' ),
-            'possoft.cart.product-wholesale-price' => __( 'Cart: Use Wholesale Price' ),
-            'possoft.cart.product-delete' => __( 'Cart: Product Delete' ),
-            'possoft.cart.settings' => __( 'Cart: Change Settings' ),
-            'possoft.cart.taxes' => __( 'Cart: Set Taxes' ),
-            'possoft.cart.comments' => __( 'Cart: Add Comments' ),
-            'possoft.cart.order-type' => __( 'Cart: Change Order Type' ),
-            'possoft.cart.coupons' => __( 'Cart: Apply Coupons' ),
-            'possoft.cart.products' => __( 'Cart: Create Quick Product' ),
-            'possoft.cart.void' => __( 'Cart: Void Order' ),
-            'possoft.cart.discount' => __( 'Cart: Apply Discount' ),
-            'possoft.cart.hold' => __( 'Cart: Hold Order' ),
+            'nexopos.cart.product-discount' => __( 'Cart: Change Product Discount' ),
+            'nexopos.cart.product-price' => __( 'Cart: Edit Product Price' ),
+            'nexopos.cart.product-wholesale-price' => __( 'Cart: Use Wholesale Price' ),
+            'nexopos.cart.product-delete' => __( 'Cart: Product Delete' ),
+            'nexopos.cart.settings' => __( 'Cart: Change Settings' ),
+            'nexopos.cart.taxes' => __( 'Cart: Set Taxes' ),
+            'nexopos.cart.comments' => __( 'Cart: Add Comments' ),
+            'nexopos.cart.order-type' => __( 'Cart: Change Order Type' ),
+            'nexopos.cart.coupons' => __( 'Cart: Apply Coupons' ),
+            'nexopos.cart.products' => __( 'Cart: Create Quick Product' ),
+            'nexopos.cart.void' => __( 'Cart: Void Order' ),
+            'nexopos.cart.discount' => __( 'Cart: Apply Discount' ),
+            'nexopos.cart.hold' => __( 'Cart: Hold Order' ),
         ];
 
         foreach ( $posCartPermissions as $namespace => $name ) {
@@ -66,9 +66,9 @@ return new class extends Migration
 
         /**
          * We'll make the column "order_id" optional on the table
-         * `possoft_customers_account_history`.
+         * `nexopos_customers_account_history`.
          */
-        Schema::table( 'possoft_customers_account_history', function ( Blueprint $table ) {
+        Schema::table( 'nexopos_customers_account_history', function ( Blueprint $table ) {
             $table->integer( 'order_id' )->nullable()->change();
         } );
     }
@@ -78,7 +78,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table( 'possoft_notifications', function ( Blueprint $table ) {
+        Schema::table( 'nexopos_notifications', function ( Blueprint $table ) {
             $table->dropColumn( 'actions' );
         } );
     }

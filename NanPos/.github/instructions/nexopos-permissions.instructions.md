@@ -2,15 +2,15 @@
 applyTo: '**'
 ---
 
-# PosSOFT Permission System Guide
+# NexoPOS Permission System Guide
 
-The PosSOFT permission system provides fine-grained access control for different features and functionalities within the application. This document explains how to work with permissions, create new ones, and assign them to roles.
+The NexoPOS permission system provides fine-grained access control for different features and functionalities within the application. This document explains how to work with permissions, create new ones, and assign them to roles.
 
 ## Understanding Permissions
 
 ### Permission Structure
 
-Permissions in PosSOFT follow a namespace pattern: `{action}.{resource}`
+Permissions in NexoPOS follow a namespace pattern: `{action}.{resource}`
 
 - **Action**: The operation being performed (create, read, update, delete)
 - **Resource**: The entity or feature being accessed (users, products, orders, etc.)
@@ -23,7 +23,7 @@ Examples:
 
 ### Permission Model
 
-Permissions are stored in the `possoft_permissions` table and represented by the `App\Models\Permission` model with these key properties:
+Permissions are stored in the `nexopos_permissions` table and represented by the `App\Models\Permission` model with these key properties:
 
 - `name`: Human-readable name
 - `namespace`: Unique identifier (e.g., "create.products")
@@ -83,9 +83,9 @@ For specific permissions that don't follow the CRUD pattern:
 use App\Models\Permission;
 
 if ( defined( 'NEXO_CREATE_PERMISSIONS' ) ) {
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.pos.edit-purchase-price' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.pos.edit-purchase-price' ] );
     $permission->name = __( 'Edit Purchase Price' );
-    $permission->namespace = 'possoft.pos.edit-purchase-price';
+    $permission->namespace = 'nexopos.pos.edit-purchase-price';
     $permission->description = __( 'Let the user edit the purchase price of products.' );
     $permission->save();
 }
@@ -208,7 +208,7 @@ computed: {
 - Use lowercase with dots as separators
 - Follow the `{action}.{resource}` pattern when possible
 - Use descriptive resource names
-- For complex permissions, use the `possoft.{module}.{specific-action}` pattern
+- For complex permissions, use the `nexopos.{module}.{specific-action}` pattern
 
 ### 2. Permission Organization
 
@@ -250,9 +250,9 @@ foreach ( [ 'create', 'read', 'update', 'delete' ] as $crud ) {
 ### 2. Module-Specific Permissions
 
 ```php
-$permission = Permission::firstOrNew( [ 'namespace' => 'possoft.{module}.{action}' ] );
+$permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.{module}.{action}' ] );
 $permission->name = __( '{Action} in {Module}' );
-$permission->namespace = 'possoft.{module}.{action}';
+$permission->namespace = 'nexopos.{module}.{action}';
 $permission->description = __( 'Allow specific action in module.' );
 $permission->save();
 ```
@@ -323,7 +323,7 @@ When creating modules that require permissions:
 
 3. **Use module-specific namespace:**
    ```php
-   $permission->namespace = 'possoft.{module-name}.{action}';
+   $permission->namespace = 'nexopos.{module-name}.{action}';
    ```
 
-This permission system provides the flexibility needed for complex access control while maintaining consistency across the PosSOFT ecosystem.
+This permission system provides the flexibility needed for complex access control while maintaining consistency across the NexoPOS ecosystem.

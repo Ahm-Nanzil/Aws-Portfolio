@@ -17,7 +17,7 @@ class CustomerGroup extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'customers_groups';
+    protected $table = 'nexopos_' . 'customers_groups';
 
     /**
      * define the relationship

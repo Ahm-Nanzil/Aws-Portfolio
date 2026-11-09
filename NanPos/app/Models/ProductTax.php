@@ -17,7 +17,7 @@ class ProductTax extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'products_taxes';
+    protected $table = 'nexopos_' . 'products_taxes';
 
     /**
      * define the relationship

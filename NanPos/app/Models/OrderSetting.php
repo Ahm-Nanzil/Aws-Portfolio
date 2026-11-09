@@ -16,7 +16,7 @@ class OrderSetting extends NsModel
         'key', 'value', 'order_id',
     ];
 
-    protected $table = 'possoft_orders_settings';
+    protected $table = 'nexopos_orders_settings';
 
     public function order()
     {

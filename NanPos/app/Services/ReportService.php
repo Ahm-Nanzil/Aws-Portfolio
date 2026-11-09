@@ -189,7 +189,7 @@ class ReportService
                 ];
             }
 
-            $message = __( 'A stock operation has recently been detected, however PosSOFT wasn\'t able to update the report accordingly. This occurs if the daily dashboard reference hasn\'t been created.' );
+            $message = __( 'A stock operation has recently been detected, however NexoPOS wasn\'t able to update the report accordingly. This occurs if the daily dashboard reference hasn\'t been created.' );
 
             /**
              * @todo make sure outgoing link takes to relevant article
@@ -200,7 +200,7 @@ class ReportService
             $notification->create(
                 title: __( 'Untracked Stock Operation' ),
                 description: $message,
-                url: 'https://my.possoft.com/en/troubleshooting/untracked-stock-operation',
+                url: 'https://my.nexopos.com/en/troubleshooting/untracked-stock-operation',
             )->dispatchForGroup(
                 [ Role::namespace( 'admin' ) ]
             );
@@ -352,12 +352,12 @@ class ReportService
 
     public function notifyIncorrectDashboardReport(): array
     {
-        $message = __( 'A stock operation has recently been detected, however PosSOFT wasn\'t able to update the report accordingly. This occurs if the daily dashboard reference hasn\'t been created.' );
+        $message = __( 'A stock operation has recently been detected, however NexoPOS wasn\'t able to update the report accordingly. This occurs if the daily dashboard reference hasn\'t been created.' );
 
         ns()->notification->create(
             title: __( 'Untracked Stock Operation' ),
             description: $message,
-            url: 'https://my.possoft.com/en/troubleshooting/untracked-stock-operation',
+            url: 'https://my.nexopos.com/en/troubleshooting/untracked-stock-operation',
         )->dispatchForGroup(
             [ Role::namespace( 'admin' ) ]
         );
@@ -510,8 +510,8 @@ class ReportService
      */
     private function getBestRecords( array $previousDates, string $sort ): array
     {
-        $orderProductTable = Hook::filter( 'ns-model-table', 'possoft_orders_products' );
-        $orderTable = Hook::filter( 'ns-model-table', 'possoft_orders' );
+        $orderProductTable = Hook::filter( 'ns-model-table', 'nexopos_orders_products' );
+        $orderTable = Hook::filter( 'ns-model-table', 'nexopos_orders' );
 
         switch ( $sort ) {
             case 'using_quantity_asc':
@@ -1250,40 +1250,40 @@ class ReportService
     public function getCombinedProductHistory( string $date, array $categories, array $units ): SupportCollection
     {
         $request = DB::query()->select( [
-            'possoft_products_unit_quantities.*',
-            'possoft_products.category_id as product_category_id',
-            'possoft_units.name as unit_name',
-            'possoft_products_histories_combined.date as history_date',
-            'possoft_products_histories_combined.initial_quantity as history_initial_quantity',
-            'possoft_products_histories_combined.procured_quantity as history_procured_quantity',
-            'possoft_products_histories_combined.defective_quantity as history_defective_quantity',
-            'possoft_products_histories_combined.sold_quantity as history_sold_quantity',
-            'possoft_products_histories_combined.final_quantity as history_final_quantity',
-            'possoft_products_histories_combined.unit_id as history_unit_id',
-            'possoft_products_histories_combined.product_id as history_product_id',
-            'possoft_products_histories_combined.name as history_name',
-        ] )->from( 'possoft_products_unit_quantities' )
-            ->rightJoin( 'possoft_products', 'possoft_products.id', '=', 'possoft_products_unit_quantities.product_id' )
-            ->rightJoin( 'possoft_products_histories_combined', function ( $join ) use ( $date ) {
-                $join->on( 'possoft_products_histories_combined.product_id', '=', 'possoft_products_unit_quantities.product_id' );
-                $join->on( 'possoft_products_histories_combined.unit_id', '=', 'possoft_products_unit_quantities.unit_id' );
-                $join->where( 'possoft_products_histories_combined.date', $date );
+            'nexopos_products_unit_quantities.*',
+            'nexopos_products.category_id as product_category_id',
+            'nexopos_units.name as unit_name',
+            'nexopos_products_histories_combined.date as history_date',
+            'nexopos_products_histories_combined.initial_quantity as history_initial_quantity',
+            'nexopos_products_histories_combined.procured_quantity as history_procured_quantity',
+            'nexopos_products_histories_combined.defective_quantity as history_defective_quantity',
+            'nexopos_products_histories_combined.sold_quantity as history_sold_quantity',
+            'nexopos_products_histories_combined.final_quantity as history_final_quantity',
+            'nexopos_products_histories_combined.unit_id as history_unit_id',
+            'nexopos_products_histories_combined.product_id as history_product_id',
+            'nexopos_products_histories_combined.name as history_name',
+        ] )->from( 'nexopos_products_unit_quantities' )
+            ->rightJoin( 'nexopos_products', 'nexopos_products.id', '=', 'nexopos_products_unit_quantities.product_id' )
+            ->rightJoin( 'nexopos_products_histories_combined', function ( $join ) use ( $date ) {
+                $join->on( 'nexopos_products_histories_combined.product_id', '=', 'nexopos_products_unit_quantities.product_id' );
+                $join->on( 'nexopos_products_histories_combined.unit_id', '=', 'nexopos_products_unit_quantities.unit_id' );
+                $join->where( 'nexopos_products_histories_combined.date', $date );
             } )
-            ->rightJoin( 'possoft_units', 'possoft_units.id', '=', 'possoft_products_histories_combined.unit_id' );
+            ->rightJoin( 'nexopos_units', 'nexopos_units.id', '=', 'nexopos_products_histories_combined.unit_id' );
 
         /**
          * Will only pull products that belongs to the units id provided.
          */
         if ( ! empty( $units ) ) {
-            $request->whereIn( 'possoft_products_histories_combined.unit_id', $units );
+            $request->whereIn( 'nexopos_products_histories_combined.unit_id', $units );
         }
 
         if ( ! empty( $categories ) ) {
-            $request->whereIn( 'possoft_products.category_id', $categories );
+            $request->whereIn( 'nexopos_products.category_id', $categories );
         }
 
         $formattedDate = Carbon::parse( $date )->format( 'Y-m-d' );
-        $request->where( 'possoft_products_histories_combined.date', $formattedDate );
+        $request->where( 'nexopos_products_histories_combined.date', $formattedDate );
 
         $request = Hook::filter(
             'ns-products-history-combined-query',

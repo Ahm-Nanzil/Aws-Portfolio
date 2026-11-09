@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  */
 class PermissionAccess extends NsModel
 {
-    protected $table = 'possoft_' . 'permissions_access';
+    protected $table = 'nexopos_' . 'permissions_access';
 
     /**
      * The permission access is granted.

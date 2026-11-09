@@ -3,69 +3,69 @@
 use App\Models\Permission;
 
 if ( defined( 'NEXO_CREATE_PERMISSIONS' ) ) {
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.sales' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.sales' ] );
     $permission->name = __( 'See Sale Report' );
-    $permission->namespace = 'possoft.reports.sales';
+    $permission->namespace = 'nexopos.reports.sales';
     $permission->description = __( 'Let you see the sales report' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.products-report' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.products-report' ] );
     $permission->name = __( 'See Products Report' );
-    $permission->namespace = 'possoft.reports.products-report';
+    $permission->namespace = 'nexopos.reports.products-report';
     $permission->description = __( 'Let you see the Products report' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.best_sales' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.best_sales' ] );
     $permission->name = __( 'See Best Report' );
-    $permission->namespace = 'possoft.reports.best_sales';
+    $permission->namespace = 'nexopos.reports.best_sales';
     $permission->description = __( 'Let you see the best_sales report' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.transactions' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.transactions' ] );
     $permission->name = __( 'See Transaction Report' );
-    $permission->namespace = 'possoft.reports.transactions';
+    $permission->namespace = 'nexopos.reports.transactions';
     $permission->description = __( 'Let you see the transactions report' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.yearly' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.yearly' ] );
     $permission->name = __( 'See Yearly Sales' );
-    $permission->namespace = 'possoft.reports.yearly';
+    $permission->namespace = 'nexopos.reports.yearly';
     $permission->description = __( 'Allow to see the yearly sales.' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.customers' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.customers' ] );
     $permission->name = __( 'See Customers' );
-    $permission->namespace = 'possoft.reports.customers';
+    $permission->namespace = 'nexopos.reports.customers';
     $permission->description = __( 'Allow to see the customers' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.inventory' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.inventory' ] );
     $permission->name = __( 'See Inventory Tracking' );
-    $permission->namespace = 'possoft.reports.inventory';
+    $permission->namespace = 'nexopos.reports.inventory';
     $permission->description = __( 'Allow to see the inventory' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.customers-statement' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.customers-statement' ] );
     $permission->name = __( 'See Customers Statement' );
-    $permission->namespace = 'possoft.reports.customers-statement';
+    $permission->namespace = 'nexopos.reports.customers-statement';
     $permission->description = __( 'Allow to see the customers statement.' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.payment-types' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.payment-types' ] );
     $permission->name = __( 'Read Sales by Payment Types' );
-    $permission->namespace = 'possoft.reports.payment-types';
+    $permission->namespace = 'nexopos.reports.payment-types';
     $permission->description = __( 'Let the user read the report that shows sales by payment types.' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.low-stock' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.low-stock' ] );
     $permission->name = __( 'Read Low Stock Report' );
-    $permission->namespace = 'possoft.reports.low-stock';
+    $permission->namespace = 'nexopos.reports.low-stock';
     $permission->description = __( 'Let the user read the report that shows low stock.' );
     $permission->save();
 
-    $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.reports.stock-history' ] );
+    $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.reports.stock-history' ] );
     $permission->name = __( 'Read Stock History' );
-    $permission->namespace = 'possoft.reports.stock-history';
+    $permission->namespace = 'nexopos.reports.stock-history';
     $permission->description = __( 'Let the user read the stock history report.' );
     $permission->save();
 }

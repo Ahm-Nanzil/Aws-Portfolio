@@ -1,4 +1,4 @@
-declare const window;
+﻿declare const window;
 
 import * as components from "~/components/components";
 

@@ -25,16 +25,16 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Permission::namespace( 'possoft.customers.manage-account-history' ) instanceof Permission ) {
-            $permission = Permission::firstOrNew( [ 'namespace' => 'possoft.customers.manage-account-history' ] );
-            $permission->namespace = 'possoft.customers.manage-account-history';
+        if ( ! Permission::namespace( 'nexopos.customers.manage-account-history' ) instanceof Permission ) {
+            $permission = Permission::firstOrNew( [ 'namespace' => 'nexopos.customers.manage-account-history' ] );
+            $permission->namespace = 'nexopos.customers.manage-account-history';
             $permission->name = __( 'Manage Customers Account History' );
             $permission->description = __( 'Allow to manage customer virtual deposit account history.' );
             $permission->save();
         }
 
-        Role::namespace( 'admin' )->addPermissions( 'possoft.customers.manage-account-history' );
-        Role::namespace( 'possoft.store.administrator' )->addPermissions( 'possoft.customers.manage-account-history' );
+        Role::namespace( 'admin' )->addPermissions( 'nexopos.customers.manage-account-history' );
+        Role::namespace( 'nexopos.store.administrator' )->addPermissions( 'nexopos.customers.manage-account-history' );
     }
 
     /**
@@ -44,8 +44,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_permissions' ) ) {
-            $permission = Permission::namespace( 'possoft.customers.manage-account-history' );
+        if ( Schema::hasTable( 'nexopos_permissions' ) ) {
+            $permission = Permission::namespace( 'nexopos.customers.manage-account-history' );
 
             if ( $permission instanceof Permission ) {
                 RolePermission::where( 'permission_id', $permission->id )->delete();

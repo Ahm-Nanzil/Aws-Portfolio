@@ -997,7 +997,7 @@ class ProcurementService
                 description: sprintf( __( '%s procurement(s) has recently been automatically procured.' ), $procurements->count() ),
             )->dispatchForGroup( [
                 Role::namespace( 'admin' ),
-                Role::namespace( 'possoft.store.administrator' ),
+                Role::namespace( 'nexopos.store.administrator' ),
             ] );
         }
     }

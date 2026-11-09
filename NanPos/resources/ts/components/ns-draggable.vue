@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div ref="draggable" class="ns-draggable-item" @mousedown="startDrag">
       <slot></slot>
     </div>

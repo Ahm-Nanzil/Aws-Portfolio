@@ -1,4 +1,4 @@
-export interface Address {
+﻿export interface Address {
     first_name: string;
     last_name: string;
     address_1: string;

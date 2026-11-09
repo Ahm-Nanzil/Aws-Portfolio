@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="ns-box rounded shadow overflow-hidden transition-all duration-100">
         <div class="ns-box-body">
             <div class="p-3 -my-2">

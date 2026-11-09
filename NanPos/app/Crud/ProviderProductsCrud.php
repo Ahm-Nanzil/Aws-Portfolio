@@ -26,7 +26,7 @@ class ProviderProductsCrud extends CrudService
      *
      * @param  string
      */
-    protected $table = 'possoft_procurements_products';
+    protected $table = 'nexopos_procurements_products';
 
     /**
      * default slug
@@ -63,12 +63,12 @@ class ProviderProductsCrud extends CrudService
 
     /**
      * Adding relation
-     * Example : [ 'possoft_users as user', 'user.id', '=', 'possoft_orders.author_id' ]
+     * Example : [ 'nexopos_users as user', 'user.id', '=', 'nexopos_orders.author_id' ]
      *
      * @param  array
      */
     public $relations = [
-        [ 'possoft_taxes_groups as tax_group', 'possoft_procurements_products.tax_group_id', '=', 'tax_group.id' ],
+        [ 'nexopos_taxes_groups as tax_group', 'nexopos_procurements_products.tax_group_id', '=', 'tax_group.id' ],
     ];
 
     /**
@@ -85,7 +85,7 @@ class ProviderProductsCrud extends CrudService
      * Should be an array of associative keys, where
      * keys are either the related table or alias name.
      * Example : [
-     *      'user'  =>  [ 'username' ], // here the relation on the table possoft_users is using "user" as an alias
+     *      'user'  =>  [ 'username' ], // here the relation on the table nexopos_users is using "user" as an alias
      * ]
      */
     public $pick = [

@@ -30,7 +30,7 @@ class ResetSessionCookieCommand extends Command
     {
         switch ( $this->argument( 'action' ) ) {
             case 'generate':
-                ns()->envEditor->set( 'SESSION_COOKIE', strtolower( 'possoft_' . Str::random( 5 ) ) );
+                ns()->envEditor->set( 'SESSION_COOKIE', strtolower( 'nexopos_' . Str::random( 5 ) ) );
                 break;
         }
     }

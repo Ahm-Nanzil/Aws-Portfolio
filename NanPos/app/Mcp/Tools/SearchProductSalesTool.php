@@ -18,7 +18,7 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsReadOnly]
 class SearchProductSalesTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.reports.sales' ];
+    protected array $permissions = [ 'nexopos.reports.sales' ];
 
     protected string $name = 'search_product_sales';
 

@@ -1,9 +1,9 @@
 {
-    "name": "blair2004/possoft",
+    "name": "blair2004/nexopos",
     "type": "project",
     "description": "The Free Modern Point Of Sale System build with Laravel, TailwindCSS and Vue.js.",
     "keywords": [
-        "possoft",
+        "nexopos",
         "point of sale",
         "pos",
         "pos system"

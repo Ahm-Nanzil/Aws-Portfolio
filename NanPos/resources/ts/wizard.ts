@@ -1,4 +1,4 @@
-import { createApp, defineAsyncComponent } from "vue";
+﻿import { createApp, defineAsyncComponent } from "vue";
 import { nsButton } from "./components/components";
 import NsAvatar from "./components/ns-avatar.vue";
 

@@ -1,4 +1,4 @@
-@extends( 'layout.default' )
+﻿@extends( 'layout.default' )
 
 @section( 'layout.default.body' )
     <div class="h-full w-full overflow-y-auto pb-10 bg-gradient-to-bl from-red-500 to-pink-500 flex items-center justify-center">
@@ -20,7 +20,7 @@
                 @endif
                 <ul class="flex flex-col">
                     <li class="flex">
-                        <a target="_blank" href="https://my.possoft.com/en/documentation/how-tos/how-to-change-database-configuration" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
+                        <a href="{{ url('/') }}" class="border-t w-full border-gray-300 text-gray-600 text-sm p-2">
                             <i class="las la-hand-point-right"></i>
                             <span class="ml-2">{{ __( 'How to change database configuration' ) }}</span>
                         </a>

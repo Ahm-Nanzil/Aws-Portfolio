@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import ckeditor from '@ckeditor/ckeditor5-vue';
 import {
 	ClassicEditor,

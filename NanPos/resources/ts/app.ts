@@ -1,4 +1,4 @@
-declare const nsHooks: any;
+﻿declare const nsHooks: any;
 declare const nsExtraComponents: any;
 
 /**

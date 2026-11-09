@@ -25,7 +25,7 @@ class UnitGroupCrud extends CrudService
     /**
      * define the base table
      */
-    protected $table = 'possoft_units_groups';
+    protected $table = 'nexopos_units_groups';
 
     /**
      * base route name
@@ -58,10 +58,10 @@ class UnitGroupCrud extends CrudService
     ];
 
     public $permissions = [
-        'create' => 'possoft.create.products-units',
-        'read' => 'possoft.read.products-units',
-        'update' => 'possoft.update.products-units',
-        'delete' => 'possoft.delete.products-units',
+        'create' => 'nexopos.create.products-units',
+        'read' => 'nexopos.read.products-units',
+        'update' => 'nexopos.update.products-units',
+        'delete' => 'nexopos.delete.products-units',
     ];
 
     /**

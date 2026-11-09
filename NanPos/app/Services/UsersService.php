@@ -104,7 +104,7 @@ class UsersService
          */
         if ( $validation_required ) {
             $user->activation_token = Str::random( 20 );
-            $user->activation_expiration = now()->addMinutes( config( 'possoft.authentication.activation_token_lifetime', 30 ) );
+            $user->activation_expiration = now()->addMinutes( config( 'nexopos.authentication.activation_token_lifetime', 30 ) );
         }
 
         /**

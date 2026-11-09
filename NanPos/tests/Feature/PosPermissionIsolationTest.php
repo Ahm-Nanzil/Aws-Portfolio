@@ -52,7 +52,7 @@ class PosPermissionIsolationTest extends TestCase
     {
         $user = Mockery::mock( User::class )->makePartial();
         Gate::shouldReceive( 'forUser' )->with( $user )->andReturnSelf();
-        Gate::shouldReceive( 'allows' )->with( 'possoft.pos.edit-purchase-price' )->andReturnFalse();
+        Gate::shouldReceive( 'allows' )->with( 'nexopos.pos.edit-purchase-price' )->andReturnFalse();
         $request = Request::create( '/api/pos/catalog/products/search' );
         $request->setUserResolver( fn(): User => $user );
 

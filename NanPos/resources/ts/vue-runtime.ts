@@ -1,4 +1,4 @@
-import * as VueRuntime from "vue/dist/vue.esm-bundler";
+﻿import * as VueRuntime from "vue/dist/vue.esm-bundler";
 import type { App, Component } from "vue";
 
 type NsCreateAppOptions = {
@@ -82,7 +82,7 @@ export function nsRegisterComponentsOnApp(
 }
 
 /**
- * Create a Vue application that always uses the shared PosSOFT Vue runtime.
+ * Create a Vue application that always uses the shared NexoPOS Vue runtime.
  * Optionally registers core and extra components so SFCs can use them as tags.
  */
 export function nsCreateApp(

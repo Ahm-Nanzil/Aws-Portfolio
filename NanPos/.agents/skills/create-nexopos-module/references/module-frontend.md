@@ -1,4 +1,4 @@
-# PosSOFT module frontend (Vue + Tailwind)
+# NexoPOS module frontend (Vue + Tailwind)
 
 Use this when a module ships Vite/Vue/Tailwind assets. Verify against working modules (`CloudDeployer` for Tailwind prefix, `NsAppointments` for dashboard registration + shared runtime).
 
@@ -12,14 +12,14 @@ Core mounts an empty `nsDashboardContent` app on that node and uses its innerHTM
 
 ## Shared Vue runtime (required)
 
-PosSOFT core loads one Vue object via `resources/ts/vue-runtime.ts` (`window.ns.vue` / `window.NexoPOSVue`). Module builds **must not** bundle a second Vue copy.
+NexoPOS core loads one Vue object via `resources/ts/vue-runtime.ts` (`window.ns.vue` / `window.NexoPOSVue`). Module builds **must not** bundle a second Vue copy.
 
 ### Vite config
 
 ```js
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineNexoPOSModuleConfig } from '../../resources/vite-possoft-module.js';
+import { defineNexoPOSModuleConfig } from '../../resources/vite-nexopos-module.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -33,7 +33,7 @@ export default defineNexoPOSModuleConfig({
 });
 ```
 
-`defineNexoPOSModuleConfig` enables `possoftVueRuntime()`, which rewrites `import … from 'vue'` to the host runtime. Prefer real `.vue` SFCs.
+`defineNexoPOSModuleConfig` enables `nexoposVueRuntime()`, which rewrites `import … from 'vue'` to the host runtime. Prefer real `.vue` SFCs.
 
 ### Mounting (summary)
 
@@ -69,7 +69,7 @@ In the module CSS entry:
 @source "../Views/**/*.blade.php";
 ```
 
-When using **PosSOFT semantic colors** (`bg-box-background`, `text-fontcolor-soft`, …) under a prefix, bridge host theme variables in `@theme`. Core layouts already define `--color-*`; the prefix renames module theme keys to `--foo-color-*`, so alias them:
+When using **NexoPOS semantic colors** (`bg-box-background`, `text-fontcolor-soft`, …) under a prefix, bridge host theme variables in `@theme`. Core layouts already define `--color-*`; the prefix renames module theme keys to `--foo-color-*`, so alias them:
 
 ```css
 @theme {
@@ -154,14 +154,14 @@ not `dark:foo:sm:flex`, not `foo:sm:dark:flex` as the preferred stacked form for
 
 ### Semantic theme colors still apply
 
-PosSOFT themes set CSS variables on the document (`--color-box-background`, etc.). Prefer semantic utilities over palette or `dark:` when the host page already loads a theme stylesheet:
+NexoPOS themes set CSS variables on the document (`--color-box-background`, etc.). Prefer semantic utilities over palette or `dark:` when the host page already loads a theme stylesheet:
 
 ```html
 <!-- Preferred in modules (with prefix) -->
 <section class="foo:rounded-lg foo:border foo:border-box-edge foo:bg-box-background foo:p-4 foo:text-fontcolor">
 ```
 
-Avoid treating `dark:` as the primary PosSOFT theme switch. Core loads one of `light` / `dark` / `phosphor` stylesheets; `phosphor` is a third theme, not “dark mode.” Use semantic tokens so all three themes stay correct. See the `possoft-theming` skill.
+Avoid treating `dark:` as the primary NexoPOS theme switch. Core loads one of `light` / `dark` / `phosphor` stylesheets; `phosphor` is a third theme, not “dark mode.” Use semantic tokens so all three themes stay correct. See the `nexopos-theming` skill.
 
 ### `@apply` and scanning
 
@@ -183,11 +183,11 @@ Public or blank layouts that only load module CSS **require** the prefix + prefi
 
 ## UI design conventions (modules)
 
-These match how core PosSOFT builds dashboard/POS UI. Follow them so module pages look native.
+These match how core NexoPOS builds dashboard/POS UI. Follow them so module pages look native.
 
 ### Semantic color utilities (confirmed)
 
-Roles such as `fontcolor`, `fontcolor-soft`, `box-background`, `box-edge`, `info-primary`, `error-tertiary` are **PosSOFT theme tokens**, not stock Tailwind colors. They work in modules **only when**:
+Roles such as `fontcolor`, `fontcolor-soft`, `box-background`, `box-edge`, `info-primary`, `error-tertiary` are **NexoPOS theme tokens**, not stock Tailwind colors. They work in modules **only when**:
 
 1. The host page loads a theme stylesheet (`light` / `dark` / `phosphor`) that defines `--color-*`.
 2. The module CSS uses `prefix(…)` **and** the `@theme` bridge above so `foo:text-fontcolor-soft` compiles to something like:
@@ -314,7 +314,7 @@ Inline button busy state may keep a small spinner **inside** the button (core pa
 
 ### Status and active fills (info / success / warning / error)
 
-PosSOFT status tokens darken as their suffix increases: `primary` is lighter than `secondary`, and `secondary` is lighter than `tertiary`.
+NexoPOS status tokens darken as their suffix increases: `primary` is lighter than `secondary`, and `secondary` is lighter than `tertiary`.
 
 | Use | Token step | Text |
 | --- | --- | --- |
@@ -341,11 +341,11 @@ Before destructive or access-revoking actions, use the core `Popup.show(nsConfir
 
 ### Panels and surfaces
 
-Reuse semantic surfaces: `foo:bg-box-background`, `foo:border-box-edge`, `foo:bg-surface`, status families for feedback. Prefer `ns-box` when it fits. See the `possoft-theming` skill.
+Reuse semantic surfaces: `foo:bg-box-background`, `foo:border-box-edge`, `foo:bg-surface`, status families for feedback. Prefer `ns-box` when it fits. See the `nexopos-theming` skill.
 
 ### Localization (`__m` only)
 
-Module UI strings must use **`__m('Literal text', 'ModuleNamespace')`** so PosSOFT language scanning finds them.
+Module UI strings must use **`__m('Literal text', 'ModuleNamespace')`** so NexoPOS language scanning finds them.
 
 - **Do not** introduce `t()`, `translate()`, or similar wrappers around module copy.
 - Core provides **`window.__m`**, but Vue templates **cannot** see bare globals. Import a runtime bridge (e.g. `import { __m } from '../i18n'`) that forwards to `window.__m`, and for Options API put **`__m` on `methods`**. `declare const __m` alone is **not** enough (TypeScript-only).
@@ -395,7 +395,7 @@ Do not use `@json([ ... ])` with a multiline array.
 
 ## Checklist before calling a module “frontend-complete”
 
-- [ ] `vite.config.js` uses `defineNexoPOSModuleConfig` (or at least `possoftVueRuntime()`)
+- [ ] `vite.config.js` uses `defineNexoPOSModuleConfig` (or at least `nexoposVueRuntime()`)
 - [ ] Entries import from `'vue'` via the shared runtime plugin — no dual Vue
 - [ ] **Dashboard UI:** `nsExtraComponents` + component tag inside `#dashboard-content` (no nested `createApp` / `.mount` there)
 - [ ] **Standalone UI only:** `nsCreateApp` on a root **outside** `#dashboard-content`

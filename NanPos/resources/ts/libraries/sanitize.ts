@@ -1,4 +1,4 @@
-import DOMPurify from 'dompurify';
+﻿import DOMPurify from 'dompurify';
 
 /**
  * Sanitize an HTML string using DOMPurify to prevent XSS attacks.

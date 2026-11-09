@@ -1,4 +1,4 @@
-function addStyles(win, styles) {
+﻿function addStyles(win, styles) {
     styles.forEach((style) => {
         let link = win.document.createElement("link");
         link.setAttribute("rel", "stylesheet");

@@ -110,9 +110,9 @@ If existing pages and components support dark mode, new pages and components mus
 </div>
 ```
 
-## PosSOFT modules: required utility prefix
+## NexoPOS modules: required utility prefix
 
-When writing Tailwind **inside a PosSOFT module** (files under `modules/*/Resources`), always use a short module-specific prefix on the module CSS entry and on every module-owned utility. Core already ships an unprefixed Tailwind build in theme CSS; modules must not emit a second unprefixed copy.
+When writing Tailwind **inside a NexoPOS module** (files under `modules/*/Resources`), always use a short module-specific prefix on the module CSS entry and on every module-owned utility. Core already ships an unprefixed Tailwind build in theme CSS; modules must not emit a second unprefixed copy.
 
 ```css
 /* modules/FooBar/Resources/css/style.css */
@@ -126,7 +126,7 @@ When writing Tailwind **inside a PosSOFT module** (files under `modules/*/Resour
 
 With theme + breakpoint variants (if used): **`foo:dark:sm:flex`** — not `dark:foo:sm:flex`. The stack is incomplete without the utility (`foo:dark:sm` alone is invalid).
 
-Do not prefix core component hooks (`ns-button`, `ns-box`, …). Prefer semantic theme tokens (`foo:bg-box-background`) over `dark:` for PosSOFT multi-theme compatibility. See `create-possoft-module` → `references/module-frontend.md` and the `possoft-theming` skill.
+Do not prefix core component hooks (`ns-button`, `ns-box`, …). Prefer semantic theme tokens (`foo:bg-box-background`) over `dark:` for NexoPOS multi-theme compatibility. See `create-nexopos-module` → `references/module-frontend.md` and the `nexopos-theming` skill.
 
 ## Common Pitfalls
 
@@ -137,5 +137,5 @@ Do not prefix core component hooks (`ns-button`, `ns-box`, …). Prefer semantic
 - Forgetting to add dark mode variants when the project uses dark mode
 - **Module CSS without `prefix(...)`**, or markup that omits the module prefix on utilities
 - Putting the module prefix after variants (`md:foo:flex`) — prefix is always first
-- In PosSOFT semantic status families, using `*-primary` or `*-tertiary` as a background; use `*-secondary` with `text-white`
+- In NexoPOS semantic status families, using `*-primary` or `*-tertiary` as a background; use `*-secondary` with `text-white`
 - Applying `box-elevation-hover` to passive rows or cards that are not clickable

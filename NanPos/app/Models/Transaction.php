@@ -28,7 +28,7 @@ class Transaction extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'transactions';
+    protected $table = 'nexopos_' . 'transactions';
 
     protected $casts = [
         'recurring' => 'boolean',

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::createIfMissing( 'possoft_orders_instalments', function ( Blueprint $table ) {
+        Schema::createIfMissing( 'nexopos_orders_instalments', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
             $table->decimal( 'amount', 18, 5 )->default( 0 );
             $table->integer( 'order_id' )->nullable();
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'possoft_orders_instalments' );
+        Schema::dropIfExists( 'nexopos_orders_instalments' );
     }
 };

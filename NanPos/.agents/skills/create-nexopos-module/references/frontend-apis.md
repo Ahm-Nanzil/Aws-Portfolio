@@ -1,4 +1,4 @@
-# PosSOFT frontend APIs
+# NexoPOS frontend APIs
 
 Use this reference for module TypeScript, Vue components, Blade-injected scripts, API requests, notifications, and localization. Verify behavior against `resources/ts/bootstrap.ts` and the relevant implementation under `resources/ts/libraries/`.
 
@@ -91,7 +91,7 @@ Axios defaults enable same-origin credentials and the `X-Requested-With` header.
 
 Always subscribe to execute a request. Keep and unsubscribe long-lived subscriptions during component teardown. One-shot HTTP Observables complete after one response.
 
-Use RxJS composition for dependent or parallel calls. When a PosSOFT lifecycle queue requires a promise, bridge the Observable explicitly:
+Use RxJS composition for dependent or parallel calls. When a NexoPOS lifecycle queue requires a promise, bridge the Observable explicitly:
 
 ```ts
 import { firstValueFrom } from 'rxjs';
@@ -176,7 +176,7 @@ Core globals include:
 | `Popup` | Popup component manager |
 | `popupCloser` | Bind focused-popup Escape cancellation |
 | `popupResolver` | Settle a promise-driven popup and close it |
-| `nsEvent` | PosSOFT event emitter |
+| `nsEvent` | NexoPOS event emitter |
 | `RxJS` | RxJS exports for legacy/global code |
 | `ns.vue` / `NexoPOSVue` | Shared Vue runtime (single instance for core + modules) |
 | `nsCreateApp` | Create a module app on the shared runtime with core components registered |
@@ -190,26 +190,26 @@ Prefer explicit imports available through the module build when existing module 
 
 ## Shared Vue runtime and module SFCs
 
-PosSOFT loads `resources/ts/vue-runtime.ts` from `layout.base` and exposes the canonical runtime as `window.NexoPOSVue` and `window.ns.vue`. Module Vite builds that contain Vue SFCs must use the core bridge before `vuePlugin()`:
+NexoPOS loads `resources/ts/vue-runtime.ts` from `layout.base` and exposes the canonical runtime as `window.NexoPOSVue` and `window.ns.vue`. Module Vite builds that contain Vue SFCs must use the core bridge before `vuePlugin()`:
 
 ```js
-import { possoftVueRuntime } from "../../resources/vite-plugin-possoft-vue.js";
+import { nexoposVueRuntime } from "../../resources/vite-plugin-nexopos-vue.js";
 import vuePlugin from "@vitejs/plugin-vue";
 
 plugins: [
-    possoftVueRuntime(),
+    nexoposVueRuntime(),
     vuePlugin(),
     // ...
 ]
 ```
 
-The bridge also supplies a development-only `__VUE_HMR_RUNTIME__` fallback when the page loaded the production PosSOFT runtime alongside a module Vite dev server. The fallback reloads the page after an SFC update. Never replace or overwrite Vue's native HMR runtime when it already exists.
+The bridge also supplies a development-only `__VUE_HMR_RUNTIME__` fallback when the page loaded the production NexoPOS runtime alongside a module Vite dev server. The fallback reloads the page after an SFC update. Never replace or overwrite Vue's native HMR runtime when it already exists.
 
-The bridge rewrites module imports from `vue` to the already-loaded PosSOFT runtime. After a production build, the module manifest should import a small `_virtual_possoft-vue-runtime` bridge and must not contain its own `runtime-dom`, `runtime-core`, or `vue.esm-bundler` chunk. Keep the runtime asset before module assets in the page layout.
+The bridge rewrites module imports from `vue` to the already-loaded NexoPOS runtime. After a production build, the module manifest should import a small `_virtual_nexopos-vue-runtime` bridge and must not contain its own `runtime-dom`, `runtime-core`, or `vue.esm-bundler` chunk. Keep the runtime asset before module assets in the page layout.
 
-For dashboard, POS, popup, CRUD, settings, and field integrations, export or register the `.vue` component and let the appropriate PosSOFT application render it. Do not call `createApp()` for a component that must inherit PosSOFT global components, plugins, directives, or providers. A component rendered through `Popup.show()` is instantiated by the popup host and may use host-registered components such as `<ns-button>` without importing them.
+For dashboard, POS, popup, CRUD, settings, and field integrations, export or register the `.vue` component and let the appropriate NexoPOS application render it. Do not call `createApp()` for a component that must inherit NexoPOS global components, plugins, directives, or providers. A component rendered through `Popup.show()` is instantiated by the popup host and may use host-registered components such as `<ns-button>` without importing them.
 
-A genuinely standalone frontend may call `createApp()`. When it extends `layout.base` and uses the bridge, it still consumes the canonical runtime; an external page that does not load the PosSOFT base layout must bundle its own Vue runtime and must not assume access to PosSOFT host components.
+A genuinely standalone frontend may call `createApp()`. When it extends `layout.base` and uses the bridge, it still consumes the canonical runtime; an external page that does not load the NexoPOS base layout must bundle its own Vue runtime and must not assume access to NexoPOS host components.
 
 Exposing `defineComponent` or `defineAsyncComponent` alone is insufficient for SFC compatibility because compiled templates import additional Vue runtime helpers. Use the bridge rather than copying a hand-maintained subset of helpers.
 
@@ -240,7 +240,7 @@ const worker = await new Promise<Worker>((resolve, reject) => {
 });
 ```
 
-The custom popup must declare the injected `popup` prop. It owns its visible panel markup and should use existing PosSOFT components and semantic classes:
+The custom popup must declare the injected `popup` prop. It owns its visible panel markup and should use existing NexoPOS components and semantic classes:
 
 ```vue
 <script lang="ts">
@@ -289,7 +289,7 @@ Follow these lifecycle rules:
 
 Consequential actions must ask for confirmation through the native popup host. The current core confirmation component is `nsConfirmPopup`; do not refer to it as `nsConfirmDialog`, and do not use the browser-native `window.confirm()` dialog.
 
-Use the PosSOFT confirmation popup before destructive, revocation, reset, credential-rotation, or irreversible actions. Dashboard layouts expose both `Popup` and `nsConfirmPopup` globally:
+Use the NexoPOS confirmation popup before destructive, revocation, reset, credential-rotation, or irreversible actions. Dashboard layouts expose both `Popup` and `nsConfirmPopup` globally:
 
 ```ts
 declare const Popup: any;
@@ -316,7 +316,7 @@ For the full Vue + Tailwind module checklist (including the **required Tailwind 
 
 ### Why this exists
 
-PosSOFT core and every module must share **one** Vue object. If a module Vite build bundles its own `vue`, components and apps created from that copy are a different runtime than core (`nsDashboardContent`, popups, POS). Symptoms include missing core components, broken plugins, and subtle state bugs.
+NexoPOS core and every module must share **one** Vue object. If a module Vite build bundles its own `vue`, components and apps created from that copy are a different runtime than core (`nsDashboardContent`, popups, POS). Symptoms include missing core components, broken plugins, and subtle state bugs.
 
 ### Required module Vite setup
 
@@ -326,7 +326,7 @@ Use the shared factory (preferred) or the plugin alone:
 // modules/ExampleModule/vite.config.js
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defineNexoPOSModuleConfig } from '../../resources/vite-possoft-module.js';
+import { defineNexoPOSModuleConfig } from '../../resources/vite-nexopos-module.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -340,7 +340,7 @@ export default defineNexoPOSModuleConfig({
 });
 ```
 
-That factory enables `possoftVueRuntime()`, which rewrites `import … from 'vue'` to `window.ns.vue` / `window.NexoPOSVue` (loaded by host layouts via `resources/ts/vue-runtime.ts`).
+That factory enables `nexoposVueRuntime()`, which rewrites `import … from 'vue'` to `window.ns.vue` / `window.NexoPOSVue` (loaded by host layouts via `resources/ts/vue-runtime.ts`).
 
 Host layouts already load the runtime in `<head>` before module scripts.
 
@@ -429,7 +429,7 @@ So module registration scripts should load in step 2 for the simplest path. `nsR
 
 - Use `__('Text')` for **core-owned** strings only.
 - Use **`__m('Text', 'ModuleNamespace')`** for **all module-owned** strings on **backend and frontend** (Vue/TS, Blade, PHP).
-- PosSOFT **scans module source for `__m(...)`** to collect translatable text. Wrappers like `t()`, `translate()`, or `localization()` hide strings from that scanner — **do not use them for user-facing copy**.
+- NexoPOS **scans module source for `__m(...)`** to collect translatable text. Wrappers like `t()`, `translate()`, or `localization()` hide strings from that scanner — **do not use them for user-facing copy**.
 - Keep the module namespace identical to `config.xml` / module directory (e.g. `'NsAppointments'`).
 - On the dashboard and POS, core installs **`window.__m`** after bootstrap. That is **not** enough for Vue templates: Vue only sees component bindings. A TypeScript `declare const __m` is **erased** and does **not** create a runtime value.
 - **Always create a real binding** the template can use:

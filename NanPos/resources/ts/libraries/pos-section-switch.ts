@@ -1,4 +1,4 @@
-declare const POS;
+﻿declare const POS;
 
 export default function( value ) {
     POS.changeVisibleSection( value );

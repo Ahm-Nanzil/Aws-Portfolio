@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="ns-pos-customer-select-popup" class="ns-box shadow-xl w-[80vw] md:w-[40vw] xl:w-108">
         <div id="header" class="border-b ns-box-header text-center font-semibold text-2xl py-2">
             <h2>{{ __( 'Select Customer' ) }}</h2>

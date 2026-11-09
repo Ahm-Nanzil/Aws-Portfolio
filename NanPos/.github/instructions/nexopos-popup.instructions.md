@@ -2,13 +2,13 @@
 applyTo: '**'
 ---
 
-# PosSOFT Popup API Guide
+# NexoPOS Popup API Guide
 
-This comprehensive guide explains how to use the PosSOFT Popup system for displaying modal dialogs, forms, and interactive components throughout the application.
+This comprehensive guide explains how to use the NexoPOS Popup system for displaying modal dialogs, forms, and interactive components throughout the application.
 
 ## Overview
 
-The Popup API in PosSOFT provides a centralized, Promise-based system for displaying modal popups. It's built on top of Vue.js and RxJS, offering reactive state management and elegant popup lifecycle control.
+The Popup API in NexoPOS provides a centralized, Promise-based system for displaying modal popups. It's built on top of Vue.js and RxJS, offering reactive state management and elegant popup lifecycle control.
 
 **Location**: `resources/ts/libraries/popup.ts`
 
@@ -93,7 +93,7 @@ try {
 
 ## Built-in Popup Components
 
-PosSOFT includes several pre-built popup components for common use cases.
+NexoPOS includes several pre-built popup components for common use cases.
 
 **Important Note for Modules:** All built-in popup components (nsAlertPopup, nsConfirmPopup, nsPromptPopup, nsSelectPopup, nsMedia, nsPosLoadingPopup) are globally available on the `window` context. **Modules should NOT import these components** - they can be used directly by name. The import statements shown below are only for core application code.
 
@@ -596,7 +596,7 @@ When styling the main popup container (the outermost div in your popup component
 
 ### Standard Popup Sizes
 
-Use these standard viewport-based widths for consistency across PosSOFT:
+Use these standard viewport-based widths for consistency across NexoPOS:
 
 | Size    | Width Class       | Viewport % | Use Case |
 |---------|-------------------|------------|----------|
@@ -979,4 +979,4 @@ const popup: PopupInstance = Popup.show(MyComponent, {
 });
 ```
 
-This comprehensive guide covers all aspects of the PosSOFT Popup API, enabling developers to create consistent, user-friendly modal interactions throughout the application.
+This comprehensive guide covers all aspects of the NexoPOS Popup API, enabling developers to create consistent, user-friendly modal interactions throughout the application.

@@ -1,4 +1,4 @@
-<script>
+﻿<script>
 import { Popup } from '~/libraries/popup';
 import nsPosPendingOrdersPopup from '~/popups/ns-pos-pending-orders-popup.vue';
 import { __ } from '~/libraries/lang';

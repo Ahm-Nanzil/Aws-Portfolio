@@ -29,7 +29,7 @@ trait App
     {
         try {
             if ( DB::connection()->getPdo() ) {
-                return Schema::hasTable( 'possoft_options' );
+                return Schema::hasTable( 'nexopos_options' );
             }
         } catch ( Exception $e ) {
             return false;
@@ -38,7 +38,7 @@ trait App
 
     public static function pageTitle( $string )
     {
-        $storeName = ns()->option->get( 'ns_store_name' ) ?: 'PosSOFT';
+        $storeName = ns()->option->get( 'ns_store_name' ) ?: 'NexoPOS';
 
         return sprintf(
             Hook::filter( 'ns-page-title', __( '%s — %s' ) ),

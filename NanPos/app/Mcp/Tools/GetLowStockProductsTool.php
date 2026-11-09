@@ -13,7 +13,7 @@ use Laravel\Mcp\Server\Tools\Annotations\IsReadOnly;
 #[IsReadOnly]
 class GetLowStockProductsTool extends AuthorizedTool
 {
-    protected array $permissions = [ 'possoft.reports.low-stock' ];
+    protected array $permissions = [ 'nexopos.reports.low-stock' ];
 
     protected string $name = 'get_low_stock_products';
 

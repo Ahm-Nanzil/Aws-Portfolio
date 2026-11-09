@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div id="alert-popup"  class="w-[85.71vw] md:w-[57.14vw] lg:w-[42.86vw] flex flex-col shadow-lg">
         <div class="flex items-center justify-center flex-col flex-auto p-4">
             <h2 class="text-3xl font-body mb-4">{{ __( 'API Token' ) }}</h2>

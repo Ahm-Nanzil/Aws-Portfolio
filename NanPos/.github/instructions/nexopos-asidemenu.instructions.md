@@ -1,6 +1,6 @@
-# PosSOFT AsideMenu Class Documentation
+# NexoPOS AsideMenu Class Documentation
 
-The `AsideMenu` class is a helper utility for building dashboard navigation menus in PosSOFT. It provides a fluent and structured way to create hierarchical menus with proper permissions, icons, and routing.
+The `AsideMenu` class is a helper utility for building dashboard navigation menus in NexoPOS. It provides a fluent and structured way to create hierarchical menus with proper permissions, icons, and routing.
 
 ## Class Location
 ```
@@ -9,7 +9,7 @@ app/Classes/AsideMenu.php
 
 ## Overview
 
-The AsideMenu class provides static methods to construct menu structures that are used in the PosSOFT dashboard. It supports:
+The AsideMenu class provides static methods to construct menu structures that are used in the NexoPOS dashboard. It supports:
 - Main menu items with icons and permissions
 - Submenu items (childrens)
 - Permission-based visibility
@@ -381,7 +381,7 @@ Hook::addFilter('ns-dashboard-menus', function ($menus) {
 
 ## Available Menu Identifiers
 
-Below is a complete list of menu and submenu identifiers available in PosSOFT core (defined in `app/Services/MenuService.php`). Use these identifiers with `array_insert_after()` or `array_insert_before()` functions.
+Below is a complete list of menu and submenu identifiers available in NexoPOS core (defined in `app/Services/MenuService.php`). Use these identifiers with `array_insert_after()` or `array_insert_before()` functions.
 
 ### Main Menu Identifiers
 
@@ -1026,4 +1026,4 @@ Hook::addFilter('ns-dashboard-menus', function ($menus) {
 - **Namespaced identifiers**: Prevent conflicts with unique, descriptive identifiers
 - **Proper permissions**: Use module-specific permissions following CRUD patterns
 
-This approach ensures your module menus integrate seamlessly with PosSOFT while maintaining code quality and preventing conflicts.
+This approach ensures your module menus integrate seamlessly with NexoPOS while maintaining code quality and preventing conflicts.

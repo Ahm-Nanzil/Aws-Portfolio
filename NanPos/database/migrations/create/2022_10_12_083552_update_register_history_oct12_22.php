@@ -13,17 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( Schema::hasTable( 'possoft_registers_history' ) ) {
-            Schema::table( 'possoft_registers_history', function ( Blueprint $table ) {
-                if ( ! Schema::hasColumn( 'possoft_registers_history', 'payment_id' ) ) {
+        if ( Schema::hasTable( 'nexopos_registers_history' ) ) {
+            Schema::table( 'nexopos_registers_history', function ( Blueprint $table ) {
+                if ( ! Schema::hasColumn( 'nexopos_registers_history', 'payment_id' ) ) {
                     $table->integer( 'payment_id' )->nullable();
                 }
 
-                if ( ! Schema::hasColumn( 'possoft_registers_history', 'payment_type_id' ) ) {
+                if ( ! Schema::hasColumn( 'nexopos_registers_history', 'payment_type_id' ) ) {
                     $table->integer( 'payment_type_id' )->default( 0 );
                 }
 
-                if ( ! Schema::hasColumn( 'possoft_registers_history', 'order_id' ) ) {
+                if ( ! Schema::hasColumn( 'nexopos_registers_history', 'order_id' ) ) {
                     $table->integer( 'order_id' )->nullable();
                 }
             } );

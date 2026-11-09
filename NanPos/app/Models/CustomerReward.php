@@ -18,7 +18,7 @@ class CustomerReward extends NsModel
 {
     use HasFactory;
 
-    protected $table = 'possoft_' . 'customers_rewards';
+    protected $table = 'nexopos_' . 'customers_rewards';
 
     public $dispatchesEvents = [
         'created' => CustomerRewardAfterCreatedEvent::class,

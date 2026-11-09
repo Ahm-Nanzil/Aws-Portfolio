@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div class="px-4">
         <ns-notice color="error" v-if="timezone === ''">
             <template v-slot:title>{{ __( 'An Error Has Occurred' ) }}</template>

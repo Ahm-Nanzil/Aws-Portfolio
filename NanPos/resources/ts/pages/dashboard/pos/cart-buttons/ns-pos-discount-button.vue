@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <div @click="openDiscountPopup( order, 'cart' )" id="discount-button" class="flex-shrink-0 w-1/4 flex items-center font-bold cursor-pointer justify-center border-r border-box-edge flex-auto">
         <i class="mr-2 text-2xl lg:text-xl las la-percent"></i> 
         <span class="text-lg hidden md:inline lg:text-2xl">{{ __( 'Discount' ) }}</span>
@@ -24,8 +24,8 @@ export default {
             }
 
             const permissionMapping = {
-                product: 'possoft.cart.product-discount',
-                cart: 'possoft.cart.discount'
+                product: 'nexopos.cart.product-discount',
+                cart: 'nexopos.cart.discount'
             }
 
             try {

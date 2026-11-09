@@ -17,8 +17,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if ( ! Schema::hasTable( 'possoft_procurements_products' ) ) {
-            Schema::createIfMissing( 'possoft_procurements_products', function ( Blueprint $table ) {
+        if ( ! Schema::hasTable( 'nexopos_procurements_products' ) ) {
+            Schema::createIfMissing( 'nexopos_procurements_products', function ( Blueprint $table ) {
                 $table->bigIncrements( 'id' );
                 $table->string( 'name' );
                 $table->decimal( 'gross_purchase_price', 18, 5 )->default( 0 );
@@ -50,8 +50,8 @@ return new class extends Migration
      */
     public function down()
     {
-        if ( Schema::hasTable( 'possoft_procurements_products' ) ) {
-            Schema::dropIfExists( 'possoft_procurements_products' );
+        if ( Schema::hasTable( 'nexopos_procurements_products' ) ) {
+            Schema::dropIfExists( 'nexopos_procurements_products' );
         }
     }
 };
