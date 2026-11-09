@@ -1,0 +1,4 @@
+interface:
+  display_name: "PosSOFT Theming"
+  short_description: "Build theme-aware PosSOFT UI components"
+  default_prompt: "Use $possoft-theming to build a PosSOFT component that follows every supported theme."
